@@ -45,7 +45,7 @@ class App extends React.Component {
       .then(blob => blob.json())
       .then(data => {
       
-        const index = Math.floor(data.length / 2) - 1;
+        const index = 0
         let song = data[index];
       
         if(song.artwork_url == null) {

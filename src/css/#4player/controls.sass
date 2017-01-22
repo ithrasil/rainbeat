@@ -127,11 +127,20 @@
             cursor: pointer
 
           .tooltip
-            +tooltip()
+            display: inline-block
+            color: white
+            padding: 2.5px 7.5px
+            position: absolute
+            border-radius: 3px
+            left: -15px
+            font-size: 18px
+            opacity: 0
+            pointer-events: none
+            font-family: "Inconsolata"
+            letter-spacing: 1px
             top: 20px
             background: $accent-color
             transition: opacity .3s
-            opacity: 0
 
           &:hover
             .tooltip
@@ -145,19 +154,15 @@
             height: 16px
             border-radius: 15px
 
-            .tooltip
-              +tooltip()
-
-            &:hover
-              .tooltip
-                opacity: 1
-
-        .duration
+        .actualTime
           color: white
           margin-left: 15px
           padding: 2px 5px
           height: 19px
           width: 45px
+          font-size: 18px
+          letter-spacing: 1px
+          font-family: "Inconsolata"
 
           @media (max-width: 768px)
             display: none
@@ -174,21 +179,30 @@
           text-align: center
 
         img
-          width: 33px
+          position: relative
+          top: 2px
+          width: 32px
           color: white
-          height: 33px
-
+          height: 32px
+          transition: .5s
+          
+          &:active
+            filter: blur(20px)
+          
+          &:hover
+            cursor: pointer
+        
         input
           opacity: 0
           pointer-events: none
-          margin-left: 0
           transition: .5s
+          transform: scale(.95) translateX(-15px)
 
           @media (max-width: 768px)
             display: none
 
         &:hover
           input
-            margin-left: 10px
             opacity: 1
             pointer-events: auto
+            transform: scale(1.05) translateX(10px)

@@ -11,6 +11,8 @@ class Controls extends React.Component {
       stream: this.props.activeSong.stream,
       title: this.props.activeSong.title,
       volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 50,
+      actualTime: "00:00",
+      isMuted: localStorage.getItem('muted') == "true" ? true : false
     }
   
   }
@@ -37,7 +39,8 @@ class Controls extends React.Component {
     this.handleTimeUpdate();  
     
     document.body.addEventListener('keyup', (e) => {
-      if(e.keyCode == 32){
+      const songInput = document.querySelector('#songInput');
+      if(e.keyCode == 32 && document.activeElement != songInput){
           this.handleSwitch();
       }
     }); 
@@ -77,8 +80,12 @@ class Controls extends React.Component {
   handleCanPlayThrough() {
 
     this.state.stream.addEventListener('canplaythrough', () => {
-      const duration = helpers.convertSecondsToMs(this.state.stream.duration);
-      const timeIteration = (document.querySelector('#progress').offsetWidth) / this.state.stream.duration;
+      const stream = this.state.stream;
+      
+      const duration = helpers.convertSecondsToMs(stream.duration);
+      const timeIteration = (document.querySelector('#progress').offsetWidth) / stream.duration;
+
+      stream.muted = this.state.isMuted;
 
       this.setState({ duration: duration });
       this.setState({ timeIteration: timeIteration });
@@ -89,11 +96,11 @@ class Controls extends React.Component {
   
   handleTimeUpdate() {
     const positionDot = document.querySelector('#position');
-    const actualTimeTooltip = document.querySelector('#actualTime');
     
     this.state.stream.addEventListener('timeupdate', () => {
       positionDot.style.left = -5 + this.state.stream.currentTime * this.state.timeIteration + "px";
-      actualTimeTooltip.textContent = helpers.convertSecondsToMs(this.state.stream.currentTime);
+      
+      this.setState({ actualTime: helpers.convertSecondsToMs(this.state.stream.currentTime) });
     });
   }
   
@@ -115,6 +122,13 @@ class Controls extends React.Component {
     positionDot.style.left = difference;
   }
   
+  handleMute(e) {
+    const isMuted = !this.state.stream.muted;
+    this.state.stream.muted = isMuted;
+    this.setState({ isMuted: isMuted });
+    localStorage.setItem('muted', isMuted);
+  }
+  
   handleVolume(e) {
     const volume = e.target.value;
     this.setState({volume: volume});
@@ -123,6 +137,15 @@ class Controls extends React.Component {
   }
   
   render() {
+    
+    let volumeIcon;
+    
+    if(this.state.stream.muted) {
+      volumeIcon = "/images/icons/volume-mute.svg"
+    }
+    else {
+      volumeIcon = "/images/icons/volume.svg"
+    }
     
     return(
       
@@ -147,21 +170,17 @@ class Controls extends React.Component {
             <div className="progress-and-duration">
               <div className="progress" id="progress" onMouseMove={ this.showProgress.bind(this) } onClick={ this.handleProgressBarClick.bind(this) }>
                 <div className="tooltip" id="intendedTime">
-                  00:00
+                  
                 </div>
-                <div className="position" id="position">
-                  <div className="tooltip" id="actualTime">
-                    00:00
-                  </div>
-                </div>
+                <div className="position" id="position"></div>
               </div>
-              <div className="duration" id="duration">
-                { this.state.duration }
+              <div className="actualTime" id="actualTime">
+                { this.state.actualTime }
               </div>
             </div>
             
             <div className="volume">
-              <img src="/images/icons/volume.svg" />
+              <img src={ volumeIcon } onClick={ this.handleMute.bind(this) }/>
               <input className="slider" max="100" value={ this.state.volume } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
             
