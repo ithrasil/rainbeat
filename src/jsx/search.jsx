@@ -12,12 +12,6 @@ class Search extends React.Component {
   
   componentDidMount() {
     document.querySelector('#songInput').focus();
-    
-    window.addEventListener('keydown', (e) => {
-        if (e.keyCode == 27) {
-          this.toggleSearch();
-        }
-    });
   }
   
   componentWillReceiveProps(props) {

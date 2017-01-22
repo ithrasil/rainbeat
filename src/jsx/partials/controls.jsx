@@ -35,6 +35,12 @@ class Controls extends React.Component {
   componentDidMount() {
     this.handleCanPlayThrough();
     this.handleTimeUpdate();  
+    
+    document.body.addEventListener('keyup', (e) => {
+      if(e.keyCode == 32){
+          this.handleSwitch();
+      }
+    }); 
   }
   
   handleReplay() {
@@ -69,6 +75,7 @@ class Controls extends React.Component {
   }
   
   handleCanPlayThrough() {
+
     this.state.stream.addEventListener('canplaythrough', () => {
       const duration = helpers.convertSecondsToMs(this.state.stream.duration);
       const timeIteration = (document.querySelector('#progress').offsetWidth) / this.state.stream.duration;
@@ -76,6 +83,8 @@ class Controls extends React.Component {
       this.setState({ duration: duration });
       this.setState({ timeIteration: timeIteration });
     });
+    
+    this.handleSwitch();
   }
   
   handleTimeUpdate() {

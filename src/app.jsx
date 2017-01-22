@@ -17,9 +17,10 @@ class App extends React.Component {
     this.state = {
       activeSong: [],
       songs: [],
-      query: localStorage.getItem('query') || "Styx Master Of Shadows - Main Theme",
+      query: localStorage.getItem('query') || "ezenia",
       dataReceived: false,
       client_id: "2f98992c40b8edf17423d93bda2e04ab",
+      songLoaded: true
     }
   }
   
@@ -28,6 +29,8 @@ class App extends React.Component {
   }
   
   handleQuery() {
+    if(this.state.songLoaded == false) return;
+    
     const searchModule = document.querySelector('#search');
     const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.state.query}&limit=20`;
     
@@ -61,16 +64,23 @@ class App extends React.Component {
           {
             activeSong: newActiveSong,
             songs: data, 
-            dataReceived: true
+            dataReceived: true,
+            songLoaded: false
           } 
         );
       
-        localStorage.setItem('query', this.state.query)
+        localStorage.setItem('query', this.state.query);
+      
+        this.state.activeSong.stream.addEventListener('canplay', () => {
+          this.state.songLoaded = true
+        })
         
     });
   }
   
   handleChangeCard(e) {
+    if(this.state.songLoaded == false) return;
+    
     const dataset = e.target.dataset;
     const actualCard = e.target.parentNode;
     
@@ -81,10 +91,9 @@ class App extends React.Component {
       const cardsArr = Array.prototype.slice.call(cardsList, 0); 
       const index = cardsArr.indexOf(actualCard);
       
-      activeCard.classList.remove('active');
-      actualCard.classList.add('active');
+      this.state.activeSong.stream.pause();
       
-      var newStream = this.state.activeSong.stream;
+      let newStream = this.state.activeSong.stream;
     
       newStream.src = dataset.stream_url + "?client_id=" + this.state.client_id;
       
@@ -96,7 +105,20 @@ class App extends React.Component {
         index: index
       }
 
-      this.setState({ activeSong: newActiveSong });
+      this.setState(
+        { 
+          activeSong: newActiveSong,
+          songLoaded: false
+        }
+      );
+      
+      this.state.activeSong.stream.addEventListener('canplay', () => {
+        this.state.songLoaded = true;
+      })
+      
+      this.state.activeSong.stream.addEventListener('ended', () => {
+        this.state.songLoaded = true;
+      })
       
     }
   }
