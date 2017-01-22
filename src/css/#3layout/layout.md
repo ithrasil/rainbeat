@@ -1,0 +1,4 @@
+Layout
+===========================
+
+contains styling for larger layout components; e.g. nav, header, footer, etc.

@@ -1,0 +1,38 @@
+=tooltip() 
+  display: inline-block
+  background: #111
+  color: white
+  padding: 0 5px
+  position: absolute
+  border-radius: 3px
+  top: -25px
+  left: -15px
+  transition: .5s
+  opacity: 0
+  pointer-events: none
+  
+.player 
+  overflow: hidden
+  max-height: 100%
+  min-height: 100%
+  background-color: #000
+    
+  .background
+    position: absolute
+    width: 100%
+    height: 100%
+    
+    background: 
+      size: cover
+      position: center
+      color: #000
+    opacity: .85
+    filter: brightness(20%)
+    
+  @import "cards"
+    
+  @import "controls"
+      
+  
+        
+  
