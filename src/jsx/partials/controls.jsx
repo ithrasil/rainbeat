@@ -91,7 +91,7 @@ class Controls extends React.Component {
       this.setState({ timeIteration: timeIteration });
     });
     
-    this.handleSwitch();
+//    this.handleSwitch();
   }
   
   handleTimeUpdate() {
@@ -150,7 +150,7 @@ class Controls extends React.Component {
     return(
       
       <div className="container">
-
+        
         <div className="song-status">
           <div className="desc">
             <div className="caption">

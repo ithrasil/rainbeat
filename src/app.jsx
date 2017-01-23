@@ -3,7 +3,6 @@ import './css/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from './html-partials/header.jsx';
 import Player from './jsx/player.jsx';
 import Search from './jsx/search.jsx';
 
@@ -17,7 +16,7 @@ class App extends React.Component {
     this.state = {
       activeSong: [],
       songs: [],
-      query: localStorage.getItem('query') || "ezenia",
+      query: localStorage.getItem('query') || " ",
       dataReceived: false,
       client_id: "2f98992c40b8edf17423d93bda2e04ab",
       songLoaded: true
@@ -29,27 +28,28 @@ class App extends React.Component {
   }
   
   handleQuery() {
+  
     if(this.state.songLoaded == false) return;
     
     const searchModule = document.querySelector('#search');
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.state.query}&limit=20`;
-    
-    search.classList.remove('slideUp');
-    
-    if(this.state.dataReceived) {
-      this.state.activeSong.stream.pause();
-      this.setState({dataReceived: false});
-    }
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.state.query}&limit=30`;
     
     fetch(endpoint)
       .then(blob => blob.json())
       .then(data => {
+
+        if(data.length == 0) return ;
+        
+        if(this.state.dataReceived) {
+          this.state.activeSong.stream.pause();
+          this.setState({dataReceived: false});
+        }
       
         const index = 0
         let song = data[index];
       
         if(song.artwork_url == null) {
-          song.artwork_url = "https://unsplash.it/500";
+          song.artwork_url = "https://unsplash.it/300";
         }
         
         const newActiveSong = {
@@ -75,21 +75,45 @@ class App extends React.Component {
           this.state.songLoaded = true
         })
         
+        this.state.activeSong.stream.addEventListener('ended', () => {
+          this.handleChangeCard('next');
+        })
+        
     });
   }
   
-  handleChangeCard(e) {
+  handleChangeCard(direction) {
     if(this.state.songLoaded == false) return;
     
-    const dataset = e.target.dataset;
-    const actualCard = e.target.parentNode;
+    const oldActiveCard = document.querySelector('.card.active');
+    const cardsList = document.querySelectorAll('.card');
+
+    let newActiveCard;
+
+    if(typeof direction == "object") {
+      newActiveCard = direction.target.parentNode;
+    }
+    else if(direction == "next"){
+      newActiveCard = oldActiveCard.nextSibling;
+      
+      if(newActiveCard.classList.contains('dummy')){
+        newActiveCard = cardsList[2];
+      }
+    }
+    else if(direction == "prev"){
+      newActiveCard = oldActiveCard.previousSibling;
+      
+      if(newActiveCard.classList.contains('dummy')){
+        const length = cardsList.length;
+        newActiveCard = cardsList[length-3];
+      }
+    }
     
-    const activeCard = document.querySelector('.card.active');
-    
-    if(activeCard != actualCard) {
-      const cardsList = document.querySelectorAll('.card');
+    const dataset = newActiveCard.children[0].dataset;
+
+    if(oldActiveCard != newActiveCard) {
       const cardsArr = Array.prototype.slice.call(cardsList, 0); 
-      const index = cardsArr.indexOf(actualCard);
+      const index = cardsArr.indexOf(newActiveCard);
       
       this.state.activeSong.stream.pause();
       
@@ -102,9 +126,9 @@ class App extends React.Component {
         artwork_url: dataset.artwork_url,
         stream: newStream,
         title: dataset.title,
-        index: index
+        index: index-2
       }
-
+      
       this.setState(
         { 
           activeSong: newActiveSong,
@@ -117,15 +141,20 @@ class App extends React.Component {
       })
       
       this.state.activeSong.stream.addEventListener('ended', () => {
-        this.state.songLoaded = true;
+        this.handleChangeCard('next');
       })
       
     }
   }
   
+  handleTouch(e) {
+    const action = e.target.dataset.action;
+    this.handleChangeCard(action);
+  }
+  
   handleSearch(e) {
     if(e.target == songInput) {
-      this.setState( {query: songInput.value} );
+      this.setState({ query: songInput.value });
       e.target.value = this.state.query;
     }
   }
@@ -153,7 +182,9 @@ class App extends React.Component {
             activeSong={ this.state.activeSong }  
             songs={ this.state.songs } 
             client_id={ this.state.client_id } 
+            onTouchStart={ this.handleTouch.bind(this) }
           />
+          
         </div>
       )
     }
