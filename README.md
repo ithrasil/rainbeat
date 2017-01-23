@@ -4,7 +4,7 @@ Rainbeat is simple and fast music player for everyone. Enjoy!
 ## Introduction
 Rainbeat is based on SoundCloud API and React library.
 
-## Map
+## Structure
 
 * public
 
@@ -12,4 +12,4 @@ Rainbeat is based on SoundCloud API and React library.
 
 * src
 
-   In this catalog we have jsx React modules and SASS files
+   In this catalog are jsx React modules and SASS files
