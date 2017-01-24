@@ -1,4 +1,5 @@
 import React from 'react';
+import Swipe from 'react-swipe';
 
 import Card from './partials/card.jsx';
 import DummyCard from './partials/dummyCard.jsx';
@@ -78,12 +79,10 @@ class Player extends React.Component {
     return(
       <section className="player">
         <div className="background" style={{ backgroundImage }}></div>
-        
-        <div className="cards">
-          <div className="prevCard" data-action="prev" onTouchStart={ this.props.onTouchStart }></div>
+      
+        <Swipe className="cards" onSwipeMove={ this.props.onSwipeMove }>
           { cards }
-          <div className="nextCard" data-action="next" onTouchStart={ this.props.onTouchStart }></div>
-        </div>
+        </Swipe>
         
         <Controls activeSong={ this.state.activeSong } />
       </section>

@@ -17,8 +17,9 @@
     text-align: left
     color: white
     width: 100%
+    
     @media (max-width: 1600px)
-      margin: 50px 0
+      margin: 25px 0
 
     .desc
       display: inline-block
@@ -130,8 +131,16 @@
 
           &:hover
             cursor: pointer
+          
+          .actualProgress
+            width: 2px
+            height: 100%
+            position: absolute
+            top: 0
+            border-radius: 10px
+            background: lighten($accent-color, 30%)
 
-          .tooltip
+          #intendedTime
             display: inline-block
             color: white
             padding: 2.5px 7.5px
@@ -148,12 +157,11 @@
             transition: opacity .3s
 
           &:hover
-            .tooltip
+            #intendedTime
               opacity: 1
 
           .position
-            position: relative
-            left: -5px
+            transform: translateX(-5px)
             background: $accent-color
             width: 16px
             height: 16px

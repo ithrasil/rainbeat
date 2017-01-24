@@ -2,6 +2,7 @@ import './css/main.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Swipe from 'react-swipe';
 
 import Player from './jsx/player.jsx';
 import Search from './jsx/search.jsx';
@@ -32,7 +33,7 @@ class App extends React.Component {
     if(this.state.songLoaded == false) return;
     
     const searchModule = document.querySelector('#search');
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.state.query}&limit=30`;
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.state.query}&limit=40`;
     
     fetch(endpoint)
       .then(blob => blob.json())
@@ -147,9 +148,10 @@ class App extends React.Component {
     }
   }
   
-  handleTouch(e) {
-    const action = e.target.dataset.action;
-    this.handleChangeCard(action);
+  handleMove(position) {
+    console.log(position);
+    const direction = position.x > 0 ? "prev" : "next";
+    this.handleChangeCard(direction);
   }
   
   handleSearch(e) {
@@ -176,13 +178,13 @@ class App extends React.Component {
             onInput={this.handleSearch.bind(this)}
             query={ this.state.query }
           />
-
+        
           <Player 
             onClick={ this.handleChangeCard.bind(this) } 
             activeSong={ this.state.activeSong }  
             songs={ this.state.songs } 
             client_id={ this.state.client_id } 
-            onTouchStart={ this.handleTouch.bind(this) }
+            onSwipeMove={ this.handleMove.bind(this) }
           />
           
         </div>

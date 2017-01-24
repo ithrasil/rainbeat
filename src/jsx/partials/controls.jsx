@@ -12,6 +12,7 @@ class Controls extends React.Component {
       title: this.props.activeSong.title,
       volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 50,
       actualTime: "00:00",
+      actualTranslation: 0,
       isMuted: localStorage.getItem('muted') == "true" ? true : false
     }
   
@@ -39,10 +40,11 @@ class Controls extends React.Component {
     this.handleTimeUpdate();  
     
     document.body.addEventListener('keyup', (e) => {
-      const songInput = document.querySelector('#songInput');
-      if(e.keyCode == 32 && document.activeElement != songInput){
-          this.handleSwitch();
-      }
+//      const songInput = document.querySelector('#songInput');
+//      if(e.keyCode == 32 && document.activeElement != songInput){
+//
+//          this.handleSwitch();
+//      }
     }); 
   }
   
@@ -52,11 +54,10 @@ class Controls extends React.Component {
   
   handleReset() {
     const switchBtn = document.querySelector('#switchBtn');
-    const positionDot = document.querySelector('#position');
+    
+    this.setState({actualTime: 0});
     
     this.state.stream.pause();
-    switchBtn.src = switchBtn.src.replace('pause', 'play');
-    positionDot.style.left = -5 + "px";
     switchBtn.classList.remove('playing')
   }
   
@@ -95,18 +96,20 @@ class Controls extends React.Component {
   }
   
   handleTimeUpdate() {
-    const positionDot = document.querySelector('#position');
-    
+
     this.state.stream.addEventListener('timeupdate', () => {
-      positionDot.style.left = -5 + this.state.stream.currentTime * this.state.timeIteration + "px";
-      
-      this.setState({ actualTime: helpers.convertSecondsToMs(this.state.stream.currentTime) });
+
+      this.setState({ 
+        actualTime: helpers.convertSecondsToMs(this.state.stream.currentTime) ,
+        actualTranslation: this.state.stream.currentTime * this.state.timeIteration
+      });
     });
   }
   
   showProgress(e) {
     const progressBar = document.querySelector('#progress');
     const intendedTimeTooltip = document.querySelector("#intendedTime");
+    
     const difference = Math.ceil(e.clientX - progressBar.getBoundingClientRect().left);
 
     intendedTimeTooltip.style.transform = 'translateX(' + (difference - 10) + 'px)';
@@ -119,7 +122,6 @@ class Controls extends React.Component {
     
     var difference = Math.ceil(e.clientX - progressBar.getBoundingClientRect().left);
     this.state.stream.currentTime = Math.floor(difference / this.state.timeIteration);
-    positionDot.style.left = difference;
   }
   
   handleMute(e) {
@@ -169,10 +171,9 @@ class Controls extends React.Component {
 
             <div className="progress-and-duration">
               <div className="progress" id="progress" onMouseMove={ this.showProgress.bind(this) } onClick={ this.handleProgressBarClick.bind(this) }>
-                <div className="tooltip" id="intendedTime">
-                  
-                </div>
-                <div className="position" id="position"></div>
+                <div className="actualProgress" style={{ width: `${ this.state.actualTranslation + 2 }px`}}></div>
+                <div className="intendedTime" id="intendedTime"></div>
+                <div className="position" style={{ transform: `translateX(${ this.state.actualTranslation -5 }px)`}}></div>
               </div>
               <div className="actualTime" id="actualTime">
                 { this.state.actualTime }
