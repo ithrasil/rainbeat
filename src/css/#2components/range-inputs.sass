@@ -1,9 +1,24 @@
 input[type=range].slider
   -webkit-appearance: none
+  -moz-appearance: none
+  -ms-appearance: none
   position: relative
   top: -10px
   left: 5px
   border-radius: 10px
+  display: inline-block
+
+  &:before
+    content: ""
+    position: absolute
+    display: block
+    top: -12.5px
+    left: 0
+    z-index: 10
+    height: 31px
+    width: 100%
+    cursor: pointer
+      
   &:focus
     outline: none
   &::-webkit-slider-runnable-track
@@ -26,7 +41,7 @@ input[type=range].slider
     background: #fff
   
   &::-moz-range-track
-    width: 100%
+    width: 50%
     height: 6px
     cursor: pointer
     border-radius: 5px
@@ -38,7 +53,7 @@ input[type=range].slider
     border-radius: 3px
     background: $accent-color
     cursor: pointer
-    -webkit-appearance: none
+    -moz-appearance: none
     margin-top: -11px
   
   &::-ms-track
@@ -58,7 +73,7 @@ input[type=range].slider
     border-radius: 3px
     background: $accent-color
     cursor: pointer
-    -webkit-appearance: none
+    -ms-appearance: none
     margin-top: -11px
   
   &:focus

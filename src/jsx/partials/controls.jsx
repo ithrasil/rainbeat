@@ -11,9 +11,9 @@ class Controls extends React.Component {
       stream: this.props.activeSong.stream,
       title: this.props.activeSong.title,
       volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
-      actualTime: "00:00",
-      actualTranslation: 0,
-      isMuted: localStorage.getItem('muted') == "true" ? true : false
+      isMuted: localStorage.getItem('muted') == "true" ? true : false,
+      isMouseDown: false,
+      dummyTime: 0
     }
   
   }
@@ -25,9 +25,9 @@ class Controls extends React.Component {
         stream: props.activeSong.stream,
         title: props.activeSong.title,
         volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
-        actualTime: "00:00",
-        actualTranslation: 0,
-        isMuted: localStorage.getItem('muted') == "true" ? true : false
+        isMuted: localStorage.getItem('muted') == "true" ? true : false,
+        isMouseDown: false,
+        dummyTime: 0
       }
 
       this.handleCanPlayThrough();
@@ -57,28 +57,23 @@ class Controls extends React.Component {
   }
   
   handleReset() {
-    const switchBtn = document.querySelector('#switchBtn');
-    
-    this.setState({actualTime: "00:00"});
     
     this.state.stream.pause();
-    switchBtn.classList.remove('playing')
   }
   
-  handleSwitch() {
+  handleSwitch() {      
     
-    const switchBtn = document.querySelector('#switchBtn');           
+    const playSwitchIcon = this.playSwitchIcon;
     
-    if(switchBtn.classList.contains('playing')) {
-      this.state.stream.pause();
-      switchBtn.src = switchBtn.src.replace('pause', 'play');
+    if(this.state.stream.paused) {
+      this.state.stream.play();
+      playSwitchIcon.src = playSwitchIcon.src.replace('play', 'pause');
+      
     }
     else {
-      this.state.stream.play();
-      switchBtn.src = switchBtn.src.replace('play', 'pause');
+      this.state.stream.pause();
+      playSwitchIcon.src = playSwitchIcon.src.replace('pause', 'play');
     }
-    
-    switchBtn.classList.toggle('playing')
 
   }
   
@@ -88,7 +83,7 @@ class Controls extends React.Component {
       const stream = this.state.stream;
       
       const duration = helpers.convertSecondsToMs(stream.duration);
-      const timeIteration = (document.querySelector('#progress').offsetWidth) / stream.duration;
+      const timeIteration = (this.track.offsetWidth) / stream.duration;
       
       stream.volume = this.state.volume;
       stream.muted = this.state.isMuted;
@@ -97,38 +92,70 @@ class Controls extends React.Component {
       this.setState({ timeIteration: timeIteration });
     });
     
-//    this.handleSwitch();
   }
   
   handleTimeUpdate() {
 
     this.state.stream.addEventListener('timeupdate', () => {
-
-      this.setState({ 
-        actualTime: helpers.convertSecondsToMs(this.state.stream.currentTime) ,
-        actualTranslation: this.state.stream.currentTime * this.state.timeIteration
-      });
+      if(!this.state.isMouseDown) {
+        this.setState({ dummyTime: this.state.stream.currentTime });
+      }
     });
   }
   
-  showProgress(e) {
-    const progressBar = document.querySelector('#progress');
-    const intendedTimeTooltip = document.querySelector("#intendedTime");
+  handleMouseMove(event) {
     
-    const difference = Math.ceil(e.clientX - progressBar.getBoundingClientRect().left);
+    if(this.state.isMouseDown) {
+      this.moveDot(event);
+    }
+    
+    const mouseX = event.clientX;
+    const trackLeftX = this.track.getBoundingClientRect().left;
+    const difference = Math.ceil(mouseX - trackLeftX);
 
-    intendedTimeTooltip.style.transform = 'translateX(' + (difference - 10) + 'px)';
-    intendedTimeTooltip.textContent = helpers.convertSecondsToMs(Math.floor(difference / this.state.timeIteration));
+    this.intendedTime.style.transform = 'translateX(' + (difference - 10) + 'px)';
+    this.intendedTime.textContent = helpers.convertSecondsToMs(Math.floor(difference / this.state.timeIteration));
   }
   
-  handleProgressBarClick(e) {
-    const progressBar = document.querySelector('#progress');
-    const positionDot = document.querySelector('#position');
+  handleMouseLeave() {
+    if(this.state.isMouseDown == false) return;
     
-    var difference = Math.ceil(e.clientX - progressBar.getBoundingClientRect().left);
+    if(this.state.paused) {
+      this.state.stream.play();
+      this.setState({ paused: false });
+    }
+    this.moveDot(event);
+    this.state.isMouseDown = false;
+  }
+
+  handleMouseDown(event) {
+    
+    if(!this.state.stream.paused) {
+      this.state.stream.pause();
+      this.setState({ paused: true });
+    }
+    this.state.isMouseDown = true;
+  }
+  
+  handleMouseUp(event) {
+    if(this.state.paused) {
+      this.state.stream.play();
+      this.setState({ paused: false });
+    }
+    this.moveDot(event);
+    this.state.isMouseDown = false;
+  }
+  
+  moveDot(event) {
+    const mouseX = event.clientX;
+    const trackLeftX = this.track.getBoundingClientRect().left;
+    const difference = Math.ceil(mouseX - trackLeftX);
+    
+    this.setState({ dummyTime: Math.floor(difference / this.state.timeIteration) });
+    
     this.state.stream.currentTime = Math.floor(difference / this.state.timeIteration);
   }
-  
+
   handleMute(e) {
     const isMuted = !this.state.stream.muted;
     this.state.stream.muted = isMuted;
@@ -136,8 +163,8 @@ class Controls extends React.Component {
     localStorage.setItem('muted', isMuted);
   }
   
-  handleVolume(e) {
-    const volume = e.target.value / 100;
+  handleVolume(event) {
+    const volume = event.target.value / 100;
     this.setState({volume: volume});
     this.state.stream.volume = volume;
     localStorage.setItem('volume', volume);
@@ -153,7 +180,7 @@ class Controls extends React.Component {
     else {
       volumeIcon = "/images/icons/volume.svg"
     }
-    
+
     return(
       
       <div className="container">
@@ -166,23 +193,32 @@ class Controls extends React.Component {
           </div>
           <div className="config">
 
-            <div className="replayBtn">
-              <img id="replayBtn" src="/images/icons/repeat.svg" onClick={ this.handleReplay.bind(this) }/>
+            <div className="replay_trigger" onClick={ this.handleReplay.bind(this) }>
+              <img src="/images/icons/repeat.svg" />
             </div>
 
-            <div className="switchBtn">
-              <img id="switchBtn" src="/images/icons/play.svg" onClick={ this.handleSwitch.bind(this) }/>
+            <div className="play_switch" onClick={ this.handleSwitch.bind(this) }>
+              <img src="/images/icons/play.svg" ref={ (playSwitchIcon) => { this.playSwitchIcon = playSwitchIcon; }}/>
             </div>
 
-            <div className="progress-and-duration">
-              <div className="progress" id="progress" onMouseMove={ this.showProgress.bind(this) } onClick={ this.handleProgressBarClick.bind(this) }>
-                <div className="actualProgress" style={{ width: `${ this.state.actualTranslation + 2 }px`}}></div>
-                <div className="intendedTime" id="intendedTime"></div>
-                <div className="position" style={{ transform: `translateX(${ this.state.actualTranslation -5 }px)`}}></div>
+            <div className="track_controls">
+             
+              <div 
+                className="track" 
+                onMouseMove={ this.handleMouseMove.bind(this) } 
+                onMouseLeave={ this.handleMouseLeave.bind(this) }
+                onMouseDown={ this.handleMouseDown.bind(this) }
+                onMouseUp={ this.handleMouseUp.bind(this) }
+                ref={(track) => { this.track = track; }} 
+              >
+               
+                <div className="track_elapsed" style={{ width: `${ this.state.dummyTime * this.state.timeIteration + 2 }px`}}></div>
+                <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
+                <div className="dot_position" style={{ transform: `translateX(${ this.state.dummyTime * this.state.timeIteration -5 }px)`}}></div>
               </div>
-              <div className="actualTime" id="actualTime">
-                { this.state.actualTime }
-              </div>
+              
+              <div className="current_time">{ helpers.convertSecondsToMs(this.state.stream.currentTime) }</div>
+              
             </div>
             
             <div className="volume">

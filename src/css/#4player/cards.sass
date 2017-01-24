@@ -4,7 +4,6 @@
   text-align: center
   position: relative
   left: 0
-  transition: .4s ease-in-out
   display: flex
   justify-content: center
   align-items: center
@@ -38,7 +37,6 @@
       
         &:before
           opacity: 1
-          background-size: 50%
       
       &:before
         content: ""
@@ -51,9 +49,10 @@
         background-size: 40%
         background-repeat: no-repeat
         background-position: center
-        background-color: rgba(0, 0, 0, .75)
-        opacity: 0
+        background-color: rgba(0, 0, 0, .25)
+        filter: brightness(75%)
         transition: .3s
+        opacity: 0
         
         @media (max-width: 768px)
           display: none
@@ -94,7 +93,7 @@
     top: 0
     
     &:hover
-      transform: translateY(-20px) scale(1.1)
+      transform: translateY(-20px) 
     
     .label
       font-size: 18px
@@ -114,11 +113,7 @@
     z-index: 2
   
     &:hover
-      transform: translateY(-10px) scale(1.25)
-    
-    @media (max-width: 768px)
-      &:hover
-        transform: scale(1.2)
+      transform: scale(1.2)
       
     .dataset
       &:before

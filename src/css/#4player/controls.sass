@@ -48,7 +48,7 @@
         left: 0
         flex-wrap: wrap
 
-      .replayBtn
+      .replay_trigger
         display: inline-block
         width: 30px
         position: relative
@@ -75,7 +75,7 @@
           width: 32px
           height: 32px
 
-      .switchBtn
+      .play_switch
         display: inline-block
         color: white
         transition: .5s
@@ -95,14 +95,14 @@
           width: 26px
           height: 26px
 
-      .progress-and-duration
+      .track_controls
         display: flex
         width: 100%
         @media (max-width: 768px)
           width: 100%
           order: 1
 
-        .progress
+        .track
           background: white
           margin-left: 20px
           height: 6px
@@ -132,7 +132,10 @@
           &:hover
             cursor: pointer
           
-          .actualProgress
+            .intended_time
+              opacity: 1
+          
+          .track_elapsed
             width: 2px
             height: 100%
             position: absolute
@@ -140,7 +143,7 @@
             border-radius: 10px
             background: lighten($accent-color, 30%)
 
-          #intendedTime
+          .intended_time
             display: inline-block
             color: white
             padding: 2.5px 7.5px
@@ -156,18 +159,14 @@
             background: $accent-color
             transition: opacity .3s
 
-          &:hover
-            #intendedTime
-              opacity: 1
-
-          .position
+          .dot_position
             transform: translateX(-5px)
             background: $accent-color
             width: 16px
             height: 16px
             border-radius: 15px
 
-        .actualTime
+        .current_time
           color: white
           margin-left: 15px
           padding: 2px 5px
