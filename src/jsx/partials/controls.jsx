@@ -23,7 +23,11 @@ class Controls extends React.Component {
 
       this.state = {
         stream: props.activeSong.stream,
-        title: props.activeSong.title
+        title: props.activeSong.title,
+        volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
+        actualTime: "00:00",
+        actualTranslation: 0,
+        isMuted: localStorage.getItem('muted') == "true" ? true : false
       }
 
       this.handleCanPlayThrough();
@@ -55,7 +59,7 @@ class Controls extends React.Component {
   handleReset() {
     const switchBtn = document.querySelector('#switchBtn');
     
-    this.setState({actualTime: 0});
+    this.setState({actualTime: "00:00"});
     
     this.state.stream.pause();
     switchBtn.classList.remove('playing')
@@ -86,8 +90,6 @@ class Controls extends React.Component {
       const duration = helpers.convertSecondsToMs(stream.duration);
       const timeIteration = (document.querySelector('#progress').offsetWidth) / stream.duration;
       
-      console.log(this.state.volume);
-
       stream.volume = this.state.volume;
       stream.muted = this.state.isMuted;
 

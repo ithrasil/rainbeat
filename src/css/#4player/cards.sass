@@ -8,32 +8,11 @@
   display: flex
   justify-content: center
   align-items: center
-  
-  .prevCard,
-  .nextCard
-    display: none
-    position: absolute
-    top: 0
-    height: 100%
-    width: 15%
-    background: rgba(0, 0, 0, .5)
-    
-  .prevCard
-    left: 0
-    
-  .nextCard
-    right: 0
 
   @media (max-width: 768px)
     padding: 0
     margin-top: 75px
-    
-    .prevCard,
-    .nextCard
-      display: block
-      cursor: pointer
-    
-    
+
   .card
     margin: 0
     min-width: 0px
@@ -75,6 +54,9 @@
         background-color: rgba(0, 0, 0, .75)
         opacity: 0
         transition: .3s
+        
+        @media (max-width: 768px)
+          display: none
         
 
     img
