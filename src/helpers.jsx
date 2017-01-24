@@ -31,9 +31,7 @@ module.exports = {
   
   createStream: function(stream_url, client_id) {
     let song = new Audio(stream_url + "?client_id=" + client_id);
-    const volume = localStorage.getItem('volume') / 100;
     song.preload = "metadata";
-    song.volume = volume !== false ? volume : 0.50;
 
     return song;
   },

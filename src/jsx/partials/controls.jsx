@@ -10,7 +10,7 @@ class Controls extends React.Component {
     this.state = {
       stream: this.props.activeSong.stream,
       title: this.props.activeSong.title,
-      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 50,
+      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
       actualTime: "00:00",
       actualTranslation: 0,
       isMuted: localStorage.getItem('muted') == "true" ? true : false
@@ -85,7 +85,10 @@ class Controls extends React.Component {
       
       const duration = helpers.convertSecondsToMs(stream.duration);
       const timeIteration = (document.querySelector('#progress').offsetWidth) / stream.duration;
+      
+      console.log(this.state.volume);
 
+      stream.volume = this.state.volume;
       stream.muted = this.state.isMuted;
 
       this.setState({ duration: duration });
@@ -132,9 +135,9 @@ class Controls extends React.Component {
   }
   
   handleVolume(e) {
-    const volume = e.target.value;
+    const volume = e.target.value / 100;
     this.setState({volume: volume});
-    this.state.stream.volume = volume / 100;
+    this.state.stream.volume = volume;
     localStorage.setItem('volume', volume);
   }
   
@@ -182,7 +185,7 @@ class Controls extends React.Component {
             
             <div className="volume">
               <img src={ volumeIcon } onClick={ this.handleMute.bind(this) }/>
-              <input className="slider" max="100" value={ this.state.volume } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
+              <input className="slider" max="100" value={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
             
           </div>
