@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
-  entry: './src/app.jsx',
+  entry: './src/index.jsx',
   output: {
     path: 'public',
     filename: 'bundle.js'
@@ -13,7 +14,7 @@ module.exports = {
 //  devtool: 'inline-source-map',
   
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
         exclude: /(node_modules)/,
@@ -24,21 +25,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        options: {
-          plugins: function () {
-            return [
-              require('precss'),
-              require('autoprefixer')
-            ];
-          }
-        }
+        loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
       }
     ]
   },
 
-
   plugins: [
+    new ExtractTextPlugin("public/styles.css"),
+    
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
@@ -46,9 +40,10 @@ module.exports = {
         baseDir: './public'
       }
     }),
+    
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify('development')
       }
     })
   ]
