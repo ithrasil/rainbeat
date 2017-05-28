@@ -2,7 +2,7 @@ import './css/main.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Swipe from 'react-swipe';
+import Swipe from 'react-easy-swipe';
 
 import Player from './jsx/player.jsx';
 import Search from './jsx/search.jsx';

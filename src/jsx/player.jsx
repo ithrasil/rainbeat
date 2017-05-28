@@ -1,5 +1,5 @@
 import React from 'react';
-import Swipe from 'react-swipe';
+import Swipe from 'react-easy-swipe';
 
 import Card from './partials/card.jsx';
 import DummyCard from './partials/dummyCard.jsx';
