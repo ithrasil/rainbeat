@@ -1,10 +1,7 @@
 import React from 'react';
-import Swipe from 'react-easy-swipe';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import Search from '../containers/search.jsx';
 
 import { executeQuery } from '../actions/query.jsx';
 
@@ -86,7 +83,7 @@ class App extends React.Component {
   }
   
   handleChangeCard(direction) {
-    if(this.state.songLoaded == false) return;
+    if(this.state.songLoaded == false) console.log(1);
     
     this.props.executeQuery(true);
     
@@ -155,8 +152,7 @@ class App extends React.Component {
     if(this.state.dataReceived) {
       return(
         <div>
-          <Search  />
-        
+
           <Player 
             onClick={ this.handleChangeCard.bind(this) } 
             activeSong={ this.state.activeSong }  
@@ -172,7 +168,7 @@ class App extends React.Component {
     else {
       return(
         <div>
-          <Search />
+
         </div>
       )
     }

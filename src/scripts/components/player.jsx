@@ -1,6 +1,8 @@
 import React from 'react';
 import Swipe from 'react-easy-swipe';
 
+import Search from '../../containers/search.jsx';
+
 import Card from './player subcomponents/card.jsx';
 import Controls from './player subcomponents/controls.jsx';
 
@@ -57,8 +59,8 @@ class Player extends React.Component {
     
     return(
       <div className="player_component">
-        
         <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
+        <Search  />
         <Swipe className="cards" onSwipeMove={ this.props.onSwipeMove }>
           <div className="wrapper">
             { cards }

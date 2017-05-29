@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 529);
+/******/ 	return __webpack_require__(__webpack_require__.s = 530);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1346,7 +1346,7 @@ var ctx      = __webpack_require__(37)
   , IObject  = __webpack_require__(67)
   , toObject = __webpack_require__(15)
   , toLength = __webpack_require__(13)
-  , asc      = __webpack_require__(220);
+  , asc      = __webpack_require__(219);
 module.exports = function(TYPE, $create){
   var IS_MAP        = TYPE == 1
     , IS_FILTER     = TYPE == 2
@@ -3127,7 +3127,7 @@ var warning = __webpack_require__(2);
 var canDefineProperty = __webpack_require__(140);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(201);
+var REACT_ELEMENT_TYPE = __webpack_require__(200);
 
 var RESERVED_PROPS = {
   key: true,
@@ -3902,16 +3902,16 @@ module.exports = ReactReconciler;
 
 var _assign = __webpack_require__(9);
 
-var ReactChildren = __webpack_require__(511);
+var ReactChildren = __webpack_require__(512);
 var ReactComponent = __webpack_require__(137);
-var ReactPureComponent = __webpack_require__(515);
-var ReactClass = __webpack_require__(512);
-var ReactDOMFactories = __webpack_require__(513);
+var ReactPureComponent = __webpack_require__(516);
+var ReactClass = __webpack_require__(513);
+var ReactDOMFactories = __webpack_require__(514);
 var ReactElement = __webpack_require__(55);
-var ReactPropTypes = __webpack_require__(514);
-var ReactVersion = __webpack_require__(516);
+var ReactPropTypes = __webpack_require__(515);
+var ReactVersion = __webpack_require__(517);
 
-var onlyChild = __webpack_require__(518);
+var onlyChild = __webpack_require__(519);
 var warning = __webpack_require__(2);
 
 var createElement = ReactElement.createElement;
@@ -3919,7 +3919,7 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (true) {
-  var ReactElementValidator = __webpack_require__(202);
+  var ReactElementValidator = __webpack_require__(201);
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
   cloneElement = ReactElementValidator.cloneElement;
@@ -3983,12 +3983,12 @@ module.exports = React;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(205);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
@@ -6341,11 +6341,11 @@ module.exports = setInnerHTML;
 exports.__esModule = true;
 exports.connect = exports.Provider = undefined;
 
-var _Provider = __webpack_require__(505);
+var _Provider = __webpack_require__(506);
 
 var _Provider2 = _interopRequireDefault(_Provider);
 
-var _connect = __webpack_require__(506);
+var _connect = __webpack_require__(507);
 
 var _connect2 = _interopRequireDefault(_connect);
 
@@ -12618,43 +12618,6 @@ module.exports = traverseAllChildren;
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(504)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require('./react-swipe'));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.reactSwipe);
-    global.index = mod.exports;
-  }
-})(this, function (exports, _reactSwipe) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _reactSwipe2 = _interopRequireDefault(_reactSwipe);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  exports.default = _reactSwipe2.default;
-});
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -12669,7 +12632,7 @@ exports["default"] = _react.PropTypes.shape({
 });
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12700,7 +12663,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12725,7 +12688,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12752,7 +12715,7 @@ var ReactCurrentOwner = __webpack_require__(35);
 var ReactComponentTreeHook = __webpack_require__(22);
 var ReactElement = __webpack_require__(55);
 
-var checkReactTypeSpec = __webpack_require__(517);
+var checkReactTypeSpec = __webpack_require__(518);
 
 var canDefineProperty = __webpack_require__(140);
 var getIteratorFn = __webpack_require__(141);
@@ -12964,7 +12927,7 @@ var ReactElementValidator = {
 module.exports = ReactElementValidator;
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12986,7 +12949,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13027,12 +12990,12 @@ function compose() {
 }
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
@@ -13286,7 +13249,7 @@ function createStore(reducer, preloadedState, enhancer) {
 }
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13314,7 +13277,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13326,7 +13289,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(65);
 
-var _queryReducer = __webpack_require__(213);
+var _queryReducer = __webpack_require__(212);
 
 var _queryReducer2 = _interopRequireDefault(_queryReducer);
 
@@ -13341,7 +13304,7 @@ var allReducers = (0, _redux.combineReducers)(reducers);
 exports.default = allReducers;
 
 /***/ }),
-/* 208 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13357,25 +13320,17 @@ var _react = __webpack_require__(26);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactEasySwipe = __webpack_require__(198);
-
-var _reactEasySwipe2 = _interopRequireDefault(_reactEasySwipe);
-
 var _redux = __webpack_require__(65);
 
 var _reactRedux = __webpack_require__(94);
 
-var _search = __webpack_require__(212);
-
-var _search2 = _interopRequireDefault(_search);
-
 var _query = __webpack_require__(142);
 
-var _navigation = __webpack_require__(214);
+var _navigation = __webpack_require__(213);
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
-var _player = __webpack_require__(217);
+var _player = __webpack_require__(216);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -13473,7 +13428,7 @@ var App = function (_React$Component) {
     value: function handleChangeCard(direction) {
       var _this3 = this;
 
-      if (this.state.songLoaded == false) return;
+      if (this.state.songLoaded == false) console.log(1);
 
       this.props.executeQuery(true);
 
@@ -13543,7 +13498,6 @@ var App = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_search2.default, null),
           _react2.default.createElement(_player2.default, {
             onClick: this.handleChangeCard.bind(this),
             activeSong: this.state.activeSong,
@@ -13553,11 +13507,7 @@ var App = function (_React$Component) {
           })
         );
       } else {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(_search2.default, null)
-        );
+        return _react2.default.createElement('div', null);
       }
     }
   }]);
@@ -13582,17 +13532,17 @@ function matchDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(App);
 
 /***/ }),
-/* 209 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-__webpack_require__(398);
+__webpack_require__(397);
 
-__webpack_require__(523);
+__webpack_require__(524);
 
-__webpack_require__(218);
+__webpack_require__(217);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -13617,7 +13567,7 @@ define(String.prototype, "padRight", "".padEnd);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(75)))
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13627,16 +13577,16 @@ module.exports = __webpack_require__(446);
 
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(399);
+var content = __webpack_require__(398);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(524)(content, {});
+var update = __webpack_require__(525)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -13653,7 +13603,7 @@ if(false) {
 }
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13699,7 +13649,7 @@ var Search = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'search_module' },
+        { className: 'search' },
         _react2.default.createElement(
           'label',
           { htmlFor: 'songInput' },
@@ -13751,7 +13701,7 @@ function matchDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(Search);
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13783,7 +13733,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13909,7 +13859,7 @@ var Header = function (_React$Component) {
 exports.default = Header;
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14003,7 +13953,7 @@ var Card = function (_React$Component) {
 exports.default = Card;
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14210,7 +14160,7 @@ var Controls = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { tabIndex: '0', className: 'controls_component', onKeyPress: this.handleKeyPress.bind(this) },
+        { tabIndex: '0', className: 'controls', onKeyPress: this.handleKeyPress.bind(this) },
         _react2.default.createElement(
           'div',
           { className: 'song-status' },
@@ -14225,7 +14175,7 @@ var Controls = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'controls' },
+            { className: 'configs' },
             _react2.default.createElement(
               'div',
               { className: 'replay_trigger', onClick: function onClick() {
@@ -14285,7 +14235,7 @@ var Controls = function (_React$Component) {
 exports.default = Controls;
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14301,15 +14251,19 @@ var _react = __webpack_require__(26);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactEasySwipe = __webpack_require__(198);
+var _reactEasySwipe = __webpack_require__(504);
 
 var _reactEasySwipe2 = _interopRequireDefault(_reactEasySwipe);
 
-var _card = __webpack_require__(215);
+var _search = __webpack_require__(211);
+
+var _search2 = _interopRequireDefault(_search);
+
+var _card = __webpack_require__(214);
 
 var _card2 = _interopRequireDefault(_card);
 
-var _controls = __webpack_require__(216);
+var _controls = __webpack_require__(215);
 
 var _controls2 = _interopRequireDefault(_controls);
 
@@ -14383,6 +14337,7 @@ var Player = function (_React$Component) {
         'div',
         { className: 'player_component' },
         _react2.default.createElement('div', { className: 'big_image', style: { backgroundImage: 'url(' + artwork_url + ')' } }),
+        _react2.default.createElement(_search2.default, null),
         _react2.default.createElement(
           _reactEasySwipe2.default,
           { className: 'cards', onSwipeMove: this.props.onSwipeMove },
@@ -14408,14 +14363,14 @@ var Player = function (_React$Component) {
 exports.default = Player;
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(227);
+__webpack_require__(226);
 module.exports = __webpack_require__(36).RegExp.escape;
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(7)
@@ -14436,18 +14391,18 @@ module.exports = function(original){
 };
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(219);
+var speciesConstructor = __webpack_require__(218);
 
 module.exports = function(original, length){
   return new (speciesConstructor(original))(length);
 };
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14462,7 +14417,7 @@ module.exports = function(hint){
 };
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
@@ -14482,7 +14437,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getKeys   = __webpack_require__(49)
@@ -14497,12 +14452,12 @@ module.exports = function(object, el){
 };
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var path      = __webpack_require__(225)
+var path      = __webpack_require__(224)
   , invoke    = __webpack_require__(81)
   , aFunction = __webpack_require__(17);
 module.exports = function(/* ...pargs */){
@@ -14526,13 +14481,13 @@ module.exports = function(/* ...pargs */){
 };
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(4);
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, exports) {
 
 module.exports = function(regExp, replace){
@@ -14545,18 +14500,18 @@ module.exports = function(regExp, replace){
 };
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(0)
-  , $re     = __webpack_require__(226)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+  , $re     = __webpack_require__(225)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', {escape: function escape(it){ return $re(it); }});
 
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
@@ -14567,7 +14522,7 @@ $export($export.P, 'Array', {copyWithin: __webpack_require__(144)});
 __webpack_require__(57)('copyWithin');
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14583,7 +14538,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].every, true), 'Array
 });
 
 /***/ }),
-/* 230 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
@@ -14594,7 +14549,7 @@ $export($export.P, 'Array', {fill: __webpack_require__(95)});
 __webpack_require__(57)('fill');
 
 /***/ }),
-/* 231 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14610,7 +14565,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].filter, true), 'Arra
 });
 
 /***/ }),
-/* 232 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14630,7 +14585,7 @@ $export($export.P + $export.F * forced, 'Array', {
 __webpack_require__(57)(KEY);
 
 /***/ }),
-/* 233 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14650,7 +14605,7 @@ $export($export.P + $export.F * forced, 'Array', {
 __webpack_require__(57)(KEY);
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14667,7 +14622,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 });
 
 /***/ }),
-/* 235 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14711,7 +14666,7 @@ $export($export.S + $export.F * !__webpack_require__(83)(function(iter){ Array.f
 
 
 /***/ }),
-/* 236 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14732,7 +14687,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(29)($nati
 });
 
 /***/ }),
-/* 237 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
@@ -14741,7 +14696,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Array', {isArray: __webpack_require__(103)});
 
 /***/ }),
-/* 238 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14759,7 +14714,7 @@ $export($export.P + $export.F * (__webpack_require__(67) != Object || !__webpack
 });
 
 /***/ }),
-/* 239 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14787,7 +14742,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(29)($nati
 });
 
 /***/ }),
-/* 240 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14803,7 +14758,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].map, true), 'Array',
 });
 
 /***/ }),
-/* 241 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14828,7 +14783,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 242 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14844,7 +14799,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].reduceRight, true), 
 });
 
 /***/ }),
-/* 243 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14860,7 +14815,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].reduce, true), 'Arra
 });
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14894,7 +14849,7 @@ $export($export.P + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 245 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14910,7 +14865,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].some, true), 'Array'
 });
 
 /***/ }),
-/* 246 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14939,13 +14894,13 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(51)('Array');
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.3.3.1 / 15.9.4.4 Date.now()
@@ -14954,7 +14909,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Date', {now: function(){ return new Date().getTime(); }});
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14988,7 +14943,7 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15008,16 +14963,16 @@ $export($export.P + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 251 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_PRIMITIVE = __webpack_require__(8)('toPrimitive')
   , proto        = Date.prototype;
 
-if(!(TO_PRIMITIVE in proto))__webpack_require__(18)(proto, TO_PRIMITIVE, __webpack_require__(221));
+if(!(TO_PRIMITIVE in proto))__webpack_require__(18)(proto, TO_PRIMITIVE, __webpack_require__(220));
 
 /***/ }),
-/* 252 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DateProto    = Date.prototype
@@ -15033,7 +14988,7 @@ if(new Date(NaN) + '' != INVALID_DATE){
 }
 
 /***/ }),
-/* 253 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
@@ -15042,7 +14997,7 @@ var $export = __webpack_require__(0);
 $export($export.P, 'Function', {bind: __webpack_require__(147)});
 
 /***/ }),
-/* 254 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15061,7 +15016,7 @@ if(!(HAS_INSTANCE in FunctionProto))__webpack_require__(11).f(FunctionProto, HAS
 }});
 
 /***/ }),
-/* 255 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(11).f
@@ -15091,7 +15046,7 @@ NAME in FProto || __webpack_require__(10) && dP(FProto, NAME, {
 });
 
 /***/ }),
-/* 256 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.3 Math.acosh(x)
@@ -15114,7 +15069,7 @@ $export($export.S + $export.F * !($acosh
 });
 
 /***/ }),
-/* 257 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.5 Math.asinh(x)
@@ -15129,7 +15084,7 @@ function asinh(x){
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', {asinh: asinh});
 
 /***/ }),
-/* 258 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.7 Math.atanh(x)
@@ -15144,7 +15099,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 });
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.9 Math.cbrt(x)
@@ -15158,7 +15113,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.11 Math.clz32(x)
@@ -15171,7 +15126,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.12 Math.cosh(x)
@@ -15185,7 +15140,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -15195,7 +15150,7 @@ var $export = __webpack_require__(0)
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1});
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.16 Math.fround(x)
@@ -15226,7 +15181,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
@@ -15256,7 +15211,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.18 Math.imul(x, y)
@@ -15278,7 +15233,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.21 Math.log10(x)
@@ -15291,7 +15246,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.20 Math.log1p(x)
@@ -15300,7 +15255,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', {log1p: __webpack_require__(155)});
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.22 Math.log2(x)
@@ -15313,7 +15268,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.28 Math.sign(x)
@@ -15322,7 +15277,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', {sign: __webpack_require__(107)});
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.30 Math.sinh(x)
@@ -15342,7 +15297,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.33 Math.tanh(x)
@@ -15359,7 +15314,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.34 Math.trunc(x)
@@ -15372,7 +15327,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15447,7 +15402,7 @@ if(!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')){
 }
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.1 Number.EPSILON
@@ -15456,7 +15411,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {EPSILON: Math.pow(2, -52)});
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.2 Number.isFinite(number)
@@ -15470,7 +15425,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
@@ -15479,7 +15434,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {isInteger: __webpack_require__(152)});
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.4 Number.isNaN(number)
@@ -15492,7 +15447,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 278 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.5 Number.isSafeInteger(number)
@@ -15507,7 +15462,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 279 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -15516,7 +15471,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {MAX_SAFE_INTEGER: 0x1fffffffffffff});
 
 /***/ }),
-/* 280 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
@@ -15525,7 +15480,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {MIN_SAFE_INTEGER: -0x1fffffffffffff});
 
 /***/ }),
-/* 281 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export     = __webpack_require__(0)
@@ -15534,7 +15489,7 @@ var $export     = __webpack_require__(0)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', {parseFloat: $parseFloat});
 
 /***/ }),
-/* 282 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -15543,7 +15498,7 @@ var $export   = __webpack_require__(0)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parseInt: $parseInt});
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15662,7 +15617,7 @@ $export($export.P + $export.F * (!!$toFixed && (
 });
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15686,7 +15641,7 @@ $export($export.P + $export.F * ($fails(function(){
 });
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
@@ -15695,7 +15650,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F, 'Object', {assign: __webpack_require__(156)});
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0)
@@ -15703,7 +15658,7 @@ var $export = __webpack_require__(0)
 $export($export.S, 'Object', {create: __webpack_require__(47)});
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -15711,7 +15666,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperties: __webpack_require__(157)});
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -15719,7 +15674,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperty: __webpack_require__(11).f});
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.5 Object.freeze(O)
@@ -15733,7 +15688,7 @@ __webpack_require__(32)('freeze', function($freeze){
 });
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
@@ -15747,7 +15702,7 @@ __webpack_require__(32)('getOwnPropertyDescriptor', function(){
 });
 
 /***/ }),
-/* 291 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 Object.getOwnPropertyNames(O)
@@ -15756,7 +15711,7 @@ __webpack_require__(32)('getOwnPropertyNames', function(){
 });
 
 /***/ }),
-/* 292 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
@@ -15770,7 +15725,7 @@ __webpack_require__(32)('getPrototypeOf', function(){
 });
 
 /***/ }),
-/* 293 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.11 Object.isExtensible(O)
@@ -15783,7 +15738,7 @@ __webpack_require__(32)('isExtensible', function($isExtensible){
 });
 
 /***/ }),
-/* 294 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.12 Object.isFrozen(O)
@@ -15796,7 +15751,7 @@ __webpack_require__(32)('isFrozen', function($isFrozen){
 });
 
 /***/ }),
-/* 295 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.13 Object.isSealed(O)
@@ -15809,7 +15764,7 @@ __webpack_require__(32)('isSealed', function($isSealed){
 });
 
 /***/ }),
-/* 296 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.10 Object.is(value1, value2)
@@ -15817,7 +15772,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Object', {is: __webpack_require__(164)});
 
 /***/ }),
-/* 297 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
@@ -15831,7 +15786,7 @@ __webpack_require__(32)('keys', function(){
 });
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.15 Object.preventExtensions(O)
@@ -15845,7 +15800,7 @@ __webpack_require__(32)('preventExtensions', function($preventExtensions){
 });
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.17 Object.seal(O)
@@ -15859,7 +15814,7 @@ __webpack_require__(32)('seal', function($seal){
 });
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
@@ -15867,7 +15822,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(109).set});
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15883,7 +15838,7 @@ if(test + '' != '[object z]'){
 }
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export     = __webpack_require__(0)
@@ -15892,7 +15847,7 @@ var $export     = __webpack_require__(0)
 $export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -15901,7 +15856,7 @@ var $export   = __webpack_require__(0)
 $export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16206,7 +16161,7 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(83)(function
 });
 
 /***/ }),
-/* 305 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
@@ -16227,7 +16182,7 @@ $export($export.S + $export.F * !__webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
@@ -16279,7 +16234,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 });
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
@@ -16306,7 +16261,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 308 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
@@ -16322,7 +16277,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 309 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16354,7 +16309,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 310 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
@@ -16369,7 +16324,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 311 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.8 Reflect.getPrototypeOf(target)
@@ -16384,7 +16339,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 312 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
@@ -16410,7 +16365,7 @@ function get(target, propertyKey/*, receiver*/){
 $export($export.S, 'Reflect', {get: get});
 
 /***/ }),
-/* 313 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.9 Reflect.has(target, propertyKey)
@@ -16423,7 +16378,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 314 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.10 Reflect.isExtensible(target)
@@ -16439,7 +16394,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 315 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.11 Reflect.ownKeys(target)
@@ -16448,7 +16403,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Reflect', {ownKeys: __webpack_require__(161)});
 
 /***/ }),
-/* 316 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.12 Reflect.preventExtensions(target)
@@ -16469,7 +16424,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 317 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
@@ -16489,7 +16444,7 @@ if(setProto)$export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 318 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
@@ -16525,7 +16480,7 @@ function set(target, propertyKey, V/*, receiver*/){
 $export($export.S, 'Reflect', {set: set});
 
 /***/ }),
-/* 319 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global            = __webpack_require__(4)
@@ -16573,7 +16528,7 @@ if(__webpack_require__(10) && (!CORRECT_NEW || __webpack_require__(5)(function()
 __webpack_require__(51)('RegExp');
 
 /***/ }),
-/* 320 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@match logic
@@ -16588,7 +16543,7 @@ __webpack_require__(79)('match', 1, function(defined, MATCH, $match){
 });
 
 /***/ }),
-/* 321 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@replace logic
@@ -16605,7 +16560,7 @@ __webpack_require__(79)('replace', 2, function(defined, REPLACE, $replace){
 });
 
 /***/ }),
-/* 322 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@search logic
@@ -16620,7 +16575,7 @@ __webpack_require__(79)('search', 1, function(defined, SEARCH, $search){
 });
 
 /***/ }),
-/* 323 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@split logic
@@ -16695,7 +16650,7 @@ __webpack_require__(79)('split', 2, function(defined, SPLIT, $split){
 });
 
 /***/ }),
-/* 324 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16726,7 +16681,7 @@ if(__webpack_require__(5)(function(){ return $toString.call({source: 'a', flags:
 }
 
 /***/ }),
-/* 325 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16739,7 +16694,7 @@ __webpack_require__(20)('anchor', function(createHTML){
 });
 
 /***/ }),
-/* 326 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16752,7 +16707,7 @@ __webpack_require__(20)('big', function(createHTML){
 });
 
 /***/ }),
-/* 327 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16765,7 +16720,7 @@ __webpack_require__(20)('blink', function(createHTML){
 });
 
 /***/ }),
-/* 328 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16778,7 +16733,7 @@ __webpack_require__(20)('bold', function(createHTML){
 });
 
 /***/ }),
-/* 329 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16793,7 +16748,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 330 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16819,7 +16774,7 @@ $export($export.P + $export.F * __webpack_require__(99)(ENDS_WITH), 'String', {
 });
 
 /***/ }),
-/* 331 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16832,7 +16787,7 @@ __webpack_require__(20)('fixed', function(createHTML){
 });
 
 /***/ }),
-/* 332 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16845,7 +16800,7 @@ __webpack_require__(20)('fontcolor', function(createHTML){
 });
 
 /***/ }),
-/* 333 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16858,7 +16813,7 @@ __webpack_require__(20)('fontsize', function(createHTML){
 });
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export        = __webpack_require__(0)
@@ -16886,7 +16841,7 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 });
 
 /***/ }),
-/* 335 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16904,7 +16859,7 @@ $export($export.P + $export.F * __webpack_require__(99)(INCLUDES), 'String', {
 });
 
 /***/ }),
-/* 336 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16917,7 +16872,7 @@ __webpack_require__(20)('italics', function(createHTML){
 });
 
 /***/ }),
-/* 337 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16940,7 +16895,7 @@ __webpack_require__(105)(String, 'String', function(iterated){
 });
 
 /***/ }),
-/* 338 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16953,7 +16908,7 @@ __webpack_require__(20)('link', function(createHTML){
 });
 
 /***/ }),
-/* 339 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -16976,7 +16931,7 @@ $export($export.S, 'String', {
 });
 
 /***/ }),
-/* 340 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -16987,7 +16942,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 341 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17000,7 +16955,7 @@ __webpack_require__(20)('small', function(createHTML){
 });
 
 /***/ }),
-/* 342 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17024,7 +16979,7 @@ $export($export.P + $export.F * __webpack_require__(99)(STARTS_WITH), 'String', 
 });
 
 /***/ }),
-/* 343 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17037,7 +16992,7 @@ __webpack_require__(20)('strike', function(createHTML){
 });
 
 /***/ }),
-/* 344 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17050,7 +17005,7 @@ __webpack_require__(20)('sub', function(createHTML){
 });
 
 /***/ }),
-/* 345 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17063,7 +17018,7 @@ __webpack_require__(20)('sup', function(createHTML){
 });
 
 /***/ }),
-/* 346 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17076,7 +17031,7 @@ __webpack_require__(61)('trim', function($trim){
 });
 
 /***/ }),
-/* 347 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17095,8 +17050,8 @@ var global         = __webpack_require__(4)
   , wks            = __webpack_require__(8)
   , wksExt         = __webpack_require__(166)
   , wksDefine      = __webpack_require__(118)
-  , keyOf          = __webpack_require__(223)
-  , enumKeys       = __webpack_require__(222)
+  , keyOf          = __webpack_require__(222)
+  , enumKeys       = __webpack_require__(221)
   , isArray        = __webpack_require__(103)
   , anObject       = __webpack_require__(3)
   , toIObject      = __webpack_require__(21)
@@ -17317,7 +17272,7 @@ setToStringTag(Math, 'Math', true);
 setToStringTag(global.JSON, 'JSON', true);
 
 /***/ }),
-/* 348 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17369,7 +17324,7 @@ $export($export.P + $export.U + $export.F * __webpack_require__(5)(function(){
 __webpack_require__(51)(ARRAY_BUFFER);
 
 /***/ }),
-/* 349 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -17378,7 +17333,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(87).ABV, {
 });
 
 /***/ }),
-/* 350 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Float32', 4, function(init){
@@ -17388,7 +17343,7 @@ __webpack_require__(39)('Float32', 4, function(init){
 });
 
 /***/ }),
-/* 351 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Float64', 8, function(init){
@@ -17398,7 +17353,7 @@ __webpack_require__(39)('Float64', 8, function(init){
 });
 
 /***/ }),
-/* 352 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Int16', 2, function(init){
@@ -17408,7 +17363,7 @@ __webpack_require__(39)('Int16', 2, function(init){
 });
 
 /***/ }),
-/* 353 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Int32', 4, function(init){
@@ -17418,7 +17373,7 @@ __webpack_require__(39)('Int32', 4, function(init){
 });
 
 /***/ }),
-/* 354 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Int8', 1, function(init){
@@ -17428,7 +17383,7 @@ __webpack_require__(39)('Int8', 1, function(init){
 });
 
 /***/ }),
-/* 355 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Uint16', 2, function(init){
@@ -17438,7 +17393,7 @@ __webpack_require__(39)('Uint16', 2, function(init){
 });
 
 /***/ }),
-/* 356 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Uint32', 4, function(init){
@@ -17448,7 +17403,7 @@ __webpack_require__(39)('Uint32', 4, function(init){
 });
 
 /***/ }),
-/* 357 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Uint8', 1, function(init){
@@ -17458,7 +17413,7 @@ __webpack_require__(39)('Uint8', 1, function(init){
 });
 
 /***/ }),
-/* 358 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(39)('Uint8', 1, function(init){
@@ -17468,7 +17423,7 @@ __webpack_require__(39)('Uint8', 1, function(init){
 }, true);
 
 /***/ }),
-/* 359 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17486,7 +17441,7 @@ __webpack_require__(78)('WeakSet', function(get){
 }, weak, false, true);
 
 /***/ }),
-/* 360 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17504,7 +17459,7 @@ $export($export.P, 'Array', {
 __webpack_require__(57)('includes');
 
 /***/ }),
-/* 361 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
@@ -17521,7 +17476,7 @@ $export($export.G, {
 });
 
 /***/ }),
-/* 362 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-is-error
@@ -17535,7 +17490,7 @@ $export($export.S, 'Error', {
 });
 
 /***/ }),
-/* 363 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -17544,7 +17499,7 @@ var $export  = __webpack_require__(0);
 $export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(149)('Map')});
 
 /***/ }),
-/* 364 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -17560,7 +17515,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 365 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -17581,7 +17536,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 366 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -17597,7 +17552,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 367 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -17618,7 +17573,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 368 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17636,7 +17591,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(84), 'Object'
 });
 
 /***/ }),
-/* 369 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17654,7 +17609,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(84), 'Object'
 });
 
 /***/ }),
-/* 370 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
@@ -17668,7 +17623,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 371 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
@@ -17692,7 +17647,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 372 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17716,7 +17671,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(84), 'Object'
 });
 
 /***/ }),
-/* 373 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17740,7 +17695,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(84), 'Object'
 });
 
 /***/ }),
-/* 374 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
@@ -17754,7 +17709,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 375 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17959,7 +17914,7 @@ $export($export.G, {Observable: $Observable});
 __webpack_require__(51)('Observable');
 
 /***/ }),
-/* 376 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                  = __webpack_require__(38)
@@ -17972,7 +17927,7 @@ metadata.exp({defineMetadata: function defineMetadata(metadataKey, metadataValue
 }});
 
 /***/ }),
-/* 377 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(38)
@@ -17992,7 +17947,7 @@ metadata.exp({deleteMetadata: function deleteMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 378 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Set                     = __webpack_require__(169)
@@ -18016,7 +17971,7 @@ metadata.exp({getMetadataKeys: function getMetadataKeys(target /*, targetKey */)
 }});
 
 /***/ }),
-/* 379 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(38)
@@ -18038,7 +17993,7 @@ metadata.exp({getMetadata: function getMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 380 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                = __webpack_require__(38)
@@ -18051,7 +18006,7 @@ metadata.exp({getOwnMetadataKeys: function getOwnMetadataKeys(target /*, targetK
 }});
 
 /***/ }),
-/* 381 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(38)
@@ -18065,7 +18020,7 @@ metadata.exp({getOwnMetadata: function getOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 382 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(38)
@@ -18086,7 +18041,7 @@ metadata.exp({hasMetadata: function hasMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 383 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(38)
@@ -18100,7 +18055,7 @@ metadata.exp({hasOwnMetadata: function hasOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 384 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                  = __webpack_require__(38)
@@ -18120,7 +18075,7 @@ metadata.exp({metadata: function metadata(metadataKey, metadataValue){
 }});
 
 /***/ }),
-/* 385 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -18129,7 +18084,7 @@ var $export  = __webpack_require__(0);
 $export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(149)('Set')});
 
 /***/ }),
-/* 386 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18145,7 +18100,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 387 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18181,7 +18136,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 388 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18197,7 +18152,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 389 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18213,7 +18168,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 390 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18226,7 +18181,7 @@ __webpack_require__(61)('trimLeft', function($trim){
 }, 'trimStart');
 
 /***/ }),
-/* 391 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18239,19 +18194,19 @@ __webpack_require__(61)('trimRight', function($trim){
 }, 'trimEnd');
 
 /***/ }),
-/* 392 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(118)('asyncIterator');
 
 /***/ }),
-/* 393 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(118)('observable');
 
 /***/ }),
-/* 394 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-global
@@ -18260,7 +18215,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'System', {global: __webpack_require__(4)});
 
 /***/ }),
-/* 395 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $iterators    = __webpack_require__(120)
@@ -18287,7 +18242,7 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 }
 
 /***/ }),
-/* 396 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0)
@@ -18298,14 +18253,14 @@ $export($export.G + $export.B, {
 });
 
 /***/ }),
-/* 397 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // ie9- setTimeout & setInterval additional parameters fix
 var global     = __webpack_require__(4)
   , $export    = __webpack_require__(0)
   , invoke     = __webpack_require__(81)
-  , partial    = __webpack_require__(224)
+  , partial    = __webpack_require__(223)
   , navigator  = global.navigator
   , MSIE       = !!navigator && /MSIE .\./.test(navigator.userAgent); // <- dirty ie9- check
 var wrap = function(set){
@@ -18323,35 +18278,36 @@ $export($export.G + $export.B + $export.F * MSIE, {
 });
 
 /***/ }),
-/* 398 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(347);
-__webpack_require__(286);
-__webpack_require__(288);
-__webpack_require__(287);
-__webpack_require__(290);
-__webpack_require__(292);
-__webpack_require__(297);
-__webpack_require__(291);
-__webpack_require__(289);
-__webpack_require__(299);
-__webpack_require__(298);
-__webpack_require__(294);
-__webpack_require__(295);
-__webpack_require__(293);
+__webpack_require__(346);
 __webpack_require__(285);
+__webpack_require__(287);
+__webpack_require__(286);
+__webpack_require__(289);
+__webpack_require__(291);
 __webpack_require__(296);
-__webpack_require__(300);
-__webpack_require__(301);
-__webpack_require__(253);
-__webpack_require__(255);
-__webpack_require__(254);
-__webpack_require__(303);
-__webpack_require__(302);
-__webpack_require__(273);
-__webpack_require__(283);
+__webpack_require__(290);
+__webpack_require__(288);
+__webpack_require__(298);
+__webpack_require__(297);
+__webpack_require__(293);
+__webpack_require__(294);
+__webpack_require__(292);
 __webpack_require__(284);
+__webpack_require__(295);
+__webpack_require__(299);
+__webpack_require__(300);
+__webpack_require__(252);
+__webpack_require__(254);
+__webpack_require__(253);
+__webpack_require__(302);
+__webpack_require__(301);
+__webpack_require__(272);
+__webpack_require__(282);
+__webpack_require__(283);
+__webpack_require__(273);
 __webpack_require__(274);
 __webpack_require__(275);
 __webpack_require__(276);
@@ -18360,7 +18316,7 @@ __webpack_require__(278);
 __webpack_require__(279);
 __webpack_require__(280);
 __webpack_require__(281);
-__webpack_require__(282);
+__webpack_require__(255);
 __webpack_require__(256);
 __webpack_require__(257);
 __webpack_require__(258);
@@ -18377,145 +18333,200 @@ __webpack_require__(268);
 __webpack_require__(269);
 __webpack_require__(270);
 __webpack_require__(271);
-__webpack_require__(272);
+__webpack_require__(333);
+__webpack_require__(338);
+__webpack_require__(345);
+__webpack_require__(336);
+__webpack_require__(328);
+__webpack_require__(329);
 __webpack_require__(334);
 __webpack_require__(339);
-__webpack_require__(346);
-__webpack_require__(337);
-__webpack_require__(329);
-__webpack_require__(330);
-__webpack_require__(335);
-__webpack_require__(340);
-__webpack_require__(342);
+__webpack_require__(341);
+__webpack_require__(324);
 __webpack_require__(325);
 __webpack_require__(326);
 __webpack_require__(327);
-__webpack_require__(328);
+__webpack_require__(330);
 __webpack_require__(331);
 __webpack_require__(332);
-__webpack_require__(333);
-__webpack_require__(336);
-__webpack_require__(338);
-__webpack_require__(341);
+__webpack_require__(335);
+__webpack_require__(337);
+__webpack_require__(340);
+__webpack_require__(342);
 __webpack_require__(343);
 __webpack_require__(344);
-__webpack_require__(345);
-__webpack_require__(248);
-__webpack_require__(250);
+__webpack_require__(247);
 __webpack_require__(249);
-__webpack_require__(252);
+__webpack_require__(248);
 __webpack_require__(251);
-__webpack_require__(237);
-__webpack_require__(235);
-__webpack_require__(241);
-__webpack_require__(238);
-__webpack_require__(244);
-__webpack_require__(246);
+__webpack_require__(250);
+__webpack_require__(236);
 __webpack_require__(234);
 __webpack_require__(240);
-__webpack_require__(231);
-__webpack_require__(245);
-__webpack_require__(229);
+__webpack_require__(237);
 __webpack_require__(243);
-__webpack_require__(242);
-__webpack_require__(236);
-__webpack_require__(239);
-__webpack_require__(228);
-__webpack_require__(230);
+__webpack_require__(245);
 __webpack_require__(233);
+__webpack_require__(239);
+__webpack_require__(230);
+__webpack_require__(244);
+__webpack_require__(228);
+__webpack_require__(242);
+__webpack_require__(241);
+__webpack_require__(235);
+__webpack_require__(238);
+__webpack_require__(227);
+__webpack_require__(229);
 __webpack_require__(232);
-__webpack_require__(247);
+__webpack_require__(231);
+__webpack_require__(246);
 __webpack_require__(120);
-__webpack_require__(319);
-__webpack_require__(324);
+__webpack_require__(318);
+__webpack_require__(323);
 __webpack_require__(168);
+__webpack_require__(319);
 __webpack_require__(320);
 __webpack_require__(321);
 __webpack_require__(322);
-__webpack_require__(323);
-__webpack_require__(304);
+__webpack_require__(303);
 __webpack_require__(167);
 __webpack_require__(169);
 __webpack_require__(170);
-__webpack_require__(359);
-__webpack_require__(348);
-__webpack_require__(349);
-__webpack_require__(354);
-__webpack_require__(357);
 __webpack_require__(358);
-__webpack_require__(352);
-__webpack_require__(355);
+__webpack_require__(347);
+__webpack_require__(348);
 __webpack_require__(353);
 __webpack_require__(356);
-__webpack_require__(350);
+__webpack_require__(357);
 __webpack_require__(351);
+__webpack_require__(354);
+__webpack_require__(352);
+__webpack_require__(355);
+__webpack_require__(349);
+__webpack_require__(350);
+__webpack_require__(304);
 __webpack_require__(305);
 __webpack_require__(306);
 __webpack_require__(307);
 __webpack_require__(308);
-__webpack_require__(309);
-__webpack_require__(312);
-__webpack_require__(310);
 __webpack_require__(311);
+__webpack_require__(309);
+__webpack_require__(310);
+__webpack_require__(312);
 __webpack_require__(313);
 __webpack_require__(314);
 __webpack_require__(315);
-__webpack_require__(316);
-__webpack_require__(318);
 __webpack_require__(317);
-__webpack_require__(360);
-__webpack_require__(386);
-__webpack_require__(389);
-__webpack_require__(388);
-__webpack_require__(390);
-__webpack_require__(391);
-__webpack_require__(387);
-__webpack_require__(392);
-__webpack_require__(393);
-__webpack_require__(371);
-__webpack_require__(374);
-__webpack_require__(370);
-__webpack_require__(368);
-__webpack_require__(369);
-__webpack_require__(372);
-__webpack_require__(373);
-__webpack_require__(363);
+__webpack_require__(316);
+__webpack_require__(359);
 __webpack_require__(385);
-__webpack_require__(394);
+__webpack_require__(388);
+__webpack_require__(387);
+__webpack_require__(389);
+__webpack_require__(390);
+__webpack_require__(386);
+__webpack_require__(391);
+__webpack_require__(392);
+__webpack_require__(370);
+__webpack_require__(373);
+__webpack_require__(369);
+__webpack_require__(367);
+__webpack_require__(368);
+__webpack_require__(371);
+__webpack_require__(372);
 __webpack_require__(362);
+__webpack_require__(384);
+__webpack_require__(393);
+__webpack_require__(361);
+__webpack_require__(363);
+__webpack_require__(365);
 __webpack_require__(364);
 __webpack_require__(366);
-__webpack_require__(365);
-__webpack_require__(367);
+__webpack_require__(375);
 __webpack_require__(376);
-__webpack_require__(377);
-__webpack_require__(379);
 __webpack_require__(378);
-__webpack_require__(381);
+__webpack_require__(377);
 __webpack_require__(380);
+__webpack_require__(379);
+__webpack_require__(381);
 __webpack_require__(382);
 __webpack_require__(383);
-__webpack_require__(384);
-__webpack_require__(361);
-__webpack_require__(375);
-__webpack_require__(397);
+__webpack_require__(360);
+__webpack_require__(374);
 __webpack_require__(396);
 __webpack_require__(395);
+__webpack_require__(394);
 module.exports = __webpack_require__(36);
 
 /***/ }),
-/* 399 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(530)();
+exports = module.exports = __webpack_require__(399)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rubik&subset=latin-ext);", ""]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Inconsolata);", ""]);
 
 // module
-exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS. */\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  /* 2 */ }\n\n/**\n * Remove the margin in all browsers (opinionated). */\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS. */\n/* Document\n * ========================================================================== */\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  line-height: 1.15;\n  /* 2 */\n  -ms-text-size-adjust: 100%;\n  /* 3 */\n  -webkit-text-size-adjust: 100%;\n  /* 3 */ }\n\n/* Sections\n * ========================================================================== */\n/**\n * Remove the margin in all browsers (opinionated). */\nbody {\n  margin: 0; }\n\n/**\n * Add the correct display in IE 9-. */\narticle, aside, footer, header, nav, section {\n  display: block; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari. */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n * ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE. */\nfigcaption, figure, main {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct margin in IE 8. */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE. */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers. */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n * ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+. */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n  a:active, a:hover {\n    outline-width: 0; }\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated). */\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari. */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6. */\nb, strong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari. */\nb, strong {\n  font-weight: bolder; }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers. */\ncode, kbd, samp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct font style in Android 4.3-. */\ndfn {\n  font-style: italic; }\n\n/**\n * Add the correct background and color in IE 9-. */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers. */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers. */\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n * ========================================================================== */\n/**\n * Add the correct display in IE 9-. */\naudio, video {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7. */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Remove the border on images inside links in IE 10-. */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE. */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n * ========================================================================== */\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari. */\nbutton, input, optgroup, select, textarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge. */\nbutton, input {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox. */\nbutton, select {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari. */\nbutton, html [type=\"button\"], [type=\"reset\"], [type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox. */\nbutton::-moz-focus-inner, [type=\"button\"]::-moz-focus-inner, [type=\"reset\"]::-moz-focus-inner, [type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule. */\nbutton:-moz-focusring, [type=\"button\"]:-moz-focusring, [type=\"reset\"]:-moz-focusring, [type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated). */\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers. */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera. */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Remove the default vertical scrollbar in IE. */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-. */\n[type=\"checkbox\"], [type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome. */\n[type=\"number\"]::-webkit-inner-spin-button, [type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari. */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n  [type=\"search\"]::-webkit-search-cancel-button, [type=\"search\"]::-webkit-search-decoration {\n    -webkit-appearance: none; }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS. */\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari. */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n * ========================================================================== */\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox. */\ndetails, menu {\n  display: block; }\n\n/*\n * Add the correct display in all browsers. */\nsummary {\n  display: list-item; }\n\n/* Scripting\n * ========================================================================== */\n/**\n * Add the correct display in IE 9-. */\ncanvas {\n  display: inline-block; }\n\n/**\n * Add the correct display in IE. */\ntemplate, [hidden] {\n  display: none; }\n\n/* Hidden\n * ========================================================================== */\n/**\n * Add the correct display in IE 10-. */\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: .5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: .5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-size: cover;\n    background-position: center;\n    opacity: .85;\n    filter: brightness(20%); }\n  .player_component .cards {\n    overflow: hidden;\n    border-radius: 4px;\n    display: block;\n    height: 500px;\n    width: 1000px;\n    margin: 0 auto;\n    position: relative;\n    background: #212121;\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);\n    margin-top: 200px; }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .scrollbar {\n        position: absolute;\n        top: 0;\n        right: 0;\n        background: #181818;\n        width: 25px;\n        height: 100%;\n        transform: translateX(25px);\n        z-index: 2;\n        transition: .1s ease-in-out; }\n        .player_component .cards .wrapper .scrollbar .thumb {\n          height: 12.5px; }\n      .player_component .cards .wrapper:hover .scrollbar {\n        transform: translateX(0); }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .play_button {\n          margin-left: 10px;\n          width: 50px;\n          height: 50px;\n          z-index: 10;\n          position: relative;\n          background-image: url(/images/icons/card-play.svg);\n          background-size: 75%;\n          background-repeat: no-repeat;\n          background-position: center;\n          transition: .3s;\n          display: inline-block; }\n          .player_component .cards .wrapper .card .play_button:hover {\n            cursor: pointer; }\n        .player_component .cards .wrapper .card .label {\n          height: 50px;\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s;\n          display: inline-block; }\n          .player_component .cards .wrapper .card .label:hover {\n            cursor: auto; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls_component {\n    padding: 0 30px;\n    position: relative;\n    text-align: center;\n    margin-top: 0;\n    margin-left: 50px;\n    margin-right: 50px; }\n    .player_component .controls_component:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls_component {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls_component .song-status {\n      display: inline-block;\n      margin-top: 100px;\n      text-align: left;\n      color: white;\n      width: 100%; }\n      @media (max-width: 1600px) {\n        .player_component .controls_component .song-status {\n          margin: 25px 0; } }\n      .player_component .controls_component .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls_component .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls_component .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls_component .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls_component .song-status .controls {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls_component .song-status .controls {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls_component .song-status .controls .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: .5s; }\n          .player_component .controls_component .song-status .controls .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls_component .song-status .controls .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls_component .song-status .controls .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls_component .song-status .controls .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls_component .song-status .controls .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls_component .song-status .controls .play_switch {\n          display: inline-block;\n          color: white;\n          transition: .5s; }\n          .player_component .controls_component .song-status .controls .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls_component .song-status .controls .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls_component .song-status .controls .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls_component .song-status .controls .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls_component .song-status .controls .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls_component .song-status .controls .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls_component .song-status .controls .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls_component .song-status .controls .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls_component .song-status .controls .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls_component .song-status .controls .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls_component .song-status .controls .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls_component .song-status .controls .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls_component .song-status .controls .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: 20px;\n              background: #03458E;\n              transition: opacity .3s; }\n            .player_component .controls_component .song-status .controls .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls_component .song-status .controls .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls_component .song-status .controls .track_controls .current_time {\n                display: none; } }\n        .player_component .controls_component .song-status .controls .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls_component .song-status .controls .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls_component .song-status .controls .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: .5s; }\n            .player_component .controls_component .song-status .controls .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls_component .song-status .controls .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls_component .song-status .controls .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: .5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls_component .song-status .controls .volume_controls input {\n                display: none; } }\n          .player_component .controls_component .song-status .controls .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search_module {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 1000;\n  position: absolute;\n  box-sizing: border-box;\n  font-weight: 300;\n  padding: 0 20px;\n  text-align: right;\n  top: 85px;\n  right: 0;\n  font-family: \"Inconsolata\"; }\n  @media (max-width: 768px) {\n    .search_module {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search_module > label {\n      display: none; } }\n  .search_module > label img {\n    position: relative;\n    top: 6px;\n    left: -5px;\n    width: 26px;\n    height: 26px; }\n    .search_module > label img:hover {\n      cursor: pointer; }\n  .search_module > input {\n    width: 200px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px;\n    color: white;\n    background: rgba(50, 50, 50, 0.1);\n    border: 1px solid rgba(255, 255, 255, 0.1);\n    border-radius: 5px;\n    transition: .5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search_module > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search_module > input:active, .search_module > input:focus {\n      outline: none;\n      border: 1px solid rgba(255, 255, 255, 0.3); }\n  .search_module > button {\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: white;\n    background: rgba(50, 50, 50, 0.1);\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: .5s; }\n    @media (max-width: 768px) {\n      .search_module > button {\n        width: auto;\n        font-size: 16px; } }\n    .search_module > button:focus, .search_module > button:active, .search_module > button:hover {\n      outline: none; }\n    .search_module > button:hover {\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n*/\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\r\n   ========================================================================== */\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in\r\n *    IE on Windows Phone and in iOS.\r\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\r\n   ========================================================================== */\n/**\r\n * Remove the margin in all browsers (opinionated).\r\n */\nbody {\n  margin: 0; }\n\n/**\r\n * Add the correct display in IE 9-.\r\n */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 9-.\r\n * 1. Add the correct display in IE.\r\n */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\r\n * Add the correct margin in IE 8.\r\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\r\n   ========================================================================== */\n/**\r\n * 1. Remove the gray background on active links in IE 10.\r\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\r\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\r\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\r\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\r\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\r\n * Add the correct font style in Android 4.3-.\r\n */\ndfn {\n  font-style: italic; }\n\n/**\r\n * Add the correct background and color in IE 9-.\r\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\r\n * Add the correct font size in all browsers.\r\n */\nsmall {\n  font-size: 80%; }\n\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 9-.\r\n */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\r\n * Add the correct display in iOS 4-7.\r\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\r\n * Remove the border on images inside links in IE 10-.\r\n */\nimg {\n  border-style: none; }\n\n/**\r\n * Hide the overflow in IE.\r\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\r\n   ========================================================================== */\n/**\r\n * 1. Change the font styles in all browsers (opinionated).\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\r\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\r\n *    controls in Android 4.\r\n * 2. Correct the inability to style clickable types in iOS and Safari.\r\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\r\n * Correct the padding in Firefox.\r\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\r\n * 1. Add the correct display in IE 9-.\r\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\r\n * Remove the default vertical scrollbar in IE.\r\n */\ntextarea {\n  overflow: auto; }\n\n/**\r\n * 1. Add the correct box sizing in IE 10-.\r\n * 2. Remove the padding in IE 10-.\r\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\r\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\r\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\r\n   ========================================================================== */\n/*\r\n * Add the correct display in IE 9-.\r\n * 1. Add the correct display in Edge, IE, and Firefox.\r\n */\ndetails,\nmenu {\n  display: block; }\n\n/*\r\n * Add the correct display in all browsers.\r\n */\nsummary {\n  display: list-item; }\n\n/* Scripting\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 9-.\r\n */\ncanvas {\n  display: inline-block; }\n\n/**\r\n * Add the correct display in IE.\r\n */\ntemplate {\n  display: none; }\n\n/* Hidden\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 10-.\r\n */\n[hidden] {\n  display: none; }\n\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: 0.5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: 0.5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 81%;\n    background-size: cover;\n    background-position: center;\n    opacity: 0.6;\n    filter: brightness(20%); }\n  .player_component .cards {\n    overflow: hidden;\n    display: block;\n    width: 500px;\n    position: relative;\n    background: rgba(33, 33, 33, 0.7);\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .scrollbar {\n        position: absolute;\n        top: 0;\n        right: 0;\n        background: #181818;\n        width: 25px;\n        height: 100%;\n        transform: translateX(25px);\n        z-index: 2;\n        transition: 0.1s ease-in-out; }\n        .player_component .cards .wrapper .scrollbar .thumb {\n          height: 12.5px; }\n      .player_component .cards .wrapper:hover .scrollbar {\n        transform: translateX(0); }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .play_button {\n          margin-left: 10px;\n          width: 50px;\n          height: 50px;\n          z-index: 10;\n          position: relative;\n          background-image: url(/images/icons/card-play.svg);\n          background-size: 75%;\n          background-repeat: no-repeat;\n          background-position: center;\n          transition: .3s;\n          display: inline-block; }\n          .player_component .cards .wrapper .card .play_button:hover {\n            cursor: pointer; }\n        .player_component .cards .wrapper .card .label {\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s; }\n          .player_component .cards .wrapper .card .label:hover {\n            cursor: auto; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls {\n    padding: 30px 30px;\n    position: relative;\n    text-align: center;\n    height: 20vh;\n    box-sizing: border-box;\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -khtml-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background: #050505; }\n    .player_component .controls:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls .song-status {\n      display: inline-block;\n      text-align: left;\n      color: white;\n      width: 100%; }\n      @media (max-width: 1600px) {\n        .player_component .controls .song-status {\n          margin: 25px 0; } }\n      .player_component .controls .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls .song-status .configs {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .configs {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls .song-status .configs .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls .song-status .configs .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls .song-status .configs .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls .song-status .configs .play_switch {\n          display: inline-block;\n          color: white;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls .song-status .configs .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls .song-status .configs .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls .song-status .configs .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls .song-status .configs .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls .song-status .configs .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls .song-status .configs .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls .song-status .configs .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: 20px;\n              background: #03458E;\n              transition: opacity 0.3s; }\n            .player_component .controls .song-status .configs .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls .song-status .configs .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .current_time {\n                display: none; } }\n        .player_component .controls .song-status .configs .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: 0.5s; }\n            .player_component .controls .song-status .configs .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls .song-status .configs .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls .song-status .configs .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: 0.5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .volume_controls input {\n                display: none; } }\n          .player_component .controls .song-status .configs .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  width: 500px;\n  box-sizing: border-box;\n  font-weight: 300;\n  font-family: \"Inconsolata\";\n  padding: 10px;\n  background: #111; }\n  @media (max-width: 768px) {\n    .search {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search > label {\n      display: none; } }\n  .search > label img {\n    position: relative;\n    top: 8px;\n    margin-left: 15px;\n    width: 26px;\n    height: 26px; }\n    .search > label img:hover {\n      cursor: pointer; }\n  .search > input {\n    width: 300px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px 10px 10px 40px;\n    color: white;\n    background: rgba(50, 50, 50, 0.2);\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n    transition: 0.5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search > input:active, .search > input:focus {\n      outline: none;\n      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }\n  .search > button {\n    display: none;\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: black;\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: 0.5s; }\n    @media (max-width: 768px) {\n      .search > button {\n        width: auto;\n        font-size: 16px; } }\n    .search > button:focus, .search > button:active, .search > button:hover {\n      outline: none; }\n    .search > button:hover {\n      cursor: pointer; }\n", ""]);
 
 // exports
+
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
 
 
 /***/ }),
@@ -29237,6 +29248,43 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(505)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('./react-swipe'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.reactSwipe);
+    global.index = mod.exports;
+  }
+})(this, function (exports, _reactSwipe) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _reactSwipe2 = _interopRequireDefault(_reactSwipe);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  exports.default = _reactSwipe2.default;
+});
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(26)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -29428,7 +29476,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 505 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29439,11 +29487,11 @@ exports["default"] = undefined;
 
 var _react = __webpack_require__(26);
 
-var _storeShape = __webpack_require__(199);
+var _storeShape = __webpack_require__(198);
 
 var _storeShape2 = _interopRequireDefault(_storeShape);
 
-var _warning = __webpack_require__(200);
+var _warning = __webpack_require__(199);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -29512,7 +29560,7 @@ Provider.childContextTypes = {
 };
 
 /***/ }),
-/* 506 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29526,19 +29574,19 @@ exports["default"] = connect;
 
 var _react = __webpack_require__(26);
 
-var _storeShape = __webpack_require__(199);
+var _storeShape = __webpack_require__(198);
 
 var _storeShape2 = _interopRequireDefault(_storeShape);
 
-var _shallowEqual = __webpack_require__(507);
+var _shallowEqual = __webpack_require__(508);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _wrapActionCreators = __webpack_require__(508);
+var _wrapActionCreators = __webpack_require__(509);
 
 var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 
-var _warning = __webpack_require__(200);
+var _warning = __webpack_require__(199);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -29913,7 +29961,7 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
 }
 
 /***/ }),
-/* 507 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29945,7 +29993,7 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 508 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29963,7 +30011,7 @@ function wrapActionCreators(actionCreators) {
 }
 
 /***/ }),
-/* 509 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30027,7 +30075,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 510 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30144,7 +30192,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 /***/ }),
-/* 511 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30160,11 +30208,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(510);
+var PooledClass = __webpack_require__(511);
 var ReactElement = __webpack_require__(55);
 
 var emptyFunction = __webpack_require__(30);
-var traverseAllChildren = __webpack_require__(519);
+var traverseAllChildren = __webpack_require__(520);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -30340,7 +30388,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 512 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31062,7 +31110,7 @@ var ReactClass = {
 module.exports = ReactClass;
 
 /***/ }),
-/* 513 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31087,7 +31135,7 @@ var ReactElement = __webpack_require__(55);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (true) {
-  var ReactElementValidator = __webpack_require__(202);
+  var ReactElementValidator = __webpack_require__(201);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -31237,7 +31285,7 @@ var ReactDOMFactories = {
 module.exports = ReactDOMFactories;
 
 /***/ }),
-/* 514 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31255,7 +31303,7 @@ module.exports = ReactDOMFactories;
 
 var ReactElement = __webpack_require__(55);
 var ReactPropTypeLocationNames = __webpack_require__(139);
-var ReactPropTypesSecret = __webpack_require__(203);
+var ReactPropTypesSecret = __webpack_require__(202);
 
 var emptyFunction = __webpack_require__(30);
 var getIteratorFn = __webpack_require__(141);
@@ -31676,7 +31724,7 @@ function getClassName(propValue) {
 module.exports = ReactPropTypes;
 
 /***/ }),
-/* 515 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31723,7 +31771,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ }),
-/* 516 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31742,7 +31790,7 @@ module.exports = ReactPureComponent;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 517 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31761,7 +31809,7 @@ module.exports = '15.4.2';
 var _prodInvariant = __webpack_require__(56);
 
 var ReactPropTypeLocationNames = __webpack_require__(139);
-var ReactPropTypesSecret = __webpack_require__(203);
+var ReactPropTypesSecret = __webpack_require__(202);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -31835,7 +31883,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(70)))
 
 /***/ }),
-/* 518 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31878,7 +31926,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 /***/ }),
-/* 519 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31897,11 +31945,11 @@ module.exports = onlyChild;
 var _prodInvariant = __webpack_require__(56);
 
 var ReactCurrentOwner = __webpack_require__(35);
-var REACT_ELEMENT_TYPE = __webpack_require__(201);
+var REACT_ELEMENT_TYPE = __webpack_require__(200);
 
 var getIteratorFn = __webpack_require__(141);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(509);
+var KeyEscapeUtils = __webpack_require__(510);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -32059,11 +32107,11 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 /***/ }),
-/* 520 */
+/* 521 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(203);
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -32115,7 +32163,7 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 521 */
+/* 522 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32169,13 +32217,13 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 522 */
+/* 523 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(205);
 /* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
 
 
@@ -32308,7 +32356,7 @@ function combineReducers(reducers) {
 }
 
 /***/ }),
-/* 523 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {/**
@@ -32998,7 +33046,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(75), __webpack_require__(70)))
 
 /***/ }),
-/* 524 */
+/* 525 */
 /***/ (function(module, exports) {
 
 /*
@@ -33250,14 +33298,14 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 525 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(526);
+module.exports = __webpack_require__(527);
 
 
 /***/ }),
-/* 526 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33267,7 +33315,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(527);
+var _ponyfill = __webpack_require__(528);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -33290,10 +33338,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(75), __webpack_require__(528)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(75), __webpack_require__(529)(module)))
 
 /***/ }),
-/* 527 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33322,7 +33370,7 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -33350,21 +33398,21 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(211);
+__webpack_require__(210);
 
-__webpack_require__(209);
+__webpack_require__(208);
 
 var _react = __webpack_require__(26);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(210);
+var _reactDom = __webpack_require__(209);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -33372,11 +33420,11 @@ var _reactRedux = __webpack_require__(94);
 
 var _redux = __webpack_require__(65);
 
-var _index = __webpack_require__(207);
+var _index = __webpack_require__(206);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _app = __webpack_require__(208);
+var _app = __webpack_require__(207);
 
 var _app2 = _interopRequireDefault(_app);
 
@@ -33389,62 +33437,6 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: store },
   _react2.default.createElement(_app2.default, null)
 ), document.getElementById('app'));
-
-/***/ }),
-/* 530 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
 
 /***/ })
 /******/ ]);

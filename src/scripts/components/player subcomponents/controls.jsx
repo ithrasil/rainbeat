@@ -166,7 +166,7 @@ class Controls extends React.Component {
 
     return(
       
-      <div tabIndex="0" className="controls_component" onKeyPress={ this.handleKeyPress.bind(this) }>
+      <div tabIndex="0" className="controls" onKeyPress={ this.handleKeyPress.bind(this) }>
         
         <div className="song-status">
           <div className="desc">
@@ -174,7 +174,7 @@ class Controls extends React.Component {
               { this.state.title }
             </div>
           </div>
-          <div className="controls">
+          <div className="configs">
 
             <div className="replay_trigger" onClick={ () => this.state.stream.currentTime = 0 }>
               <img src="/images/icons/repeat.svg" />

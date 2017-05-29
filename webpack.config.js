@@ -31,8 +31,6 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("public/styles.css"),
-    
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,

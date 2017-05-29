@@ -1,0 +1,28 @@
+/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css
+
+/**
+ * 1. Change the default font family in all browsers (opinionated).
+ * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
+*/
+
+#__bs_notify__ {
+  display: none!important;
+}
+
+html {
+  height: 100%;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  height: 100%;
+  margin: 0
+}

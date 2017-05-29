@@ -1,8 +1,8 @@
 // #1 Base
-@import "base/base";
-@import "base/normalize";
-@import "base/fonts";
-@import "base/vars";
+@import "base/base.scss";
+@import "base/normalize.scss";
+@import "base/fonts.scss";
+@import "base/vars.scss";
 
 @import './app';
 

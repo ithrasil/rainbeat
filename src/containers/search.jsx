@@ -9,7 +9,7 @@ class Search extends Component {
 
   render() {
     return(
-      <div className="search_module" >
+      <div className="search" >
 
         <label htmlFor="songInput"> <img src="/images/icons/search.svg" /></label>
 
