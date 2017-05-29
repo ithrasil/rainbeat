@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import allReducers from './reducers/index.jsx';
 
-import App from "./scripts/app.jsx";
+import App from "./app.jsx";
 
 const store = createStore(allReducers);
 

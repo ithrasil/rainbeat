@@ -11,13 +11,15 @@
     background-size: cover;
     background-position: center;
     opacity: 0.6;
-    filter: brightness(20%);
+    filter: blur(10px);
+    transition: .5s;
   }
 
   .cards {
     overflow: hidden;
     display: block;
     width: 500px;
+    height: 700px;
     position: relative;
     background: rgba(33, 33, 33, 0.7);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);

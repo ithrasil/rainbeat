@@ -18,9 +18,8 @@ class Search extends Component {
           className="searchInput" 
           id="songInput" 
           onInput={ this.props.saveQuery }
-          onKeyDown={(event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
+          onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
           value={ this.props.query.text } 
-          ref={ (songInput) => { this.songInput = songInput; }}
         />
 
         <button onClick={() => this.props.executeQuery(true) }>Wyszukaj</button>

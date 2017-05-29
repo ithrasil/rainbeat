@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
-import { executeQuery } from '../actions/query.jsx';
+import { executeQuery } from './actions/query.jsx';
 
-import Navigation from './components/navigation.jsx';
-import Player from './components/player.jsx';
+import Navigation from './containers/navigation.jsx';
+import Player from './containers/player.jsx';
 
 import helpers from './helpers.jsx';
 
-class App extends React.Component { 
+class App extends Component { 
   
   constructor(props) {
     super(props);
@@ -32,12 +33,12 @@ class App extends React.Component {
   handleQuery() {
     if(this.state.songLoaded == false || this.props.query.text == this.state.loadedQuery) return;
     
-    const searchModule = document.querySelector('#search');
     const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.props.query.text}&limit15`;
     
-    fetch(endpoint)
-      .then(blob => blob.json())
-      .then(songs => {
+    Axios.get(endpoint)
+      .then(response => {
+      
+        const songs = response.data
         
         if(songs.length == 0) return;
         

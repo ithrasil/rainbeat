@@ -1,10 +1,9 @@
 import React from 'react';
-import Swipe from 'react-easy-swipe';
 
-import Search from '../../containers/search.jsx';
+import Search from './search.jsx';
 
-import Card from './player subcomponents/card.jsx';
-import Controls from './player subcomponents/controls.jsx';
+import Card from './player/card.jsx';
+import Controls from './player/controls.jsx';
 
 import helpers from '../helpers.jsx';
 
@@ -36,7 +35,6 @@ class Player extends React.Component {
     let cards = [];
     let artwork_url;
     const length = this.state.songs.length;
-    const scope = helpers.setScope(length, this.state.activeSong.index);
     
     for (var i = 0; i < length; i++) {
       const song = this.state.songs[i];
@@ -61,14 +59,14 @@ class Player extends React.Component {
       <div className="player_component">
         <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
         <Search  />
-        <Swipe className="cards" onSwipeMove={ this.props.onSwipeMove }>
+        <div className="cards">
           <div className="wrapper">
             { cards }
             <div className="scrollbar">
               <div className="thumb"></div>
             </div>
           </div>
-        </Swipe>
+        </div>
         <Controls activeSong={ this.state.activeSong } />
       </div>
     )

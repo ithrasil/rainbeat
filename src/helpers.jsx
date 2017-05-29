@@ -26,26 +26,6 @@ module.exports = {
     
   },
   
-  setScope: function(max, index) {
-    
-    let limit = max > 5 ? 5 : max;
-    
-    if(max % 2 == 0 && max != 0) {
-      limit -= 1;
-    }
-    else if(max==0) {
-      return [0, 0];
-    }
-    
-    const middle = typeof index ? index+1 : Math.ceil(max / 2);
-    
-    const leftRange = middle-Math.floor(limit/2) - 1;
-    const rightRange = middle+Math.floor(limit/2);
-    
-    return [leftRange, rightRange];
-    
-  },
-  
   resizeArtwork: function(url, size) {
     const beginning = url.lastIndexOf('-');
     const end = url.lastIndexOf('.');
