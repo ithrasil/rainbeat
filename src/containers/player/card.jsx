@@ -6,7 +6,7 @@ class Card extends React.Component {
   
   constructor(props) {
     super(props);
-    
+
     this.state = {
       song: this.props.song,
       isActive: this.props.isActive ? "active" : "",

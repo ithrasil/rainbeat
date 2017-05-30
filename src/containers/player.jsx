@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import Search from './search.jsx';
 
 import Card from './player/card.jsx';
@@ -8,42 +11,20 @@ import Controls from './player/controls.jsx';
 import helpers from '../helpers.jsx';
 
 class Player extends React.Component {
-  
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      activeSong: props.activeSong,
-      songs: props.songs,
-      client_id: props.client_id
-    }
-  
-  }
-  
-  componentWillReceiveProps(props) {
 
-    this.state = {
-      activeSong: props.activeSong,
-      songs: props.songs,
-      client_id: props.client_id
-    }
-    
-  }
-  
   render() {
 
     let cards = [];
     let artwork_url;
-    const length = this.state.songs.length;
+    const length = this.props.songs.songs.length;
     
     for (var i = 0; i < length; i++) {
-      const song = this.state.songs[i];
-      
+      const song = this.props.songs.songs[i];
       let isActive = false;
       
-      if(this.state.activeSong.id == song.id) {
+      if(this.props.songs.activeSong.id == song.id) {
         isActive = true;
-        artwork_url = this.state.activeSong.artwork_url;
+        artwork_url = this.props.songs.activeSong.artwork_url;
       }
       
       cards.push(
@@ -56,6 +37,7 @@ class Player extends React.Component {
     }
     
     return(
+      
       <div className="player_component">
         <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
         <Search  />
@@ -67,10 +49,16 @@ class Player extends React.Component {
             </div>
           </div>
         </div>
-        <Controls activeSong={ this.state.activeSong } />
+        <Controls activeSong={ this.props.songs.activeSong } />
       </div>
     )
   }
 }
 
-export default Player;
+function mapStateToProps(state) {
+  return {
+    songs: state.songs
+  }
+}
+
+export default connect(mapStateToProps)(Player);

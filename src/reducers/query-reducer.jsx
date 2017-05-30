@@ -1,14 +1,14 @@
-export default function(state=null, action) {
+export default function(state={ value: localStorage.getItem('query'), execution: false }, action) {
   
-  state = { text: localStorage.getItem('query'), execution: false }
+  state = { value: localStorage.getItem('query'), execution: false }
   
   switch(action.type) {
-    case "QUERY_UPDATED":
-      state.text = action.payload;
+    case "QUERY_UPDATE":
+      state.value = action.payload;
       localStorage.setItem('query', action.payload);
       break;
       
-    case "QUERY_EXECUTED":
+    case "QUERY_EXECUTE":
       state.execution = action.payload;
       break;
   }

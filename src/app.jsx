@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 
 import { executeQuery } from './actions/query.jsx';
+import { updateActiveSong, changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
 
 import Navigation from './containers/navigation.jsx';
 import Player from './containers/player.jsx';
@@ -13,38 +14,26 @@ import helpers from './helpers.jsx';
 
 class App extends Component { 
   
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      activeSong: [],
-      songs: [],
-      dataReceived: false,
-      client_id: "stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv",
-      songLoaded: true,
-      searchActive: true
-    }
-  }
-  
   componentDidMount() {
     this.handleQuery();
   }
   
   handleQuery() {
-    if(this.state.songLoaded == false || this.props.query.text == this.state.loadedQuery) return;
     
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.state.client_id}&q=${this.props.query.text}&limit15`;
+    if(this.props.songs.songLoaded == false) return;
+    
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.config.clientId}&q=${this.props.query.value}&limit15`;
     
     Axios.get(endpoint)
       .then(response => {
-      
+
         const songs = response.data
         
         if(songs.length == 0) return;
         
-        if(this.state.dataReceived) {
-          this.state.activeSong.stream.pause();
-          this.setState({dataReceived: false});
+        if(this.props.songs.received) {
+          this.props.songs.activeSong.stream.pause();
+          this.props.changeReceiveStatus(false);
         }
       
         const index = 0;
@@ -57,34 +46,30 @@ class App extends Component {
         const newActiveSong = {
           id: song.id,
           artwork_url: song.artwork_url,
-          stream: helpers.createStream(song.stream_url, this.state.client_id),
+          stream: helpers.createStream(song.stream_url, this.props.config.clientId),
           title: song.title,
           index: index
         }
-
-        this.setState( 
-          {
-            activeSong: newActiveSong,
-            songs: songs, 
-            dataReceived: true,
-            songLoaded: false,
-            loadedQuery: this.props.query.text
-          } 
-        );
+        
+        this.props.changeSongStatus(false);
+        this.props.updateActiveSong(newActiveSong);
+        this.props.updateSongs(songs);
       
-        this.state.activeSong.stream.addEventListener('canplay', () => {
-          this.state.songLoaded = true
+        this.props.songs.activeSong.stream.addEventListener('canplay', () => {
+          this.props.changeSongStatus(true);
         })
         
-        this.state.activeSong.stream.addEventListener('ended', () => {
+        this.props.songs.activeSong.stream.addEventListener('ended', () => {
           this.handleChangeCard('next');
         })
+        
+        this.props.changeReceiveStatus(true);
         
     });
   }
   
   handleChangeCard(direction) {
-    if(this.state.songLoaded == false) console.log(1);
+    if(this.props.songs.songLoaded == false) console.log("not loaded yet");
     
     this.props.executeQuery(true);
     
@@ -92,8 +77,6 @@ class App extends Component {
     const cardsList = document.querySelectorAll('.card');
     
     const newActiveCard = helpers.assignCard(direction, cardsList, oldActiveCard);
-    
-    console.log(newActiveCard);
 
     const dataset = newActiveCard.children[1].dataset;
 
@@ -101,11 +84,11 @@ class App extends Component {
       const cardsArr = Array.prototype.slice.call(cardsList, 0); 
       const index = cardsArr.indexOf(newActiveCard);
       
-      this.state.activeSong.stream.pause();
+      this.props.songs.activeSong.stream.pause();
       
-      let newStream = this.state.activeSong.stream;
+      let newStream = this.props.songs.activeSong.stream;
     
-      newStream.src = dataset.stream_url + "?client_id=" + this.state.client_id;
+      newStream.src = dataset.stream_url + "?client_id=" + this.props.config.clientId;
       
       const newActiveSong = {
         id: dataset.id,
@@ -115,27 +98,18 @@ class App extends Component {
         index: index-2
       }
       
-      this.setState(
-        { 
-          activeSong: newActiveSong,
-          songLoaded: false
-        }
-      );
+      this.props.updateActiveSong(newActiveSong);
+      this.props.changeSongStatus(false);
       
-      this.state.activeSong.stream.addEventListener('canplay', () => {
-        this.state.songLoaded = true;
+      this.props.songs.activeSong.stream.addEventListener('canplay', () => {
+        this.props.changeSongStatus(true);
       })
       
-      this.state.activeSong.stream.addEventListener('ended', () => {
+      this.props.songs.activeSong.stream.addEventListener('ended', () => {
         this.handleChangeCard('next');
       })
       
     }
-  }
-  
-  handleMove(position) {
-    const direction = position.x > 0 ? "prev" : "next";
-    this.handleChangeCard(direction);
   }
   
   handleKeyDown(e) {
@@ -149,17 +123,13 @@ class App extends Component {
       this.props.executeQuery(false);
       this.handleQuery();
     }
-    
-    if(this.state.dataReceived) {
+
+    if(this.props.songs.received) {
       return(
         <div>
 
           <Player 
             onClick={ this.handleChangeCard.bind(this) } 
-            activeSong={ this.state.activeSong }  
-            songs={ this.state.songs } 
-            client_id={ this.state.client_id } 
-            onSwipeMove={ this.handleMove.bind(this) }
           />
           
         </div>
@@ -169,7 +139,7 @@ class App extends Component {
     else {
       return(
         <div>
-
+          empty data
         </div>
       )
     }
@@ -178,13 +148,19 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    query: state.query
+    query: state.query,
+    config: state.config,
+    songs: state.songs
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
-    executeQuery: executeQuery
+    executeQuery: executeQuery,
+    updateActiveSong: updateActiveSong, 
+    changeSongStatus: changeSongStatus,
+    changeReceiveStatus: changeReceiveStatus,
+    updateSongs: updateSongs
   };
   
   return bindActionCreators(functions, dispatch);

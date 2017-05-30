@@ -1,13 +1,13 @@
 const executeQuery = (boolean) => { 
   return {
-    type: "QUERY_EXECUTED",
+    type: "QUERY_EXECUTE",
     payload: boolean
   }
 };
 
 const saveQuery = (event) => { 
   return {
-    type: "QUERY_UPDATED",
+    type: "QUERY_UPDATE",
     payload: event.target.value
   }
 };
