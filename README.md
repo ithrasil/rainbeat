@@ -1,15 +1,16 @@
-# Rainbeat - simple music player
-Rainbeat is simple and fast music player for everyone. Enjoy!
-
-## Introduction
-Rainbeat is based on SoundCloud API and React library.
+# Rainbeat 
+Fast music player built on SoundCloud API.
 
 ## Structure
 
 * public
-
-   Here we have ready to go files of app
+   * Bundled js and css files, 
+   * html, 
+   * images
 
 * src
+   * redux/react components
+   * scss modules
+   * helper functions
 
-   In this catalog are jsx React modules and SASS files
+* specs - tests
