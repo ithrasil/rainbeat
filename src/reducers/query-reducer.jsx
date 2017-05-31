@@ -1,6 +1,6 @@
-export default function(state={ value: localStorage.getItem('query'), execution: false }, action) {
+export default function(state=null, action) {
   
-  state = { value: localStorage.getItem('query'), execution: false }
+  state = { value: localStorage.getItem('query') || "", execution: false }
   
   switch(action.type) {
     case "QUERY_UPDATE":

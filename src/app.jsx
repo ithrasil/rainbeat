@@ -1,18 +1,25 @@
+// React
 import React, { Component } from 'react';
 
+// Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+// Axios
 import Axios from 'axios';
 
+// Actions 
 import { executeQuery } from './actions/query.jsx';
 import { changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
 import { changeCard } from './actions/card.jsx';
 import { updateStream } from './actions/stream.jsx';
 
+// Containers
 import Navigation from './containers/navigation.jsx';
 import Player from './containers/player.jsx';
 
-import helpers from './helpers.jsx';
+// Helpers
+import { assignCardId } from './helpers.jsx';
 
 class App extends Component { 
   
@@ -34,7 +41,7 @@ class App extends Component {
         if(songs.length == 0) return;
         
         if(this.props.songs.received) {
-          this.props.stream.stream.pause();
+          this.props.stream.pause();
           this.props.changeReceiveStatus(false);
         }
         
@@ -55,7 +62,8 @@ class App extends Component {
         });
         
         this.props.stream.addEventListener('ended', () => {
-          this.handleChangeCard('next');
+          const cardId = assignCardId('next', this.props.songs.songs, this.props.cardId);
+          this.props.changeCard(cardId);
         });
         
         this.props.changeReceiveStatus(true);
@@ -77,11 +85,7 @@ class App extends Component {
 
     if(this.props.songs.received) {
       return(
-        <div>
-
-          <Player />
-          
-        </div>
+        <Player />
       )
     }
     

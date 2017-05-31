@@ -1,28 +1,27 @@
 module.exports = { 
   
-  assignCard: function(direction, cardsList, oldActiveCard) {
-    let newActiveCard;
+  assignCardId: function(direction, songs, cardId) {
+    
+    const length = songs.length-1;
 
-    if(typeof direction == "object") {
-      newActiveCard = direction.target.parentNode;
-    }
-    else if(direction == "next"){
-      newActiveCard = oldActiveCard.nextSibling;
-      
-      if(newActiveCard.classList.contains('dummy')){
-        newActiveCard = cardsList[2];
+    if(direction == "next"){
+      if(cardId == length){
+        cardId = 0;
+      }
+      else {
+        cardId++;
       }
     }
     else if(direction == "prev"){
-      newActiveCard = oldActiveCard.previousSibling;
-      
-      if(newActiveCard.classList.contains('dummy')){
-        const length = cardsList.length;
-        newActiveCard = cardsList[length-3];
+      if(cardId == 0){
+        cardId = length;
+      }
+      else {
+        cardId--;
       }
     }
     
-    return newActiveCard;
+    return cardId;
     
   },
   

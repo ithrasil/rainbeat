@@ -1,15 +1,13 @@
 import { createStream } from "../helpers.jsx";
 
-export default function(state={ stream: null }, action) {
+export default function(state={ stream: null, time: 0}, action) {
   switch(action.type) {
     case "STREAM_UPDATE":
       if(state.stream != null) {
         state.stream.pause();
       }
 
-      const clientId = action.payload[1];
-      const url = action.payload[0];
-      state.stream = createStream(url, clientId);
+      state.stream = createStream(action.payload[0], action.payload[1]);
       break;
   }
         

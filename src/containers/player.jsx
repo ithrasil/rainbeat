@@ -50,7 +50,7 @@ class Player extends React.Component {
             </div>
           </div>
         </div>
-        <Controls/>
+        <Controls activeSong={ this.props.activeSong } stream={ this.props.stream }/>
       </div>
     )
   }
@@ -59,7 +59,9 @@ class Player extends React.Component {
 function mapStateToProps(state) {
   return {
     cardId: state.card.id,
-    songs: state.songs
+    songs: state.songs,
+    stream: state.stream.stream,
+    activeSong: state.songs.songs[state.card.id]
   }
 }
 
