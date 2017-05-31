@@ -5222,7 +5222,6 @@ module.exports = {
 
   createStream: function createStream(stream_url, client_id) {
     var song = new Audio(stream_url + "?client_id=" + client_id);
-    song.preload = "metadata";
 
     return song;
   },
@@ -10042,13 +10041,6 @@ exports.saveQuery = saveQuery;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var updateActiveSong = function updateActiveSong(obj) {
-  return {
-    type: "ACTIVE_SONG_UPDATE",
-    payload: obj
-  };
-};
-
 var changeSongStatus = function changeSongStatus(boolean) {
   return {
     type: "ACTIVE_SONG_STATUS",
@@ -10070,7 +10062,6 @@ var updateSongs = function updateSongs(obj) {
   };
 };
 
-exports.updateActiveSong = updateActiveSong;
 exports.changeSongStatus = changeSongStatus;
 exports.changeReceiveStatus = changeReceiveStatus;
 exports.updateSongs = updateSongs;
@@ -14061,7 +14052,7 @@ var App = function (_Component) {
 
       if (this.props.songs.songLoaded == false) return;
 
-      var endpoint = 'https://api.soundcloud.com/tracks?client_id=' + this.props.config.clientId + '&q=' + this.props.query.value + '&limit15';
+      var endpoint = 'https://api.soundcloud.com/tracks?client_id=' + this.props.clientId + '&q=' + this.props.query.value + '&limit15';
 
       _axios2.default.get(endpoint).then(function (response) {
 
@@ -14070,85 +14061,32 @@ var App = function (_Component) {
         if (songs.length == 0) return;
 
         if (_this2.props.songs.received) {
-          _this2.props.songs.activeSong.stream.pause();
+          _this2.props.stream.stream.pause();
           _this2.props.changeReceiveStatus(false);
         }
 
         _this2.props.changeCard(0);
 
-        var song = songs[_this2.props.card.id];
+        var song = songs[0];
 
         if (song.artwork_url == null) {
           song.artwork_url = "https://unsplash.it/300";
         }
 
-        var newActiveSong = {
-          id: song.id,
-          artwork_url: song.artwork_url,
-          stream: _helpers2.default.createStream(song.stream_url, _this2.props.config.clientId),
-          title: song.title
-        };
-
+        _this2.props.updateStream([song.stream_url, _this2.props.clientId]);
         _this2.props.changeSongStatus(false);
-        _this2.props.updateActiveSong(newActiveSong);
         _this2.props.updateSongs(songs);
 
-        _this2.props.songs.activeSong.stream.addEventListener('canplay', function () {
+        _this2.props.stream.addEventListener('canplay', function () {
           _this2.props.changeSongStatus(true);
         });
 
-        _this2.props.songs.activeSong.stream.addEventListener('ended', function () {
+        _this2.props.stream.addEventListener('ended', function () {
           _this2.handleChangeCard('next');
         });
 
         _this2.props.changeReceiveStatus(true);
       });
-    }
-  }, {
-    key: 'handleChangeCard',
-    value: function handleChangeCard(direction) {
-      var _this3 = this;
-
-      if (this.props.songs.songLoaded == false) console.log("not loaded yet");
-
-      this.props.executeQuery(true);
-
-      var oldActiveCard = document.querySelector('.card.active');
-      var cardsList = document.querySelectorAll('.card');
-
-      var newActiveCard = _helpers2.default.assignCard(direction, cardsList, oldActiveCard);
-
-      var dataset = newActiveCard.children[1].dataset;
-
-      if (oldActiveCard != newActiveCard) {
-        var cardsArr = Array.prototype.slice.call(cardsList, 0);
-        var index = cardsArr.indexOf(newActiveCard);
-
-        this.props.songs.activeSong.stream.pause();
-
-        var newStream = this.props.songs.activeSong.stream;
-
-        newStream.src = dataset.stream_url + "?client_id=" + this.props.config.clientId;
-
-        var newActiveSong = {
-          id: dataset.id,
-          artwork_url: dataset.artwork_url,
-          stream: newStream,
-          title: dataset.title,
-          index: index - 2
-        };
-
-        this.props.updateActiveSong(newActiveSong);
-        this.props.changeSongStatus(false);
-
-        this.props.songs.activeSong.stream.addEventListener('canplay', function () {
-          _this3.props.changeSongStatus(true);
-        });
-
-        this.props.songs.activeSong.stream.addEventListener('ended', function () {
-          _this3.handleChangeCard('next');
-        });
-      }
     }
   }, {
     key: 'handleKeyDown',
@@ -14169,9 +14107,7 @@ var App = function (_Component) {
         return _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_player2.default, {
-            onClick: this.handleChangeCard.bind(this)
-          })
+          _react2.default.createElement(_player2.default, null)
         );
       } else {
         return _react2.default.createElement(
@@ -14189,17 +14125,16 @@ var App = function (_Component) {
 function mapStateToProps(state) {
   return {
     query: state.query,
-    config: state.config,
+    clientId: state.config.clientId,
     songs: state.songs,
-    card: state.card,
-    stream: state.stream
+    cardId: state.card.id,
+    stream: state.stream.stream
   };
 }
 
 function matchDispatchToProps(dispatch) {
   var functions = {
     executeQuery: _query.executeQuery,
-    updateActiveSong: _songs.updateActiveSong,
     changeSongStatus: _songs.changeSongStatus,
     changeReceiveStatus: _songs.changeReceiveStatus,
     updateSongs: _songs.updateSongs,
@@ -15411,9 +15346,9 @@ var Player = function (_React$Component) {
         var song = this.props.songs.songs[i];
         var isActive = false;
 
-        if (this.props.songs.activeSong.id == song.id) {
+        if (i == this.props.cardId) {
           isActive = true;
-          artwork_url = this.props.songs.activeSong.artwork_url;
+          artwork_url = this.props.songs.songs[i].artwork_url;
         }
 
         cards.push(_react2.default.createElement(_card2.default, {
@@ -15444,7 +15379,7 @@ var Player = function (_React$Component) {
             )
           )
         ),
-        _react2.default.createElement(_controls2.default, { activeSong: this.props.songs.activeSong })
+        _react2.default.createElement(_controls2.default, null)
       );
     }
   }]);
@@ -15454,6 +15389,7 @@ var Player = function (_React$Component) {
 
 function mapStateToProps(state) {
   return {
+    cardId: state.card.id,
     songs: state.songs
   };
 }
@@ -15483,7 +15419,7 @@ var _reactRedux = __webpack_require__(59);
 
 var _card = __webpack_require__(237);
 
-var _songs = __webpack_require__(150);
+var _stream = __webpack_require__(564);
 
 var _helpers = __webpack_require__(78);
 
@@ -15525,7 +15461,8 @@ var Card = function (_React$Component) {
     value: function handleClick() {
       var id = this.props.id;
       var songs = this.props.songs.songs;
-      this.props.updateActiveSong(songs[id]);
+      this.props.changeCard(id);
+      this.props.updateStream([songs[id].stream_url, this.props.config.clientId]);
     }
   }, {
     key: 'render',
@@ -15548,7 +15485,7 @@ var Card = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: cardClasses, onClick: this.handleClick.bind(this), 'data-id': this.props.id },
+        { className: cardClasses, onClick: this.handleClick.bind(this) },
         _react2.default.createElement('img', { className: 'artwork', src: artwork_url }),
         _react2.default.createElement(
           'div',
@@ -15568,15 +15505,15 @@ var Card = function (_React$Component) {
 
 function mapStateToProps(state) {
   return {
-    card: state.card,
-    songs: state.songs
+    songs: state.songs,
+    config: state.config
   };
 }
 
 function matchDispatchToProps(dispatch) {
   var functions = {
     changeCard: _card.changeCard,
-    updateActiveSong: _songs.updateActiveSong
+    updateStream: _stream.updateStream
   };
 
   return (0, _redux.bindActionCreators)(functions, dispatch);
@@ -15612,6 +15549,8 @@ var _helpers = __webpack_require__(78);
 var _helpers2 = _interopRequireDefault(_helpers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -15659,11 +15598,12 @@ var Controls = function (_React$Component) {
 
       var playSwitchIcon = this.playSwitchIcon;
 
-      if (this.props.activeSong.stream.paused) {
-        this.props.activeSong.stream.play();
+      if (this.props.stream.paused) {
+        console.log(this.props.stream);
+        this.props.stream.play();
         playSwitchIcon.src = playSwitchIcon.src.replace('play', 'pause');
       } else {
-        this.props.activeSong.stream.pause();
+        this.props.stream.pause();
         playSwitchIcon.src = playSwitchIcon.src.replace('pause', 'play');
       }
     }
@@ -15672,22 +15612,22 @@ var Controls = function (_React$Component) {
     value: function prepareAudio() {
       var _this2 = this;
 
-      this.props.activeSong.stream.addEventListener('canplaythrough', function () {
-        var stream = _this2.props.activeSong.stream;
+      this.props.stream.addEventListener('canplaythrough', function () {
+        var stream = _this2.props.stream;
 
         var duration = _helpers2.default.convertSecondsToMs(stream.duration);
         var timeIteration = _this2.track.offsetWidth / stream.duration;
 
         stream.volume = _this2.props.volume;
-        stream.muted = _this2.props.isMutedd;
+        stream.muted = _this2.props.isMuted;
 
         _this2.setState({ duration: duration });
         _this2.setState({ timeIteration: timeIteration });
       });
 
-      this.props.activeSong.stream.addEventListener('timeupdate', function () {
+      this.props.stream.addEventListener('timeupdate', function () {
         if (!_this2.state.isMouseDown) {
-          _this2.setState({ dummyTime: _this2.props.activeSong.stream.currentTime });
+          _this2.setState({ dummyTime: _this2.props.stream.currentTime });
         }
       });
     }
@@ -15721,7 +15661,7 @@ var Controls = function (_React$Component) {
       if (this.state.isMouseDown == false) return;
 
       if (this.state.paused) {
-        this.props.activeSong.stream.play();
+        this.props.stream.play();
         this.setState({ paused: false });
       }
       this.moveDot(event);
@@ -15731,8 +15671,8 @@ var Controls = function (_React$Component) {
     key: 'handleMouseDown',
     value: function handleMouseDown(event) {
 
-      if (!this.props.activeSong.stream.paused) {
-        this.props.activeSong.stream.pause();
+      if (!this.props.stream.paused) {
+        this.props.stream.pause();
         this.setState({ paused: true });
       }
       this.moveDot(event);
@@ -15742,7 +15682,7 @@ var Controls = function (_React$Component) {
     key: 'handleMouseUp',
     value: function handleMouseUp(event) {
       if (this.state.paused) {
-        this.props.activeSong.stream.play();
+        this.props.stream.play();
         this.setState({ paused: false });
       }
       this.state.isMouseDown = false;
@@ -15757,21 +15697,21 @@ var Controls = function (_React$Component) {
 
       this.setState({ dummyTime: dummyTime });
 
-      this.props.activeSong.stream.currentTime = dummyTime;
+      this.props.stream.currentTime = dummyTime;
     }
   }, {
     key: 'handleMute',
     value: function handleMute(e) {
-      var isMuted = !this.props.activeSong.stream.muted;
+      var isMuted = !this.props.stream.muted;
       this.props.changeMuted(isMuted);
-      this.props.activeSong.stream.muted = isMuted;
+      this.props.stream.muted = isMuted;
     }
   }, {
     key: 'handleVolume',
     value: function handleVolume(event) {
       var volume = event.target.value / 100;
       this.props.updateVolume(volume);
-      this.props.activeSong.stream.volume = volume;
+      this.props.stream.volume = volume;
       localStorage.setItem('volume', volume);
     }
   }, {
@@ -15781,7 +15721,7 @@ var Controls = function (_React$Component) {
 
       var volumeIcon = void 0;
 
-      if (this.props.activeSong.stream.muted) {
+      if (this.props.isMuted) {
         volumeIcon = "/images/icons/volume-mute.svg";
       } else {
         volumeIcon = "/images/icons/volume.svg";
@@ -15799,7 +15739,7 @@ var Controls = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'caption' },
-              this.state.title
+              this.props.activeSong.title
             )
           ),
           _react2.default.createElement(
@@ -15808,7 +15748,7 @@ var Controls = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'replay_trigger', onClick: function onClick() {
-                  return _this3.props.activeSong.stream.currentTime = 0;
+                  return _this3.props.stream.currentTime = 0;
                 } },
               _react2.default.createElement('img', { src: '/images/icons/repeat.svg' })
             ),
@@ -15843,7 +15783,7 @@ var Controls = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'current_time' },
-                _helpers2.default.convertSecondsToMs(this.props.activeSong.stream.currentTime)
+                _helpers2.default.convertSecondsToMs(this.props.stream.currentTime)
               )
             ),
             _react2.default.createElement(
@@ -15862,12 +15802,12 @@ var Controls = function (_React$Component) {
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-  console.log(state);
-  return {
+  return _defineProperty({
     activeSong: state.songs.activeSong,
     isMuted: state.config.isMuted,
-    volume: state.config.volume
-  };
+    volume: state.config.volume,
+    stream: state.stream.stream
+  }, 'activeSong', state.songs.songs[state.card.id]);
 }
 
 function matchDispatchToProps(dispatch) {
@@ -16079,13 +16019,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { activeSong: {}, songLoaded: true, received: false, songs: [] };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { songLoaded: true, received: false, songs: [] };
   var action = arguments[1];
 
   switch (action.type) {
-    case "ACTIVE_SONG_UPDATE":
-      state.activeSong = action.payload;
-      break;
 
     case "ACTIVE_SONG_STATUS":
       state.songLoaded = action.payload;
@@ -22138,7 +22075,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Inconsolata);", ""]);
 
 // module
-exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n*/\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n   ========================================================================== */\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/**\n * Add the correct display in IE 9-.\n */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Correct the padding in Firefox.\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n   ========================================================================== */\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\ndetails,\nmenu {\n  display: block; }\n\n/*\n * Add the correct display in all browsers.\n */\nsummary {\n  display: list-item; }\n\n/* Scripting\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\ncanvas {\n  display: inline-block; }\n\n/**\n * Add the correct display in IE.\n */\ntemplate {\n  display: none; }\n\n/* Hidden\n   ========================================================================== */\n/**\n * Add the correct display in IE 10-.\n */\n[hidden] {\n  display: none; }\n\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: 0.5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: 0.5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 81%;\n    background-size: cover;\n    background-position: center;\n    opacity: 0.6;\n    filter: brightness(80%); }\n  .player_component .cards {\n    overflow: hidden;\n    display: block;\n    width: 500px;\n    height: 700px;\n    position: relative;\n    background: rgba(33, 33, 33, 0.7);\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card:hover {\n          cursor: pointer; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .label {\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls {\n    padding: 30px 30px;\n    position: relative;\n    text-align: center;\n    height: 20vh;\n    box-sizing: border-box;\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -khtml-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background: #050505; }\n    .player_component .controls:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls .song-status {\n      display: inline-block;\n      text-align: left;\n      color: white;\n      width: 100%; }\n      @media (max-width: 1600px) {\n        .player_component .controls .song-status {\n          margin: 25px 0; } }\n      .player_component .controls .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls .song-status .configs {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .configs {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls .song-status .configs .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls .song-status .configs .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls .song-status .configs .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls .song-status .configs .play_switch {\n          display: inline-block;\n          color: white;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls .song-status .configs .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls .song-status .configs .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls .song-status .configs .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls .song-status .configs .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls .song-status .configs .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls .song-status .configs .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls .song-status .configs .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: 20px;\n              background: #03458E;\n              transition: opacity 0.3s; }\n            .player_component .controls .song-status .configs .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls .song-status .configs .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .current_time {\n                display: none; } }\n        .player_component .controls .song-status .configs .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: 0.5s; }\n            .player_component .controls .song-status .configs .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls .song-status .configs .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls .song-status .configs .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: 0.5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .volume_controls input {\n                display: none; } }\n          .player_component .controls .song-status .configs .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  width: 500px;\n  box-sizing: border-box;\n  font-weight: 300;\n  font-family: \"Inconsolata\";\n  padding: 10px;\n  background: #111; }\n  @media (max-width: 768px) {\n    .search {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search > label {\n      display: none; } }\n  .search > label img {\n    position: relative;\n    top: 8px;\n    margin-left: 15px;\n    width: 26px;\n    height: 26px; }\n    .search > label img:hover {\n      cursor: pointer; }\n  .search > input {\n    width: 300px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px 10px 10px 40px;\n    color: white;\n    background: rgba(50, 50, 50, 0.2);\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n    transition: 0.5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search > input:active, .search > input:focus {\n      outline: none;\n      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }\n  .search > button {\n    display: none;\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: black;\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: 0.5s; }\n    @media (max-width: 768px) {\n      .search > button {\n        width: auto;\n        font-size: 16px; } }\n    .search > button:focus, .search > button:active, .search > button:hover {\n      outline: none; }\n    .search > button:hover {\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n*/\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n   ========================================================================== */\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/**\n * Add the correct display in IE 9-.\n */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Correct the padding in Firefox.\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n   ========================================================================== */\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\ndetails,\nmenu {\n  display: block; }\n\n/*\n * Add the correct display in all browsers.\n */\nsummary {\n  display: list-item; }\n\n/* Scripting\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\ncanvas {\n  display: inline-block; }\n\n/**\n * Add the correct display in IE.\n */\ntemplate {\n  display: none; }\n\n/* Hidden\n   ========================================================================== */\n/**\n * Add the correct display in IE 10-.\n */\n[hidden] {\n  display: none; }\n\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: 0.5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: 0.5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 81%;\n    background-size: cover;\n    background-position: center;\n    opacity: 0.6;\n    filter: brightness(80%); }\n  .player_component .cards {\n    overflow: hidden;\n    display: block;\n    width: 500px;\n    height: 700px;\n    position: relative;\n    background: rgba(33, 33, 33, 0.7);\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card:hover {\n          cursor: pointer; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .label {\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls {\n    padding: 30px 30px;\n    position: relative;\n    text-align: center;\n    height: 20vh;\n    box-sizing: border-box;\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -khtml-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background: #050505; }\n    .player_component .controls:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls .song-status {\n      display: inline-block;\n      text-align: left;\n      color: white;\n      width: 100%; }\n      @media (max-width: 1600px) {\n        .player_component .controls .song-status {\n          margin: 25px 0; } }\n      .player_component .controls .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls .song-status .configs {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .configs {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls .song-status .configs .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls .song-status .configs .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls .song-status .configs .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls .song-status .configs .play_switch {\n          display: inline-block;\n          color: white;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls .song-status .configs .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls .song-status .configs .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls .song-status .configs .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls .song-status .configs .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls .song-status .configs .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls .song-status .configs .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls .song-status .configs .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: -35px;\n              background: #03458E;\n              transition: opacity 0.3s; }\n            .player_component .controls .song-status .configs .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls .song-status .configs .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .current_time {\n                display: none; } }\n        .player_component .controls .song-status .configs .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: 0.5s; }\n            .player_component .controls .song-status .configs .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls .song-status .configs .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls .song-status .configs .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: 0.5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .volume_controls input {\n                display: none; } }\n          .player_component .controls .song-status .configs .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  width: 500px;\n  box-sizing: border-box;\n  font-weight: 300;\n  font-family: \"Inconsolata\";\n  padding: 10px;\n  background: #111; }\n  @media (max-width: 768px) {\n    .search {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search > label {\n      display: none; } }\n  .search > label img {\n    position: relative;\n    top: 8px;\n    margin-left: 15px;\n    width: 26px;\n    height: 26px; }\n    .search > label img:hover {\n      cursor: pointer; }\n  .search > input {\n    width: 300px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px 10px 10px 40px;\n    color: white;\n    background: rgba(50, 50, 50, 0.2);\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n    transition: 0.5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search > input:active, .search > input:focus {\n      outline: none;\n      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }\n  .search > button {\n    display: none;\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: black;\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: 0.5s; }\n    @media (max-width: 768px) {\n      .search > button {\n        width: auto;\n        font-size: 16px; } }\n    .search > button:focus, .search > button:active, .search > button:hover {\n      outline: none; }\n    .search > button:hover {\n      cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -37001,9 +36938,12 @@ exports.default = function () {
 
   switch (action.type) {
     case "STREAM_UPDATE":
-      state.stream.pause();
-      clientId = action.payload['clientId'];
-      url = action.payload['url'];
+      if (state.stream != null) {
+        state.stream.pause();
+      }
+
+      var clientId = action.payload[1];
+      var url = action.payload[0];
       state.stream = (0, _helpers.createStream)(url, clientId);
       break;
   }

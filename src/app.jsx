@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 
 import { executeQuery } from './actions/query.jsx';
-import { updateActiveSong, changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
+import { changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
 import { changeCard } from './actions/card.jsx';
 import { updateStream } from './actions/stream.jsx';
 
@@ -24,7 +24,7 @@ class App extends Component {
     
     if(this.props.songs.songLoaded == false) return;
     
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.config.clientId}&q=${this.props.query.value}&limit15`;
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.clientId}&q=${this.props.query.value}&limit15`;
     
     Axios.get(endpoint)
       .then(response => {
@@ -34,84 +34,33 @@ class App extends Component {
         if(songs.length == 0) return;
         
         if(this.props.songs.received) {
-          this.props.songs.activeSong.stream.pause();
+          this.props.stream.stream.pause();
           this.props.changeReceiveStatus(false);
         }
         
         this.props.changeCard(0);
       
-        let song = songs[this.props.card.id];
+        let song = songs[0];
       
         if(song.artwork_url == null) {
           song.artwork_url = "https://unsplash.it/300";
         }
         
-        const newActiveSong = {
-          id: song.id,
-          artwork_url: song.artwork_url,
-          stream: helpers.createStream(song.stream_url, this.props.config.clientId),
-          title: song.title
-        }
-        
+        this.props.updateStream([song.stream_url, this.props.clientId])
         this.props.changeSongStatus(false);
-        this.props.updateActiveSong(newActiveSong);
         this.props.updateSongs(songs);
       
-      this.props.songs.activeSong.stream.addEventListener('canplay', () => {
+        this.props.stream.addEventListener('canplay', () => {
           this.props.changeSongStatus(true);
-        })
+        });
         
-        this.props.songs.activeSong.stream.addEventListener('ended', () => {
+        this.props.stream.addEventListener('ended', () => {
           this.handleChangeCard('next');
-        })
+        });
         
         this.props.changeReceiveStatus(true);
         
     });
-  }
-  
-  handleChangeCard(direction) {
-    if(this.props.songs.songLoaded == false) console.log("not loaded yet");
-    
-    this.props.executeQuery(true);
-    
-    const oldActiveCard = document.querySelector('.card.active');
-    const cardsList = document.querySelectorAll('.card');
-    
-    const newActiveCard = helpers.assignCard(direction, cardsList, oldActiveCard);
-
-    const dataset = newActiveCard.children[1].dataset;
-
-    if(oldActiveCard != newActiveCard) {
-      const cardsArr = Array.prototype.slice.call(cardsList, 0); 
-      const index = cardsArr.indexOf(newActiveCard);
-      
-      this.props.songs.activeSong.stream.pause();
-      
-      let newStream = this.props.songs.activeSong.stream;
-    
-      newStream.src = dataset.stream_url + "?client_id=" + this.props.config.clientId;
-      
-      const newActiveSong = {
-        id: dataset.id,
-        artwork_url: dataset.artwork_url,
-        stream: newStream,
-        title: dataset.title,
-        index: index-2
-      }
-      
-      this.props.updateActiveSong(newActiveSong);
-      this.props.changeSongStatus(false);
-      
-      this.props.songs.activeSong.stream.addEventListener('canplay', () => {
-        this.props.changeSongStatus(true);
-      })
-      
-      this.props.songs.activeSong.stream.addEventListener('ended', () => {
-        this.handleChangeCard('next');
-      })
-      
-    }
   }
   
   handleKeyDown(e) {
@@ -130,9 +79,7 @@ class App extends Component {
       return(
         <div>
 
-          <Player 
-            onClick={ this.handleChangeCard.bind(this) } 
-          />
+          <Player />
           
         </div>
       )
@@ -151,17 +98,16 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     query: state.query,
-    config: state.config,
+    clientId: state.config.clientId,
     songs: state.songs,
-    card: state.card,
-    stream: state.stream
+    cardId: state.card.id,
+    stream: state.stream.stream
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
     executeQuery: executeQuery,
-    updateActiveSong: updateActiveSong, 
     changeSongStatus: changeSongStatus,
     changeReceiveStatus: changeReceiveStatus,
     updateSongs: updateSongs,

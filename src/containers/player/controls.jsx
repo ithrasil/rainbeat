@@ -39,13 +39,14 @@ class Controls extends React.Component {
     
     const playSwitchIcon = this.playSwitchIcon;
     
-    if(this.props.activeSong.stream.paused) {
-      this.props.activeSong.stream.play();
+    if(this.props.stream.paused) {
+      console.log(this.props.stream);
+      this.props.stream.play();
       playSwitchIcon.src = playSwitchIcon.src.replace('play', 'pause');
       
     }
     else {
-      this.props.activeSong.stream.pause();
+      this.props.stream.pause();
       playSwitchIcon.src = playSwitchIcon.src.replace('pause', 'play');
     }
 
@@ -53,8 +54,8 @@ class Controls extends React.Component {
   
   prepareAudio() {
 
-    this.props.activeSong.stream.addEventListener('canplaythrough', () => {
-      const stream = this.props.activeSong.stream;
+    this.props.stream.addEventListener('canplaythrough', () => {
+      const stream = this.props.stream;
       
       const duration = helpers.convertSecondsToMs(stream.duration);
       const timeIteration = (this.track.offsetWidth) / stream.duration;
@@ -62,15 +63,15 @@ class Controls extends React.Component {
   
       
       stream.volume = this.props.volume;
-      stream.muted = this.props.isMutedd;
+      stream.muted = this.props.isMuted;
 
       this.setState({ duration: duration });
       this.setState({ timeIteration: timeIteration });
     });
     
-    this.props.activeSong.stream.addEventListener('timeupdate', () => {
+    this.props.stream.addEventListener('timeupdate', () => {
       if(!this.state.isMouseDown) {
-        this.setState({ dummyTime: this.props.activeSong.stream.currentTime });
+        this.setState({ dummyTime: this.props.stream.currentTime });
       }
     });
   }
@@ -101,7 +102,7 @@ class Controls extends React.Component {
     if(this.state.isMouseDown == false) return;
     
     if(this.state.paused) {
-      this.props.activeSong.stream.play();
+      this.props.stream.play();
       this.setState({ paused: false });
     }
     this.moveDot(event);
@@ -110,8 +111,8 @@ class Controls extends React.Component {
 
   handleMouseDown(event) {
     
-    if(!this.props.activeSong.stream.paused) {
-      this.props.activeSong.stream.pause();
+    if(!this.props.stream.paused) {
+      this.props.stream.pause();
       this.setState({ paused: true });
     }
     this.moveDot(event);
@@ -120,7 +121,7 @@ class Controls extends React.Component {
   
   handleMouseUp(event) {
     if(this.state.paused) {
-      this.props.activeSong.stream.play();
+      this.props.stream.play();
       this.setState({ paused: false });
     }
     this.state.isMouseDown = false;
@@ -134,19 +135,19 @@ class Controls extends React.Component {
     
     this.setState({ dummyTime: dummyTime });
     
-    this.props.activeSong.stream.currentTime = dummyTime;
+    this.props.stream.currentTime = dummyTime;
   }
 
   handleMute(e) {
-    const isMuted = !this.props.activeSong.stream.muted;
+    const isMuted = !this.props.stream.muted;
     this.props.changeMuted(isMuted);
-    this.props.activeSong.stream.muted = isMuted;
+    this.props.stream.muted = isMuted;
   }
   
   handleVolume(event) { 
     const volume = event.target.value / 100;
     this.props.updateVolume(volume);
-    this.props.activeSong.stream.volume = volume;
+    this.props.stream.volume = volume;
     localStorage.setItem('volume', volume);
   }
   
@@ -154,7 +155,7 @@ class Controls extends React.Component {
     
     let volumeIcon;
     
-    if(this.props.activeSong.stream.muted) {
+    if(this.props.isMuted) {
       volumeIcon = "/images/icons/volume-mute.svg"
     }
     else {
@@ -168,12 +169,12 @@ class Controls extends React.Component {
         <div className="song-status">
           <div className="desc">
             <div className="caption">
-              { this.state.title }
+              { this.props.activeSong.title }
             </div>
           </div>
           <div className="configs">
 
-            <div className="replay_trigger" onClick={ () => this.props.activeSong.stream.currentTime = 0 }>
+            <div className="replay_trigger" onClick={ () => this.props.stream.currentTime = 0 }>
               <img src="/images/icons/repeat.svg" />
             </div>
 
@@ -197,7 +198,7 @@ class Controls extends React.Component {
                 <div className="dot_position" style={{ transform: `translateX(${ this.state.dummyTime * this.state.timeIteration -5 }px)`}}></div>
               </div>
               
-              <div className="current_time">{ helpers.convertSecondsToMs(this.props.activeSong.stream.currentTime) }</div>
+              <div className="current_time">{ helpers.convertSecondsToMs(this.props.stream.currentTime) }</div>
               
             </div>
             
@@ -214,11 +215,12 @@ class Controls extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     activeSong: state.songs.activeSong,
     isMuted: state.config.isMuted,
-    volume: state.config.volume
+    volume: state.config.volume,
+    stream: state.stream.stream,
+    activeSong: state.songs.songs[state.card.id]
   }
 }
 

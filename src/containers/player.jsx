@@ -22,9 +22,9 @@ class Player extends React.Component {
       const song = this.props.songs.songs[i];
       let isActive = false;
       
-      if(this.props.songs.activeSong.id == song.id) {
+      if(i == this.props.cardId) {
         isActive = true;
-        artwork_url = this.props.songs.activeSong.artwork_url;
+        artwork_url = this.props.songs.songs[i].artwork_url;
       }
       
       cards.push(
@@ -50,7 +50,7 @@ class Player extends React.Component {
             </div>
           </div>
         </div>
-        <Controls activeSong={ this.props.songs.activeSong } />
+        <Controls/>
       </div>
     )
   }
@@ -58,6 +58,7 @@ class Player extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    cardId: state.card.id,
     songs: state.songs
   }
 }

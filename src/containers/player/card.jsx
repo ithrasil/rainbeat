@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { changeCard } from '../../actions/card.jsx';
-import { updateActiveSong } from '../../actions/songs.jsx';
+import { updateStream } from '../../actions/stream.jsx';
 
 import helpers from '../../helpers.jsx';
 
@@ -17,6 +17,7 @@ class Card extends React.Component {
       song: this.props.song,
       isActive: this.props.isActive ? "active" : "",
     }
+    
 
   }
   
@@ -26,10 +27,11 @@ class Card extends React.Component {
     });
   }
   
-  handleClick() {
+  handleClick() { 
     const id = this.props.id;
     const songs = this.props.songs.songs;
-    this.props.updateActiveSong(songs[id]);
+    this.props.changeCard(id);
+    this.props.updateStream([songs[id].stream_url, this.props.config.clientId]);
   }
   
   render() {
@@ -51,7 +53,7 @@ class Card extends React.Component {
     }
     
     return(
-      <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-id={ this.props.id }>
+      <div className={ cardClasses } onClick={ this.handleClick.bind(this) }>
         <img className="artwork" src={ artwork_url } />
         <div className="label">
           <span>{ title }</span>
@@ -64,15 +66,15 @@ class Card extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    card: state.card,
-    songs: state.songs
+    songs: state.songs,
+    config: state.config
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
     changeCard: changeCard,
-    updateActiveSong: updateActiveSong
+    updateStream: updateStream
   };
   
   return bindActionCreators(functions, dispatch);

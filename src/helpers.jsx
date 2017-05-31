@@ -36,8 +36,7 @@ module.exports = {
   },
   
   createStream: function(stream_url, client_id) {
-    let song = new Audio(stream_url + "?client_id=" + client_id);
-    song.preload = "metadata";
+    const song = new Audio(stream_url + "?client_id=" + client_id);
 
     return song;
   },

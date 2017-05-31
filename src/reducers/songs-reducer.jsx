@@ -1,8 +1,5 @@
-export default function(state={ activeSong: {}, songLoaded: true, received: false, songs: [] }, action) {
+export default function(state={ songLoaded: true, received: false, songs: [] }, action) {
   switch(action.type) {
-    case "ACTIVE_SONG_UPDATE":
-      state.activeSong = action.payload;
-      break;
     
     case "ACTIVE_SONG_STATUS":
       state.songLoaded = action.payload;
