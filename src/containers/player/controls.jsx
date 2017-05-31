@@ -10,16 +10,27 @@ class Controls extends React.Component {
   constructor(props) {
     super(props);
     
+    this.prepareStorage();
+    
     this.state = {
       stream: props.stream,
-      activeSong: props.stream,
+      activeSong: props.activeSong,
       isMouseDown: false,
-      volumeIcon: localStorage.getItem('isMuted') ? "/images/icons/volume-mute.svg" : "/images/icons/volume.svg",
+      volumeIcon: localStorage.getItem('isMuted') ? "volume-mute" : "volume",
       playIcon: "play",
-      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
+      volume: localStorage.getItem('volume'),
       time: 0
     }
   
+  }
+  
+  prepareStorage() {
+    if(localStorage.getItem('isMuted') == null) {
+      localStorage.setItem('isMuted', "false");
+    }
+    if(localStorage.getItem('volume') == null) {
+      localStorage.setItem('volume', "0.5");
+    }
   }
   
   componentWillReceiveProps(props) {
@@ -27,10 +38,11 @@ class Controls extends React.Component {
     if(props.activeSong.title != this.state.activeSong.title) {
       this.setState({
         stream: props.stream,
-        activeSong: props.stream,
+        activeSong: props.activeSong,
         playIcon: "play",
         time: 0
-      })
+      });
+      
       this.prepareAudio();
     }
   }
@@ -54,20 +66,21 @@ class Controls extends React.Component {
   }
   
   prepareAudio() {
+    
+    const stream = this.state.stream;
 
-    this.state.stream.addEventListener('canplaythrough', () => {
-      const stream = this.state.stream;
+    stream.addEventListener('canplaythrough', () => {
       
       const duration = convertSecondsToMs(stream.duration);
       const timeIteration = (this.track.offsetWidth) / stream.duration;
   
-  
       stream.volume = this.state.volume;
       stream.muted = this.state.isMuted;
-
+      
       this.setState({ duration: duration });
       this.setState({ timeIteration: timeIteration });
     });
+    
     
     this.state.stream.addEventListener('timeupdate', () => {
       if(!this.state.isMouseDown) {
@@ -171,7 +184,7 @@ class Controls extends React.Component {
             </div>
 
             <div className="play_switch" onClick={ this.handlePlaySwitch.bind(this) }>
-              <img src={`/images/icons/${ this.state.playIcon }.svg`}/>
+              <img src={ `/images/icons/${ this.state.playIcon }.svg` }/>
             </div>
 
             <div className="track_controls">
@@ -195,7 +208,7 @@ class Controls extends React.Component {
             </div>
             
             <div className="volume_controls">
-              <img src={ this.state.volumeIcon } onClick={ this.handleMute.bind(this) }/>
+              <img src={ `/images/icons/${this.state.volumeIcon}.svg` } onClick={ this.handleMute.bind(this) }/>
               <input className="slider" max="100" value={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
             
