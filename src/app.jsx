@@ -6,6 +6,8 @@ import Axios from 'axios';
 
 import { executeQuery } from './actions/query.jsx';
 import { updateActiveSong, changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
+import { changeCard } from './actions/card.jsx';
+import { updateStream } from './actions/stream.jsx';
 
 import Navigation from './containers/navigation.jsx';
 import Player from './containers/player.jsx';
@@ -27,7 +29,7 @@ class App extends Component {
     Axios.get(endpoint)
       .then(response => {
 
-        const songs = response.data
+        const songs = response.data;
         
         if(songs.length == 0) return;
         
@@ -35,9 +37,10 @@ class App extends Component {
           this.props.songs.activeSong.stream.pause();
           this.props.changeReceiveStatus(false);
         }
+        
+        this.props.changeCard(0);
       
-        const index = 0;
-        let song = songs[index];
+        let song = songs[this.props.card.id];
       
         if(song.artwork_url == null) {
           song.artwork_url = "https://unsplash.it/300";
@@ -47,15 +50,14 @@ class App extends Component {
           id: song.id,
           artwork_url: song.artwork_url,
           stream: helpers.createStream(song.stream_url, this.props.config.clientId),
-          title: song.title,
-          index: index
+          title: song.title
         }
         
         this.props.changeSongStatus(false);
         this.props.updateActiveSong(newActiveSong);
         this.props.updateSongs(songs);
       
-        this.props.songs.activeSong.stream.addEventListener('canplay', () => {
+      this.props.songs.activeSong.stream.addEventListener('canplay', () => {
           this.props.changeSongStatus(true);
         })
         
@@ -150,7 +152,9 @@ function mapStateToProps(state) {
   return {
     query: state.query,
     config: state.config,
-    songs: state.songs
+    songs: state.songs,
+    card: state.card,
+    stream: state.stream
   }
 }
 
@@ -160,7 +164,9 @@ function matchDispatchToProps(dispatch) {
     updateActiveSong: updateActiveSong, 
     changeSongStatus: changeSongStatus,
     changeReceiveStatus: changeReceiveStatus,
-    updateSongs: updateSongs
+    updateSongs: updateSongs,
+    changeCard: changeCard,
+    updateStream: updateStream
   };
   
   return bindActionCreators(functions, dispatch);

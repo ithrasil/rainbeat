@@ -31,31 +31,9 @@
     .wrapper {
       position: relative;
 
-      .scrollbar {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: #181818;
-        width: 25px;
-        height: 100%;
-        transform: translateX(25px);
-        z-index: 2;
-        transition: 0.1s ease-in-out;
-
-        .thumb {
-          height: 12.5px;
-        }
-      }
-
-      &:hover {
-        .scrollbar {
-          transform: translateX(0);
-        }
-      }
-
-      @import "player subcomponents/card.scss";
+      @import "player/card.scss";
     }
   }
 
-  @import "player subcomponents/controls.scss";
+  @import "player/controls.scss";
 }

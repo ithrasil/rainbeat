@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { updateVolume, changeMuted } from '../../actions/controls.jsx';
+
 import helpers from '../../helpers.jsx';
 
 class Controls extends React.Component {
@@ -8,10 +13,6 @@ class Controls extends React.Component {
     super(props);
     
     this.state = {
-      stream: props.activeSong.stream,
-      title: props.activeSong.title,
-      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
-      isMuted: localStorage.getItem('muted') == "true" ? true : false,
       isMouseDown: false,
       dummyTime: 0
     }
@@ -23,8 +24,6 @@ class Controls extends React.Component {
     if(props.activeSong.title != this.state.title) {
 
       this.setState({
-        stream: props.activeSong.stream,
-        title: props.activeSong.title,
         dummyTime: 0
       });
 
@@ -40,13 +39,13 @@ class Controls extends React.Component {
     
     const playSwitchIcon = this.playSwitchIcon;
     
-    if(this.state.stream.paused) {
-      this.state.stream.play();
+    if(this.props.activeSong.stream.paused) {
+      this.props.activeSong.stream.play();
       playSwitchIcon.src = playSwitchIcon.src.replace('play', 'pause');
       
     }
     else {
-      this.state.stream.pause();
+      this.props.activeSong.stream.pause();
       playSwitchIcon.src = playSwitchIcon.src.replace('pause', 'play');
     }
 
@@ -54,27 +53,26 @@ class Controls extends React.Component {
   
   prepareAudio() {
 
-    this.state.stream.addEventListener('canplaythrough', () => {
-      const stream = this.state.stream;
+    this.props.activeSong.stream.addEventListener('canplaythrough', () => {
+      const stream = this.props.activeSong.stream;
       
       const duration = helpers.convertSecondsToMs(stream.duration);
       const timeIteration = (this.track.offsetWidth) / stream.duration;
       
-      stream.volume = this.state.volume;
-      stream.muted = this.state.isMuted;
+  
+      
+      stream.volume = this.props.volume;
+      stream.muted = this.props.isMutedd;
 
       this.setState({ duration: duration });
       this.setState({ timeIteration: timeIteration });
     });
     
-    this.state.stream.addEventListener('timeupdate', () => {
+    this.props.activeSong.stream.addEventListener('timeupdate', () => {
       if(!this.state.isMouseDown) {
-        this.setState({ dummyTime: this.state.stream.currentTime });
+        this.setState({ dummyTime: this.props.activeSong.stream.currentTime });
       }
     });
-    
-    this.handlePlaySwitch();
-  
   }
   
   handleKeyPress() {
@@ -103,7 +101,7 @@ class Controls extends React.Component {
     if(this.state.isMouseDown == false) return;
     
     if(this.state.paused) {
-      this.state.stream.play();
+      this.props.activeSong.stream.play();
       this.setState({ paused: false });
     }
     this.moveDot(event);
@@ -112,8 +110,8 @@ class Controls extends React.Component {
 
   handleMouseDown(event) {
     
-    if(!this.state.stream.paused) {
-      this.state.stream.pause();
+    if(!this.props.activeSong.stream.paused) {
+      this.props.activeSong.stream.pause();
       this.setState({ paused: true });
     }
     this.moveDot(event);
@@ -122,7 +120,7 @@ class Controls extends React.Component {
   
   handleMouseUp(event) {
     if(this.state.paused) {
-      this.state.stream.play();
+      this.props.activeSong.stream.play();
       this.setState({ paused: false });
     }
     this.state.isMouseDown = false;
@@ -136,20 +134,19 @@ class Controls extends React.Component {
     
     this.setState({ dummyTime: dummyTime });
     
-    this.state.stream.currentTime = dummyTime;
+    this.props.activeSong.stream.currentTime = dummyTime;
   }
 
   handleMute(e) {
-    const isMuted = !this.state.stream.muted;
-    this.state.stream.muted = isMuted;
-    this.setState({ isMuted: isMuted });
-    localStorage.setItem('muted', isMuted);
+    const isMuted = !this.props.activeSong.stream.muted;
+    this.props.changeMuted(isMuted);
+    this.props.activeSong.stream.muted = isMuted;
   }
   
-  handleVolume(event) {
+  handleVolume(event) { 
     const volume = event.target.value / 100;
-    this.setState({volume: volume});
-    this.state.stream.volume = volume;
+    this.props.updateVolume(volume);
+    this.props.activeSong.stream.volume = volume;
     localStorage.setItem('volume', volume);
   }
   
@@ -157,7 +154,7 @@ class Controls extends React.Component {
     
     let volumeIcon;
     
-    if(this.state.stream.muted) {
+    if(this.props.activeSong.stream.muted) {
       volumeIcon = "/images/icons/volume-mute.svg"
     }
     else {
@@ -176,7 +173,7 @@ class Controls extends React.Component {
           </div>
           <div className="configs">
 
-            <div className="replay_trigger" onClick={ () => this.state.stream.currentTime = 0 }>
+            <div className="replay_trigger" onClick={ () => this.props.activeSong.stream.currentTime = 0 }>
               <img src="/images/icons/repeat.svg" />
             </div>
 
@@ -200,13 +197,13 @@ class Controls extends React.Component {
                 <div className="dot_position" style={{ transform: `translateX(${ this.state.dummyTime * this.state.timeIteration -5 }px)`}}></div>
               </div>
               
-              <div className="current_time">{ helpers.convertSecondsToMs(this.state.stream.currentTime) }</div>
+              <div className="current_time">{ helpers.convertSecondsToMs(this.props.activeSong.stream.currentTime) }</div>
               
             </div>
             
             <div className="volume_controls">
               <img src={ volumeIcon } onClick={ this.handleMute.bind(this) }/>
-              <input className="slider" max="100" value={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
+              <input className="slider" max="100" value={ this.props.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
             
           </div>
@@ -216,4 +213,22 @@ class Controls extends React.Component {
   }
 }
 
-export default Controls;
+function mapStateToProps(state) {
+  console.log(state)
+  return {
+    activeSong: state.songs.activeSong,
+    isMuted: state.config.isMuted,
+    volume: state.config.volume
+  }
+}
+
+function matchDispatchToProps(dispatch) {
+  let functions = {
+    updateVolume: updateVolume,
+    changeMuted: changeMuted
+  };
+  
+  return bindActionCreators(functions, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Controls);

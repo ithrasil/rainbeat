@@ -30,6 +30,7 @@ class Player extends React.Component {
       cards.push(
         <Card 
           key={ i }
+          id={ i }
           song={ song } 
           onClick={ this.props.onClick } 
           isActive={ isActive }  
