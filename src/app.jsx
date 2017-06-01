@@ -31,7 +31,7 @@ class App extends Component {
     
     if(this.props.songs.songLoaded == false) return;
     
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.clientId}&q=${this.props.query.value}&limit15`;
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.clientId}&q=${this.props.query.value}&limit25`;
     
     Axios.get(endpoint)
       .then(response => {
@@ -92,7 +92,7 @@ class App extends Component {
     else {
       return(
         <div>
-          empty data
+        
         </div>
       )
     }

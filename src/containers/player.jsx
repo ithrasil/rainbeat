@@ -3,18 +3,26 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { changeCard } from '../actions/card.jsx';
+import { updateStream } from '../actions/stream.jsx';
+
 import Search from './search.jsx';
 
 import Card from './player/card.jsx';
 import Controls from './player/controls.jsx';
 import BigImage from './player/bigImage.jsx';
 
-import helpers from '../helpers.jsx';
-
 class Player extends React.Component {
+  
+  handleClick(value) { 
+    console.log(this.props);
+    const id = value;
+    const songs = this.props.songs.songs;
+    this.props.changeCard(id);
+    this.props.updateStream([songs[id].stream_url, this.props.config.clientId]);
+  }
 
   render() {
-
     let cards = [];
     let artwork_url;
     const length = this.props.songs.songs.length;
@@ -33,7 +41,7 @@ class Player extends React.Component {
           key={ i }
           id={ i }
           song={ song } 
-          onClick={ this.props.onClick } 
+          onClick={ this.handleClick.bind(this) }
           isActive={ isActive }  
         />);
     }
@@ -44,11 +52,9 @@ class Player extends React.Component {
         <BigImage artwork_url={ artwork_url } />
         <Search  />
         <div className="cards">
-          <div className="wrapper">
-            { cards }
-            <div className="scrollbar">
-              <div className="thumb"></div>
-            </div>
+          { cards }
+          <div className="scrollbar">
+            <div className="thumb"></div>
           </div>
         </div>
         <Controls activeSong={ this.props.activeSong } stream={ this.props.stream }/>
@@ -62,8 +68,18 @@ function mapStateToProps(state) {
     cardId: state.card.id,
     songs: state.songs,
     stream: state.stream.stream,
-    activeSong: state.songs.songs[state.card.id]
+    activeSong: state.songs.songs[state.card.id],
+    config: state.config
   }
 }
 
-export default connect(mapStateToProps)(Player);
+function matchDispatchToProps(dispatch) {
+  let functions = { 
+    changeCard: changeCard,
+    updateStream: updateStream
+  };
+  
+  return bindActionCreators(functions, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Player);

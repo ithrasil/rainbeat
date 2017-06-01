@@ -1,12 +1,6 @@
 import React from 'react';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import { changeCard } from '../../actions/card.jsx';
-import { updateStream } from '../../actions/stream.jsx';
-
-import helpers from '../../helpers.jsx';
+import { resizeArtwork } from '../../helpers.jsx';
 
 class Card extends React.Component {
   
@@ -14,24 +8,21 @@ class Card extends React.Component {
     super(props);
 
     this.state = {
-      song: this.props.song,
-      isActive: this.props.isActive ? "active" : "",
+      song: props.song,
+      isActive: props.isActive ? "active" : "",
     }
-    
-
+  
   }
   
   componentWillReceiveProps(props) {
     this.setState({
+      song: props.song,
       isActive: props.isActive ? "active" : "",
     });
   }
   
-  handleClick() { 
-    const id = this.props.id;
-    const songs = this.props.songs.songs;
-    this.props.changeCard(id);
-    this.props.updateStream([songs[id].stream_url, this.props.config.clientId]);
+  handleClick() {
+    this.props.onClick(this.props.id);
   }
   
   render() {
@@ -43,7 +34,7 @@ class Card extends React.Component {
       artwork_url = this.state.song.artwork_url;
     }
     else {
-      artwork_url = this.state.song.artwork_url ? helpers.resizeArtwork(this.state.song.artwork_url, 300) : "https://unsplash.it/300";
+      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 300) : "https://unsplash.it/300";
     }
     
     let title = this.state.song.title;
@@ -53,7 +44,7 @@ class Card extends React.Component {
     }
     
     return(
-      <div className={ cardClasses } onClick={ this.handleClick.bind(this) }>
+      <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
         <img className="artwork" src={ artwork_url } />
         <div className="label">
           <span>{ title }</span>
@@ -64,20 +55,5 @@ class Card extends React.Component {
   
 }
 
-function mapStateToProps(state) {
-  return {
-    songs: state.songs,
-    config: state.config
-  }
-}
 
-function matchDispatchToProps(dispatch) {
-  let functions = { 
-    changeCard: changeCard,
-    updateStream: updateStream
-  };
-  
-  return bindActionCreators(functions, dispatch);
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Card);
+export default Card;

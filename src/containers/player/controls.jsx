@@ -175,11 +175,13 @@ class Controls extends React.Component {
       <div tabIndex="0" className="controls" onKeyPress={ this.handleKeyPress.bind(this) }>
         
         <div className="song-status">
+         
           <div className="desc">
             <div className="caption">
               { this.state.activeSong.title }
             </div>
           </div>
+          
           <div className="configs">
 
             <div className="replay_trigger" onClick={ () => this.state.stream.currentTime = 0 }>
@@ -189,34 +191,37 @@ class Controls extends React.Component {
             <div className="play_switch" onClick={ this.handlePlaySwitch.bind(this) }>
               <img src={ `/images/icons/${ this.state.playIcon }.svg` }/>
             </div>
-
-            <div className="track_controls">
-             
-              <div 
-                className="track" 
-                onMouseMove={ this.handleMouseMove.bind(this) } 
-                onMouseLeave={ this.handleMouseLeave.bind(this) }
-                onMouseDown={ this.handleMouseDown.bind(this) }
-                onMouseUp={ this.handleMouseUp.bind(this) }
-                ref={(track) => { this.track = track; }} 
-              >
-               
-                <div className="track_elapsed" style={{ width: `${ this.state.time * this.state.timeIteration + 2 }px`}}></div>
-                <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
-                <div className="dot_position" style={{ transform: `translateX(${ this.state.time * this.state.timeIteration -5 }px)`}}></div>
-              </div>
-              
-              <div className="current_time">{ convertSecondsToMs(this.state.stream.currentTime) }</div>
-              
-            </div>
+            
+          
             
             <div className="volume_controls">
               <img src={ `/images/icons/${volumeIcon}.svg` } onClick={ this.handleMute.bind(this) }/>
               <input className="slider" max="100" defaultValue={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
-            
           </div>
+
+          <div className="track_data">
+
+            <div 
+              className="track" 
+              onMouseMove={ this.handleMouseMove.bind(this) } 
+              onMouseLeave={ this.handleMouseLeave.bind(this) }
+              onMouseDown={ this.handleMouseDown.bind(this) }
+              onMouseUp={ this.handleMouseUp.bind(this) }
+              ref={(track) => { this.track = track; }} 
+            >
+
+              <div className="track_elapsed" style={{ width: `${ this.state.time * this.state.timeIteration + 2 }px`}}></div>
+              <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
+              <div className="dot_position" style={{ transform: `translateX(${ this.state.time * this.state.timeIteration -5 }px)`}}></div>
+            </div>
+
+            <div className="current_time">{ convertSecondsToMs(this.state.stream.currentTime) }</div>
+
+          </div>
+            
         </div>
+        
       </div>
     )
   }

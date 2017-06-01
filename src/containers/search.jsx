@@ -10,18 +10,19 @@ class Search extends Component {
   render() {
     return(
       <div className="search" >
-
-        <label htmlFor="songInput"> <img src="/images/icons/search.svg" /></label>
-
-        <input
-          type="text" 
-          className="searchInput" 
-          id="songInput" 
-          onInput={ this.props.saveQuery }
-          onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
-          defaultValue={this.props.query.value}
-        />
-
+        <div className="wrapper">
+          <label htmlFor="songInput"> 
+            <img src="/images/icons/search.svg" />
+          </label>
+          <input
+            type="text" 
+            className="searchInput" 
+            id="songInput" 
+            onInput={ this.props.saveQuery }
+            onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
+            defaultValue={this.props.query.value}
+          />
+        </div>
       </div>
     )
     
