@@ -1,36 +1,34 @@
 import React from 'react';
+import update from 'react-addons-update';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { convertSecondsToMs } from '../../helpers.jsx';
+import { convertSecondsToMs, prepareStorage } from '../../helpers.jsx';
 
 class Controls extends React.Component {
   
   constructor(props) {
     super(props);
     
-    this.prepareStorage();
+    prepareStorage();
     
     this.state = {
       stream: props.stream,
       activeSong: props.activeSong,
       isMouseDown: false,
-      volumeIcon: localStorage.getItem('isMuted') ? "volume-mute" : "volume",
       playIcon: "play",
-      volume: localStorage.getItem('volume'),
+      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
+      muted: localStorage.getItem('muted') == "true" ? true : false,
       time: 0
     }
-  
+    
+    console.log(this.state.volume);
+    
   }
   
-  prepareStorage() {
-    if(localStorage.getItem('isMuted') == null) {
-      localStorage.setItem('isMuted', "false");
-    }
-    if(localStorage.getItem('volume') == null) {
-      localStorage.setItem('volume', "0.5");
-    }
+  componentDidMount() {
+    this.prepareAudio();
   }
   
   componentWillReceiveProps(props) {
@@ -47,9 +45,7 @@ class Controls extends React.Component {
     }
   }
   
-  componentDidMount() {
-    this.prepareAudio();
-  }
+  
   
   handlePlaySwitch() {      
 
@@ -67,26 +63,26 @@ class Controls extends React.Component {
   
   prepareAudio() {
     
-    const stream = this.state.stream;
+    const state = this.state;
 
-    stream.addEventListener('canplaythrough', () => {
+    state.stream.addEventListener('canplaythrough', () => {
       
-      const duration = convertSecondsToMs(stream.duration);
-      const timeIteration = (this.track.offsetWidth) / stream.duration;
-  
-      stream.volume = this.state.volume;
-      stream.muted = this.state.isMuted;
+      const duration = convertSecondsToMs(state.stream.duration);
+      const timeIteration = (this.track.offsetWidth) / state.stream.duration;
       
-      this.setState({ duration: duration });
+      state.stream.volume = state.volume;
+      state.stream.muted = state.muted;
+      
       this.setState({ timeIteration: timeIteration });
     });
     
     
-    this.state.stream.addEventListener('timeupdate', () => {
-      if(!this.state.isMouseDown) {
-        this.setState({ time: this.state.stream.currentTime });
+    state.stream.addEventListener('timeupdate', () => {
+      if(!state.isMouseDown) {
+        this.setState({ time: state.stream.currentTime });
       }
     });
+    
   }
   
   handleKeyPress() {
@@ -151,22 +147,29 @@ class Controls extends React.Component {
     this.state.stream.currentTime = time;
   }
 
-  handleMute(e) {
-    const isMuted = !this.state.stream.muted;
-    this.state.stream.muted = isMuted;
-    this.setState({ isMuted: isMuted });
+  handleMute() {
+    const muted = !this.state.stream.muted;
     
-    localStorage.getItem('isMuted', isMuted)
+    this.state.stream.muted = muted;
+    this.setState({ muted: muted });
+    localStorage.setItem('muted', muted);
   }
   
   handleVolume(event) { 
     const volume = event.target.value / 100;
-    this.state.stream.volume = volume;
+    
     this.setState({ volume: volume });
+    this.state.stream.volume = volume;
+    
+    console.log(volume);
+    
     localStorage.setItem('volume', volume);
   }
   
   render() {
+
+    const volumeIcon = this.state.muted ? "volume-mute" : "volume";
+ 
     return(
       
       <div tabIndex="0" className="controls" onKeyPress={ this.handleKeyPress.bind(this) }>
@@ -208,8 +211,8 @@ class Controls extends React.Component {
             </div>
             
             <div className="volume_controls">
-              <img src={ `/images/icons/${this.state.volumeIcon}.svg` } onClick={ this.handleMute.bind(this) }/>
-              <input className="slider" max="100" value={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
+              <img src={ `/images/icons/${volumeIcon}.svg` } onClick={ this.handleMute.bind(this) }/>
+              <input className="slider" max="100" defaultValue={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
             </div>
             
           </div>

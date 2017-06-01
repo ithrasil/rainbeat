@@ -1495,7 +1495,7 @@ module.exports = {
   trim: trim
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(251).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(250).Buffer))
 
 /***/ }),
 /* 24 */
@@ -1666,7 +1666,7 @@ var ctx      = __webpack_require__(38)
   , IObject  = __webpack_require__(72)
   , toObject = __webpack_require__(15)
   , toLength = __webpack_require__(13)
-  , asc      = __webpack_require__(255);
+  , asc      = __webpack_require__(254);
 module.exports = function(TYPE, $create){
   var IS_MAP        = TYPE == 1
     , IS_FILTER     = TYPE == 2
@@ -4608,16 +4608,19 @@ module.exports = {
     return newUrl;
   },
 
-  createStream: function createStream(stream_url, client_id) {
-    var song = new Audio(stream_url + "?client_id=" + client_id);
-
-    return song;
-  },
-
   convertSecondsToMs: function convertSecondsToMs(d) {
     var m = Math.floor(d / 60);
     var s = Math.floor(d % 60);
     return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  },
+
+  prepareStorage: function prepareStorage() {
+    if (localStorage.getItem('muted') == null) {
+      localStorage.setItem('muted', false);
+    }
+    if (localStorage.getItem('volume') == null) {
+      localStorage.setItem('volume', "0.5");
+    }
   }
 
 };
@@ -10970,7 +10973,7 @@ module.exports = getActiveElement;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(458);
 
 
 /** Built-in value references. */
@@ -10984,9 +10987,9 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(453);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(455);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(459);
 
 
 
@@ -11055,7 +11058,7 @@ function isPlainObject(value) {
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(467);
+var root = __webpack_require__(466);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -11964,7 +11967,7 @@ module.exports = ReactHostComponent;
 
 var ReactDOMSelection = __webpack_require__(493);
 
-var containsNode = __webpack_require__(438);
+var containsNode = __webpack_require__(437);
 var focusNode = __webpack_require__(181);
 var getActiveElement = __webpack_require__(182);
 
@@ -14004,17 +14007,17 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _query = __webpack_require__(150);
 
-var _songs = __webpack_require__(239);
+var _songs = __webpack_require__(238);
 
 var _card = __webpack_require__(149);
 
 var _stream = __webpack_require__(151);
 
-var _navigation = __webpack_require__(240);
+var _navigation = __webpack_require__(239);
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
-var _player = __webpack_require__(241);
+var _player = __webpack_require__(240);
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -14170,23 +14173,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(42);
 
-var _queryReducer = __webpack_require__(247);
+var _queryReducer = __webpack_require__(246);
 
 var _queryReducer2 = _interopRequireDefault(_queryReducer);
 
-var _songsReducer = __webpack_require__(248);
+var _songsReducer = __webpack_require__(247);
 
 var _songsReducer2 = _interopRequireDefault(_songsReducer);
 
-var _configReducer = __webpack_require__(246);
+var _configReducer = __webpack_require__(245);
 
 var _configReducer2 = _interopRequireDefault(_configReducer);
 
-var _cardReducer = __webpack_require__(245);
+var _cardReducer = __webpack_require__(244);
 
 var _cardReducer2 = _interopRequireDefault(_cardReducer);
 
-var _streamReducer = __webpack_require__(249);
+var _streamReducer = __webpack_require__(248);
 
 var _streamReducer2 = _interopRequireDefault(_streamReducer);
 
@@ -14211,11 +14214,11 @@ exports.default = allReducers;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-__webpack_require__(433);
+__webpack_require__(432);
 
 __webpack_require__(559);
 
-__webpack_require__(253);
+__webpack_require__(252);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -14256,7 +14259,7 @@ module.exports = __webpack_require__(483);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(434);
+var content = __webpack_require__(433);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(560)(content, {});
@@ -15119,8 +15122,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 238 */,
-/* 239 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15155,7 +15157,7 @@ exports.changeReceiveStatus = changeReceiveStatus;
 exports.updateSongs = updateSongs;
 
 /***/ }),
-/* 240 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15281,7 +15283,7 @@ var Header = function (_React$Component) {
 exports.default = Header;
 
 /***/ }),
-/* 241 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15301,17 +15303,21 @@ var _redux = __webpack_require__(42);
 
 var _reactRedux = __webpack_require__(59);
 
-var _search = __webpack_require__(244);
+var _search = __webpack_require__(243);
 
 var _search2 = _interopRequireDefault(_search);
 
-var _card = __webpack_require__(242);
+var _card = __webpack_require__(241);
 
 var _card2 = _interopRequireDefault(_card);
 
-var _controls = __webpack_require__(243);
+var _controls = __webpack_require__(242);
 
 var _controls2 = _interopRequireDefault(_controls);
+
+var _bigImage = __webpack_require__(566);
+
+var _bigImage2 = _interopRequireDefault(_bigImage);
 
 var _helpers = __webpack_require__(70);
 
@@ -15363,7 +15369,7 @@ var Player = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'player_component' },
-        _react2.default.createElement('div', { className: 'big_image', style: { backgroundImage: 'url(' + artwork_url + ')' } }),
+        _react2.default.createElement(_bigImage2.default, { artwork_url: artwork_url }),
         _react2.default.createElement(_search2.default, null),
         _react2.default.createElement(
           'div',
@@ -15399,7 +15405,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Player);
 
 /***/ }),
-/* 242 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15524,7 +15530,7 @@ function matchDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(Card);
 
 /***/ }),
-/* 243 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15539,6 +15545,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(31);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactAddonsUpdate = __webpack_require__(469);
+
+var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
 var _redux = __webpack_require__(42);
 
@@ -15562,30 +15572,27 @@ var Controls = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Controls.__proto__ || Object.getPrototypeOf(Controls)).call(this, props));
 
-    _this.prepareStorage();
+    (0, _helpers.prepareStorage)();
 
     _this.state = {
       stream: props.stream,
       activeSong: props.activeSong,
       isMouseDown: false,
-      volumeIcon: localStorage.getItem('isMuted') ? "volume-mute" : "volume",
       playIcon: "play",
-      volume: localStorage.getItem('volume'),
+      volume: localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5,
+      muted: localStorage.getItem('muted') == "true" ? true : false,
       time: 0
     };
+
+    console.log(_this.state.volume);
 
     return _this;
   }
 
   _createClass(Controls, [{
-    key: 'prepareStorage',
-    value: function prepareStorage() {
-      if (localStorage.getItem('isMuted') == null) {
-        localStorage.setItem('isMuted', "false");
-      }
-      if (localStorage.getItem('volume') == null) {
-        localStorage.setItem('volume', "0.5");
-      }
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.prepareAudio();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -15601,11 +15608,6 @@ var Controls = function (_React$Component) {
 
         this.prepareAudio();
       }
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.prepareAudio();
     }
   }, {
     key: 'handlePlaySwitch',
@@ -15624,23 +15626,22 @@ var Controls = function (_React$Component) {
     value: function prepareAudio() {
       var _this2 = this;
 
-      var stream = this.state.stream;
+      var state = this.state;
 
-      stream.addEventListener('canplaythrough', function () {
+      state.stream.addEventListener('canplaythrough', function () {
 
-        var duration = (0, _helpers.convertSecondsToMs)(stream.duration);
-        var timeIteration = _this2.track.offsetWidth / stream.duration;
+        var duration = (0, _helpers.convertSecondsToMs)(state.stream.duration);
+        var timeIteration = _this2.track.offsetWidth / state.stream.duration;
 
-        stream.volume = _this2.state.volume;
-        stream.muted = _this2.state.isMuted;
+        state.stream.volume = state.volume;
+        state.stream.muted = state.muted;
 
-        _this2.setState({ duration: duration });
         _this2.setState({ timeIteration: timeIteration });
       });
 
-      this.state.stream.addEventListener('timeupdate', function () {
-        if (!_this2.state.isMouseDown) {
-          _this2.setState({ time: _this2.state.stream.currentTime });
+      state.stream.addEventListener('timeupdate', function () {
+        if (!state.isMouseDown) {
+          _this2.setState({ time: state.stream.currentTime });
         }
       });
     }
@@ -15714,25 +15715,31 @@ var Controls = function (_React$Component) {
     }
   }, {
     key: 'handleMute',
-    value: function handleMute(e) {
-      var isMuted = !this.state.stream.muted;
-      this.state.stream.muted = isMuted;
-      this.setState({ isMuted: isMuted });
+    value: function handleMute() {
+      var muted = !this.state.stream.muted;
 
-      localStorage.getItem('isMuted', isMuted);
+      this.state.stream.muted = muted;
+      this.setState({ muted: muted });
+      localStorage.setItem('muted', muted);
     }
   }, {
     key: 'handleVolume',
     value: function handleVolume(event) {
       var volume = event.target.value / 100;
-      this.state.stream.volume = volume;
+
       this.setState({ volume: volume });
+      this.state.stream.volume = volume;
+
+      console.log(volume);
+
       localStorage.setItem('volume', volume);
     }
   }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
+
+      var volumeIcon = this.state.muted ? "volume-mute" : "volume";
 
       return _react2.default.createElement(
         'div',
@@ -15794,8 +15801,8 @@ var Controls = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'volume_controls' },
-              _react2.default.createElement('img', { src: '/images/icons/' + this.state.volumeIcon + '.svg', onClick: this.handleMute.bind(this) }),
-              _react2.default.createElement('input', { className: 'slider', max: '100', value: this.state.volume * 100, min: '0', step: '1', type: 'range', onInput: this.handleVolume.bind(this) })
+              _react2.default.createElement('img', { src: '/images/icons/' + volumeIcon + '.svg', onClick: this.handleMute.bind(this) }),
+              _react2.default.createElement('input', { className: 'slider', max: '100', defaultValue: this.state.volume * 100, min: '0', step: '1', type: 'range', onInput: this.handleVolume.bind(this) })
             )
           )
         )
@@ -15809,7 +15816,7 @@ var Controls = function (_React$Component) {
 exports.default = Controls;
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15870,15 +15877,8 @@ var Search = function (_Component) {
           onKeyDown: function onKeyDown(event) {
             if (event.keyCode == 13) _this2.props.executeQuery(true);
           },
-          value: this.props.query.value
-        }),
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick() {
-              return _this2.props.executeQuery(true);
-            } },
-          'Wyszukaj'
-        )
+          defaultValue: this.props.query.value
+        })
       );
     }
   }]);
@@ -15904,7 +15904,7 @@ function matchDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(Search);
 
 /***/ }),
-/* 245 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15929,7 +15929,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 246 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15947,7 +15947,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15979,7 +15979,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16012,7 +16012,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16023,16 +16023,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { stream: null, time: 0 };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { stream: new Audio(""), time: 0 };
   var action = arguments[1];
 
   switch (action.type) {
     case "STREAM_UPDATE":
-      if (state.stream != null) {
+      if (state.stream.src != "") {
         state.stream.pause();
       }
 
-      state.stream = (0, _helpers.createStream)(action.payload[0], action.payload[1]);
+      state.stream.src = action.payload[0] + "?client_id=" + action.payload[1];
+      state.stream.load();
       break;
   }
 
@@ -16042,7 +16043,7 @@ exports.default = function () {
 var _helpers = __webpack_require__(70);
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16163,7 +16164,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 251 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16177,9 +16178,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(250)
-var ieee754 = __webpack_require__(451)
-var isArray = __webpack_require__(252)
+var base64 = __webpack_require__(249)
+var ieee754 = __webpack_require__(450)
+var isArray = __webpack_require__(251)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -17960,7 +17961,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(69)))
 
 /***/ }),
-/* 252 */
+/* 251 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -17971,14 +17972,14 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 253 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(262);
+__webpack_require__(261);
 module.exports = __webpack_require__(37).RegExp.escape;
 
 /***/ }),
-/* 254 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(7)
@@ -17999,18 +18000,18 @@ module.exports = function(original){
 };
 
 /***/ }),
-/* 255 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(254);
+var speciesConstructor = __webpack_require__(253);
 
 module.exports = function(original, length){
   return new (speciesConstructor(original))(length);
 };
 
 /***/ }),
-/* 256 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18025,7 +18026,7 @@ module.exports = function(hint){
 };
 
 /***/ }),
-/* 257 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
@@ -18045,7 +18046,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 258 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getKeys   = __webpack_require__(51)
@@ -18060,12 +18061,12 @@ module.exports = function(object, el){
 };
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var path      = __webpack_require__(260)
+var path      = __webpack_require__(259)
   , invoke    = __webpack_require__(83)
   , aFunction = __webpack_require__(17);
 module.exports = function(/* ...pargs */){
@@ -18089,13 +18090,13 @@ module.exports = function(/* ...pargs */){
 };
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(4);
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, exports) {
 
 module.exports = function(regExp, replace){
@@ -18108,18 +18109,18 @@ module.exports = function(regExp, replace){
 };
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(0)
-  , $re     = __webpack_require__(261)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+  , $re     = __webpack_require__(260)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', {escape: function escape(it){ return $re(it); }});
 
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
@@ -18130,7 +18131,7 @@ $export($export.P, 'Array', {copyWithin: __webpack_require__(153)});
 __webpack_require__(60)('copyWithin');
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18146,7 +18147,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].every, true), 'Array
 });
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
@@ -18157,7 +18158,7 @@ $export($export.P, 'Array', {fill: __webpack_require__(97)});
 __webpack_require__(60)('fill');
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18173,7 +18174,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].filter, true), 'Arra
 });
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18193,7 +18194,7 @@ $export($export.P + $export.F * forced, 'Array', {
 __webpack_require__(60)(KEY);
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18213,7 +18214,7 @@ $export($export.P + $export.F * forced, 'Array', {
 __webpack_require__(60)(KEY);
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18230,7 +18231,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 });
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18274,7 +18275,7 @@ $export($export.S + $export.F * !__webpack_require__(85)(function(iter){ Array.f
 
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18295,7 +18296,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(29)($nati
 });
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
@@ -18304,7 +18305,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Array', {isArray: __webpack_require__(105)});
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18322,7 +18323,7 @@ $export($export.P + $export.F * (__webpack_require__(72) != Object || !__webpack
 });
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18350,7 +18351,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(29)($nati
 });
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18366,7 +18367,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].map, true), 'Array',
 });
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18391,7 +18392,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18407,7 +18408,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].reduceRight, true), 
 });
 
 /***/ }),
-/* 278 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18423,7 +18424,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].reduce, true), 'Arra
 });
 
 /***/ }),
-/* 279 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18457,7 +18458,7 @@ $export($export.P + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 280 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18473,7 +18474,7 @@ $export($export.P + $export.F * !__webpack_require__(29)([].some, true), 'Array'
 });
 
 /***/ }),
-/* 281 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18502,13 +18503,13 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 282 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(53)('Array');
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.3.3.1 / 15.9.4.4 Date.now()
@@ -18517,7 +18518,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Date', {now: function(){ return new Date().getTime(); }});
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18551,7 +18552,7 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18571,16 +18572,16 @@ $export($export.P + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_PRIMITIVE = __webpack_require__(8)('toPrimitive')
   , proto        = Date.prototype;
 
-if(!(TO_PRIMITIVE in proto))__webpack_require__(18)(proto, TO_PRIMITIVE, __webpack_require__(256));
+if(!(TO_PRIMITIVE in proto))__webpack_require__(18)(proto, TO_PRIMITIVE, __webpack_require__(255));
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DateProto    = Date.prototype
@@ -18596,7 +18597,7 @@ if(new Date(NaN) + '' != INVALID_DATE){
 }
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
@@ -18605,7 +18606,7 @@ var $export = __webpack_require__(0);
 $export($export.P, 'Function', {bind: __webpack_require__(156)});
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18624,7 +18625,7 @@ if(!(HAS_INSTANCE in FunctionProto))__webpack_require__(11).f(FunctionProto, HAS
 }});
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(11).f
@@ -18654,7 +18655,7 @@ NAME in FProto || __webpack_require__(10) && dP(FProto, NAME, {
 });
 
 /***/ }),
-/* 291 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.3 Math.acosh(x)
@@ -18677,7 +18678,7 @@ $export($export.S + $export.F * !($acosh
 });
 
 /***/ }),
-/* 292 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.5 Math.asinh(x)
@@ -18692,7 +18693,7 @@ function asinh(x){
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', {asinh: asinh});
 
 /***/ }),
-/* 293 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.7 Math.atanh(x)
@@ -18707,7 +18708,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 });
 
 /***/ }),
-/* 294 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.9 Math.cbrt(x)
@@ -18721,7 +18722,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 295 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.11 Math.clz32(x)
@@ -18734,7 +18735,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 296 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.12 Math.cosh(x)
@@ -18748,7 +18749,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 297 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -18758,7 +18759,7 @@ var $export = __webpack_require__(0)
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1});
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.16 Math.fround(x)
@@ -18789,7 +18790,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
@@ -18819,7 +18820,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.18 Math.imul(x, y)
@@ -18841,7 +18842,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.21 Math.log10(x)
@@ -18854,7 +18855,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.20 Math.log1p(x)
@@ -18863,7 +18864,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', {log1p: __webpack_require__(164)});
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.22 Math.log2(x)
@@ -18876,7 +18877,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.28 Math.sign(x)
@@ -18885,7 +18886,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', {sign: __webpack_require__(109)});
 
 /***/ }),
-/* 305 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.30 Math.sinh(x)
@@ -18905,7 +18906,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.33 Math.tanh(x)
@@ -18922,7 +18923,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.34 Math.trunc(x)
@@ -18935,7 +18936,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 308 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19010,7 +19011,7 @@ if(!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')){
 }
 
 /***/ }),
-/* 309 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.1 Number.EPSILON
@@ -19019,7 +19020,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {EPSILON: Math.pow(2, -52)});
 
 /***/ }),
-/* 310 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.2 Number.isFinite(number)
@@ -19033,7 +19034,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 311 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
@@ -19042,7 +19043,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {isInteger: __webpack_require__(161)});
 
 /***/ }),
-/* 312 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.4 Number.isNaN(number)
@@ -19055,7 +19056,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 313 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.5 Number.isSafeInteger(number)
@@ -19070,7 +19071,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 314 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -19079,7 +19080,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {MAX_SAFE_INTEGER: 0x1fffffffffffff});
 
 /***/ }),
-/* 315 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
@@ -19088,7 +19089,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', {MIN_SAFE_INTEGER: -0x1fffffffffffff});
 
 /***/ }),
-/* 316 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export     = __webpack_require__(0)
@@ -19097,7 +19098,7 @@ var $export     = __webpack_require__(0)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', {parseFloat: $parseFloat});
 
 /***/ }),
-/* 317 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -19106,7 +19107,7 @@ var $export   = __webpack_require__(0)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parseInt: $parseInt});
 
 /***/ }),
-/* 318 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19225,7 +19226,7 @@ $export($export.P + $export.F * (!!$toFixed && (
 });
 
 /***/ }),
-/* 319 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19249,7 +19250,7 @@ $export($export.P + $export.F * ($fails(function(){
 });
 
 /***/ }),
-/* 320 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
@@ -19258,7 +19259,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F, 'Object', {assign: __webpack_require__(165)});
 
 /***/ }),
-/* 321 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0)
@@ -19266,7 +19267,7 @@ var $export = __webpack_require__(0)
 $export($export.S, 'Object', {create: __webpack_require__(49)});
 
 /***/ }),
-/* 322 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -19274,7 +19275,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperties: __webpack_require__(166)});
 
 /***/ }),
-/* 323 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -19282,7 +19283,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperty: __webpack_require__(11).f});
 
 /***/ }),
-/* 324 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.5 Object.freeze(O)
@@ -19296,7 +19297,7 @@ __webpack_require__(33)('freeze', function($freeze){
 });
 
 /***/ }),
-/* 325 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
@@ -19310,7 +19311,7 @@ __webpack_require__(33)('getOwnPropertyDescriptor', function(){
 });
 
 /***/ }),
-/* 326 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 Object.getOwnPropertyNames(O)
@@ -19319,7 +19320,7 @@ __webpack_require__(33)('getOwnPropertyNames', function(){
 });
 
 /***/ }),
-/* 327 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
@@ -19333,7 +19334,7 @@ __webpack_require__(33)('getPrototypeOf', function(){
 });
 
 /***/ }),
-/* 328 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.11 Object.isExtensible(O)
@@ -19346,7 +19347,7 @@ __webpack_require__(33)('isExtensible', function($isExtensible){
 });
 
 /***/ }),
-/* 329 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.12 Object.isFrozen(O)
@@ -19359,7 +19360,7 @@ __webpack_require__(33)('isFrozen', function($isFrozen){
 });
 
 /***/ }),
-/* 330 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.13 Object.isSealed(O)
@@ -19372,7 +19373,7 @@ __webpack_require__(33)('isSealed', function($isSealed){
 });
 
 /***/ }),
-/* 331 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.10 Object.is(value1, value2)
@@ -19380,7 +19381,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Object', {is: __webpack_require__(173)});
 
 /***/ }),
-/* 332 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
@@ -19394,7 +19395,7 @@ __webpack_require__(33)('keys', function(){
 });
 
 /***/ }),
-/* 333 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.15 Object.preventExtensions(O)
@@ -19408,7 +19409,7 @@ __webpack_require__(33)('preventExtensions', function($preventExtensions){
 });
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.17 Object.seal(O)
@@ -19422,7 +19423,7 @@ __webpack_require__(33)('seal', function($seal){
 });
 
 /***/ }),
-/* 335 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
@@ -19430,7 +19431,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(111).set});
 
 /***/ }),
-/* 336 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19446,7 +19447,7 @@ if(test + '' != '[object z]'){
 }
 
 /***/ }),
-/* 337 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export     = __webpack_require__(0)
@@ -19455,7 +19456,7 @@ var $export     = __webpack_require__(0)
 $export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
 
 /***/ }),
-/* 338 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -19464,7 +19465,7 @@ var $export   = __webpack_require__(0)
 $export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
 
 /***/ }),
-/* 339 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19769,7 +19770,7 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(85)(function
 });
 
 /***/ }),
-/* 340 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
@@ -19790,7 +19791,7 @@ $export($export.S + $export.F * !__webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 341 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
@@ -19842,7 +19843,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 });
 
 /***/ }),
-/* 342 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
@@ -19869,7 +19870,7 @@ $export($export.S + $export.F * __webpack_require__(5)(function(){
 });
 
 /***/ }),
-/* 343 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
@@ -19885,7 +19886,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 344 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19917,7 +19918,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 345 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
@@ -19932,7 +19933,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 346 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.8 Reflect.getPrototypeOf(target)
@@ -19947,7 +19948,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 347 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
@@ -19973,7 +19974,7 @@ function get(target, propertyKey/*, receiver*/){
 $export($export.S, 'Reflect', {get: get});
 
 /***/ }),
-/* 348 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.9 Reflect.has(target, propertyKey)
@@ -19986,7 +19987,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 349 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.10 Reflect.isExtensible(target)
@@ -20002,7 +20003,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 350 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.11 Reflect.ownKeys(target)
@@ -20011,7 +20012,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Reflect', {ownKeys: __webpack_require__(170)});
 
 /***/ }),
-/* 351 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.12 Reflect.preventExtensions(target)
@@ -20032,7 +20033,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 352 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
@@ -20052,7 +20053,7 @@ if(setProto)$export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 353 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
@@ -20088,7 +20089,7 @@ function set(target, propertyKey, V/*, receiver*/){
 $export($export.S, 'Reflect', {set: set});
 
 /***/ }),
-/* 354 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global            = __webpack_require__(4)
@@ -20136,7 +20137,7 @@ if(__webpack_require__(10) && (!CORRECT_NEW || __webpack_require__(5)(function()
 __webpack_require__(53)('RegExp');
 
 /***/ }),
-/* 355 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@match logic
@@ -20151,7 +20152,7 @@ __webpack_require__(81)('match', 1, function(defined, MATCH, $match){
 });
 
 /***/ }),
-/* 356 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@replace logic
@@ -20168,7 +20169,7 @@ __webpack_require__(81)('replace', 2, function(defined, REPLACE, $replace){
 });
 
 /***/ }),
-/* 357 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@search logic
@@ -20183,7 +20184,7 @@ __webpack_require__(81)('search', 1, function(defined, SEARCH, $search){
 });
 
 /***/ }),
-/* 358 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@split logic
@@ -20258,7 +20259,7 @@ __webpack_require__(81)('split', 2, function(defined, SPLIT, $split){
 });
 
 /***/ }),
-/* 359 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20289,7 +20290,7 @@ if(__webpack_require__(5)(function(){ return $toString.call({source: 'a', flags:
 }
 
 /***/ }),
-/* 360 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20302,7 +20303,7 @@ __webpack_require__(20)('anchor', function(createHTML){
 });
 
 /***/ }),
-/* 361 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20315,7 +20316,7 @@ __webpack_require__(20)('big', function(createHTML){
 });
 
 /***/ }),
-/* 362 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20328,7 +20329,7 @@ __webpack_require__(20)('blink', function(createHTML){
 });
 
 /***/ }),
-/* 363 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20341,7 +20342,7 @@ __webpack_require__(20)('bold', function(createHTML){
 });
 
 /***/ }),
-/* 364 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20356,7 +20357,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 365 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20382,7 +20383,7 @@ $export($export.P + $export.F * __webpack_require__(101)(ENDS_WITH), 'String', {
 });
 
 /***/ }),
-/* 366 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20395,7 +20396,7 @@ __webpack_require__(20)('fixed', function(createHTML){
 });
 
 /***/ }),
-/* 367 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20408,7 +20409,7 @@ __webpack_require__(20)('fontcolor', function(createHTML){
 });
 
 /***/ }),
-/* 368 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20421,7 +20422,7 @@ __webpack_require__(20)('fontsize', function(createHTML){
 });
 
 /***/ }),
-/* 369 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export        = __webpack_require__(0)
@@ -20449,7 +20450,7 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 });
 
 /***/ }),
-/* 370 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20467,7 +20468,7 @@ $export($export.P + $export.F * __webpack_require__(101)(INCLUDES), 'String', {
 });
 
 /***/ }),
-/* 371 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20480,7 +20481,7 @@ __webpack_require__(20)('italics', function(createHTML){
 });
 
 /***/ }),
-/* 372 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20503,7 +20504,7 @@ __webpack_require__(107)(String, 'String', function(iterated){
 });
 
 /***/ }),
-/* 373 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20516,7 +20517,7 @@ __webpack_require__(20)('link', function(createHTML){
 });
 
 /***/ }),
-/* 374 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(0)
@@ -20539,7 +20540,7 @@ $export($export.S, 'String', {
 });
 
 /***/ }),
-/* 375 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -20550,7 +20551,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 376 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20563,7 +20564,7 @@ __webpack_require__(20)('small', function(createHTML){
 });
 
 /***/ }),
-/* 377 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20587,7 +20588,7 @@ $export($export.P + $export.F * __webpack_require__(101)(STARTS_WITH), 'String',
 });
 
 /***/ }),
-/* 378 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20600,7 +20601,7 @@ __webpack_require__(20)('strike', function(createHTML){
 });
 
 /***/ }),
-/* 379 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20613,7 +20614,7 @@ __webpack_require__(20)('sub', function(createHTML){
 });
 
 /***/ }),
-/* 380 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20626,7 +20627,7 @@ __webpack_require__(20)('sup', function(createHTML){
 });
 
 /***/ }),
-/* 381 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20639,7 +20640,7 @@ __webpack_require__(64)('trim', function($trim){
 });
 
 /***/ }),
-/* 382 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20658,8 +20659,8 @@ var global         = __webpack_require__(4)
   , wks            = __webpack_require__(8)
   , wksExt         = __webpack_require__(175)
   , wksDefine      = __webpack_require__(120)
-  , keyOf          = __webpack_require__(258)
-  , enumKeys       = __webpack_require__(257)
+  , keyOf          = __webpack_require__(257)
+  , enumKeys       = __webpack_require__(256)
   , isArray        = __webpack_require__(105)
   , anObject       = __webpack_require__(3)
   , toIObject      = __webpack_require__(21)
@@ -20880,7 +20881,7 @@ setToStringTag(Math, 'Math', true);
 setToStringTag(global.JSON, 'JSON', true);
 
 /***/ }),
-/* 383 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20932,7 +20933,7 @@ $export($export.P + $export.U + $export.F * __webpack_require__(5)(function(){
 __webpack_require__(53)(ARRAY_BUFFER);
 
 /***/ }),
-/* 384 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
@@ -20941,7 +20942,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(89).ABV, {
 });
 
 /***/ }),
-/* 385 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Float32', 4, function(init){
@@ -20951,7 +20952,7 @@ __webpack_require__(40)('Float32', 4, function(init){
 });
 
 /***/ }),
-/* 386 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Float64', 8, function(init){
@@ -20961,7 +20962,7 @@ __webpack_require__(40)('Float64', 8, function(init){
 });
 
 /***/ }),
-/* 387 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Int16', 2, function(init){
@@ -20971,7 +20972,7 @@ __webpack_require__(40)('Int16', 2, function(init){
 });
 
 /***/ }),
-/* 388 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Int32', 4, function(init){
@@ -20981,7 +20982,7 @@ __webpack_require__(40)('Int32', 4, function(init){
 });
 
 /***/ }),
-/* 389 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Int8', 1, function(init){
@@ -20991,7 +20992,7 @@ __webpack_require__(40)('Int8', 1, function(init){
 });
 
 /***/ }),
-/* 390 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Uint16', 2, function(init){
@@ -21001,7 +21002,7 @@ __webpack_require__(40)('Uint16', 2, function(init){
 });
 
 /***/ }),
-/* 391 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Uint32', 4, function(init){
@@ -21011,7 +21012,7 @@ __webpack_require__(40)('Uint32', 4, function(init){
 });
 
 /***/ }),
-/* 392 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Uint8', 1, function(init){
@@ -21021,7 +21022,7 @@ __webpack_require__(40)('Uint8', 1, function(init){
 });
 
 /***/ }),
-/* 393 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40)('Uint8', 1, function(init){
@@ -21031,7 +21032,7 @@ __webpack_require__(40)('Uint8', 1, function(init){
 }, true);
 
 /***/ }),
-/* 394 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21049,7 +21050,7 @@ __webpack_require__(80)('WeakSet', function(get){
 }, weak, false, true);
 
 /***/ }),
-/* 395 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21067,7 +21068,7 @@ $export($export.P, 'Array', {
 __webpack_require__(60)('includes');
 
 /***/ }),
-/* 396 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
@@ -21084,7 +21085,7 @@ $export($export.G, {
 });
 
 /***/ }),
-/* 397 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-is-error
@@ -21098,7 +21099,7 @@ $export($export.S, 'Error', {
 });
 
 /***/ }),
-/* 398 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -21107,7 +21108,7 @@ var $export  = __webpack_require__(0);
 $export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(158)('Map')});
 
 /***/ }),
-/* 399 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -21123,7 +21124,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 400 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -21144,7 +21145,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 401 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -21160,7 +21161,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 402 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -21181,7 +21182,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 403 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21199,7 +21200,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(86), 'Object'
 });
 
 /***/ }),
-/* 404 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21217,7 +21218,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(86), 'Object'
 });
 
 /***/ }),
-/* 405 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
@@ -21231,7 +21232,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 406 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
@@ -21255,7 +21256,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 407 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21279,7 +21280,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(86), 'Object'
 });
 
 /***/ }),
-/* 408 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21303,7 +21304,7 @@ __webpack_require__(10) && $export($export.P + __webpack_require__(86), 'Object'
 });
 
 /***/ }),
-/* 409 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
@@ -21317,7 +21318,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 410 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21522,7 +21523,7 @@ $export($export.G, {Observable: $Observable});
 __webpack_require__(53)('Observable');
 
 /***/ }),
-/* 411 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                  = __webpack_require__(39)
@@ -21535,7 +21536,7 @@ metadata.exp({defineMetadata: function defineMetadata(metadataKey, metadataValue
 }});
 
 /***/ }),
-/* 412 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(39)
@@ -21555,7 +21556,7 @@ metadata.exp({deleteMetadata: function deleteMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 413 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Set                     = __webpack_require__(178)
@@ -21579,7 +21580,7 @@ metadata.exp({getMetadataKeys: function getMetadataKeys(target /*, targetKey */)
 }});
 
 /***/ }),
-/* 414 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(39)
@@ -21601,7 +21602,7 @@ metadata.exp({getMetadata: function getMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 415 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                = __webpack_require__(39)
@@ -21614,7 +21615,7 @@ metadata.exp({getOwnMetadataKeys: function getOwnMetadataKeys(target /*, targetK
 }});
 
 /***/ }),
-/* 416 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(39)
@@ -21628,7 +21629,7 @@ metadata.exp({getOwnMetadata: function getOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 417 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(39)
@@ -21649,7 +21650,7 @@ metadata.exp({hasMetadata: function hasMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 418 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata               = __webpack_require__(39)
@@ -21663,7 +21664,7 @@ metadata.exp({hasOwnMetadata: function hasOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 419 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var metadata                  = __webpack_require__(39)
@@ -21683,7 +21684,7 @@ metadata.exp({metadata: function metadata(metadataKey, metadataValue){
 }});
 
 /***/ }),
-/* 420 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -21692,7 +21693,7 @@ var $export  = __webpack_require__(0);
 $export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(158)('Set')});
 
 /***/ }),
-/* 421 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21708,7 +21709,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 422 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21744,7 +21745,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 423 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21760,7 +21761,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 424 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21776,7 +21777,7 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 425 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21789,7 +21790,7 @@ __webpack_require__(64)('trimLeft', function($trim){
 }, 'trimStart');
 
 /***/ }),
-/* 426 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21802,19 +21803,19 @@ __webpack_require__(64)('trimRight', function($trim){
 }, 'trimEnd');
 
 /***/ }),
-/* 427 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(120)('asyncIterator');
 
 /***/ }),
-/* 428 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(120)('observable');
 
 /***/ }),
-/* 429 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-global
@@ -21823,7 +21824,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'System', {global: __webpack_require__(4)});
 
 /***/ }),
-/* 430 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $iterators    = __webpack_require__(122)
@@ -21850,7 +21851,7 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 }
 
 /***/ }),
-/* 431 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0)
@@ -21861,14 +21862,14 @@ $export($export.G + $export.B, {
 });
 
 /***/ }),
-/* 432 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // ie9- setTimeout & setInterval additional parameters fix
 var global     = __webpack_require__(4)
   , $export    = __webpack_require__(0)
   , invoke     = __webpack_require__(83)
-  , partial    = __webpack_require__(259)
+  , partial    = __webpack_require__(258)
   , navigator  = global.navigator
   , MSIE       = !!navigator && /MSIE .\./.test(navigator.userAgent); // <- dirty ie9- check
 var wrap = function(set){
@@ -21886,35 +21887,36 @@ $export($export.G + $export.B + $export.F * MSIE, {
 });
 
 /***/ }),
-/* 433 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(382);
-__webpack_require__(321);
-__webpack_require__(323);
-__webpack_require__(322);
-__webpack_require__(325);
-__webpack_require__(327);
-__webpack_require__(332);
-__webpack_require__(326);
-__webpack_require__(324);
-__webpack_require__(334);
-__webpack_require__(333);
-__webpack_require__(329);
-__webpack_require__(330);
-__webpack_require__(328);
+__webpack_require__(381);
 __webpack_require__(320);
+__webpack_require__(322);
+__webpack_require__(321);
+__webpack_require__(324);
+__webpack_require__(326);
 __webpack_require__(331);
-__webpack_require__(335);
-__webpack_require__(336);
-__webpack_require__(288);
-__webpack_require__(290);
-__webpack_require__(289);
-__webpack_require__(338);
-__webpack_require__(337);
-__webpack_require__(308);
-__webpack_require__(318);
+__webpack_require__(325);
+__webpack_require__(323);
+__webpack_require__(333);
+__webpack_require__(332);
+__webpack_require__(328);
+__webpack_require__(329);
+__webpack_require__(327);
 __webpack_require__(319);
+__webpack_require__(330);
+__webpack_require__(334);
+__webpack_require__(335);
+__webpack_require__(287);
+__webpack_require__(289);
+__webpack_require__(288);
+__webpack_require__(337);
+__webpack_require__(336);
+__webpack_require__(307);
+__webpack_require__(317);
+__webpack_require__(318);
+__webpack_require__(308);
 __webpack_require__(309);
 __webpack_require__(310);
 __webpack_require__(311);
@@ -21923,7 +21925,7 @@ __webpack_require__(313);
 __webpack_require__(314);
 __webpack_require__(315);
 __webpack_require__(316);
-__webpack_require__(317);
+__webpack_require__(290);
 __webpack_require__(291);
 __webpack_require__(292);
 __webpack_require__(293);
@@ -21940,149 +21942,148 @@ __webpack_require__(303);
 __webpack_require__(304);
 __webpack_require__(305);
 __webpack_require__(306);
-__webpack_require__(307);
+__webpack_require__(368);
+__webpack_require__(373);
+__webpack_require__(380);
+__webpack_require__(371);
+__webpack_require__(363);
+__webpack_require__(364);
 __webpack_require__(369);
 __webpack_require__(374);
-__webpack_require__(381);
-__webpack_require__(372);
-__webpack_require__(364);
-__webpack_require__(365);
-__webpack_require__(370);
-__webpack_require__(375);
-__webpack_require__(377);
+__webpack_require__(376);
+__webpack_require__(359);
 __webpack_require__(360);
 __webpack_require__(361);
 __webpack_require__(362);
-__webpack_require__(363);
+__webpack_require__(365);
 __webpack_require__(366);
 __webpack_require__(367);
-__webpack_require__(368);
-__webpack_require__(371);
-__webpack_require__(373);
-__webpack_require__(376);
+__webpack_require__(370);
+__webpack_require__(372);
+__webpack_require__(375);
+__webpack_require__(377);
 __webpack_require__(378);
 __webpack_require__(379);
-__webpack_require__(380);
-__webpack_require__(283);
-__webpack_require__(285);
+__webpack_require__(282);
 __webpack_require__(284);
-__webpack_require__(287);
+__webpack_require__(283);
 __webpack_require__(286);
-__webpack_require__(272);
-__webpack_require__(270);
-__webpack_require__(276);
-__webpack_require__(273);
-__webpack_require__(279);
-__webpack_require__(281);
+__webpack_require__(285);
+__webpack_require__(271);
 __webpack_require__(269);
 __webpack_require__(275);
-__webpack_require__(266);
-__webpack_require__(280);
-__webpack_require__(264);
+__webpack_require__(272);
 __webpack_require__(278);
-__webpack_require__(277);
-__webpack_require__(271);
-__webpack_require__(274);
-__webpack_require__(263);
-__webpack_require__(265);
+__webpack_require__(280);
 __webpack_require__(268);
+__webpack_require__(274);
+__webpack_require__(265);
+__webpack_require__(279);
+__webpack_require__(263);
+__webpack_require__(277);
+__webpack_require__(276);
+__webpack_require__(270);
+__webpack_require__(273);
+__webpack_require__(262);
+__webpack_require__(264);
 __webpack_require__(267);
-__webpack_require__(282);
+__webpack_require__(266);
+__webpack_require__(281);
 __webpack_require__(122);
-__webpack_require__(354);
-__webpack_require__(359);
+__webpack_require__(353);
+__webpack_require__(358);
 __webpack_require__(177);
+__webpack_require__(354);
 __webpack_require__(355);
 __webpack_require__(356);
 __webpack_require__(357);
-__webpack_require__(358);
-__webpack_require__(339);
+__webpack_require__(338);
 __webpack_require__(176);
 __webpack_require__(178);
 __webpack_require__(179);
-__webpack_require__(394);
-__webpack_require__(383);
-__webpack_require__(384);
-__webpack_require__(389);
-__webpack_require__(392);
 __webpack_require__(393);
-__webpack_require__(387);
-__webpack_require__(390);
+__webpack_require__(382);
+__webpack_require__(383);
 __webpack_require__(388);
 __webpack_require__(391);
-__webpack_require__(385);
+__webpack_require__(392);
 __webpack_require__(386);
+__webpack_require__(389);
+__webpack_require__(387);
+__webpack_require__(390);
+__webpack_require__(384);
+__webpack_require__(385);
+__webpack_require__(339);
 __webpack_require__(340);
 __webpack_require__(341);
 __webpack_require__(342);
 __webpack_require__(343);
-__webpack_require__(344);
-__webpack_require__(347);
-__webpack_require__(345);
 __webpack_require__(346);
+__webpack_require__(344);
+__webpack_require__(345);
+__webpack_require__(347);
 __webpack_require__(348);
 __webpack_require__(349);
 __webpack_require__(350);
-__webpack_require__(351);
-__webpack_require__(353);
 __webpack_require__(352);
-__webpack_require__(395);
-__webpack_require__(421);
-__webpack_require__(424);
-__webpack_require__(423);
-__webpack_require__(425);
-__webpack_require__(426);
-__webpack_require__(422);
-__webpack_require__(427);
-__webpack_require__(428);
-__webpack_require__(406);
-__webpack_require__(409);
-__webpack_require__(405);
-__webpack_require__(403);
-__webpack_require__(404);
-__webpack_require__(407);
-__webpack_require__(408);
-__webpack_require__(398);
+__webpack_require__(351);
+__webpack_require__(394);
 __webpack_require__(420);
-__webpack_require__(429);
+__webpack_require__(423);
+__webpack_require__(422);
+__webpack_require__(424);
+__webpack_require__(425);
+__webpack_require__(421);
+__webpack_require__(426);
+__webpack_require__(427);
+__webpack_require__(405);
+__webpack_require__(408);
+__webpack_require__(404);
+__webpack_require__(402);
+__webpack_require__(403);
+__webpack_require__(406);
+__webpack_require__(407);
 __webpack_require__(397);
+__webpack_require__(419);
+__webpack_require__(428);
+__webpack_require__(396);
+__webpack_require__(398);
+__webpack_require__(400);
 __webpack_require__(399);
 __webpack_require__(401);
-__webpack_require__(400);
-__webpack_require__(402);
+__webpack_require__(410);
 __webpack_require__(411);
-__webpack_require__(412);
-__webpack_require__(414);
 __webpack_require__(413);
-__webpack_require__(416);
+__webpack_require__(412);
 __webpack_require__(415);
+__webpack_require__(414);
+__webpack_require__(416);
 __webpack_require__(417);
 __webpack_require__(418);
-__webpack_require__(419);
-__webpack_require__(396);
-__webpack_require__(410);
-__webpack_require__(432);
+__webpack_require__(395);
+__webpack_require__(409);
 __webpack_require__(431);
 __webpack_require__(430);
+__webpack_require__(429);
 module.exports = __webpack_require__(37);
 
 /***/ }),
-/* 434 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(435)();
+exports = module.exports = __webpack_require__(434)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rubik&subset=latin-ext);", ""]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Inconsolata);", ""]);
 
 // module
-exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n*/\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n   ========================================================================== */\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/**\n * Add the correct display in IE 9-.\n */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Correct the padding in Firefox.\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n   ========================================================================== */\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\ndetails,\nmenu {\n  display: block; }\n\n/*\n * Add the correct display in all browsers.\n */\nsummary {\n  display: list-item; }\n\n/* Scripting\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\ncanvas {\n  display: inline-block; }\n\n/**\n * Add the correct display in IE.\n */\ntemplate {\n  display: none; }\n\n/* Hidden\n   ========================================================================== */\n/**\n * Add the correct display in IE 10-.\n */\n[hidden] {\n  display: none; }\n\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: 0.5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: 0.5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 81%;\n    background-size: cover;\n    background-position: center;\n    opacity: 0.6;\n    filter: blur(10px);\n    transition: .5s; }\n  .player_component .cards {\n    overflow: hidden;\n    display: block;\n    width: 500px;\n    height: 700px;\n    position: relative;\n    background: rgba(33, 33, 33, 0.7);\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card:hover {\n          cursor: pointer; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .label {\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls {\n    padding: 30px 30px;\n    position: relative;\n    text-align: center;\n    height: 20vh;\n    box-sizing: border-box;\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -khtml-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background: #050505; }\n    .player_component .controls:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls .song-status {\n      display: inline-block;\n      text-align: left;\n      color: white;\n      width: 100%; }\n      @media (max-width: 1600px) {\n        .player_component .controls .song-status {\n          margin: 25px 0; } }\n      .player_component .controls .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls .song-status .configs {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .configs {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls .song-status .configs .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls .song-status .configs .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls .song-status .configs .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls .song-status .configs .play_switch {\n          display: inline-block;\n          color: white;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls .song-status .configs .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls .song-status .configs .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls .song-status .configs .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls .song-status .configs .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls .song-status .configs .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls .song-status .configs .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls .song-status .configs .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: -35px;\n              background: #03458E;\n              transition: opacity 0.3s; }\n            .player_component .controls .song-status .configs .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls .song-status .configs .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .current_time {\n                display: none; } }\n        .player_component .controls .song-status .configs .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: 0.5s; }\n            .player_component .controls .song-status .configs .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls .song-status .configs .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls .song-status .configs .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: 0.5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .volume_controls input {\n                display: none; } }\n          .player_component .controls .song-status .configs .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  width: 500px;\n  box-sizing: border-box;\n  font-weight: 300;\n  font-family: \"Inconsolata\";\n  padding: 10px;\n  background: #111; }\n  @media (max-width: 768px) {\n    .search {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search > label {\n      display: none; } }\n  .search > label img {\n    position: relative;\n    top: 8px;\n    margin-left: 15px;\n    width: 26px;\n    height: 26px; }\n    .search > label img:hover {\n      cursor: pointer; }\n  .search > input {\n    width: 300px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px 10px 10px 40px;\n    color: white;\n    background: rgba(50, 50, 50, 0.2);\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n    transition: 0.5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search > input:active, .search > input:focus {\n      outline: none;\n      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }\n  .search > button {\n    display: none;\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: black;\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: 0.5s; }\n    @media (max-width: 768px) {\n      .search > button {\n        width: auto;\n        font-size: 16px; } }\n    .search > button:focus, .search > button:active, .search > button:hover {\n      outline: none; }\n    .search > button:hover {\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n*/\n#__bs_notify__ {\n  display: none !important; }\n\nhtml {\n  height: 100%;\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\nbody {\n  height: 100%;\n  margin: 0; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n   ========================================================================== */\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/**\n * Add the correct display in IE 9-.\n */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Correct the padding in Firefox.\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n   ========================================================================== */\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\ndetails,\nmenu {\n  display: block; }\n\n/*\n * Add the correct display in all browsers.\n */\nsummary {\n  display: list-item; }\n\n/* Scripting\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n */\ncanvas {\n  display: inline-block; }\n\n/**\n * Add the correct display in IE.\n */\ntemplate {\n  display: none; }\n\n/* Hidden\n   ========================================================================== */\n/**\n * Add the correct display in IE 10-.\n */\n[hidden] {\n  display: none; }\n\nbody {\n  font-family: 'Rubik', sans-serif; }\n\n#app {\n  height: 100%;\n  min-height: 100%; }\n  #app > div {\n    height: 100%;\n    min-height: 100%; }\n\ninput[type=range].slider {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  -ms-appearance: none;\n  position: relative;\n  top: -10px;\n  left: 5px;\n  border-radius: 10px;\n  display: inline-block; }\n  input[type=range].slider:before {\n    content: \"\";\n    position: absolute;\n    display: block;\n    top: -12.5px;\n    left: 0;\n    z-index: 10;\n    height: 31px;\n    width: 100%;\n    cursor: pointer; }\n  input[type=range].slider:focus {\n    outline: none; }\n  input[type=range].slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-webkit-slider-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -webkit-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-webkit-slider-runnable-track {\n    background: #fff; }\n  input[type=range].slider::-moz-range-track {\n    width: 50%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-moz-range-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -moz-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider::-ms-track {\n    width: 100%;\n    height: 6px;\n    cursor: pointer;\n    border-radius: 5px;\n    background: #fff; }\n  input[type=range].slider::-ms-fill-lower, input[type=range].slider::-ms-fill-upper {\n    background: #fff;\n    border-radius: 2.6px; }\n  input[type=range].slider::-ms-thumb {\n    height: 26px;\n    width: 8px;\n    border-radius: 3px;\n    background: #03458E;\n    cursor: pointer;\n    -ms-appearance: none;\n    margin-top: -11px; }\n  input[type=range].slider:focus::-ms-fill-lower, input[type=range].slider:focus::-ms-fill-upper {\n    background: #fff; }\n\n.navigation_component {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  top: 0;\n  left: 0;\n  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);\n  box-sizing: border-box; }\n  .navigation_component .container {\n    padding: 0 60px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background: white;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n    @media (max-width: 900px) {\n      .navigation_component .container {\n        padding: 10px 20px; } }\n    .navigation_component .container .logo a img {\n      width: 120px;\n      position: relative;\n      top: 3px; }\n    @media (max-width: 900px) {\n      .navigation_component .container .menu {\n        pointer-events: none;\n        opacity: 0;\n        background: white;\n        position: absolute;\n        top: 65px;\n        left: 0;\n        right: 0;\n        background: #fff;\n        z-index: -1;\n        border-bottom: 1px solid rgba(0, 0, 0, 0.2);\n        transition: 0.5s; }\n        .navigation_component .container .menu.active {\n          top: 70px;\n          pointer-events: auto;\n          opacity: 1; } }\n    .navigation_component .container .menu ul {\n      list-style-type: none;\n      padding: 0; }\n      @media (max-width: 900px) {\n        .navigation_component .container .menu ul {\n          padding-left: 0;\n          display: block; } }\n      .navigation_component .container .menu ul li {\n        display: inline-block;\n        margin: 0 5px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .menu ul li {\n            text-align: center;\n            margin: 10px;\n            display: block; } }\n        .navigation_component .container .menu ul li:first-child {\n          margin: 0 5px 0 0; }\n        .navigation_component .container .menu ul li:last-child {\n          margin: 0 0 0 5px; }\n        .navigation_component .container .menu ul li a {\n          border-radius: 3px;\n          padding: 10px;\n          font-size: 18px;\n          text-align: center;\n          display: inline-block;\n          position: relative;\n          color: #212121;\n          transition: 0.5s;\n          text-decoration: none; }\n          .navigation_component .container .menu ul li a:hover {\n            color: #03458E;\n            cursor: pointer; }\n          @media (max-width: 900px) {\n            .navigation_component .container .menu ul li a {\n              color: #000;\n              font-size: 1.3em;\n              font-weight: 500;\n              line-height: normal;\n              padding: 10px 10px;\n              letter-spacing: 3px; }\n              .navigation_component .container .menu ul li a:hover {\n                border-color: transparent; } }\n    .navigation_component .container .burger {\n      height: 50px; }\n      .navigation_component .container .burger .line1,\n      .navigation_component .container .burger .line2,\n      .navigation_component .container .burger .line3 {\n        display: none;\n        background: #000;\n        height: 3px;\n        width: 35px;\n        border-radius: 5px;\n        margin-top: 10px; }\n        @media (max-width: 900px) {\n          .navigation_component .container .burger .line1,\n          .navigation_component .container .burger .line2,\n          .navigation_component .container .burger .line3 {\n            display: block; } }\n\n.player_component {\n  overflow: hidden;\n  max-height: 100%;\n  min-height: 100%;\n  background-color: #000; }\n  .player_component .big_image {\n    position: absolute;\n    width: 100%;\n    height: 81%;\n    background-size: cover;\n    background-position: center;\n    opacity: 0.6;\n    filter: blur(10px);\n    transition: .5s; }\n  .player_component .cards {\n    overflow: hidden;\n    display: block;\n    width: 500px;\n    height: 700px;\n    position: relative;\n    background: rgba(33, 33, 33, 0.7);\n    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); }\n    @media (max-width: 768px) {\n      .player_component .cards {\n        padding: 0;\n        margin-top: 75px; } }\n    .player_component .cards .wrapper {\n      position: relative; }\n      .player_component .cards .wrapper .card {\n        position: relative;\n        transition: .3s ease-in-out;\n        padding: 10px;\n        display: flex;\n        align-items: center; }\n        .player_component .cards .wrapper .card:hover {\n          cursor: pointer; }\n        .player_component .cards .wrapper .card .artwork {\n          width: 50px;\n          max-height: 50px;\n          border-radius: 3px;\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); }\n        .player_component .cards .wrapper .card .label {\n          text-align: left;\n          border-radius: 3px;\n          position: relative;\n          font-size: 18px;\n          padding: 0 15px;\n          color: white;\n          font-weight: 300;\n          letter-spacing: 1px;\n          transition: .7s; }\n          @media (max-width: 768px) {\n            .player_component .cards .wrapper .card .label {\n              display: none; } }\n      .player_component .cards .wrapper .active {\n        z-index: 2;\n        background: #121212; }\n        .player_component .cards .wrapper .active .dataset:before {\n          background-size: 30% !important;\n          opacity: 0 !important; }\n        .player_component .cards .wrapper .active img {\n          box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5); }\n  .player_component .controls {\n    padding: 30px 30px;\n    position: relative;\n    text-align: center;\n    height: 20vh;\n    box-sizing: border-box;\n    -webkit-touch-callout: none;\n    -webkit-user-select: none;\n    -khtml-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    background: #050505; }\n    .player_component .controls:focus {\n      outline: none; }\n    @media (max-width: 768px) {\n      .player_component .controls {\n        margin: 25px 10px 10px 10px;\n        padding: 0; } }\n    .player_component .controls .song-status {\n      display: inline-block;\n      text-align: left;\n      color: white;\n      width: 80%; }\n      @media (max-width: 1600px) {\n        .player_component .controls .song-status {\n          margin: 25px 0; } }\n      .player_component .controls .song-status .desc {\n        display: inline-block;\n        margin-bottom: 20px;\n        margin-left: 100px; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .desc {\n            margin-left: 0; } }\n        .player_component .controls .song-status .desc .caption {\n          font-size: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .desc .caption {\n              width: 90%;\n              margin: 0 auto;\n              font-size: 18px; } }\n      .player_component .controls .song-status .configs {\n        position: relative;\n        left: -30px;\n        width: 100%;\n        display: flex;\n        margin: 0 100px;\n        justify-content: space-between;\n        align-items: center; }\n        @media (max-width: 768px) {\n          .player_component .controls .song-status .configs {\n            margin: 0;\n            left: 0;\n            flex-wrap: wrap; } }\n        .player_component .controls .song-status .configs .replay_trigger {\n          display: inline-block;\n          width: 30px;\n          position: relative;\n          right: 20px;\n          top: 4px;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .replay_trigger:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .replay_trigger:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .replay_trigger {\n              order: 2;\n              width: 33%;\n              height: 25px;\n              margin: 20px 0;\n              top: 0;\n              right: 0;\n              text-align: center; }\n              .player_component .controls .song-status .configs .replay_trigger img {\n                width: 30px; } }\n          .player_component .controls .song-status .configs .replay_trigger img {\n            width: 32px;\n            height: 32px; }\n        .player_component .controls .song-status .configs .play_switch {\n          display: inline-block;\n          color: white;\n          transition: 0.5s; }\n          .player_component .controls .song-status .configs .play_switch:hover {\n            cursor: pointer; }\n          .player_component .controls .song-status .configs .play_switch:active {\n            filter: blur(20px); }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .play_switch {\n              order: 3;\n              margin: 20px 0;\n              width: 33%;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .play_switch img {\n            position: relative;\n            top: 4px;\n            width: 26px;\n            height: 26px; }\n        .player_component .controls .song-status .configs .track_controls {\n          display: flex;\n          width: 100%; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .track_controls {\n              width: 100%;\n              order: 1; } }\n          .player_component .controls .song-status .configs .track_controls .track {\n            background: white;\n            margin-left: 20px;\n            height: 6px;\n            border-radius: 5px;\n            color: white;\n            position: relative;\n            top: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            width: 100%; }\n            .player_component .controls .song-status .configs .track_controls .track:before {\n              content: \"\";\n              position: absolute;\n              display: block;\n              top: -12.5px;\n              left: 0;\n              height: 31px;\n              width: 100%; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .track {\n                margin: 0 auto 10px auto;\n                width: 90%; } }\n            .player_component .controls .song-status .configs .track_controls .track:hover {\n              cursor: pointer; }\n              .player_component .controls .song-status .configs .track_controls .track:hover .intended_time {\n                opacity: 1; }\n            .player_component .controls .song-status .configs .track_controls .track .track_elapsed {\n              width: 2px;\n              height: 100%;\n              position: absolute;\n              top: 0;\n              border-radius: 10px;\n              background: #2f90fb; }\n            .player_component .controls .song-status .configs .track_controls .track .intended_time {\n              display: inline-block;\n              color: white;\n              padding: 2.5px 7.5px;\n              position: absolute;\n              border-radius: 3px;\n              left: -15px;\n              font-size: 18px;\n              opacity: 0;\n              pointer-events: none;\n              font-family: \"Inconsolata\";\n              letter-spacing: 1px;\n              top: -35px;\n              background: #03458E;\n              transition: opacity 0.3s; }\n            .player_component .controls .song-status .configs .track_controls .track .dot_position {\n              transform: translateX(-5px);\n              background: #03458E;\n              width: 16px;\n              height: 16px;\n              border-radius: 15px; }\n          .player_component .controls .song-status .configs .track_controls .current_time {\n            color: white;\n            margin-left: 15px;\n            padding: 2px 5px;\n            height: 19px;\n            width: 45px;\n            font-size: 18px;\n            letter-spacing: 1px;\n            font-family: \"Inconsolata\"; }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .track_controls .current_time {\n                display: none; } }\n        .player_component .controls .song-status .configs .volume_controls {\n          min-width: 200px;\n          margin-left: 20px; }\n          @media (max-width: 768px) {\n            .player_component .controls .song-status .configs .volume_controls {\n              width: 33%;\n              margin: 20px 0;\n              min-width: 0;\n              order: 4;\n              text-align: center; } }\n          .player_component .controls .song-status .configs .volume_controls img {\n            position: relative;\n            top: 2px;\n            width: 32px;\n            color: white;\n            height: 32px;\n            transition: 0.5s; }\n            .player_component .controls .song-status .configs .volume_controls img:active {\n              filter: blur(20px); }\n            .player_component .controls .song-status .configs .volume_controls img:hover {\n              cursor: pointer; }\n          .player_component .controls .song-status .configs .volume_controls input {\n            opacity: 0;\n            pointer-events: none;\n            transition: 0.5s;\n            transform: scale(0.95) translateX(-15px); }\n            @media (max-width: 768px) {\n              .player_component .controls .song-status .configs .volume_controls input {\n                display: none; } }\n          .player_component .controls .song-status .configs .volume_controls:hover input {\n            opacity: 1;\n            pointer-events: auto;\n            transform: scale(1.05) translateX(10px); }\n\n.search {\n  border-radius: 2px;\n  font-size: 15px;\n  line-height: 15px;\n  letter-spacing: 3px;\n  width: 500px;\n  box-sizing: border-box;\n  font-weight: 300;\n  font-family: \"Inconsolata\";\n  padding: 10px;\n  background: #111; }\n  @media (max-width: 768px) {\n    .search {\n      padding: 0 5px;\n      text-align: left;\n      left: 0; } }\n  @media (max-width: 768px) {\n    .search > label {\n      display: none; } }\n  .search > label img {\n    position: relative;\n    top: 8px;\n    margin-left: 15px;\n    width: 26px;\n    height: 26px; }\n    .search > label img:hover {\n      cursor: pointer; }\n  .search > input {\n    width: 300px;\n    padding: 10px;\n    height: 21px;\n    letter-spacing: 1px;\n    font-size: 18px;\n    margin: 10px 10px 10px 40px;\n    color: white;\n    background: rgba(50, 50, 50, 0.2);\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n    transition: 0.5s;\n    font-weight: 300;\n    position: relative;\n    font-family: \"Inconsolata\"; }\n    @media (max-width: 768px) {\n      .search > input {\n        width: 55%;\n        font-size: 16px; } }\n    .search > input:active, .search > input:focus {\n      outline: none;\n      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }\n  .search > button {\n    display: none;\n    font-size: 18px;\n    padding: 10px;\n    height: 43px;\n    color: black;\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    border-radius: 5px;\n    transition: 0.5s; }\n    @media (max-width: 768px) {\n      .search > button {\n        width: auto;\n        font-size: 16px; } }\n    .search > button:focus, .search > button:active, .search > button:hover {\n      outline: none; }\n    .search > button:hover {\n      cursor: pointer; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 435 */
+/* 434 */
 /***/ (function(module, exports) {
 
 /*
@@ -22138,7 +22139,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 436 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22175,7 +22176,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 437 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22192,7 +22193,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(436);
+var camelize = __webpack_require__(435);
 
 var msPattern = /^-ms-/;
 
@@ -22220,7 +22221,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 438 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22237,7 +22238,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(446);
+var isTextNode = __webpack_require__(445);
 
 /*eslint-disable no-bitwise */
 
@@ -22265,7 +22266,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 439 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22397,7 +22398,7 @@ function createArrayFromMixed(obj) {
 module.exports = createArrayFromMixed;
 
 /***/ }),
-/* 440 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22418,8 +22419,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(14);
 
-var createArrayFromMixed = __webpack_require__(439);
-var getMarkupWrap = __webpack_require__(441);
+var createArrayFromMixed = __webpack_require__(438);
+var getMarkupWrap = __webpack_require__(440);
 var invariant = __webpack_require__(1);
 
 /**
@@ -22486,7 +22487,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 /***/ }),
-/* 441 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22586,7 +22587,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 /***/ }),
-/* 442 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22630,7 +22631,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 443 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22668,7 +22669,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 444 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22685,7 +22686,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(443);
+var hyphenate = __webpack_require__(442);
 
 var msPattern = /^ms-/;
 
@@ -22712,7 +22713,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 445 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22740,7 +22741,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 446 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22757,7 +22758,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(445);
+var isNode = __webpack_require__(444);
 
 /**
  * @param {*} object The object to check.
@@ -22770,7 +22771,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 447 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22805,7 +22806,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 448 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22833,7 +22834,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 449 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22850,7 +22851,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(448);
+var performance = __webpack_require__(447);
 
 var performanceNow;
 
@@ -22872,7 +22873,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 450 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22929,7 +22930,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 
 
 /***/ }),
-/* 451 */
+/* 450 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -23019,7 +23020,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 452 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23077,13 +23078,13 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 453 */
+/* 452 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(456);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(455);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(456);
 
 
 
@@ -23115,7 +23116,7 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 454 */
+/* 453 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23127,11 +23128,11 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(69)))
 
 /***/ }),
-/* 455 */
+/* 454 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(457);
 
 
 /** Built-in value references. */
@@ -23141,7 +23142,7 @@ var getPrototype = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__overArg_js
 
 
 /***/ }),
-/* 456 */
+/* 455 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23195,7 +23196,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 457 */
+/* 456 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23224,7 +23225,7 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 458 */
+/* 457 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23246,11 +23247,11 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 459 */
+/* 458 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(453);
 
 
 /** Detect free variable `self`. */
@@ -23263,7 +23264,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 460 */
+/* 459 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23299,12 +23300,12 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 461 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(185),
-    getRawTag = __webpack_require__(464),
-    objectToString = __webpack_require__(465);
+    getRawTag = __webpack_require__(463),
+    objectToString = __webpack_require__(464);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -23333,7 +23334,7 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 462 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -23344,10 +23345,10 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(69)))
 
 /***/ }),
-/* 463 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(466);
+var overArg = __webpack_require__(465);
 
 /** Built-in value references. */
 var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -23356,7 +23357,7 @@ module.exports = getPrototype;
 
 
 /***/ }),
-/* 464 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(185);
@@ -23408,7 +23409,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 465 */
+/* 464 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -23436,7 +23437,7 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 466 */
+/* 465 */
 /***/ (function(module, exports) {
 
 /**
@@ -23457,10 +23458,10 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 467 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(462);
+var freeGlobal = __webpack_require__(461);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -23472,7 +23473,7 @@ module.exports = root;
 
 
 /***/ }),
-/* 468 */
+/* 467 */
 /***/ (function(module, exports) {
 
 /**
@@ -23507,12 +23508,12 @@ module.exports = isObjectLike;
 
 
 /***/ }),
-/* 469 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(461),
-    getPrototype = __webpack_require__(463),
-    isObjectLike = __webpack_require__(468);
+var baseGetTag = __webpack_require__(460),
+    getPrototype = __webpack_require__(462),
+    isObjectLike = __webpack_require__(467);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -23572,6 +23573,178 @@ function isPlainObject(value) {
 }
 
 module.exports = isPlainObject;
+
+
+/***/ }),
+/* 469 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+
+
+var invariant = __webpack_require__(1);
+var hasOwnProperty = {}.hasOwnProperty;
+
+function shallowCopy(x) {
+  if (Array.isArray(x)) {
+    return x.concat();
+  } else if (x && typeof x === 'object') {
+    return Object.assign(new x.constructor(), x);
+  } else {
+    return x;
+  }
+}
+
+var COMMAND_PUSH = '$push';
+var COMMAND_UNSHIFT = '$unshift';
+var COMMAND_SPLICE = '$splice';
+var COMMAND_SET = '$set';
+var COMMAND_MERGE = '$merge';
+var COMMAND_APPLY = '$apply';
+
+var ALL_COMMANDS_LIST = [
+  COMMAND_PUSH,
+  COMMAND_UNSHIFT,
+  COMMAND_SPLICE,
+  COMMAND_SET,
+  COMMAND_MERGE,
+  COMMAND_APPLY,
+];
+
+var ALL_COMMANDS_SET = {};
+
+ALL_COMMANDS_LIST.forEach(function(command) {
+  ALL_COMMANDS_SET[command] = true;
+});
+
+function invariantArrayCase(value, spec, command) {
+  invariant(
+    Array.isArray(value),
+    'update(): expected target of %s to be an array; got %s.',
+    command,
+    value
+  );
+  var specValue = spec[command];
+  invariant(
+    Array.isArray(specValue),
+    'update(): expected spec of %s to be an array; got %s. ' +
+    'Did you forget to wrap your parameter in an array?',
+    command,
+    specValue
+  );
+}
+
+/**
+ * Returns a updated shallow copy of an object without mutating the original.
+ * See https://facebook.github.io/react/docs/update.html for details.
+ */
+function update(value, spec) {
+  invariant(
+    typeof spec === 'object',
+    'update(): You provided a key path to update() that did not contain one ' +
+    'of %s. Did you forget to include {%s: ...}?',
+    ALL_COMMANDS_LIST.join(', '),
+    COMMAND_SET
+  );
+
+  if (hasOwnProperty.call(spec, COMMAND_SET)) {
+    invariant(
+      Object.keys(spec).length === 1,
+      'Cannot have more than one key in an object with %s',
+      COMMAND_SET
+    );
+
+    return spec[COMMAND_SET];
+  }
+
+  var nextValue = shallowCopy(value);
+
+  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
+    var mergeObj = spec[COMMAND_MERGE];
+    invariant(
+      mergeObj && typeof mergeObj === 'object',
+      'update(): %s expects a spec of type \'object\'; got %s',
+      COMMAND_MERGE,
+      mergeObj
+    );
+    invariant(
+      nextValue && typeof nextValue === 'object',
+      'update(): %s expects a target of type \'object\'; got %s',
+      COMMAND_MERGE,
+      nextValue
+    );
+    Object.assign(nextValue, spec[COMMAND_MERGE]);
+  }
+
+  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
+    invariantArrayCase(value, spec, COMMAND_PUSH);
+    spec[COMMAND_PUSH].forEach(function(item) {
+      nextValue.push(item);
+    });
+  }
+
+  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
+    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
+    spec[COMMAND_UNSHIFT].forEach(function(item) {
+      nextValue.unshift(item);
+    });
+  }
+
+  if (hasOwnProperty.call(spec, COMMAND_SPLICE)) {
+    invariant(
+      Array.isArray(value),
+      'Expected %s target to be an array; got %s',
+      COMMAND_SPLICE,
+      value
+    );
+    invariant(
+      Array.isArray(spec[COMMAND_SPLICE]),
+      'update(): expected spec of %s to be an array of arrays; got %s. ' +
+      'Did you forget to wrap your parameters in an array?',
+      COMMAND_SPLICE,
+      spec[COMMAND_SPLICE]
+    );
+    spec[COMMAND_SPLICE].forEach(function(args) {
+      invariant(
+        Array.isArray(args),
+        'update(): expected spec of %s to be an array of arrays; got %s. ' +
+        'Did you forget to wrap your parameters in an array?',
+        COMMAND_SPLICE,
+        spec[COMMAND_SPLICE]
+      );
+      nextValue.splice.apply(nextValue, args);
+    });
+  }
+
+  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
+    invariant(
+      typeof spec[COMMAND_APPLY] === 'function',
+      'update(): expected spec of %s to be a function; got %s.',
+      COMMAND_APPLY,
+      spec[COMMAND_APPLY]
+    );
+    nextValue = spec[COMMAND_APPLY](nextValue);
+  }
+
+  for (var k in spec) {
+    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
+      nextValue[k] = update(value[k], spec[k]);
+    }
+  }
+
+  return nextValue;
+}
+
+module.exports = update;
 
 
 /***/ }),
@@ -24093,10 +24266,10 @@ var CSSProperty = __webpack_require__(186);
 var ExecutionEnvironment = __webpack_require__(14);
 var ReactInstrumentation = __webpack_require__(26);
 
-var camelizeStyleName = __webpack_require__(437);
+var camelizeStyleName = __webpack_require__(436);
 var dangerousStyleValue = __webpack_require__(531);
-var hyphenateStyleName = __webpack_require__(444);
-var memoizeStringOnly = __webpack_require__(447);
+var hyphenateStyleName = __webpack_require__(443);
+var memoizeStringOnly = __webpack_require__(446);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -24634,7 +24807,7 @@ var _prodInvariant = __webpack_require__(6);
 var DOMLazyTree = __webpack_require__(66);
 var ExecutionEnvironment = __webpack_require__(14);
 
-var createNodesFromMarkup = __webpack_require__(440);
+var createNodesFromMarkup = __webpack_require__(439);
 var emptyFunction = __webpack_require__(30);
 var invariant = __webpack_require__(1);
 
@@ -28897,7 +29070,7 @@ var ReactHostOperationHistoryHook = __webpack_require__(504);
 var ReactComponentTreeHook = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(14);
 
-var performanceNow = __webpack_require__(449);
+var performanceNow = __webpack_require__(448);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -29493,7 +29666,7 @@ var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(35);
 
 var getEventTarget = __webpack_require__(135);
-var getUnboundedScrollPosition = __webpack_require__(442);
+var getUnboundedScrollPosition = __webpack_require__(441);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -33055,15 +33228,15 @@ var _warning = __webpack_require__(208);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _isPlainObject = __webpack_require__(469);
+var _isPlainObject = __webpack_require__(468);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _hoistNonReactStatics = __webpack_require__(450);
+var _hoistNonReactStatics = __webpack_require__(449);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-var _invariant = __webpack_require__(452);
+var _invariant = __webpack_require__(451);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -36902,6 +37075,69 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: store },
   _react2.default.createElement(_app2.default, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 566 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(31);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactAddonsUpdate = __webpack_require__(469);
+
+var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BigImage = function (_Component) {
+  _inherits(BigImage, _Component);
+
+  function BigImage(props) {
+    _classCallCheck(this, BigImage);
+
+    var _this = _possibleConstructorReturn(this, (BigImage.__proto__ || Object.getPrototypeOf(BigImage)).call(this, props));
+
+    _this.state = {
+      artwork_url: props.artwork_url
+    };
+    return _this;
+  }
+
+  _createClass(BigImage, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      this.setState({
+        artwork_url: props.artwork_url
+
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('div', { className: 'big_image', style: { backgroundImage: 'url(' + this.state.artwork_url + ')' } });
+    }
+  }]);
+
+  return BigImage;
+}(_react.Component);
+
+exports.default = BigImage;
 
 /***/ })
 /******/ ]);

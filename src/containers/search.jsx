@@ -13,16 +13,14 @@ class Search extends Component {
 
         <label htmlFor="songInput"> <img src="/images/icons/search.svg" /></label>
 
-        <input 
+        <input
           type="text" 
           className="searchInput" 
           id="songInput" 
           onInput={ this.props.saveQuery }
           onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
-          value={ this.props.query.value } 
+          defaultValue={this.props.query.value}
         />
-
-        <button onClick={() => this.props.executeQuery(true) }>Wyszukaj</button>
 
       </div>
     )

@@ -34,16 +34,20 @@ module.exports = {
     return newUrl;
   },
   
-  createStream: function(stream_url, client_id) {
-    const song = new Audio(stream_url + "?client_id=" + client_id);
-
-    return song;
-  },
-  
   convertSecondsToMs: function(d) {
     let m = Math.floor(d / 60);
     let s = Math.floor(d % 60);
     return ((m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s);
+  },
+  
+    
+  prepareStorage: function() {
+    if(localStorage.getItem('muted') == null) {
+      localStorage.setItem('muted', false);
+    }
+    if(localStorage.getItem('volume') == null) {
+      localStorage.setItem('volume', "0.5");
+    }
   }
   
 }

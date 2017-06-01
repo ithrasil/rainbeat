@@ -7,6 +7,7 @@ import Search from './search.jsx';
 
 import Card from './player/card.jsx';
 import Controls from './player/controls.jsx';
+import BigImage from './player/bigImage.jsx';
 
 import helpers from '../helpers.jsx';
 
@@ -40,7 +41,7 @@ class Player extends React.Component {
     return(
       
       <div className="player_component">
-        <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
+        <BigImage artwork_url={ artwork_url } />
         <Search  />
         <div className="cards">
           <div className="wrapper">
