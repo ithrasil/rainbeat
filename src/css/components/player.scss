@@ -19,7 +19,7 @@
     overflow-y: scroll;
     display: block;
     width: 500px;
-    height: 700px;
+    height: calc(100% - 376px);
     position: relative;
     background: #050505;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
