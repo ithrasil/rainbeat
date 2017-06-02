@@ -26,6 +26,8 @@ module.exports = {
   },
   
   resizeArtwork: function(url, size) {
+    if(url == null) return "https://unsplash.it/500";
+    
     const beginning = url.lastIndexOf('-');
     const end = url.lastIndexOf('.');
 
@@ -40,7 +42,6 @@ module.exports = {
     return ((m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s);
   },
   
-    
   prepareStorage: function() {
     if(localStorage.getItem('muted') == null) {
       localStorage.setItem('muted', false);

@@ -15,10 +15,6 @@
     background: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-    @media (max-width: 900px) {
-      padding: 10px 20px;
-    }
-
     .logo {
       a {
         img {
@@ -54,20 +50,9 @@
         list-style-type: none;
         padding: 0;
 
-        @media (max-width: 900px) {
-          padding-left: 0;
-          display: block;
-        }
-
         li {
           display: inline-block;
           margin: 0 5px;
-
-          @media (max-width: 900px) {
-            text-align: center;
-            margin: 10px;
-            display: block;
-          }
 
           &:first-child {
             margin: 0 5px 0 0;
@@ -92,19 +77,6 @@
               color: $accent;
               cursor: pointer;
             }
-
-            @media (max-width: 900px) {
-              color: #000;
-              font-size: 1.3em;
-              font-weight: 500;
-              line-height: normal;
-              padding: 10px 10px;
-              letter-spacing: 3px;
-
-              &:hover {
-                border-color: transparent;
-              }
-            }
           }
         }
       }
@@ -122,10 +94,6 @@
         width: 35px;
         border-radius: 5px;
         margin-top: 10px;
-
-        @media (max-width: 900px) {
-          display: block;
-        }
       }
     }
   }

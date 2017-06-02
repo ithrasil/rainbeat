@@ -14,7 +14,6 @@ import Controls from './player/controls.jsx';
 class Player extends React.Component {
   
   handleClick(value) { 
-    console.log(this.props);
     const id = value;
     const songs = this.props.songs.songs;
     this.props.changeCard(id);

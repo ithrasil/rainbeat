@@ -22,6 +22,7 @@ class Card extends React.Component {
   }
   
   handleClick() {
+    if(this.state.isActive) return;
     this.props.onClick(this.props.id);
   }
   
@@ -30,11 +31,11 @@ class Card extends React.Component {
     
     let artwork_url;
     
-    if(this.state.song.artwork_url == "https://unsplash.it/300") {
+    if(this.state.song.artwork_url == "https://unsplash.it/50") {
       artwork_url = this.state.song.artwork_url;
     }
     else {
-      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 300) : "https://unsplash.it/300";
+      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "https://unsplash.it/50";
     }
     
     let title = this.state.song.title;

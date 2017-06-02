@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import update from 'react-addons-update';
+
+import { resizeArtwork } from '../helpers.jsx';
 
 class BigImage extends Component {
 	
@@ -12,16 +13,21 @@ class BigImage extends Component {
   }
   
   componentWillReceiveProps(props) {
-    this.setState({
-      artwork_url: props.artwork_url
-      
-    });
+    if(this.state.artwork_url != props.artwork_url) {
+      this.setState({ artwork_url: props.artwork_url });
+    }
     
   }
 	
   render() {
+    
+    let artwork_url;
+    
+    artwork_url = this.state.artwork_url ? resizeArtwork(this.state.artwork_url, 500) : "https://unsplash.it/500";
+
+    
     return(
-      <div className="big_image" style={{ backgroundImage : 'url(' + this.state.artwork_url + ')' }}></div>
+      <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
     )
   
   }

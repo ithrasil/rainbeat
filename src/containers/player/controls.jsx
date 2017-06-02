@@ -1,8 +1,4 @@
 import React from 'react';
-import update from 'react-addons-update';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 import { convertSecondsToMs, prepareStorage } from '../../helpers.jsx';
 
@@ -101,11 +97,14 @@ class Controls extends React.Component {
     const trackLeftX = this.track.getBoundingClientRect().left;
     const difference = Math.ceil(mouseX - trackLeftX);
 
-    this.intendedTime.style.transform = 'translateX(' + (difference - 10) + 'px)';
     this.intendedTime.textContent = convertSecondsToMs(Math.floor(difference / this.state.timeIteration));
   }
   
   handleMouseLeave() {
+
+    this.intendedTime.classList.remove('active');
+    this.currentTime.classList.add('active');
+    
     if(this.state.isMouseDown == false) return;
     
     if(this.state.paused) {
@@ -114,6 +113,12 @@ class Controls extends React.Component {
     }
     this.moveDot(event);
     this.state.isMouseDown = false;
+  }
+  
+  handleMouseEnter() {
+
+    this.currentTime.classList.remove('active');
+    this.intendedTime.classList.add('active');
   }
 
   handleMouseDown(event) {
@@ -200,19 +205,24 @@ class Controls extends React.Component {
 
             <div 
               className="track" 
-              onMouseMove={ this.handleMouseMove.bind(this) } 
+              
               onMouseLeave={ this.handleMouseLeave.bind(this) }
+              onMouseEnter={ this.handleMouseEnter.bind(this) }
+              
+              onMouseMove={ this.handleMouseMove.bind(this) } 
               onMouseDown={ this.handleMouseDown.bind(this) }
               onMouseUp={ this.handleMouseUp.bind(this) }
               ref={(track) => { this.track = track; }} 
             >
 
               <div className="track_elapsed" style={{ width: `${ this.state.time * this.state.timeIteration + 2 }px`}}></div>
-              <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
               <div className="dot_position" style={{ transform: `translateX(${ this.state.time * this.state.timeIteration -5 }px)`}}></div>
             </div>
 
-            <div className="current_time">{ convertSecondsToMs(this.state.stream.currentTime) }</div>
+            <div className="time_placeholder">
+              <div className="current_time active" ref={ (currentTime) => { this.currentTime = currentTime; }}>{ convertSecondsToMs(this.state.stream.currentTime) }</div>
+              <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
+            </div>
 
           </div>
             

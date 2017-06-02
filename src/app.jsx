@@ -51,7 +51,7 @@ class App extends Component {
         let song = songs[0];
       
         if(song.artwork_url == null) {
-          song.artwork_url = "https://unsplash.it/300";
+          song.artwork_url = "https://unsplash.it/50";
         }
         
         this.props.updateStream([song.stream_url, this.props.clientId])
@@ -86,7 +86,7 @@ class App extends Component {
 
     if(this.props.received) {
       
-      const artwork_url = resizeArtwork(this.props.songs[this.props.cardId].artwork_url, 500);
+      const artwork_url = this.props.songs[this.props.cardId].artwork_url
       
       return(
         <div className="root">
