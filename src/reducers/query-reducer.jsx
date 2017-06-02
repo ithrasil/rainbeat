@@ -4,6 +4,7 @@ export default function(state=null, action) {
   
   switch(action.type) {
     case "QUERY_UPDATE":
+      if(action.payload == state.value) return state;
       state.value = action.payload;
       localStorage.setItem('query', action.payload);
       break;

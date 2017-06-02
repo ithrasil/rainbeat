@@ -17,7 +17,6 @@ class Search extends Component {
           <input
             type="text" 
             className="searchInput" 
-            id="songInput" 
             onInput={ this.props.saveQuery }
             onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
             defaultValue={this.props.query.value}

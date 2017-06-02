@@ -23,8 +23,6 @@ class Controls extends React.Component {
       time: 0
     }
     
-    console.log(this.state.volume);
-    
   }
   
   componentDidMount() {
@@ -161,8 +159,6 @@ class Controls extends React.Component {
     this.setState({ volume: volume });
     this.state.stream.volume = volume;
     
-    console.log(volume);
-    
     localStorage.setItem('volume', volume);
   }
   
@@ -172,7 +168,7 @@ class Controls extends React.Component {
  
     return(
       
-      <div tabIndex="0" className="controls" onKeyPress={ this.handleKeyPress.bind(this) }>
+      <div className="controls" onKeyPress={ this.handleKeyPress.bind(this) }>
         
         <div className="song-status">
          

@@ -1,0 +1,10 @@
+.big_image {
+    float: left;
+    background-size: auto auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    transition: .5s;
+    width: calc(100% - 500px);
+    height: 100%;
+}

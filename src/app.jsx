@@ -17,9 +17,10 @@ import { updateStream } from './actions/stream.jsx';
 // Containers
 import Navigation from './containers/navigation.jsx';
 import Player from './containers/player.jsx';
+import BigImage from './containers/bigImage.jsx';
 
 // Helpers
-import { assignCardId } from './helpers.jsx';
+import { assignCardId, resizeArtwork } from './helpers.jsx';
 
 class App extends Component { 
   
@@ -29,7 +30,7 @@ class App extends Component {
   
   handleQuery() {
     
-    if(this.props.songs.songLoaded == false) return;
+    if(this.props.loaded == false) return;
     
     const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.clientId}&q=${this.props.query.value}&limit25`;
     
@@ -40,7 +41,7 @@ class App extends Component {
         
         if(songs.length == 0) return;
         
-        if(this.props.songs.received) {
+        if(this.props.received) {
           this.props.stream.pause();
           this.props.changeReceiveStatus(false);
         }
@@ -62,7 +63,7 @@ class App extends Component {
         });
         
         this.props.stream.addEventListener('ended', () => {
-          const cardId = assignCardId('next', this.props.songs.songs, this.props.cardId);
+          const cardId = assignCardId('next', this.props.songs, this.props.cardId);
           this.props.changeCard(cardId);
         });
         
@@ -83,9 +84,15 @@ class App extends Component {
       this.handleQuery();
     }
 
-    if(this.props.songs.received) {
+    if(this.props.received) {
+      
+      const artwork_url = resizeArtwork(this.props.songs[this.props.cardId].artwork_url, 500);
+      
       return(
-        <Player />
+        <div className="root">
+          <Player />
+          <BigImage artwork_url={ artwork_url } />
+        </div>
       )
     }
     
@@ -103,7 +110,10 @@ function mapStateToProps(state) {
   return {
     query: state.query,
     clientId: state.config.clientId,
-    songs: state.songs,
+    songs: state.songs.songs,
+    received: state.songs.received,
+    loaded: state.songs.loaded,
+    songs: state.songs.songs,
     cardId: state.card.id,
     stream: state.stream.stream
   }

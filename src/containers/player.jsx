@@ -10,7 +10,6 @@ import Search from './search.jsx';
 
 import Card from './player/card.jsx';
 import Controls from './player/controls.jsx';
-import BigImage from './player/bigImage.jsx';
 
 class Player extends React.Component {
   
@@ -24,17 +23,11 @@ class Player extends React.Component {
 
   render() {
     let cards = [];
-    let artwork_url;
     const length = this.props.songs.songs.length;
     
     for (var i = 0; i < length; i++) {
       const song = this.props.songs.songs[i];
-      let isActive = false;
-      
-      if(i == this.props.cardId) {
-        isActive = true;
-        artwork_url = this.props.songs.songs[i].artwork_url;
-      }
+      let isActive = (i == this.props.cardId);
       
       cards.push(
         <Card 
@@ -49,9 +42,8 @@ class Player extends React.Component {
     return(
       
       <div className="player_component">
-        <BigImage artwork_url={ artwork_url } />
         <Search  />
-        <div className="cards">
+        <div className="cards" data-simplebar>
           { cards }
           <div className="scrollbar">
             <div className="thumb"></div>
