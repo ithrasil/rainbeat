@@ -38,7 +38,11 @@
 
 .active {
   z-index: 2;
-  background: #121212;
+  background: #151515;
+  
+  .label {
+    color: $accent;
+  }
 
   .dataset {
     &:before {

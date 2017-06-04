@@ -23,7 +23,7 @@ class Card extends React.Component {
   
   handleClick() {
     if(this.state.isActive) return;
-    this.props.onClick(this.props.id);
+    this.props.songChange("click", this.props.id);
   }
   
   render() {

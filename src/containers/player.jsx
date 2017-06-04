@@ -4,28 +4,39 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { changeCard } from '../actions/card.jsx';
-import { updateStream } from '../actions/stream.jsx';
 
 import Search from './search.jsx';
 
 import Card from './player/card.jsx';
 import Controls from './player/controls.jsx';
 
+// Helpers
+import { assignCardId } from '../helpers.jsx';
+
+
 class Player extends React.Component {
   
-  handleClick(value) { 
-    const id = value;
-    const songs = this.props.songs.songs;
+  handleSongChange(type, value) { 
+    let id = 0;
+    const songs = this.props.songs;
+    
+    if(type == "end") {
+      id = assignCardId('next', songs, this.props.cardId)
+    }
+    else {
+      id = value;
+    }
+
     this.props.changeCard(id);
-    this.props.updateStream([songs[id].stream_url, this.props.config.clientId]);
   }
 
   render() {
+
     let cards = [];
-    const length = this.props.songs.songs.length;
+    const length = this.props.songs.length;
     
     for (var i = 0; i < length; i++) {
-      const song = this.props.songs.songs[i];
+      const song = this.props.songs[i];
       let isActive = (i == this.props.cardId);
       
       cards.push(
@@ -33,7 +44,7 @@ class Player extends React.Component {
           key={ i }
           id={ i }
           song={ song } 
-          onClick={ this.handleClick.bind(this) }
+          songChange={ this.handleSongChange.bind(this) }
           isActive={ isActive }  
         />);
     }
@@ -48,26 +59,28 @@ class Player extends React.Component {
             <div className="thumb"></div>
           </div>
         </div>
-        <Controls activeSong={ this.props.activeSong } stream={ this.props.stream }/>
+        <Controls 
+          activeSong={ this.props.activeSong } 
+          stream={ this.props.stream } 
+          songChange={ this.handleSongChange.bind(this) }
+        />
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
+
   return {
     cardId: state.card.id,
-    songs: state.songs,
-    stream: state.stream.stream,
-    activeSong: state.songs.songs[state.card.id],
-    config: state.config
+    songs: state.songs.songs,
+    activeSong: state.songs.songs[state.card.id]
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
-    changeCard: changeCard,
-    updateStream: updateStream
+    changeCard: changeCard
   };
   
   return bindActionCreators(functions, dispatch);

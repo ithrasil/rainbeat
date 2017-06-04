@@ -12,17 +12,20 @@ import Axios from 'axios';
 import { executeQuery } from './actions/query.jsx';
 import { changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
 import { changeCard } from './actions/card.jsx';
-import { updateStream } from './actions/stream.jsx';
+
+// Constants
+import { CLIENT_ID } from './constants/config.jsx';
 
 // Containers
 import Navigation from './containers/navigation.jsx';
 import Player from './containers/player.jsx';
 import BigImage from './containers/bigImage.jsx';
 
-// Helpers
-import { assignCardId, resizeArtwork } from './helpers.jsx';
-
 class App extends Component { 
+  
+  constructor(props) {
+    super(props);
+  }
   
   componentDidMount() {
     this.handleQuery();
@@ -30,43 +33,21 @@ class App extends Component {
   
   handleQuery() {
     
-    if(this.props.loaded == false) return;
-    
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${this.props.clientId}&q=${this.props.query.value}&limit25`;
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${ CLIENT_ID }&q=${this.props.query.value}&limit25`;
     
     Axios.get(endpoint)
       .then(response => {
-
+        console.log(3);
         const songs = response.data;
         
         if(songs.length == 0) return;
         
         if(this.props.received) {
-          this.props.stream.pause();
           this.props.changeReceiveStatus(false);
         }
         
         this.props.changeCard(0);
-      
-        let song = songs[0];
-      
-        if(song.artwork_url == null) {
-          song.artwork_url = "https://unsplash.it/50";
-        }
-        
-        this.props.updateStream([song.stream_url, this.props.clientId])
-        this.props.changeSongStatus(false);
         this.props.updateSongs(songs);
-      
-        this.props.stream.addEventListener('canplay', () => {
-          this.props.changeSongStatus(true);
-        });
-        
-        this.props.stream.addEventListener('ended', () => {
-          const cardId = assignCardId('next', this.props.songs, this.props.cardId);
-          this.props.changeCard(cardId);
-        });
-        
         this.props.changeReceiveStatus(true);
         
     });
@@ -107,15 +88,14 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+
   return {
     query: state.query,
-    clientId: state.config.clientId,
     songs: state.songs.songs,
     received: state.songs.received,
     loaded: state.songs.loaded,
     songs: state.songs.songs,
-    cardId: state.card.id,
-    stream: state.stream.stream
+    cardId: state.card.id
   }
 }
 
@@ -125,8 +105,7 @@ function matchDispatchToProps(dispatch) {
     changeSongStatus: changeSongStatus,
     changeReceiveStatus: changeReceiveStatus,
     updateSongs: updateSongs,
-    changeCard: changeCard,
-    updateStream: updateStream
+    changeCard: changeCard
   };
   
   return bindActionCreators(functions, dispatch);
