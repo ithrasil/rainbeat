@@ -1,8 +1,9 @@
 // React
 import React from 'react';
 
-// Howler - sound library
-import ReactHowler from 'react-howler'
+// React modules
+import ReactHowler from 'react-howler';
+import InputRange from 'react-input-range';
 
 // Helpers
 import { convertSecondsToMs, prepareStorage } from '../../helpers.jsx';
@@ -11,7 +12,8 @@ import { convertSecondsToMs, prepareStorage } from '../../helpers.jsx';
 import { CLIENT_ID } from '../../constants/config.jsx';
 
 // Events
-import { mouseEnter, mouseMove, mouseLeave, mouseDown, mouseUp } from './events/mouseEvents.jsx';
+import mouse from './events/mouseEvents.jsx';
+
 import { keyPress } from './events/keyboardEvents.jsx';
 
 class Controls extends React.Component {
@@ -27,7 +29,8 @@ class Controls extends React.Component {
     this.state = {
       activeSong: props.activeSong,
       playing: true,
-      isMouseDown: false,
+      isDownTrack: false,
+      isDownVolume: false,
       volume: volume,
       mute: mute,
       progress: 0,
@@ -60,13 +63,13 @@ class Controls extends React.Component {
     }
   }
   
-  onload() {
+  onLoad() {
     const timeIteration = (this.track.offsetWidth) / this.howler.duration();
     this.setState({ timeIteration: timeIteration });
     this.timeUpdate();
   }
 
-  onEnded() {
+  onEnd() {
     this.props.songChange('end');
   }
   
@@ -86,8 +89,7 @@ class Controls extends React.Component {
     localStorage.setItem('mute', mute);
   }
   
-  handleVolume(event) { 
-    const volume = event.target.value / 100;
+  handleVolume(volume) { 
     this.setState({ volume: volume });
     localStorage.setItem('volume', volume);
   }
@@ -104,7 +106,6 @@ class Controls extends React.Component {
   }
   
   render() {
-    
     const volumeIcon = this.state.mute ? "volume-mute" : "volume";
     const playIcon = this.state.playing ? "pause" : "play";
     
@@ -118,10 +119,9 @@ class Controls extends React.Component {
           playing={ this.state.playing }
           ext="mp3"
           html5={ true }
-          
-          onLoad={ this.onload.bind(this) }
+          onEnd={ this.onEnd.bind(this) }
+          onLoad={ this.onLoad.bind(this) }
           onPlay={ this.timeUpdate.bind(this) }
-          
           volume={ this.state.volume }
           mute={ this.state.mute }
           
@@ -149,7 +149,14 @@ class Controls extends React.Component {
             
             <div className="volume_controls">
               <img src={ `/images/icons/${ volumeIcon }.svg` } onClick={ this.handleMute.bind(this) }/>
-              <input className="slider" max="100" defaultValue={ this.state.volume * 100 } min="0" step="1" type="range" onInput={ this.handleVolume.bind(this) }/>
+              <InputRange
+                maxValue={ 1 }
+                minValue={ 0 }
+                step={ 0.01 }
+                value={ this.state.volume }
+                onChange={ this.handleVolume.bind(this) }
+             />
+            
             </div>
           </div>
 
@@ -157,13 +164,11 @@ class Controls extends React.Component {
 
             <div 
               className="track" 
-              
-              onMouseEnter={ mouseEnter.bind(this) }
-              onMouseMove={ mouseMove.bind(this) } 
-              onMouseLeave={ mouseLeave.bind(this) }
-              
-              onMouseDown={ mouseDown.bind(this) }
-              onMouseUp={ mouseUp.bind(this) }
+              onMouseEnter={ mouse.enterTrack.bind(this) }
+              onMouseMove={ mouse.moveTrack.bind(this) } 
+              onMouseLeave={ mouse.leaveTrack.bind(this) }
+              onMouseDown={ mouse.downTrack.bind(this) }
+              onMouseUp={ mouse.upTrack.bind(this) }
               ref={(track) => { this.track = track; }} 
             >
 

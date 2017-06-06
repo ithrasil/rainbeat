@@ -37,7 +37,7 @@ class App extends Component {
     
     Axios.get(endpoint)
       .then(response => {
-        console.log(3);
+
         const songs = response.data;
         
         if(songs.length == 0) return;

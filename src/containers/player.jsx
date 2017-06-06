@@ -1,12 +1,18 @@
+// React
 import React from 'react';
 
+// React modules
+import ScrollArea from "react-scrollbar";
+
+// Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+// Actions
 import { changeCard } from '../actions/card.jsx';
 
-import Search from './search.jsx';
-
+// Containers
+import Search from './player/search.jsx';
 import Card from './player/card.jsx';
 import Controls from './player/controls.jsx';
 
@@ -53,12 +59,13 @@ class Player extends React.Component {
       
       <div className="player_component">
         <Search  />
-        <div className="cards" data-simplebar>
+        <ScrollArea 
+          className="cards"
+          speed={ 1 }
+          smoothScrolling={ true }
+         >
           { cards }
-          <div className="scrollbar">
-            <div className="thumb"></div>
-          </div>
-        </div>
+        </ScrollArea>
         <Controls 
           activeSong={ this.props.activeSong } 
           stream={ this.props.stream } 
@@ -70,7 +77,6 @@ class Player extends React.Component {
 }
 
 function mapStateToProps(state) {
-
   return {
     cardId: state.card.id,
     songs: state.songs.songs,

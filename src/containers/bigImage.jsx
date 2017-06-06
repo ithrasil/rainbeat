@@ -1,5 +1,7 @@
+// React
 import React, { Component } from 'react';
 
+// Helpers
 import { resizeArtwork } from '../helpers.jsx';
 
 class BigImage extends Component {
@@ -23,7 +25,7 @@ class BigImage extends Component {
     
     let artwork_url;
     
-    artwork_url = this.state.artwork_url ? resizeArtwork(this.state.artwork_url, 500) : "https://unsplash.it/500";
+    artwork_url = this.state.artwork_url ? resizeArtwork(this.state.artwork_url, 500) : "http://via.placeholder.com/500?text=cover";
 
     
     return(

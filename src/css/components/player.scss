@@ -2,36 +2,14 @@
   overflow: hidden;
   max-height: 100%;
   min-height: 100%;
-  background: #121212;
+  background: $player;
   width: 500px;
   float: left;
+  
+  @import "player/search";
 
-  .cards {
-    overflow-y: auto;
-    display: block;
-    width: 500px;
-    height: calc(100vh - 376px);
-    position: relative;
-    background: #121212;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    
-    &::-webkit-scrollbar {
-      width: 10px;;
-    }
-
-    &::-webkit-scrollbar-track {
-        width: 10px;
-        background: #121212;
-        opacity: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #444;
-    }
-
-    @import "player/card.scss";
-  }
+  @import "player/cards.scss";
 
   @import "player/controls.scss";
+  
 }

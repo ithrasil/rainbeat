@@ -9,6 +9,7 @@ module.exports = {
         cardId = 0;
       }
       else {
+        console.log(1);
         cardId++;
       }
     }
@@ -26,7 +27,7 @@ module.exports = {
   },
   
   resizeArtwork: function(url, size) {
-    if(url == null) return "https://unsplash.it/500";
+    if(url == null) return "http://via.placeholder.com/500x500";
     
     const beginning = url.lastIndexOf('-');
     const end = url.lastIndexOf('.');

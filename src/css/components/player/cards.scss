@@ -1,0 +1,74 @@
+.cards {
+  display: block;
+  width: 500px;
+  height: calc(100vh - 376px);
+  position: relative;
+  background: #121212;
+  z-index: 2;
+
+  > .scrollbar-container.vertical {
+    width: 10px;
+    background: $player;
+    opacity: 1;
+  
+    > .scrollbar {
+      background-color: #444; 
+      margin: 0;
+      width: 10px;
+    }
+  }
+
+  .card {
+    position: relative;
+    transition: .3s ease-in-out;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    &:hover {
+      background: #212121;
+      cursor: pointer;
+    }
+
+    .artwork {
+      width: 50px;
+      max-height: 50px;
+      border-radius: 3px;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .label {
+      text-align: left;
+      border-radius: 3px;
+      position: relative;
+      font-size: 16px;
+      padding: 0 15px;
+      color: white;
+      font-weight: 300;
+      letter-spacing: 1px;
+      transition: .7s;
+    }
+
+  }
+
+  .active {
+    z-index: 2;
+    background: #151515;
+
+    .label {
+      color: $accent;
+    }
+
+    .dataset {
+      &:before {
+        background-size: 30%!important;
+        opacity: 0!important;
+      }
+    }
+
+    img {
+      box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+}

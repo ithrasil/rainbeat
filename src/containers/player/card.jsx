@@ -1,5 +1,7 @@
+// React
 import React from 'react';
 
+// Helpers
 import { resizeArtwork } from '../../helpers.jsx';
 
 class Card extends React.Component {
@@ -31,11 +33,11 @@ class Card extends React.Component {
     
     let artwork_url;
     
-    if(this.state.song.artwork_url == "https://unsplash.it/50") {
+    if(this.state.song.artwork_url == "http://via.placeholder.com/50?text=cover") {
       artwork_url = this.state.song.artwork_url;
     }
     else {
-      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "https://unsplash.it/50";
+      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "http://via.placeholder.com/50?text=cover";
     }
     
     let title = this.state.song.title;

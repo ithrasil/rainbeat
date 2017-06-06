@@ -1,9 +1,12 @@
+// React
 import React, { Component } from 'react';
 
+// Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { saveQuery, executeQuery } from '../actions/query.jsx';
+// Actions
+import { saveQuery, executeQuery } from '../../actions/query.jsx';
 
 class Search extends Component {
 
