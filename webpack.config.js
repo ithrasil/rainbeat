@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     path: 'public',
     filename: 'bundle.js'
   },
-  
+
   devtool: 'cheap-module-source-map',
 
   module: {
@@ -18,7 +19,15 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2016', 'react']
+          presets: ['env', 'react']
+        }
+      },
+			{
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['env']
         }
       },
       {
@@ -31,6 +40,17 @@ module.exports = {
       }
     ]
   },
+		
+	resolve: {
+		alias: {
+			Helpers$: path.resolve(__dirname, 'src/helpers.jsx'),
+			Styles$: path.resolve(__dirname, 'src/css/index.scss'),
+			Actions: path.resolve(__dirname, 'src/actions'),
+			Constants: path.resolve(__dirname, 'src/constants'),
+			Containers: path.resolve(__dirname, 'src/containers'),
+			Reducers: path.resolve(__dirname, 'src/reducers')
+		}
+	},
 
   plugins: [
     new BrowserSyncPlugin({
@@ -40,7 +60,7 @@ module.exports = {
         baseDir: './public'
       }
     }),
-    
+//	,		
 //    new webpack.DefinePlugin({
 //      'process.env': {
 //        'NODE_ENV': JSON.stringify('production')

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { saveQuery, executeQuery } from '../../actions/query.jsx';
+import { saveQuery, executeQuery } from 'Actions/query.jsx';
 
 class Search extends Component {
 
@@ -18,6 +18,7 @@ class Search extends Component {
             <img src="/images/icons/search.svg" />
           </label>
           <input
+						id="songInput"
             type="text" 
             className="searchInput" 
             onInput={ this.props.saveQuery }

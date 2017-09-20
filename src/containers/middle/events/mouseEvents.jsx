@@ -1,5 +1,5 @@
 // Helpers
-import { convertSecondsToMs } from '../../../helpers.jsx';
+import { convertSecondsToMs } from 'Helpers';
 
 export default {
   enterTrack: function() {

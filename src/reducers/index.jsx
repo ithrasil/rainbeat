@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import queryReducer from './query-reducer.jsx';
-import songsReducer from './songs-reducer.jsx';
-import cardReducer from './card-reducer.jsx';
+import queryReducer from 'Reducers/query-reducer.jsx';
+import songsReducer from 'Reducers/songs-reducer.jsx';
+import cardReducer from 'Reducers/card-reducer.jsx';
 
 const reducers = {
   query: queryReducer,

@@ -6,17 +6,17 @@ import ReactHowler from 'react-howler';
 import InputRange from 'react-input-range';
 
 // Helpers
-import { convertSecondsToMs, prepareStorage } from '../../helpers.jsx';
+import { convertSecondsToMs, prepareStorage } from 'Helpers';
 
 // Constants
-import { CLIENT_ID } from '../../constants/config.jsx';
+import { CLIENT_ID } from 'Constants/config.jsx';
 
 // Events
 import mouse from './events/mouseEvents.jsx';
 
 import { keyPress } from './events/keyboardEvents.jsx';
 
-class Controls extends React.Component {
+class Dashboard extends React.Component {
   
   constructor(props) {
     super(props);
@@ -113,7 +113,7 @@ class Controls extends React.Component {
 
     return(
       
-      <div className="controls" onKeyPress={ keyPress.bind(this) }>
+      <div className="dashboard" onKeyPress={ keyPress.bind(this) }>
         <ReactHowler
           src={ this.state.activeSong.stream_url + "?client_id=" + CLIENT_ID }
           playing={ this.state.playing }
@@ -190,4 +190,4 @@ class Controls extends React.Component {
   }
 }
 
-export default Controls;
+export default Dashboard;

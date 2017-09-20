@@ -1,14 +1,14 @@
 // React
-import React from 'react';
+import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork } from '../../helpers.jsx';
+import { resizeArtwork } from 'Helpers';
 
-class Card extends React.Component {
+class Card extends Component {
   
   constructor(props) {
     super(props);
-
+	
     this.state = {
       song: props.song,
       isActive: props.isActive ? "active" : "",

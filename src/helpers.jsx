@@ -9,7 +9,6 @@ module.exports = {
         cardId = 0;
       }
       else {
-        console.log(1);
         cardId++;
       }
     }

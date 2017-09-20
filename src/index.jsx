@@ -1,5 +1,5 @@
 // Css
-import './css/index.scss';
+import 'Styles';
 import 'react-input-range/lib/css/index.css';
 
 // Polyfills
@@ -12,10 +12,10 @@ import ReactDOM from 'react-dom';
 // Redux
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import allReducers from './reducers/index.jsx';
+import allReducers from 'Reducers/index.jsx';
 
 // App
-import App from "./app.jsx";
+import App from "Containers/app.jsx";
 
 const store = createStore(
   allReducers,

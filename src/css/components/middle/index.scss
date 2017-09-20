@@ -1,0 +1,10 @@
+.middle {
+	width: calc(100% - 500px);
+	float: left;
+	height: 100%;
+	
+	@import "./artwork.scss";
+
+  @import "./dashboard.scss";
+}
+

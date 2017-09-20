@@ -9,17 +9,16 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 
 // Actions 
-import { executeQuery } from './actions/query.jsx';
-import { changeSongStatus, changeReceiveStatus, updateSongs } from './actions/songs.jsx';
-import { changeCard } from './actions/card.jsx';
+import { executeQuery } from 'Actions/query.jsx';
+import { changeSongStatus, changeReceiveStatus, updateSongs } from 'Actions/songs.jsx';
+import { changeCard } from 'Actions/card.jsx';
 
 // Constants
-import { CLIENT_ID } from './constants/config.jsx';
+import { CLIENT_ID } from 'Constants/config.jsx';
 
 // Containers
-import Navigation from './containers/navigation.jsx';
-import Player from './containers/player.jsx';
-import BigImage from './containers/bigImage.jsx';
+import Left from 'Containers/left/index.jsx';
+import Middle from 'Containers/middle/index.jsx';
 
 class App extends Component { 
   
@@ -33,11 +32,10 @@ class App extends Component {
   
   handleQuery() {
     
-    const endpoint = `https://api.soundcloud.com/tracks?client_id=${ CLIENT_ID }&q=${this.props.query.value}&limit25`;
+    const endpoint = `https://api.soundcloud.com/tracks?client_id=${ CLIENT_ID }&q=${this.props.query.value}`;
     
     Axios.get(endpoint)
       .then(response => {
-
         const songs = response.data;
         
         if(songs.length == 0) return;
@@ -53,8 +51,8 @@ class App extends Component {
     });
   }
   
-  handleKeyDown(e) {
-    if(e.keyCode == 13) {
+  handleKeyDown(event) {
+    if(event.keyCode == 13) {
       this.handleQuery();
     }
   }
@@ -67,12 +65,10 @@ class App extends Component {
 
     if(this.props.received) {
       
-      const artwork_url = this.props.songs[this.props.cardId].artwork_url
-      
       return(
         <div className="root">
-          <Player />
-          <BigImage artwork_url={ artwork_url } />
+          <Left />
+					<Middle />
         </div>
       )
     }

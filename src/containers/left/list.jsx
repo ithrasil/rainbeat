@@ -1,5 +1,4 @@
-// React
-import React from 'react';
+import React, { Component } from 'react';
 
 // React modules
 import ScrollArea from "react-scrollbar";
@@ -9,20 +8,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { changeCard } from '../actions/card.jsx';
+import { changeCard } from 'Actions/card.jsx';
 
-// Containers
-import Search from './player/search.jsx';
-import Card from './player/card.jsx';
-import Controls from './player/controls.jsx';
+// Containers 
+import Card from 'Containers/left/listComponents/card.jsx';
 
 // Helpers
-import { assignCardId } from '../helpers.jsx';
+import { assignCardId } from 'Helpers';
 
-
-class Player extends React.Component {
-  
-  handleSongChange(type, value) { 
+class List extends Component {
+	
+	handleSongChange(type, value) { 
     let id = 0;
     const songs = this.props.songs;
     
@@ -54,26 +50,17 @@ class Player extends React.Component {
           isActive={ isActive }  
         />);
     }
-    
-    return(
-      
-      <div className="player_component">
-        <Search  />
-        <ScrollArea 
-          className="cards"
+		return(
+			<ScrollArea 
+          className="list"
           speed={ 1 }
           smoothScrolling={ true }
          >
           { cards }
-        </ScrollArea>
-        <Controls 
-          activeSong={ this.props.activeSong } 
-          stream={ this.props.stream } 
-          songChange={ this.handleSongChange.bind(this) }
-        />
-      </div>
-    )
-  }
+      </ScrollArea>
+		)
+		
+	}
 }
 
 function mapStateToProps(state) {
@@ -92,4 +79,5 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(functions, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Player);
+export default connect(mapStateToProps, matchDispatchToProps)(List);
+

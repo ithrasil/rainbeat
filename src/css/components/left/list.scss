@@ -1,0 +1,21 @@
+.list {
+  display: block;
+  width: 500px;
+  position: relative;
+  background: #121212;
+	height: 800px;
+
+  > .scrollbar-container.vertical {
+    width: 10px;
+    background: $player;
+    opacity: 1;
+  
+    > .scrollbar {
+      background-color: #444; 
+      margin: 0;
+      width: 10px;
+    }
+  }
+	
+	@import "./listComponents/card.scss";
+}

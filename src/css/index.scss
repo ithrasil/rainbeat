@@ -4,15 +4,12 @@
 @import "base/fonts.scss";
 @import "base/vars.scss";
 
-@import './app';
-
 // #2 Utils
 @import "utils/range-inputs";
 
 // #3 Components
-@import "components/navigation";
-@import "components/player";
-@import "components/big_image";
+@import 'components/app';
+
 
 
 

@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork } from '../helpers.jsx';
+import { resizeArtwork } from 'Helpers';
 
-class BigImage extends Component {
+class Artwork extends Component {
 	
   constructor(props) {
     super(props);
@@ -23,17 +23,14 @@ class BigImage extends Component {
 	
   render() {
     
-    let artwork_url;
-    
-    artwork_url = this.state.artwork_url ? resizeArtwork(this.state.artwork_url, 500) : "http://via.placeholder.com/500?text=cover";
+    let artwork_url = this.state.url ? resizeArtwork(this.state.url, 500) : "http://via.placeholder.com/500?text=cover";
 
-    
     return(
-      <div className="big_image" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
+      <div className="artwork" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
     )
   
   }
 	
 }
 
-export default BigImage;
+export default Artwork;
