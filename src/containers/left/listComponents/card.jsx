@@ -39,6 +39,8 @@ class Card extends Component {
     else {
       artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "http://via.placeholder.com/50?text=cover";
     }
+		
+		const playIcon = this.state.isActive ? "volume" : "play";
     
     let title = this.state.song.title;
 
@@ -48,6 +50,7 @@ class Card extends Component {
     
     return(
       <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
+        <img className="status" src={ `/images/icons/${ playIcon }.svg` }/>
         <img className="artwork" src={ artwork_url } />
         <div className="label">
           <span>{ title }</span>

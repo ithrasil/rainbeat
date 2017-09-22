@@ -13,19 +13,17 @@ class Search extends Component {
   render() {
     return(
       <div className="search" >
-        <div className="wrapper">
-          <label htmlFor="songInput"> 
-            <img src="/images/icons/search.svg" />
-          </label>
-          <input
-						id="songInput"
-            type="text" 
-            className="searchInput" 
-            onInput={ this.props.saveQuery }
-            onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
-            defaultValue={this.props.query.value}
-          />
-        </div>
+				<label htmlFor="songInput"> 
+					<img src="/images/icons/search.svg" />
+				</label>
+				<input
+					id="songInput"
+					type="text" 
+					className="searchInput" 
+					onInput={ this.props.saveQuery }
+					onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
+					defaultValue={this.props.query.value}
+				/>
       </div>
     )
     

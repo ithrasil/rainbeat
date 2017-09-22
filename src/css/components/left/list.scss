@@ -1,9 +1,8 @@
 .list {
-  display: block;
+  position: absolute;
   width: 500px;
-  position: relative;
   background: #121212;
-	height: 800px;
+	height: calc(100% - 70px);
 
   > .scrollbar-container.vertical {
     width: 10px;
@@ -18,4 +17,5 @@
   }
 	
 	@import "./listComponents/card.scss";
+	@import "./listComponents/error.scss";
 }

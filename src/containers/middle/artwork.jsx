@@ -10,15 +10,15 @@ class Artwork extends Component {
     super(props);
     
     this.state = {
-      artwork_url: props.artwork_url
+      url: props.url
     }
   }
   
   componentWillReceiveProps(props) {
-    if(this.state.artwork_url != props.artwork_url) {
-      this.setState({ artwork_url: props.artwork_url });
+		
+    if(this.state.url != props.url) {
+      this.setState({ url: props.url });
     }
-    
   }
 	
   render() {
@@ -28,9 +28,7 @@ class Artwork extends Component {
     return(
       <div className="artwork" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
     )
-  
-  }
-	
+	}
 }
 
 export default Artwork;

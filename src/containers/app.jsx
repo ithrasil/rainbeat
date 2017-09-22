@@ -37,14 +37,13 @@ class App extends Component {
     Axios.get(endpoint)
       .then(response => {
         const songs = response.data;
-        
+
         if(songs.length == 0) return;
         
         if(this.props.received) {
           this.props.changeReceiveStatus(false);
         }
-        
-        this.props.changeCard(0);
+			
         this.props.updateSongs(songs);
         this.props.changeReceiveStatus(true);
         
@@ -63,23 +62,12 @@ class App extends Component {
       this.handleQuery();
     }
 
-    if(this.props.received) {
-      
-      return(
-        <div className="root">
-          <Left />
-					<Middle />
-        </div>
-      )
-    }
-    
-    else {
-      return(
-        <div>
-        
-        </div>
-      )
-    }
+    return(
+      <div className="root">
+        <Left />
+				<Middle />
+      </div>
+    )
   }
 }
 

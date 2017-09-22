@@ -1,9 +1,10 @@
 .dashboard {
-  height: 294px;
-  padding: 10px;
+	background: linear-gradient(#222, #121212, #121212);
+  height: 302px;
+  padding: 50px 10px 10px 10px;
   text-align: center;
   box-sizing: border-box;
-
+	
   &:focus {
     outline: none;
   }
@@ -17,7 +18,7 @@
 
     .desc {
       display: inline-block;
-      height: 6em;
+      height: 4em;
 
       .caption {
         font-size: 18px;
@@ -43,7 +44,7 @@
         width: 36px;
         height: 36px;
         position: relative;
-        right: 20px;
+        margin: 0 34px;
         top: 4px;
         transition: 0.5s;
 
@@ -61,6 +62,7 @@
         display: inline-block;
         color: white;
         transition: 0.5s;
+				margin: 0 40px;
 
         &:hover {
           cursor: pointer;
@@ -168,6 +170,12 @@
           .intended_time {
             opacity: 1;
           }
+					
+					.dot_position {
+						width: 16px;
+						height: 16px;
+						left: -2px;
+					}
         }
 
         .track_elapsed {
@@ -181,10 +189,13 @@
 
         .dot_position {
           transform: translateX(-5px);
-          background: $accent_dark;
-          width: 16px;
-          height: 16px;
+          background: darken($accent, 10%);
+          width: 12px;
+          height: 12px;
           border-radius: 15px;
+					position: relative;
+					left: 0;
+					transition: width .2s ease, height .2s ease, left .2s ease;
         }
       }
 

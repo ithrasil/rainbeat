@@ -20,7 +20,7 @@ export default {
   },
 
   moveVolume: function(event) {
-    console.log(2);
+    // currently not needed
   },
 
   leaveTrack: function() {
@@ -40,7 +40,7 @@ export default {
   },
 
   leaveVolume: function() {
-    console.log(3);
+    // currently not needed
   },
 
   downTrack: function(event) {
@@ -55,7 +55,7 @@ export default {
   },
 
   downVolume: function(event) {
-    console.log(4);
+    // currently not needed
   },
 
 
@@ -65,6 +65,6 @@ export default {
   },
 
   upVolume: function(event) {
-    console.log(5);
+    // currently not needed
   }
 }

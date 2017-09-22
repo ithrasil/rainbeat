@@ -12,6 +12,7 @@ import { changeCard } from 'Actions/card.jsx';
 
 // Containers 
 import Card from 'Containers/left/listComponents/card.jsx';
+import Error from 'Containers/left/listComponents/error.jsx';
 
 // Helpers
 import { assignCardId } from 'Helpers';
@@ -36,6 +37,13 @@ class List extends Component {
 
     let cards = [];
     const length = this.props.songs.length;
+
+		if(length == 0) {
+			cards.push(
+				<Error key="0"/>
+			)
+		}
+		console.log(length);
     
     for (var i = 0; i < length; i++) {
       const song = this.props.songs[i];
@@ -50,6 +58,7 @@ class List extends Component {
           isActive={ isActive }  
         />);
     }
+		console.log(cards);
 		return(
 			<ScrollArea 
           className="list"

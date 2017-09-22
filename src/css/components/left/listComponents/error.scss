@@ -1,0 +1,21 @@
+.error {
+	position: relative;
+	transition: .3s ease-in-out;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	z-index: 1;
+
+	.description {
+		text-align: left;
+		border-radius: 3px;
+		position: relative;
+		font-size: 16px;
+		padding: 0 15px;
+		color: rgba(white, .6);
+		font-weight: 300;
+		letter-spacing: 1px;
+		transition: .7s;
+	}
+	
+}

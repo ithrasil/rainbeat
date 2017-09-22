@@ -33,6 +33,12 @@ class Middle extends Component {
 	
 	render() {
 		
+		if(this.props.songs.length == 0) {
+			return(
+				<div>:(</div>
+			)
+		}
+		
 		const artwork_url = this.props.songs[this.props.cardId].artwork_url;
 		
 		return(

@@ -1,54 +1,49 @@
 .search {
   border-radius: 2px;
-  font-size: 15px;
-  line-height: 15px;
   letter-spacing: 3px;
   width: 500px;
   box-sizing: border-box;
-  font-weight: 300;
   padding: 10px;
   background: #121212;
-  z-index: 5;
-  position: relative;
   
-  .wrapper {
-    > label {
-      @media (max-width: 768px) {
-        display: none;
-      }
+	> label {
+		padding: 13px;
+		height: 24px;
+		width: 24px;
+		display: inline-block;
 
-      img {
-        position: relative;
-        top: 8px;
-        margin-left: 15px;
-        width: 26px;
-        height: 26px;
+		img {
+			position: relative;
+			width: 24px;
+			height: 24px;
 
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
 
-    > input {
-      width: 300px;
-      padding: 10px;
-      height: 21px;
-      letter-spacing: 1px;
-      font-size: 16px;
-      margin: 10px 10px 10px 40px;
-      color: white;
-      background: #121212;
-      border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      transition: 0.5s;
-      position: relative;
-      font-family: 'Open Sans', sans-serif;
+	> input {
+		display: inline-block;
+		vertical-align: top;
+		width: 	calc(100% - 131px);
+		padding: 10px 0;
+		height: 24px;
+		letter-spacing: 1px;
+		font-size: 16px;
+		margin: 3px 0 2px 15px;
+		color: rgba(white, 0.6);
+		background: #121212;
+		border: none;
+		border-bottom: 1px solid rgba(white, 0.3);
+		transition: 0.5s;
+		position: relative;
+		font-family: 'Open Sans', sans-serif;
 
-      &:active, &:focus {
-        outline: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-      }
-    }
-  }
+		&:active, &:focus {
+			outline: none;
+			color: white;
+			border-bottom: 1px solid rgba(white, 0.6);
+		}
+	}
 }
