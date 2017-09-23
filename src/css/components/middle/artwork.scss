@@ -1,9 +1,35 @@
 .artwork {
-    background-size: 250px 250px;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.8;
-    transition: .5s;
-    height: 450px;
+	position: relative;
+	height: 500px;
+	width: 100%;
+	
+	.sprite {
+		position: absolute;
+		transition: opacity 1s ease;
+		left: 0;
+		right: 0;
 		width: 100%;
+		height: 100%;
+		background-size: 400px 400px;
+		background-position: center;
+		background-repeat: no-repeat;
+		filter: grayscale(1);
+		
+		&:nth-child(2) {
+			opacity: 1;
+//			transition: .6s cubic-bezier(1, 0, 1, 0);
+			filter: grayscale(0);
+		}
+		
+		&.active {
+			opacity: 1;
+			filter: grayscale(0);
+
+			& + div {
+				opacity: 0;
+				filter: grayscale(1);
+			}
+		}
+	}
+	
 }

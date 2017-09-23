@@ -10,21 +10,17 @@ import Axios from 'axios';
 
 // Actions 
 import { executeQuery } from 'Actions/query.jsx';
-import { changeSongStatus, changeReceiveStatus, updateSongs } from 'Actions/songs.jsx';
+import { changeReceiveStatus, updateSongs } from 'Actions/searchResult.jsx';
 import { changeCard } from 'Actions/card.jsx';
 
 // Constants
 import { CLIENT_ID } from 'Constants/config.jsx';
 
 // Containers
-import Left from 'Containers/left/index.jsx';
-import Middle from 'Containers/middle/index.jsx';
+import Left from 'Containers/left/left.jsx';
+import Middle from 'Containers/middle/middle.jsx';
 
 class App extends Component { 
-  
-  constructor(props) {
-    super(props);
-  }
   
   componentDidMount() {
     this.handleQuery();
@@ -75,10 +71,8 @@ function mapStateToProps(state) {
 
   return {
     query: state.query,
-    songs: state.songs.songs,
-    received: state.songs.received,
-    loaded: state.songs.loaded,
-    songs: state.songs.songs,
+    songs: state.searchResult.songs,
+    received: state.searchResult.received,
     cardId: state.card.id
   }
 }
@@ -86,7 +80,6 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   let functions = { 
     executeQuery: executeQuery,
-    changeSongStatus: changeSongStatus,
     changeReceiveStatus: changeReceiveStatus,
     updateSongs: updateSongs,
     changeCard: changeCard

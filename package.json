@@ -4,8 +4,8 @@
   "description": "Simple music player",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack --watch --progress -p"
+    "start": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.production.js --watch --progress -p"
   },
   "repository": {
     "type": "git",

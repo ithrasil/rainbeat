@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 import queryReducer from 'Reducers/query-reducer.jsx';
-import songsReducer from 'Reducers/songs-reducer.jsx';
+import searchResultReducer from 'Reducers/searchResult-reducer.jsx';
 import cardReducer from 'Reducers/card-reducer.jsx';
 
 const reducers = {
   query: queryReducer,
-  songs: songsReducer,
+  searchResult: searchResultReducer,
   card: cardReducer
 };
 

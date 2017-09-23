@@ -40,13 +40,14 @@ class Middle extends Component {
 		}
 		
 		const artwork_url = this.props.songs[this.props.cardId].artwork_url;
+		const active_song = this.props.songs[this.props.cardId];
 		
 		return(
 			<section className="middle">
 			
 				<Artwork url={ artwork_url }></Artwork>
 				<Dashboard 
-					activeSong={ this.props.activeSong } 
+					activeSong={ active_song } 
           stream={ this.props.stream } 
           songChange={ this.handleSongChange.bind(this) }>
 				</Dashboard>
@@ -58,8 +59,7 @@ class Middle extends Component {
 function mapStateToProps(state) {
   return {
 		cardId: state.card.id,
-    songs: state.songs.songs,
-    activeSong: state.songs.songs[state.card.id]
+    songs: state.searchResult.songs
   }
 }
 

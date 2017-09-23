@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork } from 'Helpers';
+import { resizeArtwork, preloadImage } from 'Helpers';
 
 class Artwork extends Component {
 	
@@ -10,23 +10,49 @@ class Artwork extends Component {
     super(props);
     
     this.state = {
-      url: props.url
+      primary: props.url,
+			secondary: "",
+			active: 1
     }
   }
   
   componentWillReceiveProps(props) {
 		
-    if(this.state.url != props.url) {
-      this.setState({ url: props.url });
-    }
+		if(this.state.active == 1) {
+			this.setState({ 
+				secondary: props.url,
+				active: 0
+			});
+		}
+		
+		else {
+			this.setState({ 
+				primary: props.url,
+				active: 1
+			});
+		}
+		
   }
 	
   render() {
     
-    let artwork_url = this.state.url ? resizeArtwork(this.state.url, 500) : "http://via.placeholder.com/500?text=cover";
+    let primary = {
+			backgroundImage: 'url(' + (this.state.primary ? resizeArtwork(this.state.primary, 500) : "http://via.placeholder.com/500?text=cover") + ')'
+		};
+		
+		let secondary = {
+			backgroundImage: 'url(' + (this.state.secondary ? resizeArtwork(this.state.secondary, 500) : "http://via.placeholder.com/500?text=cover") + ')'
+		};
+		
+		let primary_classes = this.state.active ? "sprite active" : "sprite";
 
     return(
-      <div className="artwork" style={{ backgroundImage : 'url(' + artwork_url + ')' }}></div>
+			
+      <div className="artwork">
+				<div className={ primary_classes } style={ primary }></div>
+				<div className="sprite" style={ secondary }></div>
+			
+			</div>
     )
 	}
 }

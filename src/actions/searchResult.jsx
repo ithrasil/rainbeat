@@ -1,10 +1,3 @@
-const changeSongStatus = (boolean) => {
-  return {
-    type: "ACTIVE_SONG_STATUS",
-    payload: boolean
-  }
-};
-
 const changeReceiveStatus = (boolean) => {
   return {
     type: "RECEIVE_STATUS",
@@ -19,4 +12,4 @@ const updateSongs = (obj) => {
   }
 };
 
-export { changeSongStatus, changeReceiveStatus, updateSongs };
+export { changeReceiveStatus, updateSongs };

@@ -10,7 +10,7 @@ module.exports = {
     filename: 'bundle.js'
   },
 
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   module: {
     rules: [
@@ -60,11 +60,11 @@ module.exports = {
         baseDir: './public'
       }
     }),
-//	,		
-//    new webpack.DefinePlugin({
-//      'process.env': {
-//        'NODE_ENV': JSON.stringify('production')
-//      }
-//    })
+	,		
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
   ]
 };

@@ -43,7 +43,6 @@ class List extends Component {
 				<Error key="0"/>
 			)
 		}
-		console.log(length);
     
     for (var i = 0; i < length; i++) {
       const song = this.props.songs[i];
@@ -58,7 +57,7 @@ class List extends Component {
           isActive={ isActive }  
         />);
     }
-		console.log(cards);
+		
 		return(
 			<ScrollArea 
           className="list"
@@ -73,10 +72,11 @@ class List extends Component {
 }
 
 function mapStateToProps(state) {
+	
   return {
     cardId: state.card.id,
-    songs: state.songs.songs,
-    activeSong: state.songs.songs[state.card.id]
+    songs: state.searchResult.songs,
+    activeSong: state.searchResult.songs[state.card.id]
   }
 }
 
