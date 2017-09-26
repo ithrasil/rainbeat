@@ -43,9 +43,10 @@ class Card extends Component {
 		const playIcon = this.state.isActive ? "volume" : "play";
     
     let title = this.state.song.title;
+		let shortTitle = title;
 
     if(title.length > 40) {
-      title = title.substring(0, 40) + "...";
+      shortTitle = title.substring(0, 40) + "...";
     }
     
     return(
@@ -53,7 +54,7 @@ class Card extends Component {
         <img className="status" src={ `/images/icons/${ playIcon }.svg` }/>
         <img className="artwork" src={ artwork_url } />
         <div className="label">
-          <span>{ title }</span>
+          <span title={ title }>{ shortTitle }</span>
         </div>
       </div>
     )

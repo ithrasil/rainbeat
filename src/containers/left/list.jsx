@@ -35,14 +35,15 @@ class List extends Component {
 
   render() {
 
-    let cards = [];
     const length = this.props.songs.length;
 
 		if(length == 0) {
-			cards.push(
+			return(
 				<Error key="0"/>
 			)
 		}
+		
+		let cards = [];
     
     for (var i = 0; i < length; i++) {
       const song = this.props.songs[i];
@@ -75,8 +76,8 @@ function mapStateToProps(state) {
 	
   return {
     cardId: state.card.id,
-    songs: state.searchResult.songs,
-    activeSong: state.searchResult.songs[state.card.id]
+    songs: state.searchResult.primaryList,
+    activeSong: state.searchResult.primaryList[state.card.id]
   }
 }
 

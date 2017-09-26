@@ -5,11 +5,25 @@ const changeReceiveStatus = (boolean) => {
   }
 };
 
-const updateSongs = (obj) => { 
+const changeCountValue = (boolean) => {
   return {
-    type: "SONGS_UPDATE",
+    type: "COUNT_VALUE",
+    payload: boolean
+  }
+};
+
+const updatePrimaryList = (obj) => { 
+  return {
+    type: "PRIMARY_LIST_UPDATE",
     payload: obj
   }
 };
 
-export { changeReceiveStatus, updateSongs };
+const updateSecondaryList = (obj) => { 
+  return {
+    type: "PRIMARY_LIST_UPDATE",
+    payload: obj
+  }
+};
+
+export { changeReceiveStatus, changeCountValue, updatePrimaryList, updateSecondaryList };

@@ -10,7 +10,7 @@ import Axios from 'axios';
 
 // Actions 
 import { executeQuery } from 'Actions/query.jsx';
-import { changeReceiveStatus, updateSongs } from 'Actions/searchResult.jsx';
+import { changeReceiveStatus, updatePrimaryList, updateSecondaryList } from 'Actions/searchResult.jsx';
 import { changeCard } from 'Actions/card.jsx';
 
 // Constants
@@ -40,7 +40,14 @@ class App extends Component {
           this.props.changeReceiveStatus(false);
         }
 			
-        this.props.updateSongs(songs);
+				this.props.changeCard(0);
+			
+				this.props.updateSecondaryList(songs);
+			
+				if(this.props.query.counter == 0) {
+					this.props.updatePrimaryList(songs);
+				}
+			
         this.props.changeReceiveStatus(true);
         
     });
@@ -68,7 +75,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-
   return {
     query: state.query,
     songs: state.searchResult.songs,
@@ -81,7 +87,8 @@ function matchDispatchToProps(dispatch) {
   let functions = { 
     executeQuery: executeQuery,
     changeReceiveStatus: changeReceiveStatus,
-    updateSongs: updateSongs,
+    updatePrimaryList: updatePrimaryList,
+    updateSecondaryList: updateSecondaryList,
     changeCard: changeCard
   };
   
