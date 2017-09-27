@@ -6,7 +6,7 @@
 	
 	.sprite {
 		position: absolute;
-		transition: opacity .5s ease, transform .5s ease;
+		transition: opacity .8s ease, transform .8s ease;
 		left: 0;
 		right: 0;
 		width: 100%;
@@ -15,16 +15,18 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		opacity: 0;
+		filter: blur(4px);
 		
 		&.primary {
-			transform: translate(-50px, -12.5px);
+			transform: translate(-25px, -25px);
 		}
 		
 		&.secondary {
-			transform: translate(-50px, -12.5px);
+			transform: translate(25px, 25px);
 		}
 		
 		&.active {
+			filter: blur(0px);
 			opacity: 1;
 			transform: translateX(0px);
 		}

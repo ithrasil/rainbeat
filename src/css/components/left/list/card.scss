@@ -1,0 +1,93 @@
+.card {
+	position: relative;
+	transition: .3s ease-in-out;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	z-index: 1;
+
+	&:hover:not(.active) {
+		
+		.label {
+			color: darken($accent, 12.5%);
+		}
+		
+		.status {
+			transform: translateX(0);
+			opacity: 1;
+		}
+		.artwork {
+			opacity: 0;
+		}
+	}
+	
+	&:hover {
+		cursor: pointer;
+	}
+	
+	.status {
+		position: absolute;
+    top: 23px;
+		left: 23px;
+		width: 24px;
+    height: 24px;
+		transform: translateX(-5px);
+		transition: .3s ease;
+		opacity: 0;
+		
+		&[src="/images/icons/volume.svg"] {
+			transform: translateX(0);
+			opacity: 1;
+			
+			& + .artwork {
+				opacity: 0;
+			}
+		}
+	}
+
+	.artwork {
+		width: 50px;
+		max-height: 50px;
+		min-height: 50px;
+		border-radius: 3px;
+		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+		transition: .3s ease;
+	}
+
+	.label {
+		text-align: left;
+		border-radius: 3px;
+		position: relative;
+		font-size: 16px;
+		padding: 0 15px;
+		color: rgba(white, .6);
+		font-weight: 300;
+		letter-spacing: 1px;
+		transition: .7s;
+	}
+
+}
+
+.active {
+	z-index: 2;
+	background: #151515;
+
+	.label {
+		color: $accent;
+		
+		&:hover {
+			color: $accent;
+		}
+	}
+
+	.dataset {
+		&:before {
+			background-size: 30%!important;
+			opacity: 0!important;
+		}
+	}
+
+	img {
+		box-shadow: 0px 0px 49px 0px rgba(0, 0, 0, 0.5);
+	}
+}

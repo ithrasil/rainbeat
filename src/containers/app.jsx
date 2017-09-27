@@ -43,10 +43,7 @@ class App extends Component {
 				this.props.changeCard(0);
 			
 				this.props.updateSecondaryList(songs);
-			
-				if(this.props.query.counter == 0) {
-					this.props.updatePrimaryList(songs);
-				}
+				this.props.updatePrimaryList(songs);
 			
         this.props.changeReceiveStatus(true);
         

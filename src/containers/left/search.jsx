@@ -7,9 +7,16 @@ import { connect } from 'react-redux';
 
 // Actions
 import { saveQuery, executeQuery } from 'Actions/query.jsx';
+import { changeState } from 'Actions/searchResult.jsx';
 
 class Search extends Component {
-
+	
+	handleOnKeyDown(event) {
+		if(event.keyCode == 13) {
+			this.props.executeQuery(true) 
+		}
+	}
+	
   render() {
     return(
       <div className="search" >
@@ -20,9 +27,10 @@ class Search extends Component {
 					id="songInput"
 					type="text" 
 					className="searchInput" 
+					onFocus={ () => { this.props.changeState(true) } }
 					onInput={ this.props.saveQuery }
-					onKeyDown={ (event) => { if(event.keyCode == 13) this.props.executeQuery(true) } }
-					defaultValue={this.props.query.value}
+					onKeyDown={ this.handleOnKeyDown.bind(this) }
+					defaultValue={ this.props.query.value }
 				/>
       </div>
     )
@@ -39,7 +47,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   let functions = { 
     saveQuery: saveQuery,
-    executeQuery: executeQuery
+    executeQuery: executeQuery,
+		changeState: changeState
   };
   
   return bindActionCreators(functions, dispatch);

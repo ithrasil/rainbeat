@@ -2,13 +2,13 @@
   overflow: hidden;
   max-height: 100%;
   min-height: 100%;
-  background: $player;
+//  background: $player;
   width: 500px;
   float: left;
 	position: relative;
   
-  @import "./list";
+  @import "./list/list.scss";
 
-  @import "./search";
+  @import "./search.scss";
   
 }

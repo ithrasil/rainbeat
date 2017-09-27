@@ -2,8 +2,8 @@
 import React from 'react';
 
 const menus = [
-  { id: 0, href: "#", name: "listen" },
-  { id: 1, href: "#", name: "artists" },
+  { id: 0, href: "#", name: "Your Music" },
+  { id: 1, href: "#", name: "Your Playlists" },
   { id: 2, href: "#", name: "albums" },
   { id: 3, href: "#", name: "search" },
 ]

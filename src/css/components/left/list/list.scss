@@ -1,0 +1,7 @@
+.list {
+  width: 500px;
+	height: calc(100% - 70px);
+	
+	@import "./queue/queue.scss";
+	@import "./tips/tips.scss";
+}

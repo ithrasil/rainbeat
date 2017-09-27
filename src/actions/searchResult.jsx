@@ -5,9 +5,9 @@ const changeReceiveStatus = (boolean) => {
   }
 };
 
-const changeCountValue = (boolean) => {
+const changeState = (boolean) => { 
   return {
-    type: "COUNT_VALUE",
+    type: "SEARCH_STATUS",
     payload: boolean
   }
 };
@@ -21,9 +21,9 @@ const updatePrimaryList = (obj) => {
 
 const updateSecondaryList = (obj) => { 
   return {
-    type: "PRIMARY_LIST_UPDATE",
+    type: "SECONDARY_LIST_UPDATE",
     payload: obj
   }
 };
 
-export { changeReceiveStatus, changeCountValue, updatePrimaryList, updateSecondaryList };
+export { changeReceiveStatus, changeState, updatePrimaryList, updateSecondaryList };

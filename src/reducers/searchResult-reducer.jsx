@@ -1,12 +1,12 @@
-export default function(state={ received: false, counter: 0, primaryList: [], secondaryList: [] }, action) {
+export default function(state={ received: false, searchStatus: 0, primaryList: [], secondaryList: [] }, action) {
   switch(action.type) {
       
     case "RECEIVE_STATUS":
       state.received = action.payload;
       break;
 			
-		case "COUNT_VALUE":
-			state.counter = action.payload;
+		case "SEARCH_STATUS":
+			state.searchStatus = action.payload;
 			break;
       
     case "PRIMARY_LIST_UPDATE":

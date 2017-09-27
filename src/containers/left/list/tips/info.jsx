@@ -8,12 +8,11 @@ import { connect } from 'react-redux';
 // Actions
 import { changeState } from 'Actions/searchResult.jsx';
 
-class Error extends Component {
+class Info extends Component {
  	render() {
     return(
       <div className="error">
         <div className="description">
-          Empty search result 
           <img src="/images/icons/exit.svg" onClick={ ()=> { this.props.changeState(false)} }></img>
         </div>
       </div>
@@ -34,4 +33,4 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(functions, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Error);
+export default connect(mapStateToProps, matchDispatchToProps)(Info);

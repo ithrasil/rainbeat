@@ -1,10 +1,5 @@
 module.exports = { 
 	
-	preloadImage: function(src) {
-		const image = new Image();
-		image.src = src;
-	},
-  
   assignCardId: function(direction, songs, cardId) {
     
     const length = songs.length-1;

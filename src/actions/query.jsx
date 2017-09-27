@@ -5,13 +5,6 @@ const executeQuery = (boolean) => {
   }
 };
 
-const incrementQuery = (boolean) => { 
-  return {
-    type: "QUERY_COUNT",
-    payload: boolean
-  }
-};
-
 const saveQuery = (event) => { 
   return {
     type: "QUERY_UPDATE",

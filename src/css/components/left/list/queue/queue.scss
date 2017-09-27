@@ -1,0 +1,23 @@
+.queue {
+  position: absolute;
+  width: 500px;
+	height: calc(100% - 70px);
+  background: #121212;
+	z-index: 1;
+	
+	.scrollbar-container.vertical {
+		width: 10px;
+		background: $player;
+		opacity: 1;
+
+		> .scrollbar {
+			background-color: #444; 
+			margin: 0;
+			width: 10px;
+		}
+	}
+
+	@import "./card.scss";
+	@import "./error.scss";
+	@import "./info.scss";
+}

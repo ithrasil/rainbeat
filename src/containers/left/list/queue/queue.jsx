@@ -11,8 +11,9 @@ import { connect } from 'react-redux';
 import { changeCard } from 'Actions/card.jsx';
 
 // Containers 
-import Card from 'Containers/left/list/card.jsx';
-import Error from 'Containers/left/list/error.jsx';
+import Card from 'Containers/left/list/queue/card.jsx';
+import Error from 'Containers/left/list/queue/error.jsx';
+import Info from 'Containers/left/list/queue/info.jsx';
 
 // Helpers
 import { assignCardId } from 'Helpers';
@@ -38,8 +39,16 @@ class Queue extends Component {
     const length = this.props.songs.length;
 
 		if(length == 0) {
+
 			return(
-				<Error key="0"/>
+				<ScrollArea 
+          className="queue"
+          speed={ 1 }
+          smoothScrolling={ true }
+         >
+          <Error key="0"/>
+      	</ScrollArea>					
+				
 			)
 		}
 		
@@ -56,15 +65,17 @@ class Queue extends Component {
           song={ song } 
           songChange={ this.handleSongChange.bind(this) }
           isActive={ isActive }  
-        />);
+      	/>
+			);
     }
 		
 		return(
 			<ScrollArea 
-          className="list"
+          className="queue"
           speed={ 1 }
           smoothScrolling={ true }
          >
+         	<Info playlist="dummy"/>
           { cards }
       </ScrollArea>
 		)

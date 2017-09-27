@@ -11,7 +11,7 @@ class Artwork extends Component {
 	
   constructor(props) {
     super(props);
-    
+  
     this.state = {
       primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
 			secondary: "",
