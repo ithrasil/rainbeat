@@ -6,8 +6,7 @@
 	align-items: center;
 	z-index: 1;
 
-	&:hover {
-		cursor: pointer;
+	&:hover:not(.active) {
 		
 		.label {
 			color: darken($accent, 12.5%);
@@ -20,6 +19,10 @@
 		.artwork {
 			opacity: 0;
 		}
+	}
+	
+	&:hover {
+		cursor: pointer;
 	}
 	
 	.status {
@@ -70,6 +73,10 @@
 
 	.label {
 		color: $accent;
+		
+		&:hover {
+			color: $accent;
+		}
 	}
 
 	.dataset {

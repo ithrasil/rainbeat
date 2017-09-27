@@ -17,7 +17,7 @@ import Error from 'Containers/left/list/error.jsx';
 // Helpers
 import { assignCardId } from 'Helpers';
 
-class List extends Component {
+class Queue extends Component {
 	
 	handleSongChange(type, value) { 
     let id = 0;
@@ -38,16 +38,8 @@ class List extends Component {
     const length = this.props.songs.length;
 
 		if(length == 0) {
-
 			return(
-				<ScrollArea 
-          className="list"
-          speed={ 1 }
-          smoothScrolling={ true }
-         >
-          <Error key="0"/>
-      	</ScrollArea>					
-				
+				<Error key="0"/>
 			)
 		}
 		
@@ -97,5 +89,5 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(functions, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(List);
+export default connect(mapStateToProps, matchDispatchToProps)(Queue);
 

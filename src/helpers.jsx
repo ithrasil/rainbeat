@@ -54,7 +54,18 @@ module.exports = {
     if(localStorage.getItem('volume') == null) {
       localStorage.setItem('volume', "0.5");
     }
-  }
+  },
+	
+	debounce: function(fn, delay) {
+		var timer = null;
+		return function () {
+			var context = this, args = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(function () {
+				fn.apply(context, args);
+			}, delay);
+		};
+	}
   
 }
 

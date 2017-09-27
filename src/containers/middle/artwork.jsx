@@ -4,13 +4,16 @@ import React, { Component } from 'react';
 // Helpers
 import { resizeArtwork, preloadImage } from 'Helpers';
 
+// Constants
+import { PLACEHOLDER } from 'Constants/config.jsx';
+
 class Artwork extends Component {
 	
   constructor(props) {
     super(props);
     
     this.state = {
-      primary: props.url,
+      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
 			secondary: "",
 			active: 1
     }
@@ -18,42 +21,43 @@ class Artwork extends Component {
   
   componentWillReceiveProps(props) {
 		
-		if(this.state.active == 1) {
-			this.setState({ 
-				secondary: props.url,
-				active: 0
-			});
+		const preloader = new Image();
+
+		preloader.onload = () => {
+			if(this.state.active == 1) {
+				this.setState({ 
+					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+					active: 0
+				});
+			}
+
+			else {
+				this.setState({ 
+					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+					active: 1
+				});
+			}
 		}
 		
-		else {
-			this.setState({ 
-				primary: props.url,
-				active: 1
-			});
-		}
-		
+		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER
   }
 	
   render() {
-    
-    let primary = {
-			backgroundImage: 'url(' + (this.state.primary ? resizeArtwork(this.state.primary, 500) : "http://via.placeholder.com/500?text=cover") + ')'
-		};
 		
-		let secondary = {
-			backgroundImage: 'url(' + (this.state.secondary ? resizeArtwork(this.state.secondary, 500) : "http://via.placeholder.com/500?text=cover") + ')'
-		};
+		const primaryClasses = "sprite primary " + (this.state.active ? "active" : "");
 		
-		let primary_classes = this.state.active ? "sprite active" : "sprite";
-
-    return(
-			
-      <div className="artwork">
-				<div className={ primary_classes } style={ primary }></div>
-				<div className="sprite" style={ secondary }></div>
-			
+		const secondaryClasses = "sprite secondary " + (!this.state.active ? "active" : "");
+		
+		
+		
+		return(
+			<div className="artwork">
+				<div className={ primaryClasses } style={{ backgroundImage: 'url(' + this.state.primary + ')' }}></div>
+				<div className={ secondaryClasses } style={{ backgroundImage: 'url(' + this.state.secondary + ')' }}></div>
 			</div>
-    )
+		)
+
+	
 	}
 }
 

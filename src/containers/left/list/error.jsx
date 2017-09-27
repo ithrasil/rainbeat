@@ -6,7 +6,7 @@ class Error extends Component {
     return(
       <div className="error">
         <div className="description">
-          <span>I am empty inside, just like this search result :/</span>
+          <span>The queue is totally empty</span>
         </div>
       </div>
     )
