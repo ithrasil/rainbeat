@@ -37,12 +37,13 @@ class Queue extends Component {
   render() {
 
     const length = this.props.songs.length;
-
+		const searchStatus = this.props.searchStatus ? "" : "active";
+		console.log(searchStatus);
 		if(length == 0) {
 
 			return(
 				<ScrollArea 
-          className="queue"
+          className={ "queue " + searchStatus }
           speed={ 1 }
           smoothScrolling={ true }
          >
@@ -71,7 +72,7 @@ class Queue extends Component {
 		
 		return(
 			<ScrollArea 
-          className="queue"
+          className={ "queue " + searchStatus }
           speed={ 1 }
           smoothScrolling={ true }
          >
@@ -88,7 +89,8 @@ function mapStateToProps(state) {
   return {
     cardId: state.card.id,
     songs: state.searchResult.primaryList,
-    activeSong: state.searchResult.primaryList[state.card.id]
+    activeSong: state.searchResult.primaryList[state.card.id],
+		searchStatus: state.searchResult.searchStatus
   }
 }
 

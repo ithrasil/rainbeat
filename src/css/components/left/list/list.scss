@@ -2,6 +2,17 @@
   width: 500px;
 	height: calc(100% - 70px);
 	
+	.queue, .tips {
+		opacity: 0;
+		transform: translateX(-50px);
+		transition: .5s ease;
+		
+		&.active {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+	}
+	
 	@import "./queue/queue.scss";
 	@import "./tips/tips.scss";
 }

@@ -20,8 +20,9 @@ class Info extends Component {
  	render() {
     return(
       <div className="info">
+       
         <div className="description">
-          <span>Current playlist is: { this.state.playlist }</span>
+          <span>Current playlist: { this.state.playlist }</span>
         </div>
       </div>
     )

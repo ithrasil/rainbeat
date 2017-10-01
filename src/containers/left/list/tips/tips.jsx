@@ -35,7 +35,7 @@ class Queue extends Component {
   }
 
   render() {
-
+		
     const length = this.props.songs.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
 
@@ -53,12 +53,12 @@ class Queue extends Component {
 			)
 		}
 		
-		let cards = [];
+		let songs = [];
     
     for (var i = 0; i < length; i++) {
       const song = this.props.songs[i];
       
-      cards.push(
+      songs.push(
         <Card 
           key={ i }
           id={ i }
@@ -74,7 +74,8 @@ class Queue extends Component {
           smoothScrolling={ true }
          >
          <Info playlist="dummy"/>
-          { cards }
+         <div className="filter_type">Songs</div>
+         { songs }
       </ScrollArea>
 		)
 		

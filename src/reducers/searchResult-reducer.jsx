@@ -1,4 +1,4 @@
-export default function(state={ received: false, searchStatus: 0, primaryList: [], secondaryList: [] }, action) {
+export default function(state={ received: false, searchStatus: false, primaryList: [], secondaryList: [] }, action) {
   switch(action.type) {
       
     case "RECEIVE_STATUS":
