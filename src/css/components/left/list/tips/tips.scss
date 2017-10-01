@@ -4,12 +4,6 @@
 	height: calc(100% - 70px);
   background: #121212;
 	
-	.filter_type {
-		color: white;
-		padding: 10px;
-		margin-left: 65px;
-	}
-	
 	&.active {
 		z-index: 2;
 	}

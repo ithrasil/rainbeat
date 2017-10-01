@@ -64,19 +64,19 @@
 		font-weight: 300;
 		letter-spacing: 1px;
 		transition: .7s;
+		
+		&:hover {
+			color: $accent;
+		}
 	}
 
 }
 
 .active {
-	background: #113;
+	background: #181818;
 
 	.label {
-		color: $accent;
-		
-		&:hover {
-			color: $accent;
-		}
+		color: $accent_dark;
 	}
 
 	img {

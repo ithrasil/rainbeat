@@ -18,6 +18,7 @@ class Search extends Component {
 	}
 	
   render() {
+
     return(
       <div className="search" >
 				<label htmlFor="songInput"> 
@@ -27,10 +28,15 @@ class Search extends Component {
 					id="songInput"
 					type="text" 
 					className="searchInput" 
-					onFocus={ () => { this.props.changeState(true) } }
+					onFocus={ () => { 
+						this.props.changeState(true);  
+						this.props.saveQuery("") 
+					} }
+					placeholder="your search"
+			
 					onInput={ this.props.saveQuery }
 					onKeyDown={ this.handleOnKeyDown.bind(this) }
-					defaultValue={ this.props.query.value }
+					value={ this.props.query.value }
 				/>
       </div>
     )

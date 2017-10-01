@@ -73,8 +73,7 @@ class Queue extends Component {
           speed={ 1 }
           smoothScrolling={ true }
          >
-         <Info playlist="dummy"/>
-         <div className="filter_type">Songs</div>
+        <Info/>
          { songs }
       </ScrollArea>
 		)

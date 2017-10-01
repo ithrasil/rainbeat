@@ -35,7 +35,7 @@
 		color: rgba(white, 0.6);
 		background: #121212;
 		border: none;
-		border-bottom: 1px solid rgba(white, 0.3);
+//		border-bottom: 1px solid rgba(white, 0.3);
 		transition: 0.5s;
 		position: relative;
 		font-family: 'Open Sans', sans-serif;
@@ -43,7 +43,7 @@
 		&:active, &:focus {
 			outline: none;
 			color: white;
-			border-bottom: 1px solid rgba(white, 0.6);
+//			border-bottom: 1px solid rgba(white, 0.6);
 		}
 	}
 }

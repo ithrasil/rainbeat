@@ -1,20 +1,32 @@
 .info {
 	position: relative;
 	transition: .3s ease-in-out;
-	padding: 10px 0;
-	display: flex;
+	padding: 10px;
 	align-items: center;
-
-	.description {
-		text-align: left;
-		border-radius: 3px;
-		position: relative;
-		font-size: 16px;
-		padding: 0 15px;
-		color: rgba(white, .6);
-		font-weight: 300;
-		letter-spacing: 1px;
-		transition: .7s;
-	}
+	box-sizing: border-box;
 	
+	> .label {
+		display: block;
+		color: white;
+		filter: brightness(50%);
+		transition: .5s ease;
+		
+		> img {
+			width: 30px;
+			vertical-align: middle;
+			height: 30px;
+			padding: 3px 3px 3px 13px;
+		}
+		
+		> span {
+			line-height: 24px;
+			margin-left: 15px;
+			vertical-align: middle;
+		}
+		
+		&:hover {
+			cursor: pointer;
+			filter: brightness(100%);
+		}
+	}
 }

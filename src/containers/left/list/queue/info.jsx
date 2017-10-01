@@ -20,11 +20,11 @@ class Info extends Component {
  	render() {
     return(
       <div className="info">
-       
-        <div className="description">
-          <span>Current playlist: { this.state.playlist }</span>
-        </div>
-      </div>
+       	<div className="playlist label">
+       		<img src="/images/filters/playlist.svg" alt=""/>
+       		<span>Current playlist: { this.state.playlist }</span>
+       	</div>
+			</div>
     )
   }
 }
