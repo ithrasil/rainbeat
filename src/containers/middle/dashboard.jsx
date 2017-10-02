@@ -42,6 +42,8 @@ class Dashboard extends React.Component {
   componentWillReceiveProps(props) {
     
     if(props.activeSong.title != this.state.activeSong.title) {
+			
+			
       this.setState({
         activeSong: props.activeSong,
         playIcon: "play",

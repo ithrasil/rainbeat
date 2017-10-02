@@ -38,12 +38,9 @@ class App extends Component {
         
         if(this.props.received) {
           this.props.changeReceiveStatus(false);
-        }
-			
-				this.props.changeCard(0);
+				}
 			
 				this.props.updateSecondaryList(songs);
-				this.props.updatePrimaryList(songs);
 			
         this.props.changeReceiveStatus(true);
         

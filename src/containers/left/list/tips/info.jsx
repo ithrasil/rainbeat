@@ -47,12 +47,12 @@ class Info extends Component {
 							<img src="https://secure.last.fm/static/images/lastfm_avatar_twitter.66cd2c48ce03.png" alt=""
 							/>
 						</div>
-						<div className="api icon" title="Napster">
-							<img src="https://lh3.googleusercontent.com/inSwjR5i5BiIaEWxGc0PgOeyIbWHc38Vk28CVzAUxA-tfJGBJdADP9XnaKpGxFZU6-k=w300" alt=""
+						<div className="api icon" title="Jamendo">
+							<img src="https://pbs.twimg.com/profile_images/668809654684659713/ZmVVb1t0.png" alt=""
 							/>
 						</div>
-						<div className="api icon" title="Tidal">
-							<img src="//lh3.googleusercontent.com/a1hvfV9omWwfjNvUIgQLs65J3F7ozPrUPtPz7Bz3UhBtIcqXuPuR8Ftjljy9Vhylamk=w300" alt=""
+						<div className="api icon" title="deezer">
+							<img src="https://lh3.googleusercontent.com/j5ORPuGg1-C9tmK616R5o3xYHIB4Uf9677HLaCFn8OUfQD8XqVQJ2CfD8WLOlVQNuwY=w300" alt=""
 							/>
 						</div>
 					</div>

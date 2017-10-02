@@ -88,7 +88,7 @@ function mapStateToProps(state) {
 	
   return {
     cardId: state.card.id,
-    songs: state.searchResult.primaryList,
+    songs: state.queue.list,
     activeSong: state.searchResult.primaryList[state.card.id],
 		searchStatus: state.searchResult.searchStatus
   }

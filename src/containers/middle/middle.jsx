@@ -59,7 +59,7 @@ class Middle extends Component {
 function mapStateToProps(state) {
   return {
 		cardId: state.card.id,
-    songs: state.searchResult.primaryList
+    songs: state.queue.list
   }
 }
 

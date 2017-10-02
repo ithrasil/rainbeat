@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
+import { updateQueue } from 'Actions/queue.jsx';
 import { changeCard } from 'Actions/card.jsx';
 
 // Containers 
@@ -18,23 +19,19 @@ import Info from 'Containers/left/list/tips/info.jsx';
 // Helpers
 import { assignCardId } from 'Helpers';
 
-class Queue extends Component {
+class Tips extends Component {
 	
-	handleSongChange(type, value) { 
-    let id = 0;
-    const songs = this.props.songs;
-    
-    if(type == "end") {
-      id = assignCardId('next', songs, this.props.cardId)
-    }
-    else {
-      id = value;
-    }
+	handleCardClick(id) { 
+		let newQueue = this.props.queue.slice();
+		const songs = this.props.songs;
+		const song = songs[id];
+		
+		newQueue.push(song);
+		this.props.updateQueue(newQueue);
+		this.props.changeCard(newQueue.length-1);
+	}
 
-    this.props.changeCard(id);
-  }
-
-  render() {
+	render() {
 		
     const length = this.props.songs.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
@@ -63,7 +60,7 @@ class Queue extends Component {
           key={ i }
           id={ i }
           song={ song } 
-          songChange={ this.handleSongChange.bind(this) }
+          addToQueue={ this.handleCardClick.bind(this) }
         />);
     }
 		
@@ -85,17 +82,20 @@ function mapStateToProps(state) {
 	
   return {
     songs: state.searchResult.secondaryList,
-		searchStatus: state.searchResult.searchStatus
+		searchStatus: state.searchResult.searchStatus,
+		queue: state.queue.list,
+		index: state.card.id
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
-    changeCard: changeCard
+    updateQueue: updateQueue,
+		changeCard: changeCard
   };
   
   return bindActionCreators(functions, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Queue);
+export default connect(mapStateToProps, matchDispatchToProps)(Tips);
 
