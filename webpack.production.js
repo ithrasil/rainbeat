@@ -53,13 +53,6 @@ module.exports = {
 	},
 
   plugins: [
-    new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 3000,
-      server: {
-        baseDir: './public'
-      }
-    }),		
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')

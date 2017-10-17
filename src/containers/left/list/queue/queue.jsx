@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { changeCard } from 'Actions/card.jsx';
+import { changeCard } from 'Actions/card';
 
 // Containers 
 import Card from 'Containers/left/list/queue/card.jsx';
@@ -25,7 +25,7 @@ class Queue extends Component {
     const songs = this.props.songs;
     
     if(type == "end") {
-      id = assignCardId('next', songs, this.props.cardId)
+      id = assignCardId('next', songs, this.props.cardId-1)
     }
     else {
       id = value;
@@ -89,8 +89,8 @@ function mapStateToProps(state) {
   return {
     cardId: state.card.id,
     songs: state.queue.list,
-    activeSong: state.searchResult.primaryList[state.card.id],
-		searchStatus: state.searchResult.searchStatus
+    activeSong: state.search.primaryList[state.card.id],
+		searchStatus: state.search.status
   }
 }
 

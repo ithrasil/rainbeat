@@ -1,4 +1,4 @@
-export default function(state={ received: false, searchStatus: false, primaryList: [], secondaryList: [] }, action) {
+export default function(state={ received: false, status: false, primaryList: [], secondaryList: [], query: "" }, action) {
   switch(action.type) {
       
     case "RECEIVE_STATUS":
@@ -6,7 +6,7 @@ export default function(state={ received: false, searchStatus: false, primaryLis
       break;
 			
 		case "SEARCH_STATUS":
-			state.searchStatus = action.payload;
+			state.status = action.payload;
 			break;
       
     case "PRIMARY_LIST_UPDATE":
@@ -15,6 +15,11 @@ export default function(state={ received: false, searchStatus: false, primaryLis
 			
 		case "SECONDARY_LIST_UPDATE":
       state.secondaryList = action.payload;
+      break;
+				
+    case "QUERY_UPDATE":
+      state.query = action.payload;
+      localStorage.setItem('query', action.payload);
       break;
   }
         

@@ -6,14 +6,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { saveQuery, executeQuery } from 'Actions/query.jsx';
-import { changeState } from 'Actions/searchResult.jsx';
+import { changeState, saveQuery, getData } from 'Actions/search.js';
 
 class Search extends Component {
 	
 	handleOnKeyDown(event) {
 		if(event.keyCode == 13) {
-			this.props.executeQuery(true) 
+			console.log(this.props.query)
+			this.props.getData(this.props.query);
 		}
 	}
 	
@@ -29,9 +29,10 @@ class Search extends Component {
 					type="text" 
 					className="searchInput" 
 					onFocus={ () => { 
-						this.props.changeState(true);  
-						this.props.saveQuery("") 
-					} }
+							this.props.changeState(true);  
+							this.props.saveQuery("") 
+					  } 
+					}
 					placeholder="your search"
 			
 					onInput={ this.props.saveQuery }
@@ -46,15 +47,15 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return {
-    query: state.query
+    query: state.search.query
   }
 }
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
     saveQuery: saveQuery,
-    executeQuery: executeQuery,
-		changeState: changeState
+		changeState: changeState,
+		getData: getData
   };
   
   return bindActionCreators(functions, dispatch);

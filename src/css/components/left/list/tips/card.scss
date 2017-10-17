@@ -15,9 +15,6 @@
 		.add {
 			filter: brightness(1)
 		}
-		.artwork {
-			opacity: 0;
-		}
 	}
 	
 	&:hover {
@@ -34,6 +31,10 @@
 		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 		transition: .3s ease;
 		filter: brightness(0.5);
+	}
+	
+	.artwork {
+		border-radius: 5px;
 	}
 
 	.label {

@@ -8,8 +8,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { updateQueue } from 'Actions/queue.jsx';
-import { changeCard } from 'Actions/card.jsx';
+import { updateQueue } from 'Actions/queue.js';
+import { changeCard } from 'Actions/card.js';
 
 // Containers 
 import Card from 'Containers/left/list/tips/card.jsx';
@@ -34,8 +34,8 @@ class Tips extends Component {
 	render() {
 		
     const length = this.props.songs.length;
-		const searchStatus = this.props.searchStatus ? "active" : "";
-
+		const searchStatus = !this.props.searchStatus ? "active" : "";
+		
 		if(length == 0) {
 
 			return(
@@ -79,10 +79,9 @@ class Tips extends Component {
 }
 
 function mapStateToProps(state) {
-	
   return {
-    songs: state.searchResult.secondaryList,
-		searchStatus: state.searchResult.searchStatus,
+    songs: state.search.secondaryList,
+		searchStatus: state.search.status,
 		queue: state.queue.list,
 		index: state.card.id
   }

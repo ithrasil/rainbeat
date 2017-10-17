@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { changeCard } from 'Actions/card.jsx';
+import { changeCard } from 'Actions/card.js';
 
 // Containers 
 import Card from 'Containers/left/list/card.jsx';
@@ -19,22 +19,7 @@ import { assignCardId } from 'Helpers';
 
 class List extends Component {
 	
-	handleSongChange(type, value) { 
-    let id = 0;
-    const songs = this.props.songs;
-    
-    if(type == "end") {
-      id = assignCardId('next', songs, this.props.cardId)
-    }
-    else {
-      id = value;
-    }
-
-    this.props.changeCard(id);
-  }
-
   render() {
-
     const length = this.props.songs.length;
 
 		if(length == 0) {
@@ -84,8 +69,8 @@ function mapStateToProps(state) {
 	
   return {
     cardId: state.card.id,
-    songs: state.searchResult.primaryList,
-    activeSong: state.searchResult.primaryList[state.card.id]
+    songs: state.search.primaryList,
+    activeSong: state.search.primaryList[state.card.id]
   }
 }
 

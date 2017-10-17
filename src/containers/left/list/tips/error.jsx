@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { changeState } from 'Actions/searchResult.jsx';
+import { changeState } from 'Actions/search.js';
 
 class Error extends Component {
  	render() {

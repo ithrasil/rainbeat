@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { changeCard } from 'Actions/card.jsx';
+import { changeCard } from 'Actions/card';
 
 // Containers
 import Artwork from 'Containers/middle/artwork.jsx';
