@@ -32,9 +32,9 @@ class Tips extends Component {
 	}
 
 	render() {
-		
+		console.log(1)
     const length = this.props.songs.length;
-		const searchStatus = !this.props.searchStatus ? "active" : "";
+		const searchStatus = this.props.searchStatus ? "active" : "";
 		
 		if(length == 0) {
 

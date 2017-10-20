@@ -12,6 +12,7 @@ export const changeReceiveStatus = (boolean) => {
 };
 
 export const changeState = (boolean) => { 
+	console.log('action: changeState - value: ' + boolean)
   return {
     type: "SEARCH_STATUS",
     payload: boolean
@@ -26,7 +27,6 @@ export const updatePrimaryList = (obj) => {
 };
 
 export const updateSecondaryList = (obj) => { 
-	console.log(obj)
   return {
     type: "SECONDARY_LIST_UPDATE",
     payload: obj
@@ -46,7 +46,7 @@ export const saveQuery = (event) => {
   }
 };
 
-export const getData = (query) => {
+export const getData = (query="blurryface") => {
   return dispatch => {
     // set state to "loading"
 //    dispatch(getDataRequested());
@@ -55,11 +55,8 @@ export const getData = (query) => {
 		
     Axios.get(url)
       .then(response => {
-				console.log(query)
         // set state for success
         const songs = response.data;
-
-        if(songs.length == 0) return;
 				dispatch(updateSecondaryList(songs));
       })
       .catch(error => {

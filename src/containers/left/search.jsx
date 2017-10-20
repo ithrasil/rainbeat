@@ -12,7 +12,6 @@ class Search extends Component {
 	
 	handleOnKeyDown(event) {
 		if(event.keyCode == 13) {
-			console.log(this.props.query)
 			this.props.getData(this.props.query);
 		}
 	}

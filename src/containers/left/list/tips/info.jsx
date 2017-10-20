@@ -18,10 +18,6 @@ class Info extends Component {
 		}
 	}
 	
-	switchFilters(event) {
-		
-	}
-	
  	render() {
 			
 		const filtersStatus = this.state.filters ? "active" : "";
