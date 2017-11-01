@@ -40,6 +40,7 @@
     "webpack": "2.2.1"
   },
   "dependencies": {
+    "babel-preset-stage-2": "^6.24.1",
     "redux-thunk": "^2.2.0"
   }
 }

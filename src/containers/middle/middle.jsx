@@ -11,6 +11,7 @@ import { changeCard } from 'Actions/card';
 // Containers
 import Artwork from 'Containers/middle/artwork.jsx';
 import Dashboard from 'Containers/middle/dashboard.jsx';
+import Tips from 'Containers/middle/tips/tips.jsx';
 
 // Helpers
 import { assignCardId } from 'Helpers';
@@ -35,7 +36,9 @@ class Middle extends Component {
 		
 		if(this.props.songs.length == 0) {
 			return(
-				<div>:(</div>
+				<section className="middle">
+					<Tips />
+				</section>
 			)
 		}
 		
@@ -44,7 +47,7 @@ class Middle extends Component {
 		
 		return(
 			<section className="middle">
-			
+				<Tips />
 				<Artwork url={ artwork_url }></Artwork>
 				<Dashboard 
 					activeSong={ active_song } 

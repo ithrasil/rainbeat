@@ -37,7 +37,7 @@ class Queue extends Component {
   render() {
 
     const length = this.props.songs.length;
-		const searchStatus = this.props.searchStatus ? "" : "active";
+		const searchStatus = "active"; // it is for future update
 
 		if(length == 0) {
 

@@ -12,7 +12,6 @@ class List extends Component {
     return(
       <div className="list">
         <Queue />
-        <Tips />
       </div>
     )
 		

@@ -43,7 +43,7 @@ module.exports = {
 		
 	resolve: {
 		alias: {
-			Helpers$: path.resolve(__dirname, 'src/helpers.jsx'),
+			Helpers$: path.resolve(__dirname, 'src/helpers.js'),
 			Styles$: path.resolve(__dirname, 'src/css/index.scss'),
 			Actions: path.resolve(__dirname, 'src/actions'),
 			Constants: path.resolve(__dirname, 'src/constants'),
