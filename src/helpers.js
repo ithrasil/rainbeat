@@ -1,3 +1,6 @@
+// Constants
+import { CLIENT_ID } from 'Constants/config.js';
+
 export function assignCardId(direction, songs, cardId) {
     
 	const length = songs.length-1;
@@ -58,6 +61,10 @@ export function debounce(fn, delay) {
 			fn.apply(context, args);
 		}, delay);
 	};
+}
+
+export function getSoundCloudUrl(type, query) {
+	return `https://api.soundcloud.com/${ type }?client_id=${ CLIENT_ID }&q=${query}`;
 }
   
 

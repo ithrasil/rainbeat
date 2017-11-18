@@ -7,31 +7,29 @@
 
 	&:hover:not(.active) {
 		background: rgba($accent_dark, .1);
-		transform: translateX(10px);
-	
 		
 		.add {
-			filter: brightness(1)
+			opacity: 1;
 		}
 	}
 	
 	&:hover {
 		cursor: pointer;
 	}
-
+	
 	.add {
-		top: 23px;
-		left: 23px;
-		width: 24px;
-    height: 24px;
-		padding: 6.5px 13px;
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 30px;
+		max-height: 30px;
+		min-height: 30px;
+		transform: translateX(0);
 		transition: .3s ease;
-		filter: brightness(0.5);
+		margin-left: 10px;
+		filter: brightness(50%);
 	}
 	
-	.artwork {
-		border-radius: 5px;
-	}
 
 	.label {
 		text-align: left;

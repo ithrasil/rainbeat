@@ -12,9 +12,9 @@ import { updateQueue } from 'Actions/queue.js';
 import { changeCard } from 'Actions/card.js';
 
 // Containers 
-import Card from 'Containers/left/list/tips/card.jsx';
-import Error from 'Containers/left/list/tips/error.jsx';
-import Info from 'Containers/left/list/tips/info.jsx';
+import Card from 'Containers/middle/tips/card.jsx';
+import Error from 'Containers/middle/tips/error.jsx';
+import Info from 'Containers/middle/tips/info.jsx';
 
 // Helpers
 import { assignCardId } from 'Helpers';
@@ -32,7 +32,6 @@ class Tips extends Component {
 	}
 
 	render() {
-		console.log(1)
     const length = this.props.songs.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
 		
@@ -44,7 +43,7 @@ class Tips extends Component {
           speed={ 1 }
           smoothScrolling={ true }
          >
-          <Error key="0"/>
+         <Info/>
       	</ScrollArea>					
 				
 			)

@@ -1,8 +1,7 @@
 // Axios
 import Axios from 'axios';
 
-// Constants
-import { CLIENT_ID } from 'Constants/config.jsx';
+import { getSoundCloudUrl } from 'Helpers';
 
 export const changeReceiveStatus = (boolean) => {
   return {
@@ -12,7 +11,6 @@ export const changeReceiveStatus = (boolean) => {
 };
 
 export const changeState = (boolean) => { 
-	console.log('action: changeState - value: ' + boolean)
   return {
     type: "SEARCH_STATUS",
     payload: boolean
@@ -46,14 +44,12 @@ export const saveQuery = (event) => {
   }
 };
 
-export const getData = (query="blurryface") => {
+export const getData = (query) => {
   return dispatch => {
     // set state to "loading"
-//    dispatch(getDataRequested());
+		// dispatch(getDataRequested());
 		
-		const url = `https://api.soundcloud.com/tracks?client_id=${ CLIENT_ID }&q=${query}`;
-		
-    Axios.get(url)
+    Axios.get(getSoundCloudUrl('tracks', query))
       .then(response => {
         // set state for success
         const songs = response.data;
@@ -62,6 +58,18 @@ export const getData = (query="blurryface") => {
       .catch(error => {
         // set state for error
         dispatch(getDataFailed(error));
+    })
+		
+		Axios.get(getSoundCloudUrl('playlists', query))
+      .then(response => {
+        // set state for success
+        const playlists = response.data;
+				console.log(playlists[0].tracks)
       })
+      .catch(error => {
+        // set state for error
+        dispatch(getDataFailed(error));
+    })
+		
   }
 }

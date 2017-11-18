@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 // Helpers
 import { resizeArtwork } from 'Helpers';
 
+// Constants
+import { SMALL_PLACEHOLDER } from 'Constants/config.js'
+import { BASE64_PLAY, BASE64_PAUSE, BASE64_SPEAKER } from 'Constants/images.js'
+
 class Card extends Component {
   
   constructor(props) {
@@ -39,8 +43,8 @@ class Card extends Component {
     else {
       artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "http://via.placeholder.com/50?text=cover";
     }
-		
-		const playIcon = this.state.isActive ? "volume" : "play";
+	
+		const playIcon = this.state.isActive ? BASE64_SPEAKER : BASE64_PLAY;
     
     let title = this.state.song.title;
 		let shortTitle = title;
@@ -51,8 +55,7 @@ class Card extends Component {
     
     return(
       <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
-        <img className="status" src={ `/images/icons/${ playIcon }.svg` }/>
-        <img className="artwork" src={ artwork_url } />
+        <div className="status" style={{backgroundImage: "url(" + playIcon+ ")" }}></div>
         <div className="label">
           <span title={ title }>{ shortTitle }</span>
         </div>

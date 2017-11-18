@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 // Actions
 import { changeState } from 'Actions/search.js';
 
+// Constants
+import { BASE64_EXIT, BASE64_FILTERS, BASE64_RESULTS } from 'Constants/images.js'
+
 class Info extends Component {
 	
 	constructor(props) {
@@ -25,12 +28,12 @@ class Info extends Component {
     return(
       <div className="info">
        	<div className="close_search label" onClick={ ()=> { this.props.changeState(false)} }>
-       		<img src="/images/icons/left-arrow.svg" alt=""/>
+       		<img src={ BASE64_EXIT } alt=""/>
        		<span>Close search</span>
        	</div>
        	
        	<div className="filters_switch label" onClick={ ()=> { this.setState({ filters: !this.state.filters }) } }>
-       		<img src="/images/icons/filter.svg" alt=""/>
+       		<img src={ BASE64_FILTERS } alt=""/>
        		<span>Filters</span>
        	</div>
 				<div className={ "filters " + filtersStatus } >
@@ -71,10 +74,7 @@ class Info extends Component {
 						</div>
 					</div>
 				 </div>
-				 <div className="results label">
-       		<img src="/images/icons/list.svg" alt=""/>
-       		<span>Results</span>
-       	</div>
+			
       </div>
     )
   }

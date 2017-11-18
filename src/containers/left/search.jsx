@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 // Actions
 import { changeState, saveQuery, getData } from 'Actions/search.js';
 
+// Constants
+import { BASE64_LOUPE } from 'Constants/images.js'
+
 class Search extends Component {
 	
 	handleOnKeyDown(event) {
@@ -21,7 +24,7 @@ class Search extends Component {
     return(
       <div className="search" >
 				<label htmlFor="songInput"> 
-					<img src="/images/icons/search.svg" />
+					<img src={ BASE64_LOUPE } />
 				</label>
 				<input
 					id="songInput"

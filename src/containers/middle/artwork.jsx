@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { resizeArtwork, preloadImage } from 'Helpers';
 
 // Constants
-import { PLACEHOLDER } from 'Constants/config.jsx';
+import { PLACEHOLDER } from 'Constants/config.js';
 
 class Artwork extends Component {
 	

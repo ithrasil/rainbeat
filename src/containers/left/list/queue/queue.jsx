@@ -76,7 +76,7 @@ class Queue extends Component {
           speed={ 1 }
           smoothScrolling={ true }
          >
-         	<Info playlist="dummy"/>
+         	<Info playlist="Mixed"/>
           { cards }
       </ScrollArea>
 		)

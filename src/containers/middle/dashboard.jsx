@@ -9,7 +9,7 @@ import InputRange from 'react-input-range';
 import { convertSecondsToMs, prepareStorage } from 'Helpers';
 
 // Constants
-import { CLIENT_ID } from 'Constants/config.jsx';
+import { CLIENT_ID } from 'Constants/config.js';
 
 // Events
 import mouse from './events/mouseEvents.jsx';

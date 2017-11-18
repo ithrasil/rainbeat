@@ -1,5 +1,5 @@
 .dashboard {
-	background: linear-gradient(#222, #121212, #121212);
+	background: linear-gradient(darken($accent-dark, 60%), #121212, #121212);
   height: calc(100% - 500px);
   text-align: center;
   box-sizing: border-box;
@@ -30,6 +30,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+			
+			img {
+				filter: brightness(50%);
+				transition: .5s;
+			}
       
 
       @media (max-width: 768px) {
@@ -49,6 +54,10 @@
 
         &:hover {
           cursor: pointer;
+					
+					img {
+						filter: brightness(100%);
+					}
         }
 
         img {
@@ -65,6 +74,10 @@
 
         &:hover {
           cursor: pointer;
+					
+					img {
+						filter: brightness(100%);
+					}
         }
 
         img {

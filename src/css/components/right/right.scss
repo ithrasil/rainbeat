@@ -1,0 +1,32 @@
+.right {
+	width: 400px;
+	right: -360px;
+	position: absolute;
+	height: 100%;
+	background: #eee;
+	transition: .6s ease;
+	z-index: 5;
+	
+	&.visible {
+		right: 0;
+	}
+	
+	.visibility {
+		background-size: 24px 24px;
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		transition: .6s;
+		
+		&.faded {
+			opacity: 0
+		}
+		
+		&:hover {
+			cursor: pointer
+		}
+	}
+	
+}

@@ -16,6 +16,9 @@ import Tips from 'Containers/middle/tips/tips.jsx';
 // Helpers
 import { assignCardId } from 'Helpers';
 
+// Constants
+import { PLACEHOLDER } from 'Constants/config.js';
+
 class Middle extends Component { 
 	
 	handleSongChange(type, value) { 
@@ -38,6 +41,8 @@ class Middle extends Component {
 			return(
 				<section className="middle">
 					<Tips />
+					<Artwork />>
+					<div className="dashboard"></div>
 				</section>
 			)
 		}
