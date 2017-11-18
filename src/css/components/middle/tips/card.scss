@@ -6,7 +6,7 @@
 	align-items: center;
 
 	&:hover:not(.active) {
-		background: rgba($accent_dark, .1);
+		background: rgba($accent, .1);
 		
 		.add {
 			opacity: 1;

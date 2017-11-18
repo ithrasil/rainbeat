@@ -1,11 +1,10 @@
 .right {
-	width: 400px;
-	right: -360px;
+	width: calc(100% - 500px);
+	right: calc(556px - 100%);
 	position: absolute;
 	height: 100%;
-	background: #eee;
-	transition: .6s ease;
-	z-index: 5;
+	background-color: darken($accent, 45%);
+	z-index: 2;
 	
 	&.visible {
 		right: 0;
@@ -16,9 +15,8 @@
 		width: 24px;
 		height: 24px;
 		position: absolute;
-		top: 8px;
-		left: 8px;
-		transition: .6s;
+		top: 16px;
+		left: 16px;
 		
 		&.faded {
 			opacity: 0

@@ -21,6 +21,18 @@ import { assignCardId } from 'Helpers';
 
 class Tips extends Component {
 	
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			songsActive: false,
+			artistsActive: false,
+			albumsActive: false,
+			playlistsActive: false
+		}
+	}
+
+	
 	handleCardClick(id) { 
 		let newQueue = this.props.queue.slice();
 		const songs = this.props.songs;
@@ -70,7 +82,23 @@ class Tips extends Component {
           smoothScrolling={ true }
          >
         <Info/>
-         { songs }
+        <div className={ "categoryWrapper " + (this.state.songsActive ? "active" : "") }>
+        	<div className="type" onClick={()=> this.setState({ songsActive: !this.state.songsActive }) }>Songs</div>
+        	<div className="results">{ songs }</div>
+				</div>
+       	<div className={ "categoryWrapper " + (this.state.artistsActive ? "active" : "") }>
+        	<div className="type" onClick={()=> this.setState({ artistsActive: !this.state.artistsActive }) }>Artists</div>
+        	<div className="results">{ songs }</div>
+				</div>
+       	<div className={ "categoryWrapper " + (this.state.albumsActive ? "active" : "") }>
+        	<div className="type" onClick={()=> this.setState({ albumsActive: !this.state.albumsActive }) }>Albums</div>
+        	<div className="results">{ songs }</div>
+				</div>
+				<div className={ "categoryWrapper " + (this.state.playlistsActive ? "active" : "") }>
+					<div className="type" onClick={()=> this.setState({ playlistsActive: !this.state.playlistsActive }) }>Playlists</div>
+					<div className="results">{ songs }</div>
+				</div>
+        
       </ScrollArea>
 		)
 		

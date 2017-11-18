@@ -13,7 +13,7 @@ class Artwork extends Component {
     super(props);
   
     this.state = {
-      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
 			secondary: "",
 			active: 1
     }
@@ -26,20 +26,20 @@ class Artwork extends Component {
 		preloader.onload = () => {
 			if(this.state.active == 1) {
 				this.setState({ 
-					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
 					active: 0
 				});
 			}
 
 			else {
 				this.setState({ 
-					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
 					active: 1
 				});
 			}
 		}
 		
-		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER
+		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100)
   }
 	
   render() {

@@ -1,7 +1,7 @@
 // React
 import React, { Component } from 'react';
 
-import { BASE64_BURGER, BASE64_EXIT_BLACK } from 'Constants/images.js'
+import { BASE64_BURGER, BASE64_EXIT } from 'Constants/images.js'
 
 class Right extends Component {
 	
@@ -20,7 +20,7 @@ class Right extends Component {
 	render() {
 		
 		const visibility = this.state.visible ? "visible" : "";
-		const status = this.state.visible ? BASE64_EXIT_BLACK : BASE64_BURGER;
+		const status = this.state.visible ? BASE64_EXIT : BASE64_BURGER;
 		
     return(
       

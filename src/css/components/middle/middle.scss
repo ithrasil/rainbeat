@@ -3,6 +3,7 @@
 	float: left;
 	position: relative;
 	height: 100%;
+	background-color: darken($accent, 30%);
 	overflow: hidden;
 	
 	@import "./artwork.scss";

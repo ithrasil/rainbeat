@@ -16,6 +16,9 @@ import mouse from './events/mouseEvents.jsx';
 
 import { keyPress } from './events/keyboardEvents.jsx';
 
+// Constants
+import { BASE64_REPLAY, BASE64_PAUSE, BASE64_PLAY } from "Constants/images.js";
+
 class Dashboard extends React.Component {
   
   constructor(props) {
@@ -107,8 +110,7 @@ class Dashboard extends React.Component {
   }
   
   render() {
-    const volumeIcon = this.state.mute ? "volume-mute" : "volume";
-    const playIcon = this.state.playing ? "pause" : "play";
+    const playIcon = this.state.playing ? BASE64_PAUSE : BASE64_PLAY;
     
     const currentTime = convertSecondsToMs(this.state.time) == "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time);
 
@@ -140,16 +142,15 @@ class Dashboard extends React.Component {
           <div className="configs">
 
             <div className="replay_trigger" onClick={ this.reset.bind(this) }>
-              <img src="/images/icons/repeat.svg" />
+              <img src={ BASE64_REPLAY } />
             </div>
 
             <div className="play_switch" onClick={ this.playSwitch.bind(this) }>
-              <img src={ `/images/icons/${ playIcon }.svg` }/>
+              <img src={ playIcon }/>
             </div>
             
             
             <div className="volume_controls">
-              <img src={ `/images/icons/${ volumeIcon }.svg` } onClick={ this.handleMute.bind(this) }/>
               <InputRange
                 maxValue={ 1 }
                 minValue={ 0 }

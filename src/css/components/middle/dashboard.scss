@@ -1,5 +1,5 @@
 .dashboard {
-	background: linear-gradient(darken($accent-dark, 60%), #121212, #121212);
+	background: linear-gradient(darken($accent, 30%), #121212, #121212);
   height: calc(100% - 500px);
   text-align: center;
   box-sizing: border-box;
@@ -237,7 +237,7 @@
         
         .intended_time {
           display: inline-block;
-          color: $accent;
+          color: lighten($accent, 25%);
           transition: .3s ease-out;
           opacity: 0;
           font-size: 18px;
