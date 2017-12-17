@@ -56,7 +56,7 @@ class Info extends Component {
 						</div>
 					</div>
 					<div className="types icons">
-						<div className="type icon active" title="Songs">
+						<div className="type icon active" title="tracks">
 							<img src="/images/filters/music-player.svg" alt=""
 							/>
 						</div>

@@ -6,7 +6,7 @@ import Left from 'Containers/left/left.jsx';
 import Middle from 'Containers/middle/middle.jsx';
 import Right from 'Containers/right/right.jsx';
 
-class App extends Component { 
+export default class App extends Component { 
 
   render() {
     return(
@@ -18,5 +18,3 @@ class App extends Component {
     )
   }
 }
-
-export default App;

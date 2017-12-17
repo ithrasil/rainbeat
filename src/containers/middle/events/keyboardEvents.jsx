@@ -1,9 +1,7 @@
-const keyPress = function() {
-  const songInput = document.querySelector('#songInput');
+export const keyPress = () => {
+  const trackInput = document.querySelector('#trackInput');
 
-  if(event.keyCode == 32 && document.activeElement != songInput){
+  if(event.keyCode == 32 && document.activeElement != trackInput){
     this.playSwitch();
   }
 }
-
-export { keyPress };

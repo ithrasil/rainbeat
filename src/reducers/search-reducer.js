@@ -1,12 +1,13 @@
-export default function(
+export default (
 	state={ 
 		received: false,
 		status: false, 
-	  primaryList: [], 
-	  secondaryList: [], 
+		artists: [],
+	  tracks: [], 
+		playlists: [],
 	  query: "" 
 	}, 
-	action) {
+	action) => {
 	
   switch(action.type) {
       
@@ -17,15 +18,13 @@ export default function(
 		case "SEARCH_STATUS":
 			state.status = action.payload;
 			break;
-      
-    case "PRIMARY_LIST_UPDATE":
-      state.primaryList = action.payload;
-      break;
 			
-		case "SECONDARY_LIST_UPDATE":
-      state.secondaryList = action.payload;
+		case "DATA_UPDATE":
+      state.tracks = action.payload[0];
+      state.artists = action.payload[1];
+			state.playlists = action.payload[2];
       break;
-				
+		
     case "QUERY_UPDATE":
       state.query = action.payload;
       localStorage.setItem('query', action.payload);

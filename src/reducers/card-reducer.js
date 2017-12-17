@@ -1,4 +1,4 @@
-export default function(state={ id: 0 }, action) {
+export default (state={ id: 0 }, action) => {
   var newState; 
 	
   switch(action.type) {

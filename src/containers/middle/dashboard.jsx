@@ -19,7 +19,7 @@ import { keyPress } from './events/keyboardEvents.jsx';
 // Constants
 import { BASE64_REPLAY, BASE64_PAUSE, BASE64_PLAY } from "Constants/images.js";
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
   
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
     const mute = localStorage.getItem('mute') == "true" ? true : false;
     
     this.state = {
-      activeSong: props.activeSong,
+      activetrack: props.activetrack,
       playing: true,
       isDownTrack: false,
       isDownVolume: false,
@@ -44,10 +44,10 @@ class Dashboard extends React.Component {
 
   componentWillReceiveProps(props) {
     
-    if(props.activeSong.title != this.state.activeSong.title) {
+    if(props.activetrack.title != this.state.activetrack.title) {
 				
       this.setState({
-        activeSong: props.activeSong,
+        activetrack: props.activetrack,
         playIcon: "play",
         playing: true,
         time: 0
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
   }
 
   onEnd() {
-    this.props.songChange('end');
+    this.props.trackChange('end');
   }
   
   reset() {
@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
       
       <div className="dashboard" onKeyPress={ keyPress.bind(this) }>
         <ReactHowler
-          src={ this.state.activeSong.stream_url + "?client_id=" + CLIENT_ID }
+          src={ this.state.activetrack.stream_url + "?client_id=" + CLIENT_ID }
           playing={ this.state.playing }
           ext="mp3"
           html5={ true }
@@ -131,11 +131,11 @@ class Dashboard extends React.Component {
           ref={ (ref) => (this.howler = ref) }
         />
         
-        <div className="song-status">
+        <div className="track-status">
          
           <div className="desc">
             <div className="caption">
-              { this.state.activeSong.title }
+              { this.state.activetrack.title }
             </div>
           </div>
           
@@ -191,5 +191,3 @@ class Dashboard extends React.Component {
     )
   }
 }
-
-export default Dashboard;

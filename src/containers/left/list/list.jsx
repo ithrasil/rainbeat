@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // Containers
 import Queue from 'Containers/left/list/queue/queue.jsx';
 
-class List extends Component {
+export default class List extends Component {
 	
 	render() {
     
@@ -16,5 +16,3 @@ class List extends Component {
 		
   }
 }
-
-export default List;

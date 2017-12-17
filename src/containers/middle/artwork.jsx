@@ -7,13 +7,13 @@ import { resizeArtwork, preloadImage } from 'Helpers';
 // Constants
 import { PLACEHOLDER } from 'Constants/config.js';
 
-class Artwork extends Component {
+export default class Artwork extends Component {
 	
   constructor(props) {
     super(props);
   
     this.state = {
-      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
+      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
 			secondary: "",
 			active: 1
     }
@@ -26,20 +26,20 @@ class Artwork extends Component {
 		preloader.onload = () => {
 			if(this.state.active == 1) {
 				this.setState({ 
-					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
+					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
 					active: 0
 				});
 			}
 
 			else {
 				this.setState({ 
-					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100),
+					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
 					active: 1
 				});
 			}
 		}
 		
-		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER + "?" + Math.random(100)
+		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER 
   }
 	
   render() {
@@ -60,5 +60,3 @@ class Artwork extends Component {
 	
 	}
 }
-
-export default Artwork;

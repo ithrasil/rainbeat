@@ -1,8 +1,31 @@
-const updateQueue = (obj) => { 
+// Axios
+import axios from 'axios';
+import { getSoundCloudUrl } from 'Helpers';
+
+// Actions
+import { changeCard } from 'Actions/card.js';
+
+export const updateQueue = (array) => {
   return {
     type: "UPDATE_QUEUE",
-    payload: obj
+    payload: array
   }
 };
 
-export { updateQueue };
+export const getArtistTracks = (id, username) => {
+	return dispatch => {
+		
+		axios.get(getSoundCloudUrl(`users/${id}/tracks`, ""))
+			.then((promise) => {
+				return promise.data
+			})
+			.then((data) => {
+			
+				if(data.length == 0) {
+					return;
+				}
+				dispatch(changeCard(0))
+				dispatch(updateQueue({ list: data, title: username }))
+			})
+	}
+}

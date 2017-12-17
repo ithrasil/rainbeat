@@ -1,9 +1,9 @@
 // Constants
 import { CLIENT_ID } from 'Constants/config.js';
 
-export function assignCardId(direction, songs, cardId) {
-    
-	const length = songs.length-1;
+export function assignCardId(direction, tracks, cardId) {
+
+	const length = tracks.length-1;
 
 	if(direction == "next"){
 		if(cardId == length){
@@ -42,7 +42,7 @@ export function convertSecondsToMs(d) {
 	let s = Math.floor(d % 60);
 	return ((m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s);
 }
-  
+
 export function prepareStorage() {
 	if(localStorage.getItem('muted') == null) {
 		localStorage.setItem('muted', false);
@@ -51,7 +51,7 @@ export function prepareStorage() {
 		localStorage.setItem('volume', "0.5");
 	}
 }
-	
+
 export function debounce(fn, delay) {
 	var timer = null;
 	return function () {
@@ -66,6 +66,3 @@ export function debounce(fn, delay) {
 export function getSoundCloudUrl(type, query) {
 	return `https://api.soundcloud.com/${ type }?client_id=${ CLIENT_ID }&q=${query}`;
 }
-  
-
-

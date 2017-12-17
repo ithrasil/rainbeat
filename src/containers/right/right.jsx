@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 
 import { BASE64_BURGER, BASE64_EXIT } from 'Constants/images.js'
 
-class Right extends Component {
+// Containers
+import Tips from 'Containers/right/navigation.jsx';
+
+export default class Right extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -31,5 +34,3 @@ class Right extends Component {
 		
   }
 }
-
-export default Right;

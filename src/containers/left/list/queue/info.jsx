@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // Constants
 import { BASE64_PLAYLIST } from 'Constants/images.js'
 
-class Info extends Component {
+export default class Info extends Component {
 	
 	constructor(props) {
     super(props);
@@ -31,5 +31,3 @@ class Info extends Component {
     )
   }
 }
-
-export default Info;

@@ -1,8 +1,5 @@
 .list {
-  width: 500px;
-	height: calc(100% - 70px);
-	
-	.queue, .tips {
+	.queue, .tips { // popraw tips
 		opacity: 0;
 		transform: translateX(-50px);
 		transition: .5s ease;

@@ -1,6 +1,5 @@
 // Axios
-import Axios from 'axios';
-
+import axios from 'axios';
 import { getSoundCloudUrl } from 'Helpers';
 
 export const changeReceiveStatus = (boolean) => {
@@ -10,28 +9,21 @@ export const changeReceiveStatus = (boolean) => {
   }
 };
 
-export const changeState = (boolean) => { 
+export const changeState = (boolean) => {
   return {
     type: "SEARCH_STATUS",
     payload: boolean
   }
 };
 
-export const updatePrimaryList = (obj) => { 
+export const updateData = (data) => {
   return {
-    type: "PRIMARY_LIST_UPDATE",
-    payload: obj
+    type: "DATA_UPDATE",
+    payload: data
   }
 };
 
-export const updateSecondaryList = (obj) => { 
-  return {
-    type: "SECONDARY_LIST_UPDATE",
-    payload: obj
-  }
-};
-
-export const saveQuery = (event) => { 
+export const saveQuery = (event) => {
 	if(event == "") {
 		return {
 			type: "QUERY_UPDATE",
@@ -46,30 +38,25 @@ export const saveQuery = (event) => {
 
 export const getData = (query) => {
   return dispatch => {
-    // set state to "loading"
-		// dispatch(getDataRequested());
+
+		function getTracks() {
+			return axios.get(getSoundCloudUrl('tracks', query));
+		}
+
+		function getArtists() {
+			return axios.get(getSoundCloudUrl('users', query));
+		}
 		
-    Axios.get(getSoundCloudUrl('tracks', query))
-      .then(response => {
-        // set state for success
-        const songs = response.data;
-				dispatch(updateSecondaryList(songs));
-      })
-      .catch(error => {
-        // set state for error
-        dispatch(getDataFailed(error));
-    })
-		
-		Axios.get(getSoundCloudUrl('playlists', query))
-      .then(response => {
-        // set state for success
-        const playlists = response.data;
-				console.log(playlists[0].tracks)
-      })
-      .catch(error => {
-        // set state for error
-        dispatch(getDataFailed(error));
-    })
-		
+		function getPlaylists() {
+			return axios.get(getSoundCloudUrl('playlists', query));
+		}
+
+		axios.all([getTracks(), getArtists(), getPlaylists()])
+			.then(axios.spread((tracks, artists, playlists) => {
+				console.log(playlists.data)
+				dispatch(updateData([tracks.data, artists.data, playlists.data]));
+			}
+		));
+
   }
 }

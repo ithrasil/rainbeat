@@ -1,0 +1,53 @@
+// React
+import React, { Component } from 'react';
+
+// Helpers
+import { resizeArtwork } from 'Helpers';
+
+// Constants
+import { BASE64_ADD } from "Constants/images.js"
+
+export default class Playlist extends Component {
+  
+  constructor(props) {
+		
+    super(props);
+	
+    this.state = {
+      playlist: props.playlist
+    }
+  
+  }
+  
+  componentWillReceiveProps(props) {
+    this.setState({
+      playlist: props.playlist
+    });
+  }
+  
+  handleClick() {
+    if(this.state.isActive) return;
+    this.props.onClick(this.props.id);
+  }
+  
+  render() {
+    
+    let title = this.state.playlist.title;
+		let shortTitle = title;
+
+    if(title.length > 40) {
+      shortTitle = title.substring(0, 40) + "...";
+    }
+    
+    return(
+      <div className="card" onClick={ this.handleClick.bind(this) }>
+        <div className="add" style={{ backgroundImage: "url(" + BASE64_ADD + ")" }} ></div>
+        
+        <div className="label">
+          <span title={ title }>{ shortTitle }</span>
+        </div>
+      </div>
+    )
+  }
+  
+}

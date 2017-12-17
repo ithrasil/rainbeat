@@ -7,32 +7,32 @@ import { resizeArtwork } from 'Helpers';
 // Constants
 import { BASE64_ADD } from "Constants/images.js"
 
-class Card extends Component {
+export default class Track extends Component {
   
   constructor(props) {
 		
     super(props);
 	
     this.state = {
-      song: props.song
+      track: props.track
     }
   
   }
   
   componentWillReceiveProps(props) {
     this.setState({
-      song: props.song
+      track: props.track
     });
   }
   
   handleClick() {
     if(this.state.isActive) return;
-    this.props.addToQueue(this.props.id);
+    this.props.onClick(this.props.id);
   }
   
   render() {
     
-    let title = this.state.song.title;
+    let title = this.state.track.title;
 		let shortTitle = title;
 
     if(title.length > 40) {
@@ -40,7 +40,7 @@ class Card extends Component {
     }
     
     return(
-      <div className="card" onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
+      <div className="card" onClick={ this.handleClick.bind(this) }>
         <div className="add" style={{ backgroundImage: "url(" + BASE64_ADD + ")" }} ></div>
         
         <div className="label">
@@ -51,6 +51,3 @@ class Card extends Component {
   }
   
 }
-
-
-export default Card;

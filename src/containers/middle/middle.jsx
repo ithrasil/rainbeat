@@ -21,12 +21,12 @@ import { PLACEHOLDER } from 'Constants/config.js';
 
 class Middle extends Component { 
 	
-	handleSongChange(type, value) { 
+	handleTrackChange(type, value) { 
     let id = 0;
-    const songs = this.props.songs;
+    const tracks = this.props.tracks;
     
     if(type == "end") {
-      id = assignCardId('next', songs, this.props.cardId)
+      id = assignCardId('next', tracks, this.props.cardId)
     }
     else {
       id = value;
@@ -37,7 +37,7 @@ class Middle extends Component {
 	
 	render() {
 		
-		if(this.props.songs.length == 0) {
+		if(this.props.tracks.length == 0) {
 			return(
 				<section className="middle">
 					<Tips />
@@ -47,17 +47,17 @@ class Middle extends Component {
 			)
 		}
 		
-		const artwork_url = this.props.songs[this.props.cardId].artwork_url;
-		const active_song = this.props.songs[this.props.cardId];
+		const artwork_url = this.props.tracks[this.props.cardId].artwork_url;
+		const active_track = this.props.tracks[this.props.cardId];
 		
 		return(
 			<section className="middle">
 				<Tips />
 				<Artwork url={ artwork_url }></Artwork>
 				<Dashboard 
-					activeSong={ active_song } 
+					activetrack={ active_track } 
           stream={ this.props.stream } 
-          songChange={ this.handleSongChange.bind(this) }>
+          trackChange={ this.handleTrackChange.bind(this) }>
 				</Dashboard>
 			</section>
 		) 
@@ -67,7 +67,7 @@ class Middle extends Component {
 function mapStateToProps(state) {
   return {
 		cardId: state.card.id,
-    songs: state.queue.list
+    tracks: state.queue.list
   }
 }
 

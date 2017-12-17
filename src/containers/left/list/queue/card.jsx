@@ -8,13 +8,13 @@ import { resizeArtwork } from 'Helpers';
 import { SMALL_PLACEHOLDER } from 'Constants/config.js'
 import { BASE64_PLAY, BASE64_PAUSE, BASE64_SPEAKER } from 'Constants/images.js'
 
-class Card extends Component {
+export default class Card extends Component {
   
   constructor(props) {
     super(props);
 	
     this.state = {
-      song: props.song,
+      track: props.track,
       isActive: props.isActive ? "active" : "",
     }
   
@@ -22,14 +22,14 @@ class Card extends Component {
   
   componentWillReceiveProps(props) {
     this.setState({
-      song: props.song,
+      track: props.track,
       isActive: props.isActive ? "active" : "",
     });
   }
   
   handleClick() {
     if(this.state.isActive) return;
-    this.props.songChange("click", this.props.id);
+    this.props.trackChange("click", this.props.id);
   }
   
   render() {
@@ -37,16 +37,16 @@ class Card extends Component {
     
     let artwork_url;
     
-    if(this.state.song.artwork_url == "http://via.placeholder.com/50?text=cover") {
-      artwork_url = this.state.song.artwork_url;
+    if(this.state.track.artwork_url == "http://via.placeholder.com/50?text=cover") {
+      artwork_url = this.state.track.artwork_url;
     }
     else {
-      artwork_url = this.state.song.artwork_url ? resizeArtwork(this.state.song.artwork_url, 50) : "http://via.placeholder.com/50?text=cover";
+      artwork_url = this.state.track.artwork_url ? resizeArtwork(this.state.track.artwork_url, 50) : "http://via.placeholder.com/50?text=cover";
     }
 	
 		const playIcon = this.state.isActive ? BASE64_SPEAKER : BASE64_PLAY;
     
-    let title = this.state.song.title;
+    let title = this.state.track.title;
 		let shortTitle = title;
 
     if(title.length > 40) {
@@ -64,6 +64,3 @@ class Card extends Component {
   }
   
 }
-
-
-export default Card;

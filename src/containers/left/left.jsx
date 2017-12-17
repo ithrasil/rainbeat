@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import List from 'Containers/left/list/list.jsx';
 import Search from 'Containers/left/search.jsx';
 
-class Left extends Component {
+export default class Left extends Component {
 	
 	render() {
     
@@ -19,5 +19,3 @@ class Left extends Component {
 		
   }
 }
-
-export default Left;

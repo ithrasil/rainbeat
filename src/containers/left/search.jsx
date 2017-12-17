@@ -23,11 +23,11 @@ class Search extends Component {
 
     return(
       <div className="search" >
-				<label htmlFor="songInput"> 
-					<img src={ BASE64_LOUPE } />
+				<label htmlFor="trackInput"> 
+					<img aria-label="loupe for search" src={ BASE64_LOUPE } />
 				</label>
 				<input
-					id="songInput"
+					id="trackInput"
 					type="text" 
 					className="searchInput" 
 					onFocus={ () => { 
@@ -35,7 +35,7 @@ class Search extends Component {
 							this.props.saveQuery("") 
 					  } 
 					}
-					placeholder="your search"
+					placeholder="search"
 			
 					onInput={ this.props.saveQuery }
 					onKeyDown={ this.handleOnKeyDown.bind(this) }

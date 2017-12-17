@@ -20,12 +20,12 @@ import { assignCardId } from 'Helpers';
 
 class Queue extends Component {
 	
-	handleSongChange(type, value) { 
+	handletrackChange(type, value) { 
     let id = 0;
-    const songs = this.props.songs;
+    const tracks = this.props.tracks;
     
     if(type == "end") {
-      id = assignCardId('next', songs, this.props.cardId-1)
+      id = assignCardId('next', tracks, this.props.cardId-1)
     }
     else {
       id = value;
@@ -36,7 +36,7 @@ class Queue extends Component {
 
   render() {
 
-    const length = this.props.songs.length;
+    const length = this.props.tracks.length;
 		const searchStatus = "active"; // it is for future update
 
 		if(length == 0) {
@@ -56,15 +56,15 @@ class Queue extends Component {
 		let cards = [];
     
     for (var i = 0; i < length; i++) {
-      const song = this.props.songs[i];
+      const track = this.props.tracks[i];
       let isActive = (i == this.props.cardId);
       
       cards.push(
         <Card 
           key={ i }
           id={ i }
-          song={ song } 
-          songChange={ this.handleSongChange.bind(this) }
+          track={ track } 
+          trackChange={ this.handletrackChange.bind(this) }
           isActive={ isActive }  
       	/>
 			);
@@ -76,7 +76,7 @@ class Queue extends Component {
           speed={ 1 }
           smoothScrolling={ true }
          >
-         	<Info playlist="Mixed"/>
+         	<Info playlist={ this.props.title } />
           { cards }
       </ScrollArea>
 		)
@@ -88,9 +88,9 @@ function mapStateToProps(state) {
 	
   return {
     cardId: state.card.id,
-    songs: state.queue.list,
-    activeSong: state.search.primaryList[state.card.id],
-		searchStatus: state.search.status
+    tracks: state.queue.list,
+		searchStatus: state.search.status,
+		title: state.queue.title
   }
 }
 

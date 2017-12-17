@@ -1,8 +1,9 @@
-export default function(state={ list: [] }, action) {
+export default (state={ list: [], title: "Mixed"}, action) => {
   
   switch(action.type) {
     case "UPDATE_QUEUE":
-      state.list = action.payload;
+			state.title = action.payload.title
+      state.list = action.payload.list;
       break;
   }
   
