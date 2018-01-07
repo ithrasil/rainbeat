@@ -7,26 +7,52 @@ import { resizeArtwork } from 'Helpers';
 // Constants
 import { BASE64_ARROW_DOWN } from "Constants/images.js"
 
+// Containers
+import Track from 'Containers/middle/tips/cards/track.jsx';
+
 export default class Artist extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      artist: props.artist
+      artist: props.artist,
+			tracks: props.tracks || [],
+			active: false,
+			loaded: false
     }
 
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      artist: props.artist
-    });
+		if(this.state.artist.username != props.artist.username) {
+			this.setState({
+				artist: props.artist,
+				tracks: props.tracks || [],
+				loaded: false,
+				active: false
+    	});
+		}
+		else {
+			this.setState({
+				tracks: props.tracks || []
+			});
+		}
+    
   }
 
   handleClick() {
     if(this.state.isActive) return;
-    this.props.onClick(this.props.artist.id, this.props.artist.username);
+		
+		if(!this.state.loaded) {
+			this.props.loadTracks(this.props.artist.id, this.props.index);
+			this.setState({ active: !this.state.active, loaded: true })
+		}
+		
+    else {
+			this.setState({ active: !this.state.active })
+		}
+		
   }
 
   render() {
@@ -34,12 +60,25 @@ export default class Artist extends Component {
     let name = this.state.artist.username;
 
     return(
-      <div className="card" onClick={ this.handleClick.bind(this) }>
-        <div className="add" style={{ backgroundImage: "url(" + BASE64_ARROW_DOWN + ")" }} ></div>
+      <div className="card_extended">
+        <div className="card_contents" onClick={ this.handleClick.bind(this) }>
+        	<div className="add" style={{ backgroundImage: "url(" + BASE64_ARROW_DOWN + ")" }} ></div>
 
-        <div className="label">
-          <span title={ name }>{ name }</span>
+					<div className="label">
+						<span title={ name }>{ name }</span>
+					</div>
         </div>
+        
+        <div className={`fold ${ this.state.active ? 'active' : ''}`}>
+        	{
+						this.state.tracks.map((track, index) => {
+							return <Track key={ index } id={ index } track={ track } onClick={ this.props.changeTrack }/>
+						})
+
+					}
+        </div>
+        
+        
       </div>
     )
   }

@@ -12,20 +12,19 @@ export const updateQueue = (array) => {
   }
 };
 
-export const getArtistTracks = (id, username) => {
+export const getPlaylistTracks = (id, title) => {
 	return dispatch => {
-		
-		axios.get(getSoundCloudUrl(`users/${id}/tracks`, ""))
+		axios.get(getSoundCloudUrl(`playlists/${id}/tracks`, ""))
 			.then((promise) => {
 				return promise.data
 			})
 			.then((data) => {
-			
 				if(data.length == 0) {
 					return;
 				}
+			
 				dispatch(changeCard(0))
-				dispatch(updateQueue({ list: data, title: username }))
+				dispatch(updateQueue({ list: data, title: title }))
 			})
 	}
 }

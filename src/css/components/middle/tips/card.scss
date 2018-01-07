@@ -4,6 +4,7 @@
 	padding: 10px;
 	display: flex;
 	align-items: center;
+	flex-wrap: nowrap;
 	
 	&:hover {
 		cursor: pointer;

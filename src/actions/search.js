@@ -23,6 +23,20 @@ export const updateData = (data) => {
   }
 };
 
+export const updateArtistTracks = (data) => {
+  return {
+    type: "ARTIST_UPDATE",
+    payload: data
+  }
+};
+
+export const updatePlaylistTracks = (data) => {
+  return {
+    type: "PLAYLIST_UPDATE",
+    payload: data
+  }
+};
+
 export const saveQuery = (event) => {
 	if(event == "") {
 		return {
@@ -53,10 +67,49 @@ export const getData = (query) => {
 
 		axios.all([getTracks(), getArtists(), getPlaylists()])
 			.then(axios.spread((tracks, artists, playlists) => {
-				console.log(playlists.data)
 				dispatch(updateData([tracks.data, artists.data, playlists.data]));
 			}
 		));
 
   }
+}
+
+export const getArtistTracks = (id, index, artists) => {
+	return dispatch => {
+		
+		axios.get(getSoundCloudUrl(`users/${id}/tracks`, ""))
+			.then((promise) => {
+				return promise.data
+			})
+			.then((data) => {
+
+				if(data.length == 0) {
+					return;
+				}
+				
+				artists[index].tracks = data;
+				
+				dispatch(updateArtistTracks(artists))
+			})
+	}
+}
+
+export const getPlaylistTracks = (id, index, playlists) => {
+	return dispatch => {
+		
+		axios.get(getSoundCloudUrl(`playlists/${id}/tracks`, ""))
+			.then((promise) => {
+				return promise.data
+			})
+			.then((data) => {
+
+				if(data.length == 0) {
+					return;
+				}
+				console.log(playlists)
+				playlists[index].tracks = data;
+				
+				dispatch(updatePlaylistTracks(playlists))
+			})
+	}
 }

@@ -42,42 +42,30 @@ class Queue extends Component {
 		if(length == 0) {
 
 			return(
-				<ScrollArea 
-          className={ "queue " + searchStatus }
-          speed={ 1 }
-          smoothScrolling={ true }
-         >
+				<div className="queue">
           <Error key="0"/>
-      	</ScrollArea>					
-				
+      	</div>
 			)
 		}
 		
-		let cards = [];
-    
-    for (var i = 0; i < length; i++) {
-      const track = this.props.tracks[i];
-      let isActive = (i == this.props.cardId);
-      
-      cards.push(
-        <Card 
-          key={ i }
-          id={ i }
-          track={ track } 
-          trackChange={ this.handletrackChange.bind(this) }
-          isActive={ isActive }  
-      	/>
-			);
-    }
-		
 		return(
-			<ScrollArea 
-          className={ "queue " + searchStatus }
-          speed={ 1 }
-          smoothScrolling={ true }
-         >
-         	<Info playlist={ this.props.title } />
-          { cards }
+			<ScrollArea className={ "queue " + searchStatus } speed={ 1 } smoothScrolling={ true }>
+        <Info playlist={ this.props.title } />
+        {
+					this.props.tracks.map((track, index) => {
+      			let isActive = (index == this.props.cardId);
+
+						return (
+							<Card 
+								key={ index }
+								id={ index }
+								track={ track } 
+								trackChange={ this.handletrackChange.bind(this) }
+								isActive={ isActive }  
+							/>
+						);
+					})
+				}
       </ScrollArea>
 		)
 		

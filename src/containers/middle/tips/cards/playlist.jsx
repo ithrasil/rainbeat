@@ -5,49 +5,82 @@ import React, { Component } from 'react';
 import { resizeArtwork } from 'Helpers';
 
 // Constants
-import { BASE64_ADD } from "Constants/images.js"
+import { BASE64_ARROW_DOWN } from "Constants/images.js"
+
+// Containers
+import Track from 'Containers/middle/tips/cards/track.jsx';
 
 export default class Playlist extends Component {
-  
+
   constructor(props) {
-		
     super(props);
-	
+
     this.state = {
-      playlist: props.playlist
+      playlist: props.playlist,
+			tracks: props.tracks || [],
+			active: false,
+			loaded: false
     }
-  
+
   }
-  
+
   componentWillReceiveProps(props) {
-    this.setState({
-      playlist: props.playlist
-    });
+		if(this.state.playlist.title != props.playlist.title) {
+			this.setState({
+				playlist: props.playlist,
+				tracks: props.tracks || [],
+				loaded: false,
+				active: false
+    	});
+		}
+		else {
+			this.setState({
+				tracks: props.tracks || []
+			});
+		}
+    
   }
-  
+
   handleClick() {
     if(this.state.isActive) return;
-    this.props.onClick(this.props.id);
+		
+		if(!this.state.loaded) {
+			this.props.loadTracks(this.props.playlist.id, this.props.index);
+			this.setState({ active: !this.state.active, loaded: true })
+		}
+		
+    else {
+			this.setState({ active: !this.state.active })
+		}
+		
   }
-  
-  render() {
-    
-    let title = this.state.playlist.title;
-		let shortTitle = title;
 
-    if(title.length > 40) {
-      shortTitle = title.substring(0, 40) + "...";
-    }
-    
+  render() {
+
+    let name = this.state.playlist.title;
+
     return(
-      <div className="card" onClick={ this.handleClick.bind(this) }>
-        <div className="add" style={{ backgroundImage: "url(" + BASE64_ADD + ")" }} ></div>
-        
-        <div className="label">
-          <span title={ title }>{ shortTitle }</span>
+      <div className="card_extended">
+        <div className="card_contents" onClick={ this.handleClick.bind(this) }>
+        	<div className="add" style={{ backgroundImage: "url(" + BASE64_ARROW_DOWN + ")" }} ></div>
+
+					<div className="label">
+						<span title={ name }>{ name }</span>
+					</div>
         </div>
+        
+        <div className={`fold ${ this.state.active ? 'active' : ''}`}>
+        	{
+						this.state.tracks.map((track, index) => {
+							return <Track key={ index } id={ index } track={ track } onClick={ this.props.changeTrack }/>
+						})
+
+					}
+        </div>
+        
+        
       </div>
     )
   }
-  
+
 }

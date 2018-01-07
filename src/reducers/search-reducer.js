@@ -5,7 +5,8 @@ export default (
 		artists: [],
 	  tracks: [], 
 		playlists: [],
-	  query: "" 
+	  query: "",
+		dummy: 1
 	}, 
 	action) => {
 	
@@ -25,12 +26,21 @@ export default (
 			state.playlists = action.payload[2];
       break;
 		
+		case "ARTIST_UPDATE":
+			state.artists = action.payload
+			state.status = Math.random()
+			break;
+			
+		case "PLAYLIST_UPDATE":
+			state.playlists = action.payload
+			state.status = Math.random()
+			break;
+			
     case "QUERY_UPDATE":
       state.query = action.payload;
       localStorage.setItem('query', action.payload);
       break;
   }
-        
   return state;
 }
 

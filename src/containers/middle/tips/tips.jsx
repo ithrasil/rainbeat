@@ -8,8 +8,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Actions
-import { updateQueue, getArtistTracks } from 'Actions/queue.js';
+import { updateQueue } from 'Actions/queue.js';
 import { changeCard } from 'Actions/card.js';
+import { getArtistTracks, getPlaylistTracks } from 'Actions/search.js';
 
 // Containers
 import Track from 'Containers/middle/tips/cards/track.jsx';
@@ -33,28 +34,31 @@ class Tips extends Component {
 			playlistsActive: false
 		}
 	}
-
-
-	handleCardClick(id) {
+	
+	changeTrack(track) {
 		let newQueue = this.props.queue.slice();
 		const tracks = this.props.tracks;
-		const track = tracks[id];
-
+		
 		newQueue.push(track);
 		this.props.updateQueue({ list: newQueue, title: "Mixed" });
 		this.props.changeCard(newQueue.length-1);
 	}
 
-	handleArtistClick(id, username) {
-		this.props.getArtistTracks(id, username);
+	handleArtistClick(id, index) {
+		this.props.getArtistTracks(id, index, this.props.artists);
+	}
+	
+	handlePlaylistClick(id, index) {
+		this.props.getPlaylistTracks(id, index, this.props.playlists);
 	}
 
 	render() {
+		console.log(this.props)
     const length = this.props.tracks.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
-
+		
 		if(length == 0) {
-
+			
 			return(
 				<ScrollArea
           className={ "tips " + searchStatus }
@@ -63,75 +67,53 @@ class Tips extends Component {
          >
          <Info/>
       	</ScrollArea>
-
+				
 			)
 		}
-
 		return(
-			<ScrollArea
-          className={ "tips " + searchStatus }
-          speed={ 1 }
-          smoothScrolling={ true }
-         >
+			<ScrollArea className={ "tips " + searchStatus } speed={ 1 } smoothScrolling={ true }>
         <Info/>
+        
         <div className={ "categoryWrapper " + (this.state.tracksActive ? "active" : "") }>
         	<div className="type" onClick={()=> this.setState({ tracksActive: !this.state.tracksActive }) }>Tracks</div>
         	<div className="results">
-        		{
-							this.props.tracks.map((track, index) => {
-								return (
-									<Track
-										key={ index }
-										id={ index }
-										track={ track }
-										onClick={ this.handleCardClick.bind(this) }
-									/>
-								);
-							})
-						}
+					{
+						this.props.tracks.map((track, index) => {
+							return <Track key={ index } id={ index } track={ track } onClick={ this.changeTrack.bind(this) } />
+						})
+					}
         	</div>
 				</div>
+      	
        	<div className={ "categoryWrapper " + (this.state.artistsActive ? "active" : "") }>
         	<div className="type" onClick={()=> this.setState({ artistsActive: !this.state.artistsActive }) }>Artists</div>
         	<div className="results">
-        		{
-							this.props.artists.map((artist, index) => {
-
-								return (
-									<Artist
-										key={ index }
-										id={ index }
-										artist={ artist }
-										onClick={ this.handleArtistClick.bind(this) }
-									/>
-								);
-							})
-						}
+					{
+						
+						this.props.artists.map((artist, index) => {
+							return <Artist key={ index } index={ index } artist={ artist } tracks={ artist.tracks } loadTracks={ this.handleArtistClick.bind(this) } changeTrack={ this.changeTrack.bind(this) }/>
+						})
+					}
         	</div>
 				</div>
+      	
        	<div className={ "categoryWrapper " + (this.state.albumsActive ? "active" : "") }>
         	<div className="type" onClick={()=> this.setState({ albumsActive: !this.state.albumsActive }) }>Albums</div>
         	<div className="results">{ 1 }</div>
 				</div>
+				
 				<div className={ "categoryWrapper " + (this.state.playlistsActive ? "active" : "") }>
 					<div className="type" onClick={()=> this.setState({ playlistsActive: !this.state.playlistsActive }) }>Playlists</div>
 					<div className="results">
-        		{
-							this.props.playlists.map((playlist, index) => {
-
-								return (
-									<Playlist
-										key={ index }
-										id={ index }
-										playlist={ playlist }
-										onClick={ this.handleArtistClick.bind(this) }
-									/>
-								);
-							})
-						}
+					{
+						
+						this.props.playlists.map((playlist, index) => {
+							return <Playlist key={ index } index={ index } playlist={ playlist } tracks={ playlist.tracks } loadTracks={ this.handlePlaylistClick.bind(this) } changeTrack={ this.changeTrack.bind(this) }/>
+						})
+					}
         	</div>
 				</div>
-
+				
       </ScrollArea>
 		)
 
@@ -153,7 +135,8 @@ function matchDispatchToProps(dispatch) {
   let functions = {
     updateQueue: updateQueue,
 		changeCard: changeCard,
-		getArtistTracks: getArtistTracks
+		getArtistTracks: getArtistTracks,
+		getPlaylistTracks: getPlaylistTracks
   };
 
   return bindActionCreators(functions, dispatch);

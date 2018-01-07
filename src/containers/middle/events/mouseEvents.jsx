@@ -44,8 +44,6 @@ export default {
   },
 
   downTrack: function(event) {
-    this.intendedTime.classList.remove('active');
-    this.currentTime.classList.add('active');
 
     if(this.state.playing) {
       this.setState({ playing: false });

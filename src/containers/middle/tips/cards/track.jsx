@@ -27,7 +27,7 @@ export default class Track extends Component {
   
   handleClick() {
     if(this.state.isActive) return;
-    this.props.onClick(this.props.id);
+    this.props.onClick(this.state.track);
   }
   
   render() {
