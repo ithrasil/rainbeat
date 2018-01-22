@@ -10,8 +10,12 @@
 		cursor: pointer;
 		background: rgba($accent, .1);
 		
-		.add {
-			opacity: 1;
+		.add, .source {
+			filter: brightness(100%)
+		}
+		
+		.label {
+			color: rgba(white, .9);
 		}
 	}
 	
@@ -29,7 +33,20 @@
 		transform: translateX(0);
 		transition: .3s ease;
 		margin-left: 10px;
-		filter: brightness(50%);
+		filter: brightness(75%);
+	}
+	
+	.source {
+		background-size: 24px 24px;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 24px;
+		max-height: 30px;
+		min-height: 30px;
+		transform: translateX(0);
+		transition: .3s ease;
+		margin-left: 10px;
+		filter: brightness(75%);
 	}
 	
 

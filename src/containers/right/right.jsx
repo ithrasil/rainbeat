@@ -17,7 +17,11 @@ export default class Right extends Component {
 	}
 	
 	changeVisibility() {
-		this.setState({ visible: !this.state.visible })
+		this.setState((state, props) => { 
+			return {
+				visible: !this.state.visible 
+			}
+		})
 	}
 	
 	render() {

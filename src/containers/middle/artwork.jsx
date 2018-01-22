@@ -25,16 +25,20 @@ export default class Artwork extends Component {
 
 		preloader.onload = () => {
 			if(this.state.active == 1) {
-				this.setState({ 
-					secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
-					active: 0
+				this.setState((state, props) => { 
+					return {
+						secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+						active: 0
+					}
 				});
 			}
 
 			else {
-				this.setState({ 
-					primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
-					active: 1
+				this.setState((state, props) => { 
+					return {
+						primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+						active: 1
+					}
 				});
 			}
 		}

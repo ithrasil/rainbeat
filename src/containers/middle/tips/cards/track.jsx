@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork } from 'Helpers';
+import { resizeArtwork, getSourceURL } from 'Helpers';
 
 // Constants
 import { BASE64_ADD } from "Constants/images.js"
@@ -16,12 +16,13 @@ export default class Track extends Component {
     this.state = {
       track: props.track
     }
-  
   }
   
   componentWillReceiveProps(props) {
-    this.setState({
-      track: props.track
+    this.setState((state, props) => {
+			return {
+				track: props.track
+			}
     });
   }
   
@@ -38,10 +39,13 @@ export default class Track extends Component {
     if(title.length > 40) {
       shortTitle = title.substring(0, 40) + "...";
     }
+		
+		const source = this.state.track.SOURCE
     
     return(
       <div className="card" onClick={ this.handleClick.bind(this) }>
         <div className="add" style={{ backgroundImage: "url(" + BASE64_ADD + ")" }} ></div>
+        <div className="source" title={ source } style={{ backgroundImage: "url(" + getSourceURL(source) + ")" }} ></div>
         
         <div className="label">
           <span title={ title }>{ shortTitle }</span>

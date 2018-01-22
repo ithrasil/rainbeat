@@ -47,7 +47,7 @@ export default class Dashboard extends React.Component {
     if(props.activetrack.title != this.state.activetrack.title) {
 				
       this.setState((state, props) => {
-				return {
+        return {
 					activetrack: props.activetrack,
 					playIcon: "play",
 					playing: true,
@@ -62,12 +62,7 @@ export default class Dashboard extends React.Component {
 
     const sound = this.howler;
     const seek = sound.seek() || this.state.time;
-		
-    this.setState((state, props) => { 
-			return {
-				time: Math.round(seek) 
-			}
-		});
+    this.setState((state, props) => { time: Math.round(seek) });
 
     if (this.state.playing) {
       requestAnimationFrame(this.timeUpdate.bind(this));
@@ -76,13 +71,7 @@ export default class Dashboard extends React.Component {
   
   onLoad() {
     const timeIteration = (this.track.offsetWidth) / this.howler.duration();
-		
-    this.setState((state, props) => { 
-			return {
-				timeIteration: timeIteration 
-			}
-		});
-		
+    this.setState((state, props) => { timeIteration: timeIteration });
     this.timeUpdate();
   }
 
@@ -91,41 +80,23 @@ export default class Dashboard extends React.Component {
   }
   
   reset() {
-		
-    this.setState((state, props) => { 
-			return {
-				time: 0 
-			}
-		});
-		
+    this.setState((state, props) => { time: 0 });
     this.howler.seek(0);
   }
   
   playSwitch() { 
     const playing = !this.state.playing;
-    this.setState((state, props) => { 
-			return {
-				playing: playing 
-			}
-		});
+    this.setState((state, props) => { playing: playing });
   }
   
   handleMute() {
     const mute = !this.state.mute;
-    this.setState((state, props) => { 
-			return {
-				mute: mute 
-			}
-		});
+    this.setState((state, props) => { mute: mute });
     localStorage.setItem('mute', mute);
   }
   
   handleVolume(volume) { 
-    this.setState((state, props) => { 
-			return {
-				volume: volume 
-			}
-		});
+    this.setState((state, props) => { volume: volume });
     localStorage.setItem('volume', volume);
   }
   
@@ -135,19 +106,12 @@ export default class Dashboard extends React.Component {
     const difference = Math.ceil(mouseX - trackLeftX);
     const time = Math.floor(difference / this.state.timeIteration);
     
-    this.setState((state, props) => { 
-			return {
-				time: time 
-			}
-		});
+    this.setState((state, props) => { time: time });
     
     this.howler.seek(time);
   }
   
   render() {
-    const playIcon = this.state.playing ? BASE64_PAUSE : BASE64_PLAY;
-    
-    const currentTime = convertSecondsToMs(this.state.time) == "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time);
 
     return(
       
@@ -181,32 +145,18 @@ export default class Dashboard extends React.Component {
             </div>
 
             <div className="play_switch" onClick={ this.playSwitch.bind(this) }>
-              <img src={ playIcon }/>
+              <img src={ this.state.playing ? BASE64_PAUSE : BASE64_PLAY }/>
             </div>
             
             
             <div className="volume_controls">
-              <InputRange
-                maxValue={ 1 }
-                minValue={ 0 }
-                step={ 0.01 }
-                value={ this.state.volume }
-                onChange={ this.handleVolume.bind(this) }
-             />
-            
+              <InputRange maxValue={ 1 } minValue={ 0 } step={ 0.01 } value={ this.state.volume } onChange={ this.handleVolume.bind(this) } />
             </div>
           </div>
 
           <div className="track_data">
 
-            <div 
-              className="track" 
-              onMouseEnter={ mouse.enterTrack.bind(this) }
-              onMouseMove={ mouse.moveTrack.bind(this) } 
-              onMouseLeave={ mouse.leaveTrack.bind(this) }
-              onMouseDown={ mouse.downTrack.bind(this) }
-              onMouseUp={ mouse.upTrack.bind(this) }
-              ref={(track) => { this.track = track; }} 
+            <div className="track" onMouseEnter={ mouse.enterTrack.bind(this) } onMouseMove={ mouse.moveTrack.bind(this) } onMouseLeave={ mouse.leaveTrack.bind(this) } onMouseDown={ mouse.downTrack.bind(this) } onMouseUp={ mouse.upTrack.bind(this) } ref={(track) => { this.track = track; }} 
             >
 
               <div className="track_elapsed" style={{ width: `${ this.state.time * this.state.timeIteration + 2 }px`}}></div>
@@ -214,7 +164,7 @@ export default class Dashboard extends React.Component {
             </div>
 
             <div className="time_placeholder">
-              <div className="current_time active" ref={ (currentTime) => { this.currentTime = currentTime; }}>{ currentTime }</div>
+              <div className="current_time active" ref={ (currentTime) => { this.currentTime = currentTime; }}>{ convertSecondsToMs(this.state.time) == "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time) }</div>
               <div className="intended_time" ref={ (intendedTime) => { this.intendedTime = intendedTime; }}></div>
             </div>
 

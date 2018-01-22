@@ -27,13 +27,11 @@ export default (
       break;
 		
 		case "ARTIST_UPDATE":
-			state.artists = action.payload
-			state.status = Math.random()
+			state.artists = action.payload.slice(0)
 			break;
 			
 		case "PLAYLIST_UPDATE":
-			state.playlists = action.payload
-			state.status = Math.random()
+			state.playlists = Object.create(action.payload)
 			break;
 			
     case "QUERY_UPDATE":
@@ -41,6 +39,8 @@ export default (
       localStorage.setItem('query', action.payload);
       break;
   }
+	
   return state;
+	
 }
 

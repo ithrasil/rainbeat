@@ -13,6 +13,11 @@ import { BASE64_LOUPE } from 'Constants/images.js'
 
 class Search extends Component {
 	
+	constructor(props) {
+		super(props)
+		this.props.getData()
+	}
+	
 	handleOnKeyDown(event) {
 		if(event.keyCode == 13) {
 			this.props.getData(this.props.query);

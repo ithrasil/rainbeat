@@ -26,16 +26,20 @@ export default class Artist extends Component {
 
   componentWillReceiveProps(props) {
 		if(this.state.artist.username != props.artist.username) {
-			this.setState({
-				artist: props.artist,
-				tracks: props.tracks || [],
-				loaded: false,
-				active: false
+			this.setState((state, props) => {
+				return {
+					artist: props.artist,
+					tracks: props.tracks || [],
+					loaded: false,
+					active: false
+				}
     	});
 		}
 		else {
-			this.setState({
-				tracks: props.tracks || []
+			this.setState((state, props) => {
+				return {
+					tracks: props.tracks || []
+				}
 			});
 		}
     
@@ -46,11 +50,19 @@ export default class Artist extends Component {
 		
 		if(!this.state.loaded) {
 			this.props.loadTracks(this.props.artist.id, this.props.index);
-			this.setState({ active: !this.state.active, loaded: true })
+			this.setState((state, props) => { 
+				return {
+					active: !this.state.active, loaded: true 
+				}
+			})
 		}
 		
     else {
-			this.setState({ active: !this.state.active })
+			this.setState((state, props) => { 
+				return {
+					active: !this.state.active 
+				}
+			})					
 		}
 		
   }

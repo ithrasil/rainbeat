@@ -3,20 +3,15 @@
   min-height: 100%;
 	overflow: hidden;
   
-  .root {
-    background-color: darken($accent, 60%);
-		overflow: hidden;
-		
-		height: 100%;
-    min-height: 100%;
-		
-		display: grid;
-    grid-template-columns: [left] 25% [middle] 60% [right] 15%;
-		
-		@import "left/left.scss";
-	
-		@import "middle/middle.scss";
-	
-		@import "right/right.scss";
-  }
+	background-color: darken($accent, 60%);
+	overflow: hidden;
+
+	display: grid;
+	grid-template-columns: [left] 30% [middle] 70% [right] 0%;
+
+	@import "left/left.scss";
+
+	@import "middle/middle.scss";
+
+	@import "right/right.scss";
 }

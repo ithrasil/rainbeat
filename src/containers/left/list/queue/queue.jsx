@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-// React modules
-import ScrollArea from "react-scrollbar";
-
 // Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -49,7 +46,7 @@ class Queue extends Component {
 		}
 		
 		return(
-			<ScrollArea className={ "queue " + searchStatus } speed={ 1 } smoothScrolling={ true }>
+			<div className={ "queue " + searchStatus }>
         <Info playlist={ this.props.title } />
         {
 					this.props.tracks.map((track, index) => {
@@ -66,7 +63,7 @@ class Queue extends Component {
 						);
 					})
 				}
-      </ScrollArea>
+      </div>
 		)
 		
 	}

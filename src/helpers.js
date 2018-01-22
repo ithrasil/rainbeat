@@ -1,6 +1,10 @@
 // Constants
 import { CLIENT_ID } from 'Constants/config.js';
 
+export function getSourceURL(type) {
+	return `/images/sources/${type}.svg`;
+}
+
 export function assignCardId(direction, tracks, cardId) {
 
 	const length = tracks.length-1;
@@ -27,7 +31,7 @@ export function assignCardId(direction, tracks, cardId) {
 }
 
 export function resizeArtwork(url, size) {
-   if(url == null) return "http://via.placeholder.com/500x500";
+  if(url == null) return "https://source.unsplash.com/random/500x500";
 
 	const beginning = url.lastIndexOf('-');
 	const end = url.lastIndexOf('.');
@@ -63,6 +67,6 @@ export function debounce(fn, delay) {
 	};
 }
 
-export function getSoundCloudUrl(type, query) {
+export function getSCUrl(type, query) {
 	return `https://api.soundcloud.com/${ type }?client_id=${ CLIENT_ID }&q=${query}`;
 }

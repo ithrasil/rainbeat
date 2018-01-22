@@ -1,6 +1,6 @@
 // Axios
 import axios from 'axios';
-import { getSoundCloudUrl } from 'Helpers';
+import { getSCUrl } from 'Helpers';
 
 // Actions
 import { changeCard } from 'Actions/card.js';
@@ -14,7 +14,7 @@ export const updateQueue = (array) => {
 
 export const getPlaylistTracks = (id, title) => {
 	return dispatch => {
-		axios.get(getSoundCloudUrl(`playlists/${id}/tracks`, ""))
+		axios.get(getSCUrl(`playlists/${id}/tracks`, ""))
 			.then((promise) => {
 				return promise.data
 			})

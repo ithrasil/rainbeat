@@ -53,7 +53,7 @@ class Tips extends Component {
 	}
 
 	render() {
-		console.log(this.props)
+
     const length = this.props.tracks.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
 		
@@ -75,7 +75,11 @@ class Tips extends Component {
         <Info/>
         
         <div className={ "categoryWrapper " + (this.state.tracksActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState({ tracksActive: !this.state.tracksActive }) }>Tracks</div>
+        	<div className="type" onClick={()=> this.setState((state, props) => { 
+							return {
+								tracksActive: !this.state.tracksActive
+							}
+						}) }>Tracks</div>
         	<div className="results">
 					{
 						this.props.tracks.map((track, index) => {
@@ -86,7 +90,11 @@ class Tips extends Component {
 				</div>
       	
        	<div className={ "categoryWrapper " + (this.state.artistsActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState({ artistsActive: !this.state.artistsActive }) }>Artists</div>
+        	<div className="type" onClick={()=> this.setState((state, props) => { 
+							return { 
+								artistsActive: !this.state.artistsActive 
+							}
+						}) }>Artists</div>
         	<div className="results">
 					{
 						
@@ -98,12 +106,19 @@ class Tips extends Component {
 				</div>
       	
        	<div className={ "categoryWrapper " + (this.state.albumsActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState({ albumsActive: !this.state.albumsActive }) }>Albums</div>
+        	<div className="type" onClick={()=> this.setState((state, props) => { 
+							return {
+								albumsActive: !this.state.albumsActive
+							}
+						}) }>Albums</div>
         	<div className="results">{ 1 }</div>
 				</div>
 				
 				<div className={ "categoryWrapper " + (this.state.playlistsActive ? "active" : "") }>
-					<div className="type" onClick={()=> this.setState({ playlistsActive: !this.state.playlistsActive }) }>Playlists</div>
+					<div className="type" onClick={()=> this.setState((state, props) => { 
+							return {
+								playlistsActive: !this.state.playlistsActive }
+						}) }>Playlists</div>
 					<div className="results">
 					{
 						

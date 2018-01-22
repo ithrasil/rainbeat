@@ -32,7 +32,11 @@ class Info extends Component {
        		<span>Close search</span>
        	</div>
        	
-       	<div className="filters_switch label" onClick={ ()=> { this.setState({ filters: !this.state.filters }) } }>
+       	<div className="filters_switch label" onClick={ ()=> { this.setState((state, props) => {
+						return {
+							filters: !this.state.filters 
+						}
+					}) } }>
        		<img src={ BASE64_FILTERS } alt=""/>
        		<span>Filters</span>
        	</div>

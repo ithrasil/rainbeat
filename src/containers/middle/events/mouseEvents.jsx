@@ -33,7 +33,11 @@ export default {
 
     if(this.state.paused) {
       this.state.stream.play();
-      this.setState({ paused: false });
+      this.setState((state, props) => { 
+				return {
+					paused: false 
+				}
+			});
     }
     this.moveDot(event);
     this.state.isMouseDown = false;
@@ -46,7 +50,11 @@ export default {
   downTrack: function(event) {
 
     if(this.state.playing) {
-      this.setState({ playing: false });
+      this.setState((state, props) => { 
+				return {
+					playing: false 
+				}
+			});
     }
     this.moveDot(event);
     this.state.isMouseDown = true;
@@ -58,7 +66,11 @@ export default {
 
 
   upTrack: function(event) {
-    this.setState({ playing: true });
+    this.setState((state, props) => { 
+			return {
+				playing: true 
+			}
+		});
     this.state.isMouseDown = false;
   },
 

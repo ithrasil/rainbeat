@@ -2,13 +2,11 @@
 	position: relative;
 	transition: .3s ease-in-out;
 	padding: 10px;
-	border-left: 5px solid rgba(#efefef, 0.25);
 	display: flex;
 	align-items: center;
 	background: #121212;
 	
 	&.active {
-		border-left: 5px solid #efefef;
 		
 		.status {
 			filter: brightness(100%);
@@ -41,7 +39,6 @@
 		min-height: 30px;
 		transform: translateX(0);
 		transition: .3s ease;
-		margin-left: 10px;
 		filter: brightness(50%);
 	}
 

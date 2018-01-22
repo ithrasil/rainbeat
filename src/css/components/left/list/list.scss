@@ -1,5 +1,19 @@
 .list {
-	height: 80%;
+	
+	height: 800px;
+	
+	.scrollbar-container.vertical {
+		width: 10px;
+		background: $player;
+		opacity: 1;
+
+		> .scrollbar {
+			background-color: #444; 
+			margin: 0;
+			width: 10px;
+		}
+	}
+	
 	overflow: hidden;
 	
 	@import "./queue/queue.scss";

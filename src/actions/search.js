@@ -1,6 +1,6 @@
 // Axios
 import axios from 'axios';
-import { getSoundCloudUrl } from 'Helpers';
+import { getSCUrl } from 'Helpers';
 
 export const changeReceiveStatus = (boolean) => {
   return {
@@ -50,66 +50,91 @@ export const saveQuery = (event) => {
   }
 };
 
+/**
+* Getting data from apis
+*
+* @function getData
+*
+* @param  {String} query
+*
+* @return {function}
+*/
+
 export const getData = (query) => {
-  return dispatch => {
-
-		function getTracks() {
-			return axios.get(getSoundCloudUrl('tracks', query));
-		}
-
-		function getArtists() {
-			return axios.get(getSoundCloudUrl('users', query));
-		}
+  return async (dispatch) => {
 		
-		function getPlaylists() {
-			return axios.get(getSoundCloudUrl('playlists', query));
-		}
-
-		axios.all([getTracks(), getArtists(), getPlaylists()])
-			.then(axios.spread((tracks, artists, playlists) => {
-				dispatch(updateData([tracks.data, artists.data, playlists.data]));
-			}
-		));
-
+		const tracks = await axios.get(getSCUrl('tracks', query));
+		const artists = await axios.get(getSCUrl('users', query));
+		const playlists = await axios.get(getSCUrl('playlists', query));
+		
+		console.log(tracks.data)
+		
+		tracks.data.map(track => {
+			track.SOURCE = "SoundCloud"
+		});
+		
+		dispatch(updateData([tracks.data, artists.data, playlists.data]));
   }
 }
 
-export const getArtistTracks = (id, index, artists) => {
-	return dispatch => {
-		
-		axios.get(getSoundCloudUrl(`users/${id}/tracks`, ""))
-			.then((promise) => {
-				return promise.data
-			})
-			.then((data) => {
+/**
+* Using artist name to get track list
+*
+* @function getArtistTracks
+*
+* @param  {Number} id
+* @param  {Number} index
+* @param  {Array} artists
+*
+* @return {function}
+*/
 
-				if(data.length == 0) {
-					return;
-				}
-				
-				artists[index].tracks = data;
-				
-				dispatch(updateArtistTracks(artists))
-			})
+export const getArtistTracks = (id, index, artists) => {
+	return async (dispatch) => {
+		
+		const tracks = await axios.get(getSCUrl(`users/${id}/tracks`, ""));
+		
+		if(tracks.data.length == 0) {
+			return;
+		}
+		
+		tracks.data.map(track => {
+			track.SOURCE = "SoundCloud"
+		});
+		
+		artists[index].tracks = tracks.data;
+
+		dispatch(updateArtistTracks(artists))
 	}
 }
 
-export const getPlaylistTracks = (id, index, playlists) => {
-	return dispatch => {
-		
-		axios.get(getSoundCloudUrl(`playlists/${id}/tracks`, ""))
-			.then((promise) => {
-				return promise.data
-			})
-			.then((data) => {
+/**
+* Fetching tracks based on playlist
+*
+* @function getPlaylistTracks
+*
+* @param  {Number} id
+* @param  {Number} index
+* @param  {Array} artists
+*
+* @return {function}
+*/
 
-				if(data.length == 0) {
-					return;
-				}
-				console.log(playlists)
-				playlists[index].tracks = data;
-				
-				dispatch(updatePlaylistTracks(playlists))
-			})
+export const getPlaylistTracks = (id, index, playlists) => {
+	return async (dispatch) => {
+		
+		const tracks = await axios.get(getSCUrl(`playlists/${id}/tracks`, ""));
+
+		if(tracks.data.length == 0) {
+			return;
+		}
+		
+		tracks.data.map(track => {
+			track.SOURCE = "SoundCloud"
+		});
+
+		playlists[index].tracks = tracks.data;
+
+		dispatch(updatePlaylistTracks(playlists))
 	}
 }

@@ -21,9 +21,11 @@ export default class Card extends Component {
   }
   
   componentWillReceiveProps(props) {
-    this.setState({
-      track: props.track,
-      isActive: props.isActive ? "active" : "",
+    this.setState((state, props) => {
+			return {
+				track: props.track,
+				isActive: props.isActive ? "active" : ""
+			}
     });
   }
   
@@ -33,6 +35,7 @@ export default class Card extends Component {
   }
   
   render() {
+		
     const cardClasses = "card " + this.state.isActive;
     
     let artwork_url;
@@ -53,6 +56,10 @@ export default class Card extends Component {
       shortTitle = title.substring(0, 40) + "...";
     }
     
+		if(this.state.isActive) {
+			document.title = title;
+		}
+		
     return(
       <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
         <div className="status" style={{backgroundImage: "url(" + playIcon+ ")" }}></div>

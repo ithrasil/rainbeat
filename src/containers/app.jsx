@@ -9,12 +9,11 @@ import Right from 'Containers/right/right.jsx';
 export default class App extends Component { 
 
   render() {
-    return(
-      <div className="root">
-        <Left />
-				<Middle />
-				<Right />
-      </div>
-    )
-  }
+		return [
+			<Left key="Left"/>,
+			<Middle key="Middle"/>,
+			<Right key="Right"/>
+  	];
+	}
+
 }

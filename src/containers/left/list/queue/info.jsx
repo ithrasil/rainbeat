@@ -15,8 +15,10 @@ export default class Info extends Component {
   }
 	
   componentWillReceiveProps(props) {
-		this.setState({
-			playlist: props.playlist
+		this.setState((state, props) => {
+			return {
+				playlist: props.playlist
+			}
 		})
 	}
 	
