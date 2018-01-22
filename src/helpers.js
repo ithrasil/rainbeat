@@ -5,6 +5,21 @@ export function getSourceURL(type) {
 	return `/images/sources/${type}.svg`;
 }
 
+export function normalizeTitle(title) {
+	const index = title.indexOf('-') + 1;
+	let extra = 0;
+	
+	if(index != undefined) {
+		if(title[index] == " ") {
+			extra = 1
+		}
+		return title.slice(index+extra, title.length+1)
+	}
+	else {
+		return title
+	}
+}
+
 export function assignCardId(direction, tracks, cardId) {
 
 	const length = tracks.length-1;

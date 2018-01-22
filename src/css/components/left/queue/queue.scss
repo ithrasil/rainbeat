@@ -1,6 +1,6 @@
-.list {
-	
-	height: 800px;
+.queue {
+  background: #121212;
+	z-index: 1;
 	
 	.scrollbar-container.vertical {
 		width: 10px;
@@ -13,8 +13,8 @@
 			width: 10px;
 		}
 	}
-	
-	overflow: hidden;
-	
-	@import "./queue/queue.scss";
+
+	@import "./list/list.scss";
+	@import "./error.scss";
+	@import "./info.scss";
 }

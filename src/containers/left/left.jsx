@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Containers
-import List from 'Containers/left/list/list.jsx';
+import Queue from 'Containers/left/queue/queue.jsx';
 import Search from 'Containers/left/search.jsx';
 
 export default class Left extends Component {
@@ -12,7 +12,7 @@ export default class Left extends Component {
     return(
 			<div className="left">
 				<Search />
-				<List />
+				<Queue />
 			</div>
     )
 		
