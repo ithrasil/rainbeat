@@ -2,10 +2,7 @@
 import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork, preloadImage } from 'Helpers';
-
-// Constants
-import { PLACEHOLDER } from 'Constants/config.js';
+import { preloadImage } from 'Helpers';
 
 export default class Artwork extends Component {
 	
@@ -13,7 +10,7 @@ export default class Artwork extends Component {
     super(props);
   
     this.state = {
-      primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+      primary: props.url,
 			secondary: "",
 			active: 1
     }
@@ -22,12 +19,12 @@ export default class Artwork extends Component {
   componentWillReceiveProps(props) {
 		
 		const preloader = new Image();
-
+		
 		preloader.onload = () => {
 			if(this.state.active == 1) {
 				this.setState((state, props) => { 
 					return {
-						secondary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+						secondary: props.url,
 						active: 0
 					}
 				});
@@ -36,14 +33,14 @@ export default class Artwork extends Component {
 			else {
 				this.setState((state, props) => { 
 					return {
-						primary: props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER,
+						primary: props.url,
 						active: 1
 					}
 				});
 			}
 		}
 		
-		preloader.src = props.url ? resizeArtwork(props.url, 500) : PLACEHOLDER 
+		preloader.src = props.url;
   }
 	
   render() {

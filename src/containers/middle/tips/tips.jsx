@@ -39,9 +39,9 @@ class Tips extends Component {
 		let newQueue = this.props.queue.slice();
 		const tracks = this.props.tracks;
 		
-		newQueue.push(track);
+		newQueue.unshift(track);
 		this.props.updateQueue({ list: newQueue, title: "Mixed" });
-		this.props.changeCard(newQueue.length-1);
+		this.props.changeCard(0);
 	}
 
 	handleArtistClick(id, index) {

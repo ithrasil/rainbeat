@@ -1,9 +1,6 @@
 // React
 import React, { Component } from 'react';
 
-// Helpers
-import { resizeArtwork } from 'Helpers';
-
 // Constants
 import { BASE64_ARROW_DOWN } from "Constants/images.js"
 

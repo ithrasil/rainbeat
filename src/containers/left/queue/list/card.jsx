@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Helpers
-import { resizeArtwork, normalizeTitle } from 'Helpers';
+import { normalizeTitle } from 'Helpers';
 
 // Constants
 import { SMALL_PLACEHOLDER } from 'Constants/config.js'
@@ -41,7 +41,7 @@ export default class Card extends Component {
     let artwork_url = this.state.track.artwork_url;
 	
 		const playIcon = this.state.isActive ? BASE64_SPEAKER : BASE64_PLAY;
-    const artist = this.state.track.user.username;
+    const artist = this.state.track.artist;
 		
     let title = normalizeTitle(this.state.track.title);
     
@@ -54,10 +54,11 @@ export default class Card extends Component {
         <div className="status" style={{backgroundImage: "url(" + playIcon+ ")" }}></div>
         <div className="placeholder" style={{backgroundImage: "url(" + artwork_url+ ")" }}></div>
         <div className="meta">
-        	<div className="artist">{ artist }</div>
-        	<div className="label">
+       	  <div className="label">
 						<span title={ title }>{ title }</span>
 					</div>
+        	<div className="artist">{ artist }</div>
+        	
         </div>
         
       </div>

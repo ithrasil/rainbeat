@@ -9,6 +9,12 @@
 	background: linear-gradient(darken($accent, 30%), #121212);
 	pointer-events: none;
 	
+	&:hover {
+		.scrollbar-container.vertical {
+			opacity: 1;
+		}
+	}
+	
 	&.active {
 		opacity: 0.9;
 		pointer-events: auto;
@@ -18,7 +24,7 @@
 	.scrollbar-container.vertical {
 		width: 10px;
 		background: $player;
-		opacity: 1;
+		opacity: 0;
 
 		> .scrollbar {
 			background-color: #444; 

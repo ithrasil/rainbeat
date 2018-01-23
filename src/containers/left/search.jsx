@@ -40,7 +40,7 @@ class Search extends Component {
 							this.props.saveQuery("") 
 					  } 
 					}
-					placeholder="search"
+					placeholder="Find something you like"
 			
 					onInput={ this.props.saveQuery }
 					onKeyDown={ this.handleOnKeyDown.bind(this) }

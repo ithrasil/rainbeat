@@ -8,7 +8,7 @@
 	&.active {
 		
 		.status {
-			opacity: 0.5;
+			opacity: 0.75;
 		}
 		
 		.placeholder {
@@ -38,12 +38,12 @@
 	}
 	
 	.status {
-		background-size: 32px 32px;
+		background-size: 28px 28px;
 		background-repeat: no-repeat;
 		background-position: center;
-		width: 100px;
-		max-height: 100px;
-		min-height: 100px;
+		width: 80px;
+		max-height: 80px;
+		min-height: 80px;
 		transform: translateX(0);
 		transition: .3s ease;
 		position: absolute;
@@ -54,11 +54,11 @@
 	}
 
 	.placeholder {
-		width: 100px;
-		max-height: 100px;
-		min-height: 100px;
+		width: 80px;
+		height: 80px;
 		margin-left: 10px;
 		
+		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: center;
 		
@@ -67,16 +67,16 @@
 
 	.meta {
 		
-		width: 200px;
+		width: 240px;
 		margin-left: 12px;
 		
-		.artist {
+		.label {
 			color: white;
-			font-size: 18px;
+			font-size: 16px;
 			margin-bottom: 5px;
 		}
 		
-		.label {
+		.artist {
 			text-align: left;
 			border-radius: 3px;
 			position: relative;

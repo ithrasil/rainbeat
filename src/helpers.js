@@ -1,9 +1,40 @@
 // Constants
-import { CLIENT_ID } from 'Constants/config.js';
+import { CLIENT_ID, PLACEHOLDER } from 'Constants/config.js';
 
-export function getSourceURL(type) {
-	return `/images/sources/${type}.svg`;
+export function normalizeTracks(tracks, pattern) {
+	
+	const {artwork_url_P, big_artwork_url_P, artist_P, source_P, stream_P, title_P} = pattern.tracksPattern
+	
+	let normalizedTracks = [];
+	
+	for(const track of tracks) {
+		
+		let artwork_url = track[artwork_url_P];
+		let big_artwork_url;
+		
+		if(track.artwork_url == undefined) {
+			artwork_url = PLACEHOLDER;
+			big_artwork_url = PLACEHOLDER;
+		}
+		else {
+			big_artwork_url = big_artwork_url_P(artwork_url);
+		}
+
+		normalizedTracks.push(
+			{
+				artwork_url: artwork_url,
+				big_artwork_url: big_artwork_url,
+				artist: artist_P(track),
+				source: source_P,
+				stream_url: track[stream_P],
+				title: track[title_P]
+			}
+		)
+	}
+	
+	return normalizedTracks;
 }
+
 
 export function normalizeTitle(title) {
 	const index = title.indexOf('-') + 1;
@@ -43,17 +74,6 @@ export function assignCardId(direction, tracks, cardId) {
 
 	return cardId;
 
-}
-
-export function resizeArtwork(url, size) {
-  if(url == null) return "https://source.unsplash.com/random/500x500";
-
-	const beginning = url.lastIndexOf('-');
-	const end = url.lastIndexOf('.');
-
-	const newUrl = url.substr(0, beginning + 1) + "t" + size + "x" + size + url.substr(end, url.length);
-
-	return newUrl;
 }
 
 export function convertSecondsToMs(d) {

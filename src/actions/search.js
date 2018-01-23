@@ -1,6 +1,11 @@
 // Axios
 import axios from 'axios';
-import { getSCUrl } from 'Helpers';
+
+// Helpers
+import { getSCUrl, normalizeTracks, normalizeSoundCloudAPI, normalizeJamendoAPI } from 'Helpers';
+
+// Constants
+import { SOUNDCLOUD_PATTERN, JAMENDO_PATTERN } from 'Constants/patterns.js';
 
 export const changeReceiveStatus = (boolean) => {
   return {
@@ -63,17 +68,18 @@ export const saveQuery = (event) => {
 export const getData = (query) => {
   return async (dispatch) => {
 		
-		const tracks = await axios.get(getSCUrl('tracks', query));
+		let sTracks = await axios.get(getSCUrl('tracks', query));
+		let jTracks = await axios.get("//api.jamendo.com/v3.0/tracks/?client_id=97cc45f7&name=" + query); 
+		
 		const artists = await axios.get(getSCUrl('users', query));
 		const playlists = await axios.get(getSCUrl('playlists', query));
 		
-		console.log(tracks.data)
+		sTracks = normalizeTracks(sTracks.data, SOUNDCLOUD_PATTERN)
+		jTracks = normalizeTracks(jTracks.data.results, JAMENDO_PATTERN)
 		
-		tracks.data.map(track => {
-			track.SOURCE = "SoundCloud"
-		});
+		const tracks = sTracks.concat(jTracks)
 		
-		dispatch(updateData([tracks.data, artists.data, playlists.data]));
+		dispatch(updateData([tracks, artists.data, playlists.data]));
   }
 }
 
@@ -92,17 +98,15 @@ export const getData = (query) => {
 export const getArtistTracks = (id, index, artists) => {
 	return async (dispatch) => {
 		
-		const tracks = await axios.get(getSCUrl(`users/${id}/tracks`, ""));
+		let sTracks = await axios.get(getSCUrl(`users/${id}/tracks`, ""));
 		
-		if(tracks.data.length == 0) {
+		if(sTracks.data.length == 0) {
 			return;
 		}
 		
-		tracks.data.map(track => {
-			track.SOURCE = "SoundCloud"
-		});
+		sTracks = normalizeTracks(sTracks.data, SOUNDCLOUD_PATTERN)
 		
-		artists[index].tracks = tracks.data;
+		artists[index].tracks = sTracks;
 
 		dispatch(updateArtistTracks(artists))
 	}
@@ -123,17 +127,15 @@ export const getArtistTracks = (id, index, artists) => {
 export const getPlaylistTracks = (id, index, playlists) => {
 	return async (dispatch) => {
 		
-		const tracks = await axios.get(getSCUrl(`playlists/${id}/tracks`, ""));
+		let sTracks = await axios.get(getSCUrl(`playlists/${id}/tracks`, ""));
 
-		if(tracks.data.length == 0) {
+		if(sTracks.data.length == 0) {
 			return;
 		}
 		
-		tracks.data.map(track => {
-			track.SOURCE = "SoundCloud"
-		});
+		sTracks = normalizeTracks(sTracks.data, SOUNDCLOUD_PATTERN)
 
-		playlists[index].tracks = tracks.data;
+		playlists[index].tracks = sTracks;
 
 		dispatch(updatePlaylistTracks(playlists))
 	}

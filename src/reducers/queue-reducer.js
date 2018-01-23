@@ -1,4 +1,4 @@
-export default (state={ list: JSON.parse(localStorage.getItem('query_list')), title: "Mixed"}, action) => {
+export default (state={ list: JSON.parse(localStorage.getItem('query_list')) || [], title: "Mixed"}, action) => {
 
   switch(action.type) {
     case "UPDATE_QUEUE":

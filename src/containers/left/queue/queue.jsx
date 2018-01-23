@@ -27,7 +27,6 @@ class Queue extends Component {
     
     return(
 			<div className="queue active">
-        <Info playlist={ this.props.title } />
       	<List />
 			</div>
     )

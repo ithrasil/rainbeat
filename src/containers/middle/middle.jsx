@@ -47,7 +47,7 @@ class Middle extends Component {
 			)
 		}
 		
-		const artwork_url = this.props.tracks[this.props.cardId].artwork_url;
+		const artwork_url = this.props.tracks[this.props.cardId].big_artwork_url;
 		const active_track = this.props.tracks[this.props.cardId];
 		
 		return(

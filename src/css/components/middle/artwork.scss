@@ -18,11 +18,11 @@
 		filter: blur(4px);
 		
 		&.primary {
-			transform: translate(-25px, -25px);
+			transform: translate(-2.5px, -2.5px);
 		}
 		
 		&.secondary {
-			transform: translate(25px, 25px);
+			transform: translate(2.5px, 2.5px);
 		}
 		
 		&.active {
