@@ -8,19 +8,20 @@ import { connect } from 'react-redux';
 // Actions
 import { changeState, saveQuery, getData } from 'Actions/search.js';
 
-// Constants
-import { BASE64_LOUPE } from 'Constants/images.js'
+// Icons
+import { loupeIcon } from "Containers/svg.jsx";
 
 class Search extends Component {
 	
 	constructor(props) {
-		super(props)
-		this.props.getData()
+		super(props);
+		
+		this.props.getData("", this.props.filters);
 	}
-	
+
 	handleOnKeyDown(event) {
 		if(event.keyCode == 13) {
-			this.props.getData(this.props.query);
+			this.props.getData(this.props.query, this.props.filters);
 		}
 	}
 	
@@ -29,7 +30,9 @@ class Search extends Component {
     return(
       <div className="search" >
 				<label htmlFor="trackInput"> 
-					<img aria-label="loupe for search" src={ BASE64_LOUPE } />
+					<div aria-label="loupe for search">
+						{ loupeIcon({fill: "white"})}
+					</div>
 				</label>
 				<input
 					id="trackInput"
@@ -54,7 +57,8 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return {
-    query: state.search.query
+    query: state.search.query,
+		filters: state.filters
   }
 }
 

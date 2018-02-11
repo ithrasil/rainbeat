@@ -9,15 +9,15 @@ import InputRange from 'react-input-range';
 import { convertSecondsToMs, prepareStorage } from 'Helpers';
 
 // Constants
-import { CLIENT_ID } from 'Constants/config.js';
+import { SOUNDCLOUD_ID } from 'Constants/config.js';
 
 // Events
 import mouse from './events/mouseEvents.jsx';
 
 import { keyPress } from './events/keyboardEvents.jsx';
 
-// Constants
-import { BASE64_REPLAY, BASE64_PAUSE, BASE64_PLAY } from "Constants/images.js";
+// Icons
+import { replayIcon, playIcon, pauseIcon } from "Containers/svg.jsx";
 
 export default class Dashboard extends React.Component {
   
@@ -145,7 +145,6 @@ export default class Dashboard extends React.Component {
   }
   
   render() {
-    const playIcon = this.state.playing ? BASE64_PAUSE : BASE64_PLAY;
     
     const currentTime = convertSecondsToMs(this.state.time) == "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time);
 
@@ -153,7 +152,7 @@ export default class Dashboard extends React.Component {
       
       <div className="dashboard" onKeyPress={ keyPress.bind(this) }>
         <ReactHowler
-          src={ this.state.activetrack.stream_url + "?client_id=" + CLIENT_ID }
+          src={ this.state.activetrack.stream_url + "?client_id=" + SOUNDCLOUD_ID }
           playing={ this.state.playing }
           ext="mp3"
           html5={ true }
@@ -177,11 +176,11 @@ export default class Dashboard extends React.Component {
           <div className="configs">
 
             <div className="replay_trigger" onClick={ this.reset.bind(this) }>
-              <img src={ BASE64_REPLAY } />
+              { replayIcon({fill: "white" }) }
             </div>
 
             <div className="play_switch" onClick={ this.playSwitch.bind(this) }>
-              <img src={ playIcon }/>
+              { this.state.playing ? pauseIcon({ fill: "white"}) : playIcon({ fill: "white" }) }
             </div>
             
             

@@ -12,6 +12,13 @@ export const updateQueue = (array) => {
   }
 };
 
+export const deleteTrack = (array) => {
+	return {
+    type: "DELETE_TRACK",
+    payload: array
+  }
+}
+
 export const getPlaylistTracks = (id, title) => {
 	return dispatch => {
 		axios.get(getSCUrl(`playlists/${id}/tracks`, ""))

@@ -1,3 +1,24 @@
+> .fake_artwork {
+	position: relative;
+	height: 500px;
+	width: 100%;
+	overflow: hidden;
+	
+	h1 {
+		color: white;
+		width: 500px;
+		margin: 0 auto;
+		margin-top: 250px;
+	}
+	
+	h2 {
+		color: #aaa;
+		width: 500px;
+		margin: 0 auto;
+		margin-top: 10px;
+	}
+}
+
 > .artwork {
 	position: relative;
 	height: 500px;
@@ -6,7 +27,6 @@
 	
 	.sprite {
 		position: absolute;
-		transition: opacity .8s ease, transform .8s ease;
 		left: 0;
 		right: 0;
 		width: 100%;
@@ -15,20 +35,9 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		opacity: 0;
-		filter: blur(4px);
-		
-		&.primary {
-			transform: translate(-2.5px, -2.5px);
-		}
-		
-		&.secondary {
-			transform: translate(2.5px, 2.5px);
-		}
 		
 		&.active {
-			filter: blur(0px);
 			opacity: 1;
-			transform: translateX(0px);
 		}
 	}
 	

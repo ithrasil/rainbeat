@@ -1,9 +1,6 @@
 // React
 import React, { Component } from 'react';
 
-// Constants
-import { BASE64_PLAYLIST } from 'Constants/images.js'
-
 export default class Info extends Component {
 	
 	constructor(props) {
@@ -26,7 +23,6 @@ export default class Info extends Component {
     return(
       <div className="info">
        	<div className="playlist label">
-       		<img src={ BASE64_PLAYLIST }alt=""/>
        		<span> { this.state.playlist }</span>
        	</div>
 			</div>

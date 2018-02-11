@@ -2,6 +2,7 @@ export default (
 	state={ 
 		received: false,
 		status: false, 
+		albums: [],
 		artists: [],
 	  tracks: [], 
 		playlists: [],

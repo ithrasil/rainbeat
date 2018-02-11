@@ -4,6 +4,7 @@
   box-sizing: border-box;
   padding: 10px;
   background: #121212;
+	display: flex;
   
 	> label {
 		padding: 13px;
@@ -11,7 +12,7 @@
 		width: 24px;
 		display: inline-block;
 
-		img {
+		svg {
 			position: relative;
 			width: 24px;
 			height: 24px;
@@ -25,11 +26,12 @@
 	> input {
 		display: inline-block;
 		vertical-align: top;
-		width: 	calc(100% - 131px);
+		width: 100%;
 		padding: 10px 0;
 		height: 24px;
 		letter-spacing: 1px;
 		font-size: 16px;
+		font-weight: 600;
 		margin: 3px 0 2px 15px;
 		color: rgba(white, 0.6);
 		background: #121212;

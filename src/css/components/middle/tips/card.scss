@@ -10,7 +10,7 @@
 		cursor: pointer;
 		background: rgba($accent, .1);
 		
-		.add, .source {
+		svg, .source {
 			filter: brightness(100%)
 		}
 		
@@ -23,7 +23,7 @@
 		background: rgba($accent, .6);
 	}
 	
-	.add {
+	svg {
 		background-size: 16px 16px;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -60,6 +60,7 @@
 		font-weight: 300;
 		letter-spacing: 1px;
 		transition: .7s;
+		overflow: hidden;
 	}
 
 }

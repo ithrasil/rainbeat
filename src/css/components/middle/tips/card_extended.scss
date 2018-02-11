@@ -14,7 +14,7 @@
 		flex-wrap: nowrap;
 		
 		&:hover {
-			.add {
+			svg {
 				opacity: 1;
 			}
 		}
@@ -23,7 +23,7 @@
 			background: rgba($accent, .6);
 		}
 
-		.add {
+		svg {
 			background-size: 16px 16px;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -35,6 +35,7 @@
 			margin-left: 10px;
 			filter: brightness(50%);
 		}
+	
 
 
 		.label {

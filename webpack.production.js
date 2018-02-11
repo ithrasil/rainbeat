@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-require('dotenv').config()
 
 module.exports = {
 
@@ -28,7 +27,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['env']
+          presets: ['env', 'stage-2']
         }
       },
       {
@@ -51,14 +50,5 @@ module.exports = {
 			Containers: path.resolve(__dirname, 'src/containers'),
 			Reducers: path.resolve(__dirname, 'src/reducers')
 		}
-	},
-
-  plugins: [
-		new webpack.DefinePlugin({
-			'process.env': {
-				'JAMENDO_URL': process.env.JAMENDO_URL,
-				'SOUNDCLOUD_URL': process.env.SOUNDCLOUD_URL
-			}
-		})
-  ]
+	}
 };

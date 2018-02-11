@@ -48,8 +48,15 @@ export default class Artwork extends Component {
 		const primaryClasses = "sprite primary " + (this.state.active ? "active" : "");
 		
 		const secondaryClasses = "sprite secondary " + (!this.state.active ? "active" : "");
-		
-		
+
+		if(this.state.primary == undefined && this.state.secondary == "") {
+			return (
+				<div className="fake_artwork">
+					<h1>Queue is empty</h1> 
+					<h2>Search for your favourite music on the left</h2>
+				</div>
+			)
+		}
 		
 		return(
 			<div className="artwork">

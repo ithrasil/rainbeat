@@ -4,9 +4,8 @@ import React, { Component } from 'react';
 // Helpers
 import { normalizeTitle } from 'Helpers';
 
-// Constants
-import { SMALL_PLACEHOLDER } from 'Constants/config.js'
-import { BASE64_PLAY, BASE64_PAUSE, BASE64_SPEAKER } from 'Constants/images.js'
+// Icons 
+import { speakerIcon, playIcon, exitIcon } from "Containers/svg.jsx";
 
 export default class Card extends Component {
   
@@ -29,10 +28,14 @@ export default class Card extends Component {
     });
   }
   
-  handleClick() {
+  placeholderClick() {
     if(this.state.isActive) return;
     this.props.trackChange("click", this.props.id);
   }
+	
+	deleteClick() {
+		this.props.trackDelete(this.props.id);
+	}
   
   render() {
 		
@@ -40,7 +43,7 @@ export default class Card extends Component {
     
     let artwork_url = this.state.track.artwork_url;
 	
-		const playIcon = this.state.isActive ? BASE64_SPEAKER : BASE64_PLAY;
+		const status = this.state.isActive ? speakerIcon({ fill: "white" }) : playIcon({ fill: "white" });
     const artist = this.state.track.artist;
 		
     let title = normalizeTitle(this.state.track.title);
@@ -50,15 +53,28 @@ export default class Card extends Component {
 		}
 		
     return(
-      <div className={ cardClasses } onClick={ this.handleClick.bind(this) } data-identity={ this.props.id }>
-        <div className="status" style={{backgroundImage: "url(" + playIcon+ ")" }}></div>
-        <div className="placeholder" style={{backgroundImage: "url(" + artwork_url+ ")" }}></div>
-        <div className="meta">
-       	  <div className="label">
-						<span title={ title }>{ title }</span>
-					</div>
-        	<div className="artist">{ artist }</div>
+      <div className={ cardClasses }>
+       
+        <div className="placeholder" style={{backgroundImage: "url(" + artwork_url+ ")" }} onClick={ this.placeholderClick.bind(this) }>
+        	<div className="status">
+        		{ status }
+        	</div>
+        </div>
+        
+        <div className="left_panel">
+      	  <div className="meta">
+      	  	<div className="label">
+							<span title={ title }>{ title }</span>
+						</div>
+						<div className="artist">{ artist }</div>
+      	  </div>
+       	  
         	
+        	<div className="controls">
+						<div className="delete" onClick={ this.deleteClick.bind(this) }>
+							{ exitIcon({ fill: "red" }) }
+						</div>
+					</div>
         </div>
         
       </div>

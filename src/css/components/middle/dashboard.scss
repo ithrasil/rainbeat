@@ -31,7 +31,7 @@
       justify-content: center;
       align-items: center;
 			
-			img {
+			svg {
 				filter: brightness(50%);
 				transition: .5s;
 			}
@@ -55,12 +55,12 @@
         &:hover {
           cursor: pointer;
 					
-					img {
+					svg {
 						filter: brightness(100%);
 					}
         }
 
-        img {
+        svg {
           width: 32px;
           height: 32px;
         }
@@ -75,12 +75,12 @@
         &:hover {
           cursor: pointer;
 					
-					img {
+					svg {
 						filter: brightness(100%);
 					}
         }
 
-        img {
+        svg {
           position: relative;
           top: 4px;
           width: 24px;

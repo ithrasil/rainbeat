@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import { changeCard } from 'Actions/card';
-
+import { deleteTrack } from 'Actions/queue';
 // Containers 
 import Card from 'Containers/left/queue/list/card.jsx';
 
@@ -17,6 +17,18 @@ import Card from 'Containers/left/queue/list/card.jsx';
 import { assignCardId } from 'Helpers';
 
 class List extends Component {
+	
+	handleDeleteTrack(id) {
+		const cardId = this.props.cardId;
+		const tracks = this.props.tracks;
+		const newTracks = tracks.slice(0, id).concat(tracks.slice(id+1, tracks.length));
+		
+		if(cardId == tracks.length-1){
+			this.props.changeCard(cardId-1);
+		}
+		
+		this.props.deleteTrack(newTracks);
+	}
 	
 	handletrackChange(type, value) { 
     let id = 0;
@@ -44,7 +56,8 @@ class List extends Component {
 						<Card 
 							key={ index }
 							id={ index }
-							track={ track } 
+							track={ track }
+							trackDelete={ this.handleDeleteTrack.bind(this) }
 							trackChange={ this.handletrackChange.bind(this) }
 							isActive={ isActive }  
 						/>
@@ -67,7 +80,8 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   let functions = { 
-    changeCard: changeCard
+    changeCard: changeCard,
+		deleteTrack: deleteTrack
   };
   
   return bindActionCreators(functions, dispatch);

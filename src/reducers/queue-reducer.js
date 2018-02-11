@@ -10,6 +10,11 @@ export default (state={ list: JSON.parse(localStorage.getItem('query_list')) || 
 			localStorage.setItem('query_list', JSON.stringify(list));
 
       break;
+			
+		case "DELETE_TRACK":
+			state.list = action.payload
+			
+			localStorage.setItem('query_list', JSON.stringify(action.payload));
   }
   
   return state;

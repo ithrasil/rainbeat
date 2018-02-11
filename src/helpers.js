@@ -1,9 +1,17 @@
 // Constants
-import { CLIENT_ID, PLACEHOLDER } from 'Constants/config.js';
+import { SOUNDCLOUD_ID, JAMENDO_ID, PLACEHOLDER, SMALL_PLACEHOLDER } from 'Constants/config.js';
+import { PATTERN } from 'Constants/patterns.js';
 
 export function normalizeTracks(tracks, pattern) {
 	
-	const {artwork_url_P, big_artwork_url_P, artist_P, source_P, stream_P, title_P} = pattern.tracksPattern
+	if(pattern == "SOUNDCLOUD") {
+		tracks = tracks.data;
+	}
+	else {
+		tracks = tracks.data.results;
+	}
+	
+	const {artwork_url_P, big_artwork_url_P, artist_P, source_P, stream_P, title_P} = PATTERN[pattern].trackPattern
 	
 	let normalizedTracks = [];
 	
@@ -11,9 +19,9 @@ export function normalizeTracks(tracks, pattern) {
 		
 		let artwork_url = track[artwork_url_P];
 		let big_artwork_url;
-		
+
 		if(track.artwork_url == undefined) {
-			artwork_url = PLACEHOLDER;
+			artwork_url = SMALL_PLACEHOLDER;
 			big_artwork_url = PLACEHOLDER;
 		}
 		else {
@@ -25,7 +33,7 @@ export function normalizeTracks(tracks, pattern) {
 				artwork_url: artwork_url,
 				big_artwork_url: big_artwork_url,
 				artist: artist_P(track),
-				source: source_P,
+				source: source_P + ".png",
 				stream_url: track[stream_P],
 				title: track[title_P]
 			}
@@ -102,6 +110,11 @@ export function debounce(fn, delay) {
 	};
 }
 
-export function getSCUrl(type, query) {
-	return `https://api.soundcloud.com/${ type }?client_id=${ CLIENT_ID }&q=${query}`;
+export function getUrl(type, query, pattern) {
+	if(pattern=="SOUNDCLOUD") {
+		return `https://api.soundcloud.com/${type}?client_id=${SOUNDCLOUD_ID}&q=${query}`;	
+	}
+	else if(pattern=="JAMENDO"){
+		return `//api.jamendo.com/v3.0/${type}/?client_id=${JAMENDO_ID}&name=${query}`;	
+	}
 }

@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 // Actions
 import { updateQueue } from 'Actions/queue.js';
 import { changeCard } from 'Actions/card.js';
-import { getArtistTracks, getPlaylistTracks } from 'Actions/search.js';
+import { getData, getArtistTracks, getPlaylistTracks } from 'Actions/search.js';
+import { updateFilter } from 'Actions/filter.js';
 
 // Containers
 import Track from 'Containers/middle/tips/cards/track.jsx';
@@ -18,6 +19,9 @@ import Artist from 'Containers/middle/tips/cards/artist.jsx';
 import Playlist from 'Containers/middle/tips/cards/playlist.jsx';
 import Error from 'Containers/middle/tips/error.jsx';
 import Info from 'Containers/middle/tips/info.jsx';
+
+// Icons
+import { arrowDownIcon } from "Containers/svg.jsx";
 
 // Helpers
 import { assignCardId } from 'Helpers';
@@ -28,10 +32,10 @@ class Tips extends Component {
 		super(props);
 
 		this.state = {
-			tracksActive: false,
-			artistsActive: false,
+			tracksActive: true,
+			artistsActive: true,
 			albumsActive: false,
-			playlistsActive: false
+			playlistsActive: true
 		}
 	}
 	
@@ -51,13 +55,23 @@ class Tips extends Component {
 	handlePlaylistClick(id, index) {
 		this.props.getPlaylistTracks(id, index, this.props.playlists);
 	}
+	
+	filterUpdate(name, api) {
+		let newFilters = Object.assign({}, this.props.filters)
+		newFilters[name][api] = !newFilters[name][api]
+		console.log(newFilters)
+		this.props.updateFilter(newFilters)
+		this.props.getData(this.props.query, this.props.filters)
+	}
 
 	render() {
 
-    const length = this.props.tracks.length;
 		const searchStatus = this.props.searchStatus ? "active" : "";
 		
-		if(length == 0) {
+		if(this.props.tracks.length == 0 &&
+			this.props.artists.length == 0 && 
+			this.props.albums.length == 0 &&
+			this.props.playlists.length == 0) {
 			
 			return(
 				<ScrollArea
@@ -65,69 +79,69 @@ class Tips extends Component {
           speed={ 1 }
           smoothScrolling={ true }
          >
-         <Info/>
+        	<Info/>
       	</ScrollArea>
-				
 			)
 		}
+		
+		const categories = [
+			{label: "Tracks", name: "tracks", status: "tracksActive", version: "track"},
+			{label: "Artists", name: "artists", status: "artistsActive", component: Artist, action: "handleArtistClick", version: "extended"},
+			{label: "Albums", name: "albums", status: "albumsActive", component: {}, action: "handleAlbumClick", version: "extended"},
+			{label: "Playlists", name: "playlists", status: "playlistsActive", component: Playlist, action: "handlePlaylistClick", version: "extended"}
+		]
+		
+		
 		return(
 			<ScrollArea className={ "tips " + searchStatus } speed={ 1 } smoothScrolling={ true }>
         <Info/>
         
-        <div className={ "categoryWrapper " + (this.state.tracksActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState((state, props) => { 
-							return {
-								tracksActive: !this.state.tracksActive
-							}
-						}) }>Tracks</div>
-        	<div className="results">
-					{
-						this.props.tracks.map((track, index) => {
-							return <Track key={ index } id={ index } track={ track } onClick={ this.changeTrack.bind(this) } />
-						})
-					}
-        	</div>
-				</div>
-      	
-       	<div className={ "categoryWrapper " + (this.state.artistsActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState((state, props) => { 
-							return { 
-								artistsActive: !this.state.artistsActive 
-							}
-						}) }>Artists</div>
-        	<div className="results">
-					{
+        {
+					categories.map((cat, key) => {
 						
-						this.props.artists.map((artist, index) => {
-							return <Artist key={ index } index={ index } artist={ artist } tracks={ artist.tracks } loadTracks={ this.handleArtistClick.bind(this) } changeTrack={ this.changeTrack.bind(this) }/>
-						})
-					}
-        	</div>
-				</div>
-      	
-       	<div className={ "categoryWrapper " + (this.state.albumsActive ? "active" : "") }>
-        	<div className="type" onClick={()=> this.setState((state, props) => { 
-							return {
-								albumsActive: !this.state.albumsActive
-							}
-						}) }>Albums</div>
-        	<div className="results">{ 1 }</div>
-				</div>
-				
-				<div className={ "categoryWrapper " + (this.state.playlistsActive ? "active" : "") }>
-					<div className="type" onClick={()=> this.setState((state, props) => { 
-							return {
-								playlistsActive: !this.state.playlistsActive }
-						}) }>Playlists</div>
-					<div className="results">
-					{
+						let Component = cat.component;
 						
-						this.props.playlists.map((playlist, index) => {
-							return <Playlist key={ index } index={ index } playlist={ playlist } tracks={ playlist.tracks } loadTracks={ this.handlePlaylistClick.bind(this) } changeTrack={ this.changeTrack.bind(this) }/>
-						})
-					}
-        	</div>
-				</div>
+						return(
+						
+							<div key={key} className={ "categoryWrapper " + (this.state[cat.status] ? "active" : "") }>
+							
+							
+								<div className="category">
+									
+									<div className="label" onClick={()=> this.setState((state, props) => ({[cat.status]: !this.state[cat.status]}) )}>
+										{ arrowDownIcon({fill: "white"})}
+										{cat.label}
+									</div>
+									
+									{
+										[["SoundCloud", "soundcloud"], ["Jamendo", "jamendo"]].map((api, key) => {
+											return (
+													<div className={`api ${this.props.filters[cat.name][api[1]] == true ? "active" : ""}`} title={api[0]} style={{ backgroundImage: `url(/images/sources/${api[1]}.png)` }} onClick={ this.filterUpdate.bind(this, cat.name, api[1]) } key={key}></div>						
+												)
+											}
+										)	
+									}
+								</div>
+								
+								<div className="results">
+								{
+									
+									cat.version == "track" ? (
+										this.props.tracks.map((track, index) => <Track key={ index } id={ index } track={ track } onClick={ this.changeTrack.bind(this) } />)
+									)
+									: (
+										this.props[cat.name].map((data, index) => 
+											<Component key={ index } index={ index } data={ data } tracks={ data.tracks } loadTracks={ this[cat.action].bind(this) } changeTrack={ this.changeTrack.bind(this) }/>
+										)
+									)
+								}
+								</div>
+							</div>
+						
+						)
+					})
+				}
+
 				
       </ScrollArea>
 		)
@@ -137,12 +151,15 @@ class Tips extends Component {
 
 function mapStateToProps(state) {
   return {
+		query: state.search.query,
     tracks: state.search.tracks,
+		albums: state.search.albums,
     artists: state.search.artists,
 		playlists: state.search.playlists,
 		searchStatus: state.search.status,
 		queue: state.queue.list,
-		index: state.card.id
+		index: state.card.id,
+		filters: state.filters
   }
 }
 
@@ -151,7 +168,9 @@ function matchDispatchToProps(dispatch) {
     updateQueue: updateQueue,
 		changeCard: changeCard,
 		getArtistTracks: getArtistTracks,
-		getPlaylistTracks: getPlaylistTracks
+		getPlaylistTracks: getPlaylistTracks,
+		updateFilter: updateFilter,
+		getData: getData
   };
 
   return bindActionCreators(functions, dispatch);
