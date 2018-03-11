@@ -16,14 +16,14 @@
 	&.active {
 		.placeholder {
 			.status {
-				opacity: 1;
+				opacity: 0.75;
 			}
 		}
 	}
 
 	.placeholder {
-		width: 100px;
-		height: 100px;
+		width: 60px;
+		height: 60px;
 		margin-left: 10px;
 		position: relative;
 		background-size: contain;
@@ -47,8 +47,8 @@
 			align-items: center;
 
 			svg {
-				width: 36px;
-				height: 36px;
+				width: 24px;
+				height: 24px;
 			}
 		}
 	}
@@ -80,7 +80,7 @@
 		
 		.controls {
 			width: 100%;
-			
+			text-align: right;
 			.delete {
 				display: inline-block;
 				

@@ -45,6 +45,7 @@ module.exports = {
 		alias: {
 			Helpers$: path.resolve(__dirname, 'src/helpers.js'),
 			Styles$: path.resolve(__dirname, 'src/css/index.scss'),
+			Api: path.resolve(__dirname, 'src/api'),
 			Actions: path.resolve(__dirname, 'src/actions'),
 			Constants: path.resolve(__dirname, 'src/constants'),
 			Containers: path.resolve(__dirname, 'src/containers'),

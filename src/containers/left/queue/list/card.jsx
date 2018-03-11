@@ -46,7 +46,7 @@ export default class Card extends Component {
 		const status = this.state.isActive ? speakerIcon({ fill: "white" }) : playIcon({ fill: "white" });
     const artist = this.state.track.artist;
 		
-    let title = normalizeTitle(this.state.track.title);
+    let title = normalizeTitle(this.state.track.name);
     
 		if(this.state.isActive) {
 			document.title = title;

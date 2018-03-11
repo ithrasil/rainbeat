@@ -21,7 +21,7 @@ export default class Playlist extends Component {
   }
 
   componentWillReceiveProps(props) {
-		if(this.state.playlist.title != props.data.title) {
+		if(this.state.playlist.name != props.data.name) {
 			this.setState((state, props) => {
 				return {
 					playlist: props.data,
@@ -44,7 +44,7 @@ export default class Playlist extends Component {
     if(this.state.isActive) return;
 		
 		if(!this.state.loaded) {
-			this.props.loadTracks(this.props.data.id, this.props.index);
+			this.props.loadTracks(this.props.data, this.props.index);
 			this.setState((state, props) => { 
 				return {
 					active: !this.state.active, loaded: true 
@@ -64,14 +64,14 @@ export default class Playlist extends Component {
 
   render() {
 
-    let name = this.state.playlist.title;
+    let name = this.state.playlist.name;
 		const tracks = this.state.playlist.tracks || [];
-
+		
     return(
       <div className="card_extended">
         <div className="card_contents" onClick={ this.handleClick.bind(this) }>
         	{arrowDownIcon({fill: "white"})}
-
+					<div className="source"  style={{ backgroundImage: `url(/images/sources/${this.state.playlist.source}.png)` }} ></div>
 					<div className="label">
 						<span title={ name }>{ name }</span>
 					</div>

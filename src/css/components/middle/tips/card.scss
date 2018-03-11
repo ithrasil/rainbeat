@@ -10,7 +10,7 @@
 		cursor: pointer;
 		background: rgba($accent, .1);
 		
-		svg, .source {
+		svg {
 			filter: brightness(100%)
 		}
 		
@@ -46,7 +46,7 @@
 		transform: translateX(0);
 		transition: .3s ease;
 		margin-left: 10px;
-		filter: brightness(75%);
+		filter: brightness(75%) grayscale(100%);
 	}
 	
 

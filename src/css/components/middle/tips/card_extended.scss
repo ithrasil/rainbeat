@@ -21,6 +21,10 @@
 
 		&:active {
 			background: rgba($accent, .6);
+			
+			.source {
+				filter: brightness(100%) grayscale(100);
+			}
 		}
 
 		svg {
@@ -35,9 +39,20 @@
 			margin-left: 10px;
 			filter: brightness(50%);
 		}
-	
-
-
+		
+		.source {
+			background-size: 24px 24px;
+			background-repeat: no-repeat;
+			background-position: center;
+			width: 24px;
+			max-height: 30px;
+			min-height: 30px;
+			transform: translateX(0);
+			transition: .3s ease;
+			margin-left: 10px;
+			filter: brightness(75%) grayscale(100%);
+		}
+		
 		.label {
 			text-align: left;
 			border-radius: 3px;

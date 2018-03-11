@@ -44,8 +44,7 @@ export default class Dashboard extends React.Component {
 
   componentWillReceiveProps(props) {
     
-    if(props.activetrack.title != this.state.activetrack.title) {
-				
+    if(props.activetrack.name != this.state.activetrack.name) {
       this.setState((state, props) => {
 				return {
 					activetrack: props.activetrack,
@@ -169,7 +168,7 @@ export default class Dashboard extends React.Component {
          
           <div className="desc">
             <div className="caption">
-              { this.state.activetrack.title }
+              { this.state.activetrack.name }
             </div>
           </div>
           

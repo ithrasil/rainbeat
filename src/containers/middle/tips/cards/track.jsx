@@ -29,14 +29,14 @@ export default class Track extends Component {
   
   render() {
     
-    let title = this.state.track.title;
+    let title = this.state.track.name;
 		
 		const source = this.state.track.source
     
     return(
       <div className="card" onClick={ this.handleClick.bind(this) }>
         { addIcon({fill: "white"}) }
-        <div className="source"  style={{ backgroundImage: `url(/images/sources/${source})` }} ></div>
+        <div className="source"  style={{ backgroundImage: `url(/images/sources/${source}.png)` }} ></div>
         
         <div className="label">
           <span title={ title }>{ title }</span>

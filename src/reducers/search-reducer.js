@@ -32,7 +32,7 @@ export default (
 			break;
 			
 		case "PLAYLIST_UPDATE":
-			state.playlists = Object.create(action.payload)
+			state.playlists = action.payload.slice(0)
 			break;
 			
     case "QUERY_UPDATE":

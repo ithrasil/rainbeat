@@ -1,8 +1,11 @@
 // Axios
 import axios from 'axios';
 
+// Api
+import { normalizeTracks, normalizeArtists, normalizePlaylists } from "Api/normalize.js";
+
 // Helpers
-import { getUrl, normalizeTracks, normalizeSoundCloudAPI, normalizeJamendoAPI } from 'Helpers';
+import { getUrl } from 'Helpers';
 
 export const changeReceiveStatus = (boolean) => {
   return {
@@ -74,28 +77,41 @@ export const getData = (query, filters) => {
   return async (dispatch) => {
 		
 		let data = {};
-		let apis = ["soundcloud", "jamendo"];
+		let apis = ["soundcloud", "jamendo"] ;
+		let normalizeFunctions = {
+			"tracks": normalizeTracks,
+			"artists": normalizeArtists,
+			"playlists": normalizePlaylists
+		}
 		
-		for(const cat of ["tracks"]) {
+		for(const cat of ["tracks", "artists", "playlists"]) {
 			data[cat] = []
 			for(const api of apis) {
 				if(filters[cat][api] == true) {
-					let tracks = await axios.get(getUrl(cat, query, api.toUpperCase()))
-					tracks = normalizeTracks(tracks, api.toUpperCase())
-					data[cat] = [...data[cat], ...tracks]
+					console.log(getUrl(cat, query, api.toUpperCase()))
+					let result = await axios.get(getUrl(cat, query, api.toUpperCase()))
+					console.log(result)
+					if(cat == "tracks") {
+						if(api == "soundcloud") {
+							result = result.data;
+						}
+						else {
+							result = result.data.results;
+						}
+					}
+					
+					const resultNormalized = normalizeFunctions[cat](result, api.toUpperCase())
+					data[cat] = [...data[cat], ...resultNormalized]
 				}
 			}
 			data[cat].sort(function(a, b){
-				if(a.title < b.title) return -1;
-				if(a.title > b.title) return 1;
+				if(a.name < b.name) return -1;
+				if(a.name > b.name) return 1;
 				return 0;
 			});
 		}
 		
-		const artists = await axios.get(getUrl('users', query, "SOUNDCLOUD"));
-		const playlists = await axios.get(getUrl('playlists', query, "SOUNDCLOUD"));
-		
-		dispatch(updateData([data.tracks, artists.data, playlists.data]));
+		dispatch(updateData([data.tracks, data.artists, data.playlists]));
   }
 }
 
@@ -111,23 +127,32 @@ export const getData = (query, filters) => {
 * @return {function}
 */
 
-export const getArtistTracks = (id, index, artists) => {
+export const getArtistTracks = (artist, index, artists) => {
 	return async (dispatch) => {
-		
-		let sTracks = await axios.get(getUrl(`users/${id}/tracks`, "", "SOUNDCLOUD"));
-		
-		if(sTracks.data.length == 0) {
-			artists = [...artists.slice(0, index), ...artists.slice(index+1, artists.length-1)];
 
-			dispatch(updateArtistTracks(artists))
+		const source = artist.source.toUpperCase();
+
+		const url = source == "SOUNDCLOUD" ? getUrl(`users/${artist.id}/tracks`, "", source) : getUrl(`artists/tracks`, artist.name + "&id=" + artist.id, source)
+
+		let tracks = await axios.get(url);
+	
+		if(source == "SOUNDCLOUD") {
+			tracks = tracks.data;
 		}
 		else {
-			sTracks = normalizeTracks(sTracks, "SOUNDCLOUD")
-
-			artists[index].tracks = sTracks;
-
-			dispatch(updateArtistTracks(artists))
+			tracks = tracks.data.results[0].tracks;
 		}
+		console.log(tracks);
+
+		if(tracks.length == 0) {
+			artists = [...artists.slice(0, index), ...artists.slice(index+1, artists.length-1)];
+		}
+		else {
+			tracks = normalizeTracks(tracks, source);
+			artists[index].tracks = tracks;
+		}
+		
+		dispatch(updateArtistTracks(artists))
 	}
 }
 
@@ -143,19 +168,35 @@ export const getArtistTracks = (id, index, artists) => {
 * @return {function}
 */
 
-export const getPlaylistTracks = (id, index, playlists) => {
+export const getPlaylistTracks = (playlist, index, playlists) => {
 	return async (dispatch) => {
 		
-		let sTracks = await axios.get(getUrl(`playlists/${id}/tracks`, "SOUNDCLOUD"));
+		const source = playlist.source.toUpperCase();
 
-		if(sTracks.data.length == 0) {
-			return;
+		const url = source == "SOUNDCLOUD" ? getUrl(`playlists/${playlist.id}/tracks`, "", source) : getUrl(`playlists/tracks`, playlist.name + "&id=" + playlist.id, source)
+
+		let tracks = await axios.get(url);
+	
+		if(source == "SOUNDCLOUD") {
+			tracks = tracks.data;
 		}
-		
-		sTracks = normalizeTracks(sTracks.data, PATTERN["SOUNDCLOUD"])
+		else {	
+			if(tracks.data.results.length == 0) {
+				tracks = tracks.data.results;
+			}
+			else {
+				tracks = tracks.data.results[0].tracks;
+			}
+		}
 
-		playlists[index].tracks = sTracks;
-
+		if(tracks.length == 0) {
+			playlists = [...playlists.slice(0, index), ...playlists.slice(index+1, playlists.length-1)];
+		}
+		else {
+			tracks = normalizeTracks(tracks, source);
+			playlists[index].tracks = tracks;
+		}
 		dispatch(updatePlaylistTracks(playlists))
+
 	}
 }

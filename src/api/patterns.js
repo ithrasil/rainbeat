@@ -1,5 +1,8 @@
 export let PATTERN =  {
 	JAMENDO: {
+		artistPattern: {
+			name_P: "name"
+		},
 		trackPattern: {
 			artwork_url_P: "album_image",
 			big_artwork_url_P: function(image) {
@@ -8,8 +11,10 @@ export let PATTERN =  {
 			artist_P: function(artist) {
 				return artist.artist_name
 			},
-			source_P: "jamendo",
 			stream_P: "audio",
+			title_P: "name"
+		},
+		playlistPattern: {
 			title_P: "name"
 		}
 	},
@@ -23,13 +28,14 @@ export let PATTERN =  {
 			artist_P: function(track) {
 				return track.user.username
 			},
-			source_P: "soundcloud",
 			stream_P: "stream_url",
 			title_P: "title"
 		},
 		artistPattern: {
-			name: "username",
-			id: "id"
+			name_P: "username"
+		},
+		playlistPattern: {
+			title_P: "title"
 		}
 	}
 }

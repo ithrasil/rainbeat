@@ -48,12 +48,12 @@ class Tips extends Component {
 		this.props.changeCard(0);
 	}
 
-	handleArtistClick(id, index) {
-		this.props.getArtistTracks(id, index, this.props.artists);
+	handleArtistClick(artist, index) {
+		this.props.getArtistTracks(artist, index, this.props.artists);
 	}
 	
-	handlePlaylistClick(id, index) {
-		this.props.getPlaylistTracks(id, index, this.props.playlists);
+	handlePlaylistClick(playlist, index) {
+		this.props.getPlaylistTracks(playlist, index, this.props.playlists);
 	}
 	
 	filterUpdate(name, api) {
