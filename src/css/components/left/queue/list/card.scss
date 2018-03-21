@@ -1,106 +1,117 @@
 .card {
-	position: relative;
-	transition: .3s ease-in-out;
-	padding: 10px;
-	display: flex;
-	background: #121212;
-	
-	&:hover {
-		.placeholder {
-			.status {
-				opacity: 1
-			}
-		}
-	}
-	
-	&.active {
-		.placeholder {
-			.status {
-				opacity: 0.75;
-			}
-		}
-	}
+  position: relative;
+  padding: 10px;
+  display: flex;
 
-	.placeholder {
-		width: 60px;
-		height: 60px;
-		margin-left: 10px;
-		position: relative;
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center;
-		
-		&:hover {
-			cursor: pointer;
-			filter: brightness(100%);
-		}
-		
-		.status {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			z-index: 1;
-			opacity: 0;
-			background-color: black;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+  &.active {
+    background: darken($accent, 32.5%);
+    .order {
+      cursor: pointer;
+      .id {
+        opacity: 0;
+      }
+      .status {
+        opacity: 1;
+        background: darken($accent, 32.5%);
+      }
+    }
+  }
 
-			svg {
-				width: 24px;
-				height: 24px;
-			}
-		}
-	}
+  &:hover {
+    .order {
+      cursor: pointer;
+      .id {
+        opacity: 0;
+      }
+      .status {
+        opacity: 1;
+      }
+    }
+  }
 
-	.left_panel {
-		width: 240px;
-		margin-left: 12px;
-		display: flex;
-		align-content: space-between;
-		flex-wrap: wrap;
-		
-		.meta {
-			width: 100%;
-			.label {
-				color: white;
-				font-size: 16px;
-				margin-bottom: 5px;
-			}
+  .order {
+    color: white;
+    font-family: "Lucida Console";
+    font-size: 24px;
+    margin: 0 5px;
+    width: 1.25em;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
-			.artist {
-				text-align: left;
-				border-radius: 3px;
-				position: relative;
-				font-size: 14px;
-				color: rgba(white, .6);
-				font-weight: 300;
-			}
-		}
-		
-		.controls {
-			width: 100%;
-			text-align: right;
-			.delete {
-				display: inline-block;
-				
-				&:hover {
-					cursor: pointer;
-					
-					svg {
-						opacity: 1;	
-					}
-				}
-				
-				svg {
-					width: 16px;
-					height: 16px;
-					opacity: 0.4;
-				}
-			}
-		}
-	}
-	
-	
+    .status {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        transform: translateX(-4px);
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .left_panel {
+    width: 280px;
+    margin-left: 12px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+
+    .meta {
+      width: 100%;
+      letter-spacing: 1px;
+      .label {
+        color: white;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .artist {
+        text-align: left;
+        border-radius: 3px;
+        position: relative;
+        font-size: 14px;
+        color: rgba(white, .6);
+        font-weight: 300;
+        display: none;
+      }
+    }
+
+    .controls {
+      display: inline-block;
+      .delete {
+        display: inline-block;
+        color: #aaa;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+
+          svg {
+            opacity: 1;
+          }
+        }
+
+        svg {
+          width: 10px;
+          height: 10px;
+          opacity: 0;
+          position: relative;
+          left: 5px;
+        }
+      }
+    }
+  }
+
 }
 

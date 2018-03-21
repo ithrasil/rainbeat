@@ -1,11 +1,11 @@
 .middle {
-	position: relative;
-	background-color: darken($accent, 35%);
-	
-	@import "./artwork.scss";
+  position: relative;
+  background-color: darken($accent, 35%);
+
+  @import "./artwork.scss";
 
   @import "./dashboard.scss";
-	
-	@import "./tips/tips.scss";
+
+  @import "./tips/tips.scss";
 }
 

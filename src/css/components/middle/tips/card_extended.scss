@@ -1,79 +1,85 @@
 .card_extended {
-	
-	&:hover {
-			cursor: pointer;
-			background: rgba($accent, .1);
-	}
-	
-	.card_contents {
-		position: relative;
-		transition: .3s ease-in-out;
-		padding: 10px;
-		display: flex;
-		align-items: center;
-		flex-wrap: nowrap;
-		
-		&:hover {
-			svg {
-				opacity: 1;
-			}
-		}
 
-		&:active {
-			background: rgba($accent, .6);
-			
-			.source {
-				filter: brightness(100%) grayscale(100);
-			}
-		}
+  &.loaded {
+    .card_contents {
+      .source {
+        filter: brightness(100%) grayscale(50%);
+      }
+    }
+  }
 
-		svg {
-			background-size: 16px 16px;
-			background-repeat: no-repeat;
-			background-position: center;
-			width: 16px;
-			max-height: 30px;
-			min-height: 30px;
-			transform: translateX(0);
-			transition: .3s ease;
-			margin-left: 10px;
-			filter: brightness(50%);
-		}
-		
-		.source {
-			background-size: 24px 24px;
-			background-repeat: no-repeat;
-			background-position: center;
-			width: 24px;
-			max-height: 30px;
-			min-height: 30px;
-			transform: translateX(0);
-			transition: .3s ease;
-			margin-left: 10px;
-			filter: brightness(75%) grayscale(100%);
-		}
-		
-		.label {
-			text-align: left;
-			border-radius: 3px;
-			position: relative;
-			font-size: 14px;
-			padding: 0 15px;
-			color: rgba(white, .6);
-			font-weight: 300;
-			letter-spacing: 1px;
-			transition: .7s;
-		}
-	}
-	
+  &:hover {
+    cursor: pointer;
+    background: rgba($accent, .1);
+  }
 
-	.fold {
-		margin-left: 20px;
-		display: none;
-		
-		&.active {
-			display: block
-		}
-	}
+  &.empty {
+    opacity: 0.2;
+  }
+
+  .card_contents {
+    position: relative;
+    transition: .3s ease-in-out;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 16px;
+      max-height: 30px;
+      min-height: 30px;
+      transform: translateX(0);
+      transition: .3s ease;
+      margin-left: 10px;
+      filter: brightness(50%);
+    }
+
+    .source {
+      background-size: 24px 24px;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 24px;
+      max-height: 30px;
+      min-height: 30px;
+      transform: translateX(0);
+      transition: .3s ease;
+      margin-left: 10px;
+      filter: brightness(75%) grayscale(100%);
+    }
+
+    .label {
+      text-align: left;
+      border-radius: 3px;
+      position: relative;
+      font-size: 14px;
+      padding: 0 15px;
+      color: rgba(white, .6);
+      font-weight: 300;
+      letter-spacing: 1px;
+      transition: .7s;
+    }
+
+    @import "./spinner.scss";
+
+  }
+
+  .fold {
+    margin-left: 20px;
+    display: none;
+
+    &.active {
+      display: block
+    }
+  }
 
 }

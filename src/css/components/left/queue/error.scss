@@ -1,24 +1,24 @@
 .error {
-	position: relative;
-	transition: .3s ease-in-out;
-	padding: 10px 0;
+  position: relative;
+  transition: .3s ease-in-out;
+  padding: 10px 0;
 
-	.description {
-		text-align: center;
-		border-radius: 3px;
-		position: relative;
-		font-size: 16px;
-		padding: 0 15px;
-		color: rgba(white, .6);
-		font-weight: 300;
-		letter-spacing: 1px;
-		transition: .7s;
-		
-		img {
-			width: 18px;
-			height: 18px;
-			float: right;
-		}
-	}
-	
+  .description {
+    text-align: center;
+    border-radius: 3px;
+    position: relative;
+    font-size: 16px;
+    padding: 0 15px;
+    color: rgba(white, .6);
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: .7s;
+
+    img {
+      width: 18px;
+      height: 18px;
+      float: right;
+    }
+  }
+
 }

@@ -1,19 +1,19 @@
 #app {
   height: 100%;
   min-height: 100%;
-	overflow: hidden;
+  overflow: hidden;
   font-family: 'Raleway', sans-serif;
-	
-	background-color: darken($accent, 60%);
-	overflow: hidden;
 
-	display: grid;
-	grid-template-columns: [left] 400px [middle] calc(100% - 400px) [right] 0%;
+  background-color: darken($accent, 60%);
+  overflow: hidden;
 
-	@import "left/left.scss";
+  display: grid;
+  grid-template-columns: [left] 400px [middle] calc(100% - 400px) [right] 0%;
 
-	@import "middle/middle.scss";
+  @import "left/left.scss";
 
-	@import "right/right.scss";
-	
+  @import "middle/middle.scss";
+
+  @import "right/right.scss";
+
 }

@@ -84,13 +84,15 @@ export const getData = (query, filters) => {
 			"playlists": normalizePlaylists
 		}
 		
+		console.log(a)
+		
 		for(const cat of ["tracks", "artists", "playlists"]) {
-			data[cat] = []
+			data[cat] = [];
+			var a = 0;
 			for(const api of apis) {
 				if(filters[cat][api] == true) {
-					console.log(getUrl(cat, query, api.toUpperCase()))
 					let result = await axios.get(getUrl(cat, query, api.toUpperCase()))
-					console.log(result)
+
 					if(cat == "tracks") {
 						if(api == "soundcloud") {
 							result = result.data;
@@ -142,10 +144,9 @@ export const getArtistTracks = (artist, index, artists) => {
 		else {
 			tracks = tracks.data.results[0].tracks;
 		}
-		console.log(tracks);
 
 		if(tracks.length == 0) {
-			artists = [...artists.slice(0, index), ...artists.slice(index+1, artists.length-1)];
+			artists[index].isEmpty = true;
 		}
 		else {
 			tracks = normalizeTracks(tracks, source);
@@ -190,7 +191,7 @@ export const getPlaylistTracks = (playlist, index, playlists) => {
 		}
 
 		if(tracks.length == 0) {
-			playlists = [...playlists.slice(0, index), ...playlists.slice(index+1, playlists.length-1)];
+			playlists[index].isEmpty = true;
 		}
 		else {
 			tracks = normalizeTracks(tracks, source);

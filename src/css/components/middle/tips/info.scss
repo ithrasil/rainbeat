@@ -1,95 +1,95 @@
 .info {
-	position: relative;
-	transition: .3s ease-in-out;
-	padding: 10px;
-	align-items: center;
-	box-sizing: border-box;
-	
-	> .label {
-		display: block;
-		color: white;
-		filter: brightness(75%);
-		transition: .5s ease;
-		
-		> svg {
-			width: 24px;
-			vertical-align: middle;
-			height: 24px;
-			padding: 13px;
-		}
-		
-		> span {
-			line-height: 24px;
-			margin-left: 15px;
-			vertical-align: middle;
-		}
-		
-		&:hover {
-			cursor: pointer;
-			filter: brightness(100%);
-		}
-	}
-	
-	> .filters {
-		opacity: 0;
-		height: 0;
-		border-radius: 5px;
-		margin: 0 5px;
-		box-sizing: border-box;
-		
-		&.active {
-			opacity: 1;
-			height: auto;
-		}
-		
-		> .apis, > .types {
-			display: flex;
-			align-items: center;
-			
-			> .label {
-				width: 75px;
-				font-size: 16px;
-				color: white;
-				margin-left: 5px;
-			}
-		}
-		
-		> .icons {
-			margin: 16px 0;
-			
-			> .icon {
-				width: 200px;
-				background-size: 50px 50px;
-				background-repeat: no-repeat;
-				filter: brightness(25%);
-				transition: .5s ease;
-				overflow: hidden;
-				
-				> img {
-					width: 50px;
-					height: 50px;
-					display: inline-block;
-					vertical-align: middle;
-				}
-				
-				span {
-					vertical-align: middle;
-					display: inline-block;
-					color: white;
-					margin-left: 15px;
-					font-weight: bold;
-				}
-				
-				&.active {
-					filter: brightness(75%);
-				}
-				
-				&:hover {
-					cursor: pointer;
-					filter: brightness(100%);
-				}
-				
-			}
-		}
-	}
+  position: relative;
+  transition: .3s ease-in-out;
+  padding: 10px;
+  align-items: center;
+  box-sizing: border-box;
+
+  > .label {
+    display: block;
+    color: white;
+    filter: brightness(75%);
+    transition: .5s ease;
+
+    > svg {
+      width: 24px;
+      vertical-align: middle;
+      height: 24px;
+      padding: 13px;
+    }
+
+    > span {
+      line-height: 24px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(100%);
+    }
+  }
+
+  > .filters {
+    opacity: 0;
+    height: 0;
+    border-radius: 5px;
+    margin: 0 5px;
+    box-sizing: border-box;
+
+    &.active {
+      opacity: 1;
+      height: auto;
+    }
+
+    > .apis, > .types {
+      display: flex;
+      align-items: center;
+
+      > .label {
+        width: 75px;
+        font-size: 16px;
+        color: white;
+        margin-left: 5px;
+      }
+    }
+
+    > .icons {
+      margin: 16px 0;
+
+      > .icon {
+        width: 200px;
+        background-size: 50px 50px;
+        background-repeat: no-repeat;
+        filter: brightness(25%);
+        transition: .5s ease;
+        overflow: hidden;
+
+        > img {
+          width: 50px;
+          height: 50px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        span {
+          vertical-align: middle;
+          display: inline-block;
+          color: white;
+          margin-left: 15px;
+          font-weight: bold;
+        }
+
+        &.active {
+          filter: brightness(75%);
+        }
+
+        &:hover {
+          cursor: pointer;
+          filter: brightness(100%);
+        }
+
+      }
+    }
+  }
 }

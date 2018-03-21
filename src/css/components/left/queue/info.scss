@@ -1,27 +1,27 @@
 .info {
-	position: relative;
-	transition: .3s ease-in-out;
-	padding: 10px;
-	align-items: center;
-	box-sizing: border-box;
-	
-	> .label {
-		display: block;
-		color: white;
-		filter: brightness(75%);
-		transition: .5s ease;
-		
-		> img {
-			width: 30px;
-			vertical-align: middle;
-			height: 30px;
-			padding: 3px 3px 3px 13px;
-		}
-		
-		> span {
-			line-height: 24px;
-			margin-left: 15px;
-			vertical-align: middle;
-		}
-	}
+  position: relative;
+  transition: .3s ease-in-out;
+  padding: 10px;
+  align-items: center;
+  box-sizing: border-box;
+
+  > .label {
+    display: block;
+    color: white;
+    filter: brightness(75%);
+    transition: .5s ease;
+
+    > img {
+      width: 30px;
+      vertical-align: middle;
+      height: 30px;
+      padding: 3px 3px 3px 13px;
+    }
+
+    > span {
+      line-height: 24px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+  }
 }

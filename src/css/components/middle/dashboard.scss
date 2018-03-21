@@ -1,9 +1,9 @@
 .dashboard {
-	background: linear-gradient(darken($accent, 35%), #121212, #121212);
+  background: linear-gradient(darken($accent, 35%), #121212, #121212);
   height: calc(100% - 500px);
   text-align: center;
   box-sizing: border-box;
-	
+
   &:focus {
     outline: none;
   }
@@ -30,12 +30,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-			
-			svg {
-				filter: brightness(50%);
-				transition: .5s;
-			}
-      
+
+      svg {
+        filter: brightness(50%);
+        transition: .5s;
+      }
 
       @media (max-width: 768px) {
         margin: 0;
@@ -54,10 +53,10 @@
 
         &:hover {
           cursor: pointer;
-					
-					svg {
-						filter: brightness(100%);
-					}
+
+          svg {
+            filter: brightness(100%);
+          }
         }
 
         svg {
@@ -70,14 +69,14 @@
         display: inline-block;
         color: white;
         transition: 0.5s;
-				margin: 0 40px;
+        margin: 0 40px;
 
         &:hover {
           cursor: pointer;
-					
-					svg {
-						filter: brightness(100%);
-					}
+
+          svg {
+            filter: brightness(100%);
+          }
         }
 
         svg {
@@ -87,24 +86,23 @@
           height: 24px;
         }
       }
-      
+
       .volume_controls {
         position: relative;
         margin-left: 20px;
-        
+
         .input-range {
           width: 100px;
-          
+
           .input-range__label-container {
             display: none;
           }
-          
+
           .input-range__slider {
             transition: none;
           }
         }
 
-        
         img {
           display: none;
           position: relative;
@@ -127,7 +125,7 @@
           opacity: 0;
           pointer-events: none;
           transition: 0.2s;
-          transform: scale(0.7) translateX(-30px) ;
+          transform: scale(0.7) translateX(-30px);
 
           @media (max-width: 768px) {
             display: none;
@@ -138,7 +136,7 @@
           input {
             opacity: 1;
             pointer-events: auto;
-            transform: scale(1) translateX(10px) ;
+            transform: scale(1) translateX(10px);
           }
         }
       }
@@ -177,12 +175,12 @@
           .intended_time {
             opacity: 1;
           }
-					
-					.dot_position {
-						width: 16px;
-						height: 16px;
-						left: -2px;
-					}
+
+          .dot_position {
+            width: 16px;
+            height: 16px;
+            left: -2px;
+          }
         }
 
         .track_elapsed {
@@ -200,9 +198,9 @@
           width: 12px;
           height: 12px;
           border-radius: 15px;
-					position: relative;
-					left: 0;
-					transition: width .2s ease, height .2s ease, left .2s ease;
+          position: relative;
+          left: 0;
+          transition: width .2s ease, height .2s ease, left .2s ease;
         }
       }
 
@@ -215,11 +213,11 @@
         letter-spacing: 1px;
         font-family: "Inconsolata";
         position: relative;
-        
+
         @media (max-width: 768px) {
           display: none;
         }
-        
+
         .current_time {
           display: inline-block;
           color: white;
@@ -229,7 +227,7 @@
           position: absolute;
           transform: translateY(5px);
         }
-        
+
         .intended_time {
           display: inline-block;
           color: lighten($accent, 25%);
@@ -241,7 +239,7 @@
           font-weight: 700;
           transform: translateY(-5px);
         }
-        
+
         .active {
           opacity: 1;
           transform: translateY(0);

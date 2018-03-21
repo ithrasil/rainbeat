@@ -1,26 +1,26 @@
 .right {
-	position: relative;
-	background-color: darken($accent, 45%);
-	
-	&.visible {
-		right: 0;
-	}
-	
-	.visibility {
-		background-size: 24px 24px;
-		width: 24px;
-		height: 24px;
-		position: absolute;
-		top: 16px;
-		left: 16px;
-		
-		&.faded {
-			opacity: 0
-		}
-		
-		&:hover {
-			cursor: pointer
-		}
-	}
-	
+  position: relative;
+  background-color: darken($accent, 45%);
+
+  &.visible {
+    right: 0;
+  }
+
+  .visibility {
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    &.faded {
+      opacity: 0
+    }
+
+    &:hover {
+      cursor: pointer
+    }
+  }
+
 }

@@ -1,113 +1,111 @@
 .tips {
   position: absolute;
   width: 100%;
-	height: 100%;
-	z-index: 2;
-	opacity: 0;
-	background: linear-gradient(darken($accent, 30%), #121212);
-	pointer-events: none;
-	
-	&:hover {
-		.scrollbar-container.vertical {
-			opacity: 1;
-		}
-	}
-	
-	&.active {
-		opacity: 0.9;
-		pointer-events: auto;
-	}
-	
-	.scrollbar-container.vertical {
-		width: 10px;
-		background: $player;
-		opacity: 0;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(darken($accent, 30%), #121212);
+  pointer-events: none;
 
-		> .scrollbar {
-			background-color: #444; 
-			margin: 0;
-			width: 10px;
-		}
-	}
-	
-	.categoryWrapper {
-		.category {
-			display: flex;
-			align-items: center;
-			
-			.label {
-				color: white;
-				font-size: 18px;
-				margin: 5px 5px 5px 20px;
-				padding: 3px 0;
-				display: inline-block;
-				position: relative;
-				filter: brightness(50%);
-				display: flex;
-				align-items: center;
-				padding: 10px 0;
-				
-				svg {
-					display: inline-block;
-					background-size: 16px 16px;
-					background-repeat: no-repeat;
-					background-position: center;
-					width: 16px;
-					height: 16px;
-					transform: translateX(0);
-					margin-right: 10px;
-					margin-left: 5px;
-				}
-				
-				&:hover {
-					cursor: pointer;
-					filter: brightness(75%);
-				}
-			}
-			
-			> .api {
-				background-size: 24px 24px;
-				background-repeat: no-repeat;
-				background-position: center;
-				width: 24px;
-				max-height: 30px;
-				min-height: 30px;
-				transform: translateX(0);
-				transition: .3s ease;
-				margin-left: 10px;
-				filter: brightness(50%);
-				
-				&.active {
-					filter: brightness(75%);
-				}
-				
-				&:hover {
-						cursor: pointer;
-					}
-			}
-		}
-		
-		
+  &:hover {
+    .scrollbar-container.vertical {
+      opacity: 1;
+    }
+  }
 
-		.results {
-			margin-left: 20px;
-			display: none;
-			
-			@import "./card.scss";
-			@import "./card_extended.scss";
-		}
-		
-		&.active {
-			.type {
-				filter: brightness(100%);
-			}
-			
-			.results {
-				display: block;
-			}
-		}
-	}
-	
-	@import "./error.scss";
-	@import "./info.scss";
+  &.active {
+    opacity: 0.9;
+    pointer-events: auto;
+  }
+
+  .scrollbar-container.vertical {
+    width: 10px;
+    background: $player;
+    opacity: 0;
+
+    > .scrollbar {
+      background-color: #444;
+      margin: 0;
+      width: 10px;
+    }
+  }
+
+  .categoryWrapper {
+    .category {
+      display: flex;
+      align-items: center;
+
+      .label {
+        color: white;
+        font-size: 18px;
+        margin: 5px 5px 5px 20px;
+        padding: 3px 0;
+        display: inline-block;
+        position: relative;
+        filter: brightness(50%);
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+
+        svg {
+          display: inline-block;
+          background-size: 16px 16px;
+          background-repeat: no-repeat;
+          background-position: center;
+          width: 16px;
+          height: 16px;
+          transform: translateX(0);
+          margin-right: 10px;
+          margin-left: 5px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          filter: brightness(75%);
+        }
+      }
+
+      > .api {
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 24px;
+        max-height: 30px;
+        min-height: 30px;
+        transform: translateX(0);
+        transition: .3s ease;
+        margin-left: 10px;
+        filter: brightness(50%);
+
+        &.active {
+          filter: brightness(75%);
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .results {
+      margin-left: 20px;
+      display: none;
+
+      @import "./card.scss";
+      @import "./card_extended.scss";
+    }
+
+    &.active {
+      .type {
+        filter: brightness(100%);
+      }
+
+      .results {
+        display: block;
+      }
+    }
+  }
+
+  @import "./error.scss";
+  @import "./info.scss";
 }

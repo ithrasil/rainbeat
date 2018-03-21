@@ -1,7 +1,7 @@
 .left {
 	
   overflow: hidden;
-  background: #121212;
+  background: darken($accent, 37.5%);
 	
   @import "./queue/queue.scss";
 

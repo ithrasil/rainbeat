@@ -10,8 +10,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Redux
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware  } from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import allReducers from 'Reducers/index.js';
 
@@ -19,16 +19,16 @@ import allReducers from 'Reducers/index.js';
 import App from "Containers/app.jsx";
 
 const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk)
+    allReducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk)
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('app')
 );
 
 
