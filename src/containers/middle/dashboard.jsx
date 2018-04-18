@@ -27,10 +27,10 @@ export default class Dashboard extends React.Component {
         prepareStorage();
 
         const volume = parseFloat(localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5);
-        const mute = localStorage.getItem('mute') == "true" ? true : false;
-
+        const mute = localStorage.getItem('mute') === "true" ? true : false;
+        console.log(props);
         this.state = {
-            activetrack: props.activetrack,
+            track: props.track,
             playing: true,
             isDownTrack: false,
             isDownVolume: false,
@@ -44,10 +44,10 @@ export default class Dashboard extends React.Component {
 
     componentWillReceiveProps(props) {
 
-        if (props.activetrack.name != this.state.activetrack.name) {
+        if (props.track.name !== this.state.track.name) {
             this.setState((state, props) => {
                 return {
-                    activetrack: props.activetrack,
+                    track: props.track,
                     playIcon: "play",
                     playing: true,
                     time: 0
@@ -58,7 +58,6 @@ export default class Dashboard extends React.Component {
     }
 
     timeUpdate() {
-
         const sound = this.howler;
         const seek = sound.seek() || this.state.time;
 
@@ -116,7 +115,7 @@ export default class Dashboard extends React.Component {
                 mute: mute
             }
         });
-        localStorage.setItem('mute', mute);
+        localStorage.setItem('mute', mute.toString());
     }
 
     handleVolume(volume) {
@@ -145,13 +144,13 @@ export default class Dashboard extends React.Component {
 
     render() {
 
-        const currentTime = convertSecondsToMs(this.state.time) == "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time);
+        const currentTime = convertSecondsToMs(this.state.time) === "NaN:NaN" ? "00:00" : convertSecondsToMs(this.state.time);
 
         return (
 
             <div className="dashboard" onKeyPress={keyPress.bind(this)}>
                 <ReactHowler
-                    src={this.state.activetrack.stream_url + "?client_id=" + SOUNDCLOUD_ID}
+                    src={this.state.track.stream_url + "?client_id=" + SOUNDCLOUD_ID}
                     playing={this.state.playing}
                     ext="mp3"
                     html5={true}
@@ -168,7 +167,7 @@ export default class Dashboard extends React.Component {
 
                     <div className="desc">
                         <div className="caption">
-                            {this.state.activetrack.name}
+                            {this.state.track.name}
                         </div>
                     </div>
 

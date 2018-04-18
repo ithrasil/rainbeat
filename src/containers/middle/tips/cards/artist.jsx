@@ -16,8 +16,7 @@ export default class Artist extends Component {
             artist: props.data,
             active: false,
             loaded: false
-        }
-
+        };
     }
 
     componentWillReceiveProps(props) {
@@ -65,9 +64,13 @@ export default class Artist extends Component {
 
     }
 
+    createTracks(tracks) {
+        return tracks.map((track, index) => <Track key={index} id={index} track={track}
+                                            onClick={this.props.changeTrack}/>)
+    }
+
     render() {
         const artist = this.state.artist;
-
         let name = artist.name;
         const tracks = artist.tracks || [];
 
@@ -79,9 +82,7 @@ export default class Artist extends Component {
                     {arrowDownIcon({fill: "white"})}
                     <div className="source"
                          style={{backgroundImage: `url(/images/sources/${artist.source}.png)`}}></div>
-                    <div className="label">
-                        <span title={name}>{name}</span>
-                    </div>
+                    <div className="label"><span title={name}>{name}</span></div>
                     <div className={"sk-fading-circle " + this.state.loadClass}>
                         <div className="sk-circle1 sk-circle"></div>
                         <div className="sk-circle2 sk-circle"></div>
@@ -97,15 +98,7 @@ export default class Artist extends Component {
                         <div className="sk-circle12 sk-circle"></div>
                     </div>
                 </div>
-
-                <div className={`fold ${ this.state.active ? 'active' : ''}`}>
-                    {
-                        tracks.map((track, index) => <Track key={index} id={index} track={track}
-                                                            onClick={this.props.changeTrack}/>)
-                    }
-                </div>
-
-
+                <div className={`fold ${ this.state.active ? 'active' : ''}`}>{this.createTracks(tracks)}</div>
             </div>
         )
     }

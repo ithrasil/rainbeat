@@ -41,7 +41,6 @@ export default class Card extends Component {
 
         const cardClasses = "card " + this.state.isActive;
 
-
         const status = this.state.isActive ? speakerIcon({fill: "white"}) : playIcon({fill: "white"});
         const artist = this.state.track.artist;
 

@@ -2,8 +2,8 @@
   height: 100%;
   min-height: 100%;
   overflow: hidden;
-  font-family: 'Raleway', sans-serif;
-
+  font-family: 'Lato', sans-serif;
+  text-rendering: geometricPrecision;
   background-color: darken($accent, 60%);
   overflow: hidden;
 

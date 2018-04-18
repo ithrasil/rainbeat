@@ -41,7 +41,7 @@ export default class Track extends Component {
                     </div>
                     <div className="id">{this.props.id + 1}.</div>
                 </div>
-                <div className="source" style={{backgroundImage: `url(/images/sources/${source}.png)`}}></div>
+                {/*<div className="source" style={{backgroundImage: `url(/images/sources/${source}.png)`}}></div>*/}
                 <div className="label">
                     <span title={title}>{title}</span>
                 </div>

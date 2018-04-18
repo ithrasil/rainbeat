@@ -48,14 +48,14 @@ class Middle extends Component {
         }
 
         const artwork_url = this.props.tracks[this.props.cardId].big_artwork_url;
-        const active_track = this.props.tracks[this.props.cardId];
+        const track = this.props.tracks[this.props.cardId];
 
         return (
             <section className="middle">
                 <Tips/>
                 <Artwork url={artwork_url}></Artwork>
                 <Dashboard
-                    activetrack={active_track}
+                    track={track}
                     stream={this.props.stream}
                     trackChange={this.handleTrackChange.bind(this)}>
                 </Dashboard>

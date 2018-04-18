@@ -12,16 +12,17 @@
     transition: .5s ease;
 
     > svg {
-      width: 24px;
+      width: 16px;
       vertical-align: middle;
-      height: 24px;
-      padding: 13px;
+      height: 16px;
+      padding: 13px 0 13px 15px;
     }
 
     > span {
       line-height: 24px;
-      margin-left: 15px;
+      margin-left: 10px;
       vertical-align: middle;
+      font-size: 18px;
     }
 
     &:hover {

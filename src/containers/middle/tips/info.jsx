@@ -20,7 +20,7 @@ class Info extends Component {
                     this.props.changeState(false)
                 }}>
                     {exitIcon({fill: "white"})}
-                    <span>Close search</span>
+                    <span>Close</span>
                 </div>
             </div>
         )

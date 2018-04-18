@@ -33,16 +33,16 @@ export function assignCardId(direction, tracks, cardId) {
 
     const length = tracks.length - 1;
 
-    if (direction == "next") {
-        if (cardId == length) {
+    if (direction === "next") {
+        if (cardId === length) {
             cardId = 0;
         }
         else {
             cardId++;
         }
     }
-    else if (direction == "prev") {
-        if (cardId == 0) {
+    else if (direction === "prev") {
+        if (cardId === 0) {
             cardId = length;
         }
         else {
@@ -62,7 +62,7 @@ export function convertSecondsToMs(d) {
 
 export function prepareStorage() {
     if (localStorage.getItem('muted') == null) {
-        localStorage.setItem('muted', false);
+        localStorage.setItem('muted', "false");
     }
     if (localStorage.getItem('volume') == null) {
         localStorage.setItem('volume', "0.5");
@@ -70,9 +70,9 @@ export function prepareStorage() {
 }
 
 export function debounce(fn, delay) {
-    var timer = null;
+    let timer = null;
     return function () {
-        var context = this, args = arguments;
+        const context = this, args = arguments;
         clearTimeout(timer);
         timer = setTimeout(function () {
             fn.apply(context, args);
@@ -81,14 +81,14 @@ export function debounce(fn, delay) {
 }
 
 export function getUrl(type, query, pattern) {
-    if (pattern == "SOUNDCLOUD") {
-        if (type == "artists") {
+    if (pattern === "SOUNDCLOUD") {
+        if (type === "artists") {
             type = "users";
         }
         const q = `https://api.soundcloud.com/${type}?client_id=${SOUNDCLOUD_ID}&q=${query}`;
         return q;
     }
-    else if (pattern == "JAMENDO") {
+    else if (pattern === "JAMENDO") {
         const q = `//api.jamendo.com/v3.0/${type}/?client_id=${JAMENDO_ID}&name=${query}`;
         return q;
     }

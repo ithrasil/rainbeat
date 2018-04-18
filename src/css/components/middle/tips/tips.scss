@@ -4,7 +4,7 @@
   height: 100%;
   z-index: 2;
   opacity: 0;
-  background: linear-gradient(darken($accent, 30%), #121212);
+  background: darken($accent, 37.5%);
   pointer-events: none;
 
   &:hover {
@@ -14,7 +14,7 @@
   }
 
   &.active {
-    opacity: 0.9;
+    opacity: 1;
     pointer-events: auto;
   }
 

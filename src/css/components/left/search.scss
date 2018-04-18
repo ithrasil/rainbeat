@@ -35,14 +35,12 @@
     margin: 3px 0 2px 15px;
     color: rgba(white, 0.6);
     border: none;
-    //		border-bottom: 1px solid rgba(white, 0.3);
     transition: 0.5s;
     position: relative;
 
     &:active, &:focus {
       outline: none;
       color: white;
-      //			border-bottom: 1px solid rgba(white, 0.6);
     }
   }
 }

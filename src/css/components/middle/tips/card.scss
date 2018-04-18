@@ -42,9 +42,8 @@
     font-family: "Lucida Console";
     font-size: 16px;
     margin: 0 5px;
-    width: 1.25em;
-    padding: 0 7px;
     display: flex;
+    width: 40px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -81,7 +80,7 @@
     min-height: 30px;
     transform: translateX(0);
     transition: .3s ease;
-    margin-left: 10px;
+    margin-left: 5px;
     filter: brightness(75%) grayscale(50%);
   }
 
@@ -90,7 +89,6 @@
     border-radius: 3px;
     position: relative;
     font-size: 14px;
-    padding: 0 15px;
     color: rgba(white, .6);
     font-weight: 300;
     letter-spacing: 1px;

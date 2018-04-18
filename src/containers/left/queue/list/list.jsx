@@ -23,7 +23,7 @@ class List extends Component {
         const tracks = this.props.tracks;
         const newTracks = tracks.slice(0, id).concat(tracks.slice(id + 1, tracks.length));
 
-        if (cardId == tracks.length - 1) {
+        if (cardId === tracks.length - 1) {
             this.props.changeCard(cardId - 1);
         }
 
@@ -34,7 +34,7 @@ class List extends Component {
         let id = 0;
         const tracks = this.props.tracks;
 
-        if (type == "end") {
+        if (type === "end") {
             id = assignCardId('next', tracks, this.props.cardId - 1)
         }
         else {
@@ -50,7 +50,7 @@ class List extends Component {
             <ScrollArea className="list" speed={1} smoothScrolling={false}>
                 {
                     this.props.tracks.map((track, index) => {
-                        let isActive = (index == this.props.cardId);
+                        let isActive = (index === this.props.cardId);
 
                         return (
                             <Card

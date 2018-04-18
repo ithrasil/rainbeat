@@ -27,11 +27,11 @@ export default (state = {
             break;
 
         case "ARTIST_UPDATE":
-            state.artists = action.payload.slice(0)
+            state.artists = action.payload.slice(0);
             break;
 
         case "PLAYLIST_UPDATE":
-            state.playlists = action.payload.slice(0)
+            state.playlists = action.payload.slice(0);
             break;
 
         case "QUERY_UPDATE":

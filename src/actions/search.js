@@ -82,19 +82,17 @@ export const getData = (query, filters) => {
 			"tracks": normalizeTracks,
 			"artists": normalizeArtists,
 			"playlists": normalizePlaylists
-		}
-		
-		console.log(a)
+		};
 		
 		for(const cat of ["tracks", "artists", "playlists"]) {
 			data[cat] = [];
 			var a = 0;
 			for(const api of apis) {
-				if(filters[cat][api] == true) {
+				if(filters[cat][api] === true) {
 					let result = await axios.get(getUrl(cat, query, api.toUpperCase()))
 
-					if(cat == "tracks") {
-						if(api == "soundcloud") {
+					if(cat === "tracks") {
+						if(api === "soundcloud") {
 							result = result.data;
 						}
 						else {

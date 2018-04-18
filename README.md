@@ -1,16 +1,5 @@
 # Rainbeat 
-Fast music player built on SoundCloud API.
+Music player aggregating music api.
 
-## Structure
+Supported apis: Soundcloud and Jamendo.
 
-* public
-   * Bundled js and css files, 
-   * html, 
-   * images
-
-* src
-   * redux/react components
-   * scss modules
-   * helper functions
-
-* specs - tests

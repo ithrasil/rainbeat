@@ -42,7 +42,6 @@ class Tips extends Component {
 
     changeTrack(track) {
         let newQueue = this.props.queue.slice();
-        const tracks = this.props.tracks;
 
         newQueue.unshift(track);
         this.props.updateQueue({list: newQueue, title: "Mixed"});
@@ -58,21 +57,21 @@ class Tips extends Component {
     }
 
     filterUpdate(name, api) {
-        let newFilters = Object.assign({}, this.props.filters)
-        newFilters[name][api] = !newFilters[name][api]
-        console.log(newFilters)
-        this.props.updateFilter(newFilters)
-        this.props.getData(this.props.query, this.props.filters)
+        let newFilters = Object.assign({}, this.props.filters);
+        newFilters[name][api] = !newFilters[name][api];
+        console.log(newFilters);
+        this.props.updateFilter(newFilters);
+        this.props.getData(this.props.query, this.props.filters);
     }
 
     render() {
 
         const searchStatus = this.props.searchStatus ? "active" : "";
 
-        if (this.props.tracks.length == 0 &&
-            this.props.artists.length == 0 &&
-            this.props.albums.length == 0 &&
-            this.props.playlists.length == 0) {
+        if (this.props.tracks.length === 0 &&
+            this.props.artists.length === 0 &&
+            this.props.albums.length === 0 &&
+            this.props.playlists.length === 0) {
 
             return (
                 <ScrollArea
@@ -84,6 +83,8 @@ class Tips extends Component {
                 </ScrollArea>
             )
         }
+
+        const apis =[["SoundCloud", "soundcloud"], ["Jamendo", "jamendo"]];
 
         const categories = [
             {label: "Tracks", name: "tracks", status: "tracksActive", version: "track"},
@@ -111,8 +112,7 @@ class Tips extends Component {
                 action: "handlePlaylistClick",
                 version: "extended"
             }
-        ]
-
+        ];
 
         return (
             <ScrollArea className={"tips " + searchStatus} speed={1} smoothScrolling={false}>
@@ -126,25 +126,24 @@ class Tips extends Component {
                         return (
 
                             <div key={key} className={"categoryWrapper " + (this.state[cat.status] ? "active" : "")}>
-
-
                                 <div className="category">
 
                                     <div className="label"
-                                         onClick={() => this.setState((state, props) => ({[cat.status]: !this.state[cat.status]}))}>
+                                         onClick={() => this.setState({[cat.status]: !this.state[cat.status]})}>
                                         {arrowDownIcon({fill: "white"})}
                                         {cat.label}
                                     </div>
 
                                     {
-                                        [["SoundCloud", "soundcloud"], ["Jamendo", "jamendo"]].map((api, key) => {
+                                        apis.map((api, key) => {
                                                 return (
                                                     <div
                                                         className={`api ${this.props.filters[cat.name][api[1]] == true ? "active" : ""}`}
                                                         title={api[0]}
                                                         style={{backgroundImage: `url(/images/sources/${api[1]}.png)`}}
                                                         onClick={this.filterUpdate.bind(this, cat.name, api[1])}
-                                                        key={key}></div>
+                                                        key={key}>
+                                                    </div>
                                                 )
                                             }
                                         )
@@ -155,9 +154,10 @@ class Tips extends Component {
                                     {
 
                                         cat.version == "track" ? (
-                                                this.props.tracks.map((track, index) => <Track key={index} id={index}
-                                                                                               track={track}
-                                                                                               onClick={this.changeTrack.bind(this)}/>)
+                                                this.props.tracks.map((track, index) =>
+                                                    <Track key={index} id={index}
+                                                           track={track}
+                                                           onClick={this.changeTrack.bind(this)}/>)
                                             )
                                             : (
                                                 this.props[cat.name].map((data, index) => {
@@ -165,10 +165,11 @@ class Tips extends Component {
                                                             return <Empty key={index}/>
                                                         }
                                                         else {
-                                                            return <Component key={index} index={index} data={data}
-                                                                              tracks={data.tracks}
-                                                                              loadTracks={this[cat.action].bind(this)}
-                                                                              changeTrack={this.changeTrack.bind(this)}/>
+                                                            return (
+                                                                <Component key={index} index={index} data={data}
+                                                                           tracks={data.tracks}
+                                                                           loadTracks={this[cat.action].bind(this)}
+                                                                           changeTrack={this.changeTrack.bind(this)}/>)
                                                         }
                                                     }
                                                 )
