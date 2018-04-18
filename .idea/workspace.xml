@@ -3,31 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="36a70962-8fb2-460b-a860-1e59cbe380a4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/rainbeat-redux.iml" afterPath="$PROJECT_DIR$/.idea/rainbeat-redux.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/src/actions/search.js" afterPath="$PROJECT_DIR$/src/actions/search.js" />
-      <change beforePath="$PROJECT_DIR$/src/containers/left/queue/list/card.jsx" afterPath="$PROJECT_DIR$/src/containers/left/queue/list/card.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/left/queue/list/list.jsx" afterPath="$PROJECT_DIR$/src/containers/left/queue/list/list.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/dashboard.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/dashboard.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/middle.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/middle.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/tips/cards/artist.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/tips/cards/artist.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/tips/cards/track.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/tips/cards/track.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/tips/info.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/tips/info.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/containers/middle/tips/tips.jsx" afterPath="$PROJECT_DIR$/src/containers/middle/tips/tips.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/css/base/vars.scss" afterPath="$PROJECT_DIR$/src/css/base/vars.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/app.scss" afterPath="$PROJECT_DIR$/src/css/components/app.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/left/queue/list/card.scss" afterPath="$PROJECT_DIR$/src/css/components/left/queue/list/card.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/left/search.scss" afterPath="$PROJECT_DIR$/src/css/components/left/search.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/middle/dashboard.scss" afterPath="$PROJECT_DIR$/src/css/components/middle/dashboard.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/middle/tips/card.scss" afterPath="$PROJECT_DIR$/src/css/components/middle/tips/card.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/middle/tips/info.scss" afterPath="$PROJECT_DIR$/src/css/components/middle/tips/info.scss" />
-      <change beforePath="$PROJECT_DIR$/src/css/components/middle/tips/tips.scss" afterPath="$PROJECT_DIR$/src/css/components/middle/tips/tips.scss" />
-      <change beforePath="$PROJECT_DIR$/src/helpers.js" afterPath="$PROJECT_DIR$/src/helpers.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/search-reducer.js" afterPath="$PROJECT_DIR$/src/reducers/search-reducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,11 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
               <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -132,9 +118,9 @@
         <option value="$PROJECT_DIR$/src/containers/middle/tips/info.jsx" />
         <option value="$PROJECT_DIR$/src/css/components/left/queue/info.scss" />
         <option value="$PROJECT_DIR$/src/css/components/middle/tips/info.scss" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -385,12 +371,12 @@
       <workItem from="1523474032466" duration="5000" />
       <workItem from="1523639860768" duration="19000" />
       <workItem from="1524063072094" duration="1073000" />
-      <workItem from="1524064165301" duration="1166000" />
+      <workItem from="1524064165301" duration="1503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29267000" />
+    <option name="totallyTimeSpent" value="29604000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-1" width="1936" height="1096" extended-state="6" />
@@ -738,14 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1460">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/middle/dashboard.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -814,6 +792,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
           <folding />
         </state>
       </provider>
