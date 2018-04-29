@@ -1,6 +1,3 @@
-// Constants
-import {SOUNDCLOUD_ID, JAMENDO_ID, PLACEHOLDER, SMALL_PLACEHOLDER} from 'Constants/config.js';
-
 export function normalizeTitle(title) {
     const index = title.indexOf('-') + 1;
     let extra = 0;

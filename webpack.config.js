@@ -1,45 +1,42 @@
-const webpack = require('webpack');
+"use strict";
+
 const path = require('path');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
     entry: './src/index.jsx',
     output: {
-        path: 'public',
+
+        path: path.join(__dirname, './dist'),
         filename: 'bundle.js'
     },
 
-    devtool: '(none)',
+    devServer: {
+        contentBase: path.resolve('./dist')
+    },
 
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.js[x]$/,
                 exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['env', 'react']
-                }
-            },
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['env', 'stage-2']
+                use: {
+                    loader: 'babel-loader',
                 }
             },
             {
                 test: /\.scss$/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader']
+                use: ['style-loader', 'css-loader',  'sass-loader']
             },
             {
                 test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
+
+    devtool: 'inline-map',
 
     resolve: {
         alias: {
@@ -54,12 +51,8 @@ module.exports = {
     },
 
     plugins: [
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            server: {
-                baseDir: './public'
-            }
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
         })
     ]
 };

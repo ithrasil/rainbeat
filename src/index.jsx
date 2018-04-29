@@ -3,7 +3,7 @@ import 'Styles';
 import 'react-input-range/lib/css/index.css';
 
 // Polyfills
-import 'babel-polyfill';
+ import 'babel-polyfill';
 
 // React
 import React from 'react';
