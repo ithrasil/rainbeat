@@ -25,7 +25,7 @@ class Middle extends Component {
         let id = 0;
         const tracks = this.props.tracks;
 
-        if (type == "end") {
+        if (type === "end") {
             id = assignCardId('next', tracks, this.props.cardId)
         }
         else {
@@ -37,7 +37,7 @@ class Middle extends Component {
 
     render() {
 
-        if (this.props.tracks.length == 0) {
+        if (this.props.tracks.length === 0) {
             return (
                 <section className="middle">
                     <Tips/>

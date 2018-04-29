@@ -21,9 +21,9 @@ export default (state = {
             break;
 
         case "DATA_UPDATE":
-            state.tracks = action.payload[0];
-            state.artists = action.payload[1];
-            state.playlists = action.payload[2];
+            state.tracks = action.payload.tracks;
+            state.artists = action.payload.artists;
+            state.playlists = action.payload.playlists;
             break;
 
         case "ARTIST_UPDATE":

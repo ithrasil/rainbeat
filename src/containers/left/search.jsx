@@ -15,12 +15,10 @@ class Search extends Component {
 
     constructor(props) {
         super(props);
-
-        this.props.getData("", this.props.filters);
     }
 
     handleOnKeyDown(event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             this.props.getData(this.props.query, this.props.filters);
         }
     }

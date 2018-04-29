@@ -27,8 +27,8 @@ export default class Dashboard extends React.Component {
         prepareStorage();
 
         const volume = parseFloat(localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.5);
-        const mute = localStorage.getItem('mute') === "true" ? true : false;
-        console.log(props);
+        const mute = localStorage.getItem('mute') === "true";
+
         this.state = {
             track: props.track,
             playing: true,

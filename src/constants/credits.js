@@ -1,4 +1,4 @@
-default export credits = [
+export const credits = [
 	{
 		title: "Chanut is Industries",
 		link: "https://www.flaticon.com/authors/chanut-is-industries"
@@ -34,7 +34,7 @@ default export credits = [
 	{
 		title: "Smashicons",
 		link: "https://www.flaticon.com/authors/smashicons"
-	}
+	},
 	{
 		title: "Dave Gandy",
 		link: "https://www.flaticon.com/authors/dave-gandy"

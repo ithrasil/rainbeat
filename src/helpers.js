@@ -5,8 +5,8 @@ export function normalizeTitle(title) {
     const index = title.indexOf('-') + 1;
     let extra = 0;
 
-    if (index != undefined) {
-        if (title[index] == " ") {
+    if (index !== undefined) {
+        if (title[index] === " ") {
             extra = 1
         }
         title = title.slice(index + extra, title.length + 1);
@@ -51,7 +51,6 @@ export function assignCardId(direction, tracks, cardId) {
     }
 
     return cardId;
-
 }
 
 export function convertSecondsToMs(d) {
@@ -78,18 +77,4 @@ export function debounce(fn, delay) {
             fn.apply(context, args);
         }, delay);
     };
-}
-
-export function getUrl(type, query, pattern) {
-    if (pattern === "SOUNDCLOUD") {
-        if (type === "artists") {
-            type = "users";
-        }
-        const q = `https://api.soundcloud.com/${type}?client_id=${SOUNDCLOUD_ID}&q=${query}`;
-        return q;
-    }
-    else if (pattern === "JAMENDO") {
-        const q = `//api.jamendo.com/v3.0/${type}/?client_id=${JAMENDO_ID}&name=${query}`;
-        return q;
-    }
 }

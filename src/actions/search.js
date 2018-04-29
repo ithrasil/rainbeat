@@ -2,200 +2,133 @@
 import axios from 'axios';
 
 // Api
-import { normalizeTracks, normalizeArtists, normalizePlaylists } from "Api/normalize.js";
-
-// Helpers
-import { getUrl } from 'Helpers';
+import {getUrl} from "Api/request.js";
+import {normalizeResponse, normalizeApi} from "Api/response.js";
 
 export const changeReceiveStatus = (boolean) => {
-  return {
-    type: "RECEIVE_STATUS",
-    payload: boolean
-  }
+    return {
+        type: "RECEIVE_STATUS",
+        payload: boolean
+    }
 };
 
 export const changeState = (boolean) => {
-  return {
-    type: "SEARCH_STATUS",
-    payload: boolean
-  }
+    return {
+        type: "SEARCH_STATUS",
+        payload: boolean
+    }
 };
 
 export const updateFilter = (obj) => {
-	return {
-		type: "UPDATE_FILTER",
-		payload: obj
-	}
-}
+    return {
+        type: "UPDATE_FILTER",
+        payload: obj
+    }
+};
 
 export const updateData = (data) => {
-  return {
-    type: "DATA_UPDATE",
-    payload: data
-  }
+    return {
+        type: "DATA_UPDATE",
+        payload: data
+    }
 };
 
 export const updateArtistTracks = (data) => {
-  return {
-    type: "ARTIST_UPDATE",
-    payload: data
-  }
+    return {
+        type: "ARTIST_UPDATE",
+        payload: data
+    }
 };
 
 export const updatePlaylistTracks = (data) => {
-  return {
-    type: "PLAYLIST_UPDATE",
-    payload: data
-  }
+    return {
+        type: "PLAYLIST_UPDATE",
+        payload: data
+    }
 };
 
 export const saveQuery = (event) => {
-	if(event == "") {
-		return {
-			type: "QUERY_UPDATE",
-    	payload: ""
-		}
-	}
-  return {
-    type: "QUERY_UPDATE",
-    payload: event.target.value
-  }
+    if (event === "") {
+        return {
+            type: "QUERY_UPDATE",
+            payload: ""
+        }
+    }
+    return {
+        type: "QUERY_UPDATE",
+        payload: event.target.value
+    }
 };
 
-/**
-* Getting data from apis
-*
-* @function getData
-*
-* @param  {String} query
-* @param  {Object} filters
-*
-* @return {function}
-*/
+// thunks
 
 export const getData = (query, filters) => {
-  return async (dispatch) => {
-		
-		let data = {};
-		let apis = ["soundcloud", "jamendo"] ;
-		let normalizeFunctions = {
-			"tracks": normalizeTracks,
-			"artists": normalizeArtists,
-			"playlists": normalizePlaylists
-		};
-		
-		for(const cat of ["tracks", "artists", "playlists"]) {
-			data[cat] = [];
-			var a = 0;
-			for(const api of apis) {
-				if(filters[cat][api] === true) {
-					let result = await axios.get(getUrl(cat, query, api.toUpperCase()))
+    return async (dispatch) => {
 
-					if(cat === "tracks") {
-						if(api === "soundcloud") {
-							result = result.data;
-						}
-						else {
-							result = result.data.results;
-						}
-					}
-					
-					const resultNormalized = normalizeFunctions[cat](result, api.toUpperCase())
-					data[cat] = [...data[cat], ...resultNormalized]
-				}
-			}
-			data[cat].sort(function(a, b){
-				if(a.name < b.name) return -1;
-				if(a.name > b.name) return 1;
-				return 0;
-			});
-		}
-		
-		dispatch(updateData([data.tracks, data.artists, data.playlists]));
-  }
-}
+        let data = {};
 
-/**
-* Using artist name to get track list
-*
-* @function getArtistTracks
-*
-* @param  {Number} id
-* @param  {Number} index
-* @param  {Array} artists
-*
-* @return {function}
-*/
+        for (const type of ["tracks", "artists", "playlists"]) {
+            data[type] = [];
+            for (const api of ["soundcloud", "jamendo"]) {
+                if (filters[type][api] === true) {
+                    const url = getUrl(type, api, {"query": query, "limit": 10});
+                    let result = await axios.get(url);
+                    result = normalizeResponse(api, "normal", result);
+                    const normalized = normalizeApi(type, api, result);
+                    data[type] = [...data[type], ...normalized];
+                }
+            }
+            data[type].sort(function (a, b) {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+            });
+        }
+
+        dispatch(updateData(data));
+    }
+};
 
 export const getArtistTracks = (artist, index, artists) => {
-	return async (dispatch) => {
+    return async (dispatch) => {
 
-		const source = artist.source.toUpperCase();
+        const api = artist.source;
 
-		const url = source == "SOUNDCLOUD" ? getUrl(`users/${artist.id}/tracks`, "", source) : getUrl(`artists/tracks`, artist.name + "&id=" + artist.id, source)
+        const url = getUrl('artistTracks', api, {"id": artist.id, "name": artist.name, "limit": 10});
 
-		let tracks = await axios.get(url);
-	
-		if(source == "SOUNDCLOUD") {
-			tracks = tracks.data;
-		}
-		else {
-			tracks = tracks.data.results[0].tracks;
-		}
+        let tracks = await axios.get(url);
 
-		if(tracks.length == 0) {
-			artists[index].isEmpty = true;
-		}
-		else {
-			tracks = normalizeTracks(tracks, source);
-			artists[index].tracks = tracks;
-		}
-		
-		dispatch(updateArtistTracks(artists))
-	}
-}
+        tracks = normalizeResponse(api, "artistTracks", tracks);
 
-/**
-* Fetching tracks based on playlist
-*
-* @function getPlaylistTracks
-*
-* @param  {Number} id
-* @param  {Number} index
-* @param  {Array} artists
-*
-* @return {function}
-*/
+        if (tracks.length === 0) {
+            artists[index].isEmpty = true;
+        }
+        else {
+            artists[index].tracks = normalizeApi("tracks", api, tracks);
+        }
+
+        dispatch(updateArtistTracks(artists))
+    }
+};
 
 export const getPlaylistTracks = (playlist, index, playlists) => {
-	return async (dispatch) => {
-		
-		const source = playlist.source.toUpperCase();
+    return async (dispatch) => {
 
-		const url = source == "SOUNDCLOUD" ? getUrl(`playlists/${playlist.id}/tracks`, "", source) : getUrl(`playlists/tracks`, playlist.name + "&id=" + playlist.id, source)
+        const api = playlist.source;
 
-		let tracks = await axios.get(url);
-	
-		if(source == "SOUNDCLOUD") {
-			tracks = tracks.data;
-		}
-		else {	
-			if(tracks.data.results.length == 0) {
-				tracks = tracks.data.results;
-			}
-			else {
-				tracks = tracks.data.results[0].tracks;
-			}
-		}
+        const url = getUrl('playlistTracks', api, {"id": playlist.id, "name": playlist.name, "limit": 10});
 
-		if(tracks.length == 0) {
-			playlists[index].isEmpty = true;
-		}
-		else {
-			tracks = normalizeTracks(tracks, source);
-			playlists[index].tracks = tracks;
-		}
-		dispatch(updatePlaylistTracks(playlists))
+        let tracks = await axios.get(url);
+        tracks = normalizeResponse(api, "playlistTracks", tracks);
 
-	}
-}
+        if (tracks.length === 0) {
+            playlists[index].isEmpty = true;
+        }
+        else {
+            tracks = normalizeApi("tracks", api, tracks);
+            playlists[index].tracks = tracks;
+        }
+        dispatch(updatePlaylistTracks(playlists))
+
+    }
+};
