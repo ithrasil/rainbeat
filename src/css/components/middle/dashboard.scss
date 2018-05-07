@@ -131,9 +131,9 @@
 
     .track_data {
       display: flex;
-      width: 100%;
+      width: 500px;
       margin-top: 40px;
-
+      margin: 40px auto 0 auto;
       .track {
         background: #aaa;
         height: 4px;
@@ -145,7 +145,7 @@
         justify-content: space-between;
         align-items: center;
         width: 500px;
-        margin: 0 auto;
+
 
         &:before {
           content: "";

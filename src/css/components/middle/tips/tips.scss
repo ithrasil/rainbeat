@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  visibility: hidden;
+  transform: translateY(100%);
 
   &:hover {
     .scrollbar-container.vertical {
@@ -22,7 +22,7 @@
   }
 
   &.active {
-    visibility: visible;
+    transform: translateY(0);
   }
 
   .scrollbar-container.vertical {
