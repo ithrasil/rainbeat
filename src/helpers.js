@@ -8,8 +8,8 @@ export function normalizeTitle(title) {
         }
         title = title.slice(index + extra, title.length + 1);
 
-        if (title.length > 30) {
-            return title.slice(0, 30) + "[...]";
+        if (title.length > 20) {
+            return title.slice(0, 20) + "...";
         }
         else {
             return title;

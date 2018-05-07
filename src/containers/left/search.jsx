@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {changeState, saveQuery, getData} from 'Actions/search.js';
 
 // Icons
-import {loupeIcon} from "Containers/svg.jsx";
+import LoupeIcon from "Containers/svg/LoupeIcon.jsx";
 
 class Search extends Component {
 
@@ -29,7 +29,7 @@ class Search extends Component {
             <div className="search">
                 <label htmlFor="trackInput">
                     <div aria-label="loupe for search">
-                        {loupeIcon({fill: "white"})}
+                        <LoupeIcon className={"loupe"} fill={"white"} />
                     </div>
                 </label>
                 <input

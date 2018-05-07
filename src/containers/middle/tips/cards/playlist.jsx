@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 // Icons
-import {arrowDownIcon} from "Containers/svg.jsx";
+import ArrowIcon from "Containers/svg/ArrowIcon.jsx";
 
 // Containers
 import Track from 'Containers/middle/tips/cards/track.jsx';
@@ -74,11 +74,12 @@ export default class Playlist extends Component {
         const tracks = this.state.playlist.tracks || [];
 
         const loadClasses = this.state.loaded ? "loaded" : "";
+        const isActive = this.state.active ? " active" : "";
 
         return (
-            <div className={"card_extended " + loadClasses}>
+            <div className={"card_extended " + loadClasses + isActive}>
                 <div className="card_contents" onClick={this.handleClick.bind(this)}>
-                    {arrowDownIcon({fill: "white"})}
+                    <ArrowIcon className={"arrow"} fill={"white"} />
                     <div className="source"
                          style={{backgroundImage: `url(/images/sources/${this.state.playlist.source}.png)`}}></div>
                     <div className="label">
@@ -100,7 +101,7 @@ export default class Playlist extends Component {
                     </div>
                 </div>
 
-                <div className={`fold ${ this.state.active ? 'active' : ''}`}>
+                <div className="fold">
                     {
                         tracks.map((track, index) => {
                             return <Track key={index} id={index} track={track} onClick={this.props.changeTrack}/>

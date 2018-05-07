@@ -17,7 +17,9 @@ import mouse from './events/mouseEvents.jsx';
 import {keyPress} from './events/keyboardEvents.jsx';
 
 // Icons
-import {replayIcon, playIcon, pauseIcon} from "Containers/svg.jsx";
+import PlayIcon from "Containers/svg/PlayIcon.jsx";
+import PauseIcon from "Containers/svg/PauseIcon.jsx";
+import RewindIcon from "Containers/svg/RewindIcon.jsx";
 
 export default class Dashboard extends React.Component {
 
@@ -48,7 +50,6 @@ export default class Dashboard extends React.Component {
             this.setState((state, props) => {
                 return {
                     track: props.track,
-                    playIcon: "play",
                     playing: true,
                     time: 0
                 }
@@ -100,10 +101,9 @@ export default class Dashboard extends React.Component {
     }
 
     playSwitch() {
-        const playing = !this.state.playing;
         this.setState((state, props) => {
             return {
-                playing: playing
+                playing: !this.state.playing
             }
         });
     }
@@ -174,11 +174,11 @@ export default class Dashboard extends React.Component {
                     <div className="configs">
 
                         <div className="replay_trigger" onClick={this.reset.bind(this)}>
-                            {replayIcon({fill: "white"})}
+                            <RewindIcon className={"rewind"} fill={"white"} />
                         </div>
 
                         <div className="play_switch" onClick={this.playSwitch.bind(this)}>
-                            {this.state.playing ? pauseIcon({fill: "white"}) : playIcon({fill: "white"})}
+                            {this.state.playing ? <PauseIcon className={"pause"} fill={"white"}/> : <PlayIcon className={"play"} fill={"white"} /> }
                         </div>
 
 

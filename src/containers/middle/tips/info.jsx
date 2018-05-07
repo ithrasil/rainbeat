@@ -6,10 +6,9 @@ import {connect} from 'react-redux';
 
 // Actions
 import {changeState} from 'Actions/search.js';
-import {updateFilter} from 'Actions/filter.js';
 
 // Icons
-import {exitIcon} from "Containers/svg.jsx"
+import ExitIcon from "Containers/svg/exitIcon.jsx"
 
 class Info extends Component {
 
@@ -19,7 +18,7 @@ class Info extends Component {
                 <div className="close_search label" onClick={() => {
                     this.props.changeState(false)
                 }}>
-                    {exitIcon({fill: "white"})}
+                    <ExitIcon className="exit" fill={"white"} />
                     <span>Close</span>
                 </div>
             </div>

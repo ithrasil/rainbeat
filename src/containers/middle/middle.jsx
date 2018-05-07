@@ -16,12 +16,17 @@ import Tips from 'Containers/middle/tips/tips.jsx';
 // Helpers
 import {assignCardId} from 'Helpers';
 
-// Constants
-import {PLACEHOLDER} from 'Constants/config.js';
-
 class Middle extends Component {
 
+    constructor(props) {
+        super(props);
+
+        document.title = 2;
+
+    }
+
     handleTrackChange(type, value) {
+        console.log(1)
         let id = 0;
         const tracks = this.props.tracks;
 
@@ -41,7 +46,7 @@ class Middle extends Component {
             return (
                 <section className="middle">
                     <Tips/>
-                    <Artwork/>>
+                    <Artwork/>
                     <div className="dashboard"></div>
                 </section>
             )

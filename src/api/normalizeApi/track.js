@@ -10,8 +10,6 @@ export function track(api, tracks) {
 
     let normalized = [];
 
-    console.log(tracks, api);
-
     for (const track of tracks) {
         normalized.push({
             artwork_url: pattern.artwork_url(track),

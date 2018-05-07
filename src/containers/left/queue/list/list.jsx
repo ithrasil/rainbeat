@@ -23,7 +23,7 @@ class List extends Component {
         const tracks = this.props.tracks;
         const newTracks = tracks.slice(0, id).concat(tracks.slice(id + 1, tracks.length));
 
-        if (cardId === tracks.length - 1) {
+        if (cardId === tracks.length - 1 || id < cardId) {
             this.props.changeCard(cardId - 1);
         }
 

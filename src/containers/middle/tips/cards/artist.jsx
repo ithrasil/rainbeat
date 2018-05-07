@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 // Icons
-import {arrowDownIcon} from "Containers/svg.jsx";
+import ArrowIcon from "Containers/svg/ArrowIcon.jsx";
 
 // Containers
 import Track from 'Containers/middle/tips/cards/track.jsx';
@@ -20,7 +20,7 @@ export default class Artist extends Component {
     }
 
     componentWillReceiveProps(props) {
-        if (this.state.artist.name != props.data.name) {
+        if (this.state.artist.name !== props.data.name) {
             this.setState((state, props) => {
                 return {
                     artist: props.data,
@@ -75,11 +75,12 @@ export default class Artist extends Component {
         const tracks = artist.tracks || [];
 
         const loadClasses = this.state.loaded ? "loaded" : "";
+        const isActive = this.state.active ? " active" : "";
 
         return (
-            <div className={"card_extended " + loadClasses}>
+            <div className={"card_extended " + loadClasses + isActive}>
                 <div className="card_contents" onClick={this.handleClick.bind(this)}>
-                    {arrowDownIcon({fill: "white"})}
+                    <ArrowIcon className={"arrow"} fill={"white"} />
                     <div className="source"
                          style={{backgroundImage: `url(/images/sources/${artist.source}.png)`}}></div>
                     <div className="label"><span title={name}>{name}</span></div>
@@ -98,7 +99,7 @@ export default class Artist extends Component {
                         <div className="sk-circle12 sk-circle"></div>
                     </div>
                 </div>
-                <div className={`fold ${ this.state.active ? 'active' : ''}`}>{this.createTracks(tracks)}</div>
+                <div className="fold">{this.createTracks(tracks)}</div>
             </div>
         )
     }

@@ -3,4 +3,4 @@ export const updateFilter = (obj) => {
 		type: "UPDATE_FILTER",
 		payload: obj
 	}
-}
+};

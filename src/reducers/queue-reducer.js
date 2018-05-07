@@ -4,7 +4,7 @@ export default (state = {list: JSON.parse(localStorage.getItem('query_list')) ||
         case "UPDATE_QUEUE":
             const list = action.payload.list.slice(0);
 
-            state.title = action.payload.title
+            state.title = action.payload.title;
             state.list = list;
 
             localStorage.setItem('query_list', JSON.stringify(list));
@@ -12,7 +12,7 @@ export default (state = {list: JSON.parse(localStorage.getItem('query_list')) ||
             break;
 
         case "DELETE_TRACK":
-            state.list = action.payload
+            state.list = action.payload;
 
             localStorage.setItem('query_list', JSON.stringify(action.payload));
     }

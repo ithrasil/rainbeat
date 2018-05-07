@@ -8,14 +8,14 @@
   }
 
   .scrollbar-container.vertical {
-    width: 10px;
-    background: $player;
+    width: 5px;
+    background: black;
     opacity: 0;
 
     > .scrollbar {
-      background-color: #444;
+      background-color: #aaa;
       margin: 0;
-      width: 10px;
+      width: 5px;
     }
   }
 

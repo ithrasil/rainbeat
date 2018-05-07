@@ -4,7 +4,7 @@
   height: 100%;
   z-index: 2;
   opacity: 0;
-  background: darken($accent, 37.5%);
+  background: darken($accent, 35.5%);
   pointer-events: none;
 
   &:hover {
@@ -31,6 +31,12 @@
   }
 
   .categoryWrapper {
+    &.active {
+      .category > .label > .arrow {
+        transform: translateX(0) rotate(180deg);
+      }
+    }
+
     .category {
       display: flex;
       align-items: center;
@@ -42,26 +48,29 @@
         padding: 3px 0;
         display: inline-block;
         position: relative;
-        filter: brightness(50%);
         display: flex;
         align-items: center;
         padding: 10px 0;
 
-        svg {
+        .arrow {
           display: inline-block;
           background-size: 16px 16px;
           background-repeat: no-repeat;
           background-position: center;
           width: 16px;
           height: 16px;
+          transition: .3s ease;
           transform: translateX(0);
           margin-right: 10px;
           margin-left: 5px;
         }
 
+        .text {
+          width: 70px;
+        }
+
         &:hover {
           cursor: pointer;
-          filter: brightness(75%);
         }
       }
 
@@ -75,10 +84,8 @@
         transform: translateX(0);
         transition: .3s ease;
         margin-left: 10px;
-        filter: brightness(50%);
 
         &.active {
-          filter: brightness(75%);
         }
 
         &:hover {
@@ -96,10 +103,6 @@
     }
 
     &.active {
-      .type {
-        filter: brightness(100%);
-      }
-
       .results {
         display: block;
       }

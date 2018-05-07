@@ -2,10 +2,8 @@
 import React, {Component} from 'react';
 
 // Icons
-import {burgerIcon, exitIcon} from "Containers/svg.jsx";
-
-// Containers
-import Tips from 'Containers/right/navigation.jsx';
+import BurgerIcon from "Containers/svg/BurgerIcon.jsx";
+import ExitIcon from "Containers/svg/ExitIcon.jsx";
 
 export default class Right extends Component {
 
@@ -32,7 +30,7 @@ export default class Right extends Component {
         return (
             <div className={visibility + " right"}>
                 <div className="visibility" onClick={this.changeVisibility.bind(this)}>
-                    {this.state.visible ? exitIcon({fill: "black"}) : burgerIcon({fill: "black"})}
+                    {this.state.visible ? <ExitIcon className={"exit"} fill={"white"} /> : <BurgerIcon className={"exit"} fill={"white"} />}
                 </div>
             </div>
         )

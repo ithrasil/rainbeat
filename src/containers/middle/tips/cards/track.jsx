@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 // Icons
-import {playIcon} from "Containers/svg.jsx"
+import PlayIcon from "Containers/svg/PlayIcon.jsx";
 
 export default class Track extends Component {
 
@@ -37,7 +37,7 @@ export default class Track extends Component {
             <div className="card">
                 <div className="order" onClick={this.handleClick.bind(this)}>
                     <div className="status">
-                        {playIcon({fill: "white"})}
+                        <PlayIcon className={"play"} fill={"white"} />
                     </div>
                     <div className="id">{this.props.id + 1}.</div>
                 </div>

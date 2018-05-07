@@ -1,16 +1,27 @@
 .card_extended {
-
+  transition: .3s ease;
   &.loaded {
     .card_contents {
       .source {
-        filter: brightness(100%) grayscale(50%);
+        filter: grayscale(50%);
       }
     }
   }
 
+  &.active {
+    .card_contents > .arrow {
+      transform: translateX(0) rotate(180deg);
+    }
+
+    .fold {
+      display: block;
+    }
+  }
+
   &:hover {
-    cursor: pointer;
-    background: rgba($accent, .1);
+    .card_contents {
+      cursor: pointer;
+    }
   }
 
   &.empty {
@@ -26,22 +37,22 @@
     flex-wrap: nowrap;
 
     &:hover {
-      svg {
+      .arrow {
         opacity: 1;
       }
     }
 
-    svg {
-      background-size: 16px 16px;
+    .arrow {
+      margin-left: 12px;
+      padding: 0 8px;
+      background-size: 20px 20px;
       background-repeat: no-repeat;
       background-position: center;
-      width: 16px;
+      width: 18px;
       max-height: 30px;
       min-height: 30px;
       transform: translateX(0);
       transition: .3s ease;
-      margin-left: 10px;
-      filter: brightness(50%);
     }
 
     .source {
@@ -54,7 +65,7 @@
       transform: translateX(0);
       transition: .3s ease;
       margin-left: 10px;
-      filter: brightness(75%) grayscale(100%);
+      filter: grayscale(100%);
     }
 
     .label {
@@ -63,7 +74,7 @@
       position: relative;
       font-size: 14px;
       padding: 0 15px;
-      color: rgba(white, .6);
+      color: white;
       font-weight: 300;
       letter-spacing: 1px;
       transition: .7s;
@@ -76,10 +87,6 @@
   .fold {
     margin-left: 20px;
     display: none;
-
-    &.active {
-      display: block
-    }
   }
 
 }

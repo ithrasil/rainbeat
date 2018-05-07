@@ -5,7 +5,10 @@ import React, {Component} from 'react';
 import {normalizeTitle} from 'Helpers';
 
 // Icons 
-import {speakerIcon, playIcon, exitIcon} from "Containers/svg.jsx";
+import SpeakerIcon from "Containers/svg/SpeakerIcon.jsx";
+import PlayIcon from "Containers/svg/PlayIcon.jsx";
+import DotMenuIcon from "Containers/svg/DotMenuIcon.jsx";
+import ExitIcon from "Containers/svg/ExitIcon.jsx";
 
 export default class Card extends Component {
 
@@ -20,7 +23,7 @@ export default class Card extends Component {
     }
 
     componentWillReceiveProps(props) {
-        this.setState((state, props) => {
+        this.setState((state) => {
             return {
                 track: props.track,
                 isActive: props.isActive ? "active" : ""
@@ -41,37 +44,35 @@ export default class Card extends Component {
 
         const cardClasses = "card " + this.state.isActive;
 
-        const status = this.state.isActive ? speakerIcon({fill: "white"}) : playIcon({fill: "white"});
         const artist = this.state.track.artist;
 
         let title = normalizeTitle(this.state.track.name);
-
-        if (this.state.isActive) {
-            document.title = title;
-        }
 
         return (
             <div className={cardClasses}>
                 <div className="order" onClick={this.placeholderClick.bind(this)}>
                     <div className="status">
-                        {status}
+                        <SpeakerIcon className={"speaker"} fill={"white"} />
+                        <PlayIcon className={"play"} fill={"white"} />
                     </div>
                     <div className="id">{this.props.id + 1}.</div>
                 </div>
                 <div className="left_panel">
                     <div className="meta">
                         <div className="label">
-                            <span title={title}>{title}</span>
+                            <span title={this.state.track.name}>{title}</span>
                         </div>
                         <div className="artist">{artist}</div>
                     </div>
                     <div className="controls">
                         <div className="delete" onClick={this.deleteClick.bind(this)}>
                             Delete
-                            {exitIcon({fill: "red"})}
+                            <ExitIcon className="exit" fill={"white"} />
                         </div>
                     </div>
                 </div>
+                {/*TODO: implement onclick*/}
+                <DotMenuIcon fill={"white"} className={"dot_menu"} />
             </div>
         )
     }

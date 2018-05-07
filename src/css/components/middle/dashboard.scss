@@ -31,11 +31,6 @@
       justify-content: center;
       align-items: center;
 
-      svg {
-        filter: brightness(50%);
-        transition: .5s;
-      }
-
       @media (max-width: 768px) {
         margin: 0;
         left: 0;
@@ -53,10 +48,6 @@
 
         &:hover {
           cursor: pointer;
-
-          svg {
-            filter: brightness(100%);
-          }
         }
 
         svg {
@@ -73,10 +64,6 @@
 
         &:hover {
           cursor: pointer;
-
-          svg {
-            filter: brightness(100%);
-          }
         }
 
         svg {

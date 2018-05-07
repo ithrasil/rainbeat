@@ -3,6 +3,6 @@ export const changeCard = (id) => {
     type: "CHANGE_CARD",
     payload: id
   }
-}
+};
 
 

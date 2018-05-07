@@ -13,10 +13,7 @@ import List from 'Containers/left/queue/list/list.jsx';
 class Queue extends Component {
 
     render() {
-
-        const length = this.props.tracks.length;
-
-        if (length == 0) {
+        if (this.props.tracks.length === 0) {
 
             return (
                 <div className="queue">

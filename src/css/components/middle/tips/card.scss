@@ -81,7 +81,7 @@
     transform: translateX(0);
     transition: .3s ease;
     margin-left: 5px;
-    filter: brightness(75%) grayscale(50%);
+    filter: grayscale(50%);
   }
 
   .label {
@@ -89,7 +89,7 @@
     border-radius: 3px;
     position: relative;
     font-size: 14px;
-    color: rgba(white, .6);
+    color: white;
     font-weight: 300;
     letter-spacing: 1px;
     transition: .7s;

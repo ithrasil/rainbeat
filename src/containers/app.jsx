@@ -1,5 +1,7 @@
 // React
 import React, {Component} from 'react';
+// TODO: implement react performance tools
+// import {printWasted} from "react-addons-perf";
 
 // Containers
 import Left from 'Containers/left/left.jsx';

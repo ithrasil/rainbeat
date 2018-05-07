@@ -8,7 +8,6 @@ import 'react-input-range/lib/css/index.css';
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 // Redux
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';

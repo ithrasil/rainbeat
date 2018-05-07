@@ -22,7 +22,7 @@ import Error from 'Containers/middle/tips/error.jsx';
 import Info from 'Containers/middle/tips/info.jsx';
 
 // Icons
-import {arrowDownIcon} from "Containers/svg.jsx";
+import ArrowIcon from "Containers/svg/ArrowIcon.jsx";
 
 // Helpers
 import {assignCardId} from 'Helpers';
@@ -68,23 +68,7 @@ class Tips extends Component {
 
         const searchStatus = this.props.searchStatus ? "active" : "";
 
-        if (this.props.tracks.length === 0 &&
-            this.props.artists.length === 0 &&
-            this.props.albums.length === 0 &&
-            this.props.playlists.length === 0) {
-
-            return (
-                <ScrollArea
-                    className={"tips " + searchStatus}
-                    speed={1}
-                    smoothScrolling={true}
-                >
-                    <Info/>
-                </ScrollArea>
-            )
-        }
-
-        const apis =[["SoundCloud", "soundcloud"], ["Jamendo", "jamendo"]];
+        const apis = [["SoundCloud", "soundcloud"], ["Jamendo", "jamendo"]];
 
         const categories = [
             {label: "Tracks", name: "tracks", status: "tracksActive", version: "track"},
@@ -117,7 +101,6 @@ class Tips extends Component {
         return (
             <ScrollArea className={"tips " + searchStatus} speed={1} smoothScrolling={false}>
                 <Info/>
-
                 {
                     categories.map((cat, key) => {
 
@@ -130,30 +113,28 @@ class Tips extends Component {
 
                                     <div className="label"
                                          onClick={() => this.setState({[cat.status]: !this.state[cat.status]})}>
-                                        {arrowDownIcon({fill: "white"})}
-                                        {cat.label}
+                                            <ArrowIcon className={"arrow"} fill={"white"}/>
+
+                                        <div className="text">{cat.label}</div>
                                     </div>
 
                                     {
-                                        apis.map((api, key) => {
-                                                return (
-                                                    <div
-                                                        className={`api ${this.props.filters[cat.name][api[1]] == true ? "active" : ""}`}
-                                                        title={api[0]}
-                                                        style={{backgroundImage: `url(/images/sources/${api[1]}.png)`}}
-                                                        onClick={this.filterUpdate.bind(this, cat.name, api[1])}
-                                                        key={key}>
-                                                    </div>
-                                                )
-                                            }
-                                        )
+                                        apis.map((api, key) => (
+                                            <div
+                                                className={`api ${this.props.filters[cat.name][api[1]] === true ? "active" : ""}`}
+                                                title={api[0]}
+                                                style={{backgroundImage: `url(/images/sources/${api[1]}.png)`}}
+                                                onClick={this.filterUpdate.bind(this, cat.name, api[1])}
+                                                key={key}>
+                                            </div>
+                                        ))
                                     }
                                 </div>
 
                                 <div className="results">
                                     {
 
-                                        cat.version == "track" ? (
+                                        cat.version === "track" ? (
                                                 this.props.tracks.map((track, index) =>
                                                     <Track key={index} id={index}
                                                            track={track}
@@ -161,7 +142,7 @@ class Tips extends Component {
                                             )
                                             : (
                                                 this.props[cat.name].map((data, index) => {
-                                                        if (data.isEmpty == true) {
+                                                        if (data.isEmpty === true) {
                                                             return <Empty key={index}/>
                                                         }
                                                         else {
