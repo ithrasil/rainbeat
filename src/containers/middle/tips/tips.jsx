@@ -18,8 +18,8 @@ import Track from 'Containers/middle/tips/cards/track.jsx';
 import Artist from 'Containers/middle/tips/cards/artist.jsx';
 import Playlist from 'Containers/middle/tips/cards/playlist.jsx';
 import Empty from 'Containers/middle/tips/cards/empty.jsx';
-import Error from 'Containers/middle/tips/error.jsx';
-import Info from 'Containers/middle/tips/info.jsx';
+// import Error from 'Containers/middle/tips/error.jsx';
+// import Info from 'Containers/middle/tips/info.jsx';
 
 // Icons
 import ArrowIcon from "Containers/svg/ArrowIcon.jsx";
@@ -99,8 +99,7 @@ class Tips extends Component {
         ];
 
         return (
-            <ScrollArea className={"tips " + searchStatus} speed={1} smoothScrolling={false}>
-                <Info/>
+            <div className={"tips " + searchStatus}>
                 {
                     categories.map((cat, key) => {
 
@@ -131,7 +130,7 @@ class Tips extends Component {
                                     }
                                 </div>
 
-                                <div className="results">
+                                <ScrollArea className="results">
                                     {
 
                                         cat.version === "track" ? (
@@ -156,12 +155,12 @@ class Tips extends Component {
                                                 )
                                             )
                                     }
-                                </div>
+                                </ScrollArea>
                             </div>
                         )
                     })
                 }
-            </ScrollArea>
+            </div>
         )
     }
 }

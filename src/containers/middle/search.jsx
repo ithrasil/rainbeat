@@ -6,10 +6,11 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 // Actions
-import {changeState, saveQuery, getData} from 'Actions/search.js';
+import {changeState, saveQuery, getData} from 'Actions/search';
 
 // Icons
 import LoupeIcon from "Containers/svg/LoupeIcon.jsx";
+import ExitIcon from "Containers/svg/ExitIcon.jsx";
 
 class Search extends Component {
 
@@ -25,8 +26,10 @@ class Search extends Component {
 
     render() {
 
+        const searchStatus = this.props.searchStatus ? "active" : "";
+
         return (
-            <div className="search">
+            <div className={"search " + searchStatus}>
                 <label htmlFor="trackInput">
                     <div aria-label="loupe for search">
                         <LoupeIcon className={"loupe"} fill={"white"} />
@@ -47,6 +50,9 @@ class Search extends Component {
                     onKeyDown={this.handleOnKeyDown.bind(this)}
                     value={this.props.query.value}
                 />
+                <ExitIcon className={"exit"} fill={"white"} onClick={() => {
+                    this.props.changeState(false)
+                }}/>
             </div>
         )
 
@@ -56,6 +62,7 @@ class Search extends Component {
 function mapStateToProps(state) {
     return {
         query: state.search.query,
+        searchStatus: state.search.status,
         filters: state.filters
     }
 }

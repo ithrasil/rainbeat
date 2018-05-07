@@ -43,10 +43,6 @@ export default {
         this.state.isMouseDown = false;
     },
 
-    leaveVolume: function () {
-        // currently not needed
-    },
-
     downTrack: function (event) {
 
         if (this.state.playing) {
@@ -60,11 +56,6 @@ export default {
         this.state.isMouseDown = true;
     },
 
-    downVolume: function (event) {
-        // currently not needed
-    },
-
-
     upTrack: function (event) {
         this.setState((state, props) => {
             return {
@@ -73,8 +64,4 @@ export default {
         });
         this.state.isMouseDown = false;
     },
-
-    upVolume: function (event) {
-        // currently not needed
-    }
 }

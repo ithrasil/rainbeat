@@ -1,11 +1,13 @@
 .tips {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 70px);
   z-index: 2;
-  opacity: 0;
   background: darken($accent, 35.5%);
-  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  visibility: hidden;
 
   &:hover {
     .scrollbar-container.vertical {
@@ -13,9 +15,14 @@
     }
   }
 
+  > .scrollarea-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &.active {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
   }
 
   .scrollbar-container.vertical {
@@ -31,6 +38,11 @@
   }
 
   .categoryWrapper {
+    width: 44%;
+    background: darken($accent, 36.5%);
+    border-radius: 5px;
+    margin: 10px;
+
     &.active {
       .category > .label > .arrow {
         transform: translateX(0) rotate(180deg);
@@ -40,6 +52,7 @@
     .category {
       display: flex;
       align-items: center;
+      justify-content: center;
 
       .label {
         color: white;
@@ -95,8 +108,11 @@
     }
 
     .results {
+      padding: 10px;
       margin-left: 20px;
-      display: none;
+      height: 300px;
+      opacity: 0;
+      pointer-events: none;
 
       @import "./card.scss";
       @import "./card_extended.scss";
@@ -104,7 +120,8 @@
 
     &.active {
       .results {
-        display: block;
+        opacity: 1;
+        pointer-events: all;
       }
     }
   }

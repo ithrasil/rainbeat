@@ -2,6 +2,8 @@
   position: relative;
   background-color: darken($accent, 35%);
 
+  @import "./search.scss";
+
   @import "./artwork.scss";
 
   @import "./dashboard.scss";

@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {changeCard} from 'Actions/card';
 
 // Containers
+import Search from 'Containers/middle/search.jsx';
 import Artwork from 'Containers/middle/artwork.jsx';
 import Dashboard from 'Containers/middle/dashboard.jsx';
 import Tips from 'Containers/middle/tips/tips.jsx';
@@ -45,6 +46,7 @@ class Middle extends Component {
         if (this.props.tracks.length === 0) {
             return (
                 <section className="middle">
+                    <Search />
                     <Tips/>
                     <Artwork/>
                     <div className="dashboard"></div>
@@ -57,6 +59,7 @@ class Middle extends Component {
 
         return (
             <section className="middle">
+                <Search />
                 <Tips/>
                 <Artwork url={artwork_url}></Artwork>
                 <Dashboard
