@@ -1,3 +1,3 @@
 export const jamendo_pattern = {
-    name: "name"
-};
+  name: 'name'
+}

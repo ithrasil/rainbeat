@@ -1,3 +1,3 @@
 export const soundcloud_pattern = {
-    name: "username"
-};
+  name: 'username'
+}

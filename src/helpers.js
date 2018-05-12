@@ -1,77 +1,77 @@
-export function normalizeTitle(title) {
-    const index = title.indexOf('-') + 1;
-    let extra = 0;
+export function normalizeTitle (title) {
+  const index = title.indexOf('-') + 1
+  let extra = 0
 
-    if (index !== undefined) {
-        if (title[index] === " ") {
-            extra = 1
-        }
-        title = title.slice(index + extra, title.length + 1);
+  if (index !== undefined) {
+    if (title[index] === ' ') {
+      extra = 1
+    }
+    title = title.slice(index + extra, title.length + 1)
 
-        if (title.length > 20) {
-            return title.slice(0, 20) + "...";
-        }
-        else {
-            return title;
-        }
-
+    if (title.length > 20) {
+      return title.slice(0, 20) + '...'
     }
     else {
-        if (title.length > 30) {
-            return title.slice(0, 30) + "[...]";
-        }
-        else {
-            return title;
-        }
+      return title
     }
+
+  }
+  else {
+    if (title.length > 30) {
+      return title.slice(0, 30) + '[...]'
+    }
+    else {
+      return title
+    }
+  }
 }
 
-export function assignCardId(direction, tracks, cardId) {
+export function assignCardId (direction, tracks, cardId) {
 
-    const length = tracks.length - 1;
+  const length = tracks.length - 1
 
-    if (direction === "next") {
-        if (cardId === length) {
-            cardId = 0;
-        }
-        else {
-            cardId++;
-        }
+  if (direction === 'next') {
+    if (cardId === length) {
+      cardId = 0
     }
-    else if (direction === "prev") {
-        if (cardId === 0) {
-            cardId = length;
-        }
-        else {
-            cardId--;
-        }
+    else {
+      cardId++
     }
+  }
+  else if (direction === 'prev') {
+    if (cardId === 0) {
+      cardId = length
+    }
+    else {
+      cardId--
+    }
+  }
 
-    return cardId;
+  return cardId
 }
 
-export function convertSecondsToMs(d) {
-    let m = Math.floor(d / 60);
-    let s = Math.floor(d % 60);
-    return ((m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s);
+export function convertSecondsToMs (d) {
+  let m = Math.floor(d / 60)
+  let s = Math.floor(d % 60)
+  return ((m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s)
 }
 
-export function prepareStorage() {
-    if (localStorage.getItem('muted') == null) {
-        localStorage.setItem('muted', "false");
-    }
-    if (localStorage.getItem('volume') == null) {
-        localStorage.setItem('volume', "0.5");
-    }
+export function prepareStorage () {
+  if (localStorage.getItem('muted') == null) {
+    localStorage.setItem('muted', 'false')
+  }
+  if (localStorage.getItem('volume') == null) {
+    localStorage.setItem('volume', '0.5')
+  }
 }
 
-export function debounce(fn, delay) {
-    let timer = null;
-    return function () {
-        const context = this, args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            fn.apply(context, args);
-        }, delay);
-    };
+export function debounce (fn, delay) {
+  let timer = null
+  return function () {
+    const context = this, args = arguments
+    clearTimeout(timer)
+    timer = setTimeout(function () {
+      fn.apply(context, args)
+    }, delay)
+  }
 }

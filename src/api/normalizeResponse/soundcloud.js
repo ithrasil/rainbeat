@@ -1,3 +1,3 @@
-export function soundcloud(type, data) {
-    return data.data;
+export function soundcloud (type, data) {
+  return data.data
 }

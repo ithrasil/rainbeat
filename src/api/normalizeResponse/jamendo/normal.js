@@ -1,3 +1,3 @@
-export function normal(data) {
-    return data.data.results;
+export function normal (data) {
+  return data.data.results
 }

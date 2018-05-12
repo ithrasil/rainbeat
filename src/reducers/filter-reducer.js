@@ -1,18 +1,16 @@
 export default (state = {
-                    tracks: {jamendo: true, soundcloud: true},
-                    artists: {jamendo: true, soundcloud: true},
-                    albums: {jamendo: false, soundcloud: false},
-                    playlists: {jamendo: true, soundcloud: true}
+                  tracks: {jamendo: true, soundcloud: true},
+                  artists: {jamendo: true, soundcloud: true},
+                  albums: {jamendo: false, soundcloud: false},
+                  playlists: {jamendo: true, soundcloud: true}
                 },
                 action) => {
 
-    switch (action.type) {
+  switch (action.type) {
+    case 'UPDATE_FILTER':
+      state = action.payload
+      break
+  }
 
-        case "UPDATE_FILTER":
-            state = action.payload;
-            break;
-    }
-
-    return state;
-
+  return state
 }
