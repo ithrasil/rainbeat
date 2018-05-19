@@ -4,124 +4,119 @@
   height: calc(100% - 70px);
   z-index: 2;
   background: darken($accent, 35.5%);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   transform: translateY(100%);
-
-  &:hover {
-    .scrollbar-container.vertical {
-      opacity: 1;
-    }
-  }
-
-  > .scrollarea-content {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  flex-wrap: nowrap;
 
   &.active {
     transform: translateY(0);
   }
 
-  .scrollbar-container.vertical {
-    width: 10px;
-    background: $player;
-    opacity: 0;
+  .categories {
+    width: 150px;
+    height: 100%;
+    padding: 10px;
 
-    > .scrollbar {
-      background-color: #444;
-      margin: 0;
-      width: 10px;
-    }
-  }
-
-  .categoryWrapper {
-    width: 44%;
-    background: darken($accent, 36.5%);
-    border-radius: 5px;
-    margin: 10px;
-
-    &.active {
-      .category > .label > .arrow {
-        transform: translateX(0) rotate(180deg);
-      }
+    h3 {
+      color: white;
+      margin: 10px 20px 10px 20px;
+      font-size: 24px;
     }
 
     .category {
       display: flex;
       align-items: center;
-      justify-content: center;
 
-      .label {
+      &.active > .name {
+        opacity: 1;
+      }
+
+      > .name {
         color: white;
-        font-size: 18px;
         margin: 5px 5px 5px 20px;
-        padding: 3px 0;
-        display: inline-block;
         position: relative;
-        display: flex;
         align-items: center;
         padding: 10px 0;
+        font-size: 20px;
+        width: 70px;
+        opacity: .5;
+        text-transform: capitalize;
 
-        .arrow {
-          display: inline-block;
-          background-size: 16px 16px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      > .apis {
+        > .api {
+          background-size: 24px 24px;
           background-repeat: no-repeat;
           background-position: center;
-          width: 16px;
-          height: 16px;
-          transition: .3s ease;
+          width: 24px;
+          max-height: 30px;
+          min-height: 30px;
           transform: translateX(0);
-          margin-right: 10px;
-          margin-left: 5px;
-        }
+          transition: .3s ease;
+          margin-left: 10px;
 
-        .text {
-          width: 70px;
-        }
+          display: none;
 
-        &:hover {
-          cursor: pointer;
+          &.active {
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
+    }
+  }
 
-      > .api {
-        background-size: 24px 24px;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 24px;
-        max-height: 30px;
-        min-height: 30px;
-        transform: translateX(0);
-        transition: .3s ease;
-        margin-left: 10px;
+  .results {
+    padding: 10px;
+
+    h3 {
+      color: white;
+      margin: 10px 20px 10px 20px;
+      font-size: 24px;
+      text-transform: capitalize;
+    }
+
+    .wrapper {
+      height: 700px;
+      width: 800px;
+      position: relative;
+
+      .result {
+        display: none;
+        height: 700px;
+
+        &:hover {
+          .scrollbar-container.vertical {
+            opacity: 1;
+            pointer-events: all;
+          }
+        }
+
+        .scrollbar-container.vertical {
+          width: 10px;
+          background: $player;
+          opacity: 0;
+          pointer-events: none;
+
+          > .scrollbar {
+            background-color: darken($accent, 32.5%);;
+            margin: 0;
+            width: 10px;
+          }
+        }
 
         &.active {
+          display: block;
         }
 
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-
-    .results {
-      padding: 10px;
-      margin-left: 20px;
-      height: 300px;
-      opacity: 0;
-      pointer-events: none;
-
-      @import "./card.scss";
-      @import "./card_extended.scss";
-    }
-
-    &.active {
-      .results {
-        opacity: 1;
-        pointer-events: all;
+        @import "./card.scss";
+        @import "./card_extended.scss";
       }
     }
   }

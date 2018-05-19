@@ -61,28 +61,21 @@ export default class Artist extends Component {
         }
       })
     }
-
-  }
-
-  createTracks (tracks) {
-    return tracks.map((track, index) => <Track key={index} id={index} track={track}
-                                               onClick={this.props.changeTrack}/>)
   }
 
   render () {
-    const artist = this.state.artist
-    let name = artist.name
-    const tracks = artist.tracks || []
+    const artist = this.state.artist;
+    let name = artist.name;
+    const tracks = artist.tracks || [];
 
-    const loadClasses = this.state.loaded ? 'loaded' : ''
-    const isActive = this.state.active ? ' active' : ''
+    const loadClasses = this.state.loaded ? 'loaded' : '';
+    const isActive = this.state.active ? ' active' : '';
 
     return (
       <div className={'card_extended ' + loadClasses + isActive}>
         <div className="card_contents" onClick={this.handleClick.bind(this)}>
           <ArrowIcon className={'arrow'} fill={'white'}/>
-          <div className="source"
-               style={{backgroundImage: `url(/images/sources/${artist.source}.png)`}}></div>
+          <div className="source" style={{backgroundImage: `url(/images/sources/${artist.source}.png)`}}></div>
           <div className="label"><span title={name}>{name}</span></div>
           <div className={'sk-fading-circle ' + this.state.loadClass}>
             <div className="sk-circle1 sk-circle"></div>
@@ -99,7 +92,12 @@ export default class Artist extends Component {
             <div className="sk-circle12 sk-circle"></div>
           </div>
         </div>
-        <div className="fold">{this.createTracks(tracks)}</div>
+        <div className="fold">
+          {
+            tracks.map((track, index) => <Track key={index} index={index} track={track}
+                                                changeTrack={this.props.changeTrack} /> )
+          }
+        </div>
       </div>
     )
   }

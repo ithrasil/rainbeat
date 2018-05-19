@@ -1,6 +1,12 @@
 .queue {
-  margin-top: 100px;
+  margin-top: 20px;
   z-index: 1;
+
+  > h2 {
+    color: white;
+    margin: 20px;
+    font-size: 28px;
+  }
 
   &:hover {
     .scrollbar-container.vertical {
@@ -17,7 +23,7 @@
       background-color: #aaa;
       margin: 0;
       width: 5px;
-    }ó
+    }
   }
 
   @import "./list/list.scss";

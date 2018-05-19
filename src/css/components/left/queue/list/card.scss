@@ -17,7 +17,7 @@
   }
 
   &.active {
-    background: linear-gradient(to right, darken($accent, 32.5%), darken($accent, 27.5%));
+    background: linear-gradient(to left, darken($accent, 32.5%), darken($accent, 27.5%));
 
     > .order > .id {
         opacity: 0;
@@ -25,8 +25,6 @@
 
     > .order > .status {
       opacity: 1;
-      background: darken($accent, 32.5%);
-
       > .speaker {
         opacity: 1;
       }

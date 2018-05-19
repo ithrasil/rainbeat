@@ -1,6 +1,6 @@
 
 # Created by https://www.gitignore.io/api/node,windows,webstorm
-
+.env
 dist/bundle.js
 dist/bundle.js.map
 

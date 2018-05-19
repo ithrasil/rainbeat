@@ -24,14 +24,14 @@ export default class Track extends Component {
 
   handleClick () {
     if (this.state.isActive) return
-    this.props.onClick(this.state.track)
+    this.props.changeTrack(this.state.track)
   }
 
   render () {
 
     let title = this.state.track.name
 
-    const source = this.state.track.source
+    // const source = this.state.track.source
 
     return (
       <div className="card">
@@ -39,7 +39,7 @@ export default class Track extends Component {
           <div className="status">
             <PlayIcon className={'play'} fill={'white'}/>
           </div>
-          <div className="id">{this.props.id + 1}.</div>
+          <div className="id">{this.props.index + 1}.</div>
         </div>
         {/*<div className="source" style={{backgroundImage: `url(/images/sources/${source}.png)`}}></div>*/}
         <div className="label">

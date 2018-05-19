@@ -24,6 +24,7 @@ class Queue extends Component {
 
     return (
       <div className="queue active">
+        <h2>Queue</h2>
         <List/>
       </div>
     )

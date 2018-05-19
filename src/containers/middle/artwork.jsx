@@ -49,7 +49,7 @@ export default class Artwork extends Component {
 
     const secondaryClasses = 'sprite secondary ' + (!this.state.active ? 'active' : '')
 
-    if (this.state.primary == undefined && this.state.secondary == '') {
+    if (this.state.primary === undefined && this.state.secondary === '') {
       return (
         <div className="fake_artwork">
           <h1>Queue is empty</h1>

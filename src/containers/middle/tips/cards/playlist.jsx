@@ -102,10 +102,8 @@ export default class Playlist extends Component {
 
         <div className="fold">
           {
-            tracks.map((track, index) => {
-              return <Track key={index} id={index} track={track} onClick={this.props.changeTrack}/>
-            })
-
+            tracks.map((track, index) => <Track key={index} index={index} track={track}
+                                                changeTrack={this.props.changeTrack} /> )
           }
         </div>
 
