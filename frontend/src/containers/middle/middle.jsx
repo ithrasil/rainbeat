@@ -61,7 +61,7 @@ class Middle extends Component {
       <section className="middle">
         <Search/>
         <Tips/>
-        <Artwork url={artwork_url}></Artwork>
+        <Artwork url={artwork_url} />
         <Dashboard
           track={track}
           stream={this.props.stream}

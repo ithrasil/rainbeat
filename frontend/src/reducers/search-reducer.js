@@ -20,18 +20,16 @@ export default (state = {
       state.status = action.payload
       break
 
-    case 'DATA_UPDATE':
-      state.tracks = action.payload.tracks
-      state.artists = action.payload.artists
-      state.playlists = action.payload.playlists
+    case 'TRACKS_UPDATE':
+      state.tracks = action.payload
       break
 
-    case 'ARTIST_UPDATE':
-      state.artists = action.payload.slice(0)
+    case 'ARTISTS_UPDATE':
+      state.artists = action.payload
       break
 
-    case 'PLAYLIST_UPDATE':
-      state.playlists = action.payload.slice(0)
+    case 'PLAYLISTS_UPDATE':
+      state.playlists = action.payload
       break
 
     case 'QUERY_UPDATE':

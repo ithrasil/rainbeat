@@ -30,8 +30,10 @@ class ArtistController extends AbstractController
      */
     public function scArtists(string $query): Response
     {
+        $start = microtime(true);
         $url = "https://api.soundcloud.com/users?q=$query&client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv";
         $data = $this->getApiContent($query, __FUNCTION__, $url, function($data) { return $this->unifier->scUnify($data); });
+//        echo '<pre>' . var_export(microtime(true) - $start, true) . '</pre>';
         return new Response($data, 200, array('Content-Type' => 'application/json'));
     }
 

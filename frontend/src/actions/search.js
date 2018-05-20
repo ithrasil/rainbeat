@@ -22,12 +22,27 @@ export const updateFilter = (obj) => {
   }
 }
 
-export const updateData = (data) => {
+export const updateTracks = (tracks) => {
   return {
-    type: 'DATA_UPDATE',
-    payload: data
+    type: 'TRACKS_UPDATE',
+    payload: tracks
   }
 }
+
+export const updateArtists = (artists) => {
+  return {
+    type: 'ARTISTS_UPDATE',
+    payload: artists
+  }
+}
+
+export const updatePlaylists = (playlists) => {
+  return {
+    type: 'PLAYLISTS_UPDATE',
+    payload: playlists
+  }
+}
+
 
 export const saveQuery = (event) => {
   if (event === '') {
@@ -44,23 +59,20 @@ export const saveQuery = (event) => {
 
 // thunks
 
-export const getData = (query, filters) => {
+export const fetch = (what, query, filters) => {
   return async (dispatch) => {
 
-    let data = {}
+    const actions = {"tracks": updateTracks, "artists": updateArtists, "playlists": updatePlaylists};
+    let data = []
 
-    for (const type of ['tracks', 'artists', 'playlists']) {
-      data[type] = []
-      for (const api of ['soundcloud', 'jamendo']) {
-        if (filters[type][api] === true) {
-          const url = `http://localhost:8000/${api}/${type}/${query}`;
-          let result = await axios.get(url);
-          data[type] = [...data[type], ...result.data]
-        }
+    for (const api of ['soundcloud', 'jamendo']) {
+      if (filters[api] === true) {
+        const url = `http://localhost:8000/${api}/${what}/${query}`
+        let result = await axios.get(url)
+        data = [...data, ...result.data]
       }
-
     }
 
-    dispatch(updateData(data))
+    dispatch(actions[what](data))
   }
 }

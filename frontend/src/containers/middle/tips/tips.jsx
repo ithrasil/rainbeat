@@ -102,19 +102,19 @@ class Tips extends Component {
                   <div className="name" onClick={this.handleCategoryChange.bind(this, cat.name)}>
                     {cat.name}
                   </div>
-                  {/*<div className="apis">*/}
-                  {/*{*/}
-                    {/*apis.map((api, key) => (*/}
-                      {/*<div*/}
-                        {/*className={`api ${this.props.filters[cat.name][api] === true ? 'active' : ''}`}*/}
-                        {/*title={api[0]}*/}
-                        {/*style={{backgroundImage: `url(/images/sources/${api}.png)`}}*/}
-                        {/*onClick={this.filterUpdate.bind(this, cat.name, api)}*/}
-                        {/*key={key}>*/}
-                      {/*</div>*/}
-                    {/*))*/}
-                  {/*}*/}
-                  {/*</div>*/}
+                  <div className="apis">
+                  {
+                    apis.map((api, key) => (
+                      <div
+                        className={`api ${this.props.filters[cat.name][api] === true ? 'active' : ''}`}
+                        title={api[0]}
+                        style={{backgroundImage: `url(/images/sources/${api}.png)`}}
+                        onClick={this.filterUpdate.bind(this, cat.name, api)}
+                        key={key}>
+                      </div>
+                    ))
+                  }
+                  </div>
                 </div>
               )
             })
