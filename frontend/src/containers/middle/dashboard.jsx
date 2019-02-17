@@ -139,6 +139,8 @@ export default class Dashboard extends React.Component {
     this.howler.seek(time)
   }
 
+
+
   render () {
 
     const currentTime = convertSecondsToMs(this.state.time) === 'NaN:NaN' ? '00:00' : convertSecondsToMs(this.state.time)

@@ -1,11 +1,13 @@
 .queue {
-  margin-top: 20px;
   z-index: 1;
 
   > h2 {
     color: white;
-    margin: 20px;
+    padding: 20px;
     font-size: 28px;
+    margin: 0;
+    line-height: 30px;
+    background-color: #0e1514;
   }
 
   &:hover {

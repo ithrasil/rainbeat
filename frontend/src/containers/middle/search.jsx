@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Actions
-import { changeState, saveQuery, fetch} from 'Actions/search'
+import { changeState, fetch} from 'Actions/search'
 
 // Icons
 import LoupeIcon from 'Containers/svg/LoupeIcon.jsx'
@@ -16,14 +16,20 @@ class Search extends Component {
 
   constructor (props) {
     super(props)
+
+    this.state = { "query": "" };
   }
 
   handleOnKeyDown (event) {
     if (event.keyCode === 13) {
-      this.props.fetch("tracks", this.props.query, this.props.filters.tracks);
-      this.props.fetch("artists", this.props.query, this.props.filters.artists);
-      this.props.fetch("playlists", this.props.query, this.props.filters.playlists);
+      this.props.fetch("tracks", this.state.query, this.props.filters.tracks);
+      this.props.fetch("artists", this.state.query, this.props.filters.artists);
+      this.props.fetch("playlists", this.state.query, this.props.filters.playlists);
     }
+  }
+
+  handleInput(event) {
+    this.setState({"query": event.target.value})
   }
 
   render () {
@@ -42,11 +48,10 @@ class Search extends Component {
           type="text"
           className="searchInput"
           onFocus={() => { this.props.changeState(true) } }
-          placeholder="Find something you like"
-
-          onInput={this.props.saveQuery}
+          placeholder="Find music you like ..."
+          onInput={this.handleInput.bind(this)}
           onKeyDown={this.handleOnKeyDown.bind(this)}
-          value={this.props.query.value}
+          value={this.state.query}
         />
         <ExitIcon className={'exit'} fill={'white'} onClick={() => {
           this.props.changeState(false)
@@ -59,7 +64,6 @@ class Search extends Component {
 
 function mapStateToProps (state) {
   return {
-    query: state.search.query,
     searchStatus: state.search.status,
     filters: state.filters
   }
@@ -67,7 +71,6 @@ function mapStateToProps (state) {
 
 function matchDispatchToProps (dispatch) {
   let functions = {
-    saveQuery: saveQuery,
     changeState: changeState,
     fetch: fetch
   }

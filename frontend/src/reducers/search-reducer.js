@@ -12,29 +12,20 @@ export default (state = {
 
   switch (action.type) {
 
-    case 'RECEIVE_STATUS':
-      state.received = action.payload
-      break
-
     case 'SEARCH_STATUS':
       state.status = action.payload
       break
 
     case 'TRACKS_UPDATE':
-      state.tracks = action.payload
+      state.tracks = action.payload.slice()
       break
 
     case 'ARTISTS_UPDATE':
-      state.artists = action.payload
+      state.artists = action.payload.slice()
       break
 
     case 'PLAYLISTS_UPDATE':
-      state.playlists = action.payload
-      break
-
-    case 'QUERY_UPDATE':
-      state.query = action.payload
-      localStorage.setItem('query', action.payload)
+      state.playlists = action.payload.slice()
       break
   }
 

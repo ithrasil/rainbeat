@@ -14,12 +14,9 @@ import { getData, getArtistTracks, getPlaylistTracks } from 'Actions/search.js'
 import { updateFilter } from 'Actions/filter.js'
 
 // Containers
-import Track from 'Containers/middle/tips/cards/track.jsx'
-import Artist from 'Containers/middle/tips/cards/artist.jsx'
-import Playlist from 'Containers/middle/tips/cards/playlist.jsx'
-import Empty from 'Containers/middle/tips/cards/empty.jsx'
-// import Error from 'Containers/middle/tips/error.jsx';
-// import Info from 'Containers/middle/tips/info.jsx';
+import Card from 'Containers/middle/tips/cards/card.jsx'
+import CardExtended from 'Containers/middle/tips/cards/cardExtended.jsx'
+import CardExtendedLoaded from 'Containers/middle/tips/cards/cardExtendedLoaded.jsx'
 
 class Tips extends Component {
 
@@ -71,24 +68,23 @@ class Tips extends Component {
       {name: 'tracks', status: 'tracksActive', version: 'track'},
       {
         name: 'artists',
-        component: Artist,
         action: 'handleArtistClick',
         version: 'extended'
       },
       // {
       //   label: 'Albums',
       //   name: 'albums',
-      //   component: {},
       //   action: 'handleAlbumClick',
       //   version: 'extended'
       // },
       {
         name: 'playlists',
-        component: Playlist,
         action: 'handlePlaylistClick',
         version: 'extended'
       }
     ]
+
+    // TODO: REFACTOR THIS !!
 
     return (
       <div className={'tips ' + searchStatus}>
@@ -130,12 +126,16 @@ class Tips extends Component {
                     {
                       cat.version === 'track' ? (
                         this.props.tracks.map((track, index) =>
-                          <Track key={index} index={index} track={track} changeTrack={this.changeTrack.bind(this)}/>)
+                          <Card key={index} index={index} track={track} changeTrack={this.changeTrack.bind(this)}/>)
                       ) : (
                         this.props[cat.name].map((data, index) => {
-                            return <cat.component key={index} index={index} data={data} tracks={data.tracks}
-                                                  loadTracks={this[cat.action].bind(this)}
-                                                  changeTrack={this.changeTrack.bind(this)}/>
+                            if(data.tracks !== undefined) {
+
+                              return <CardExtendedLoaded key={index} index={index} data={data}
+                                                   changeTrack={this.changeTrack.bind(this)}/>
+                            } else {
+                              return <CardExtended key={index} index={index} data={data} loadTracks={this[cat.action].bind(this)}/>
+                            }
                           }
                         )
                       )

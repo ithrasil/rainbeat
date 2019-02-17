@@ -1,22 +1,5 @@
-.card_extended {
+.card_extended, .card_extended_loaded {
   transition: .3s ease;
-  &.loaded {
-    .card_contents {
-      .source {
-        filter: grayscale(50%);
-      }
-    }
-  }
-
-  &.active {
-    .card_contents > .arrow {
-      transform: translateX(0) rotate(180deg);
-    }
-
-    .fold {
-      display: block;
-    }
-  }
 
   &:hover {
     .card_contents {
@@ -88,4 +71,26 @@
     display: none;
   }
 
+}
+
+.card_extended_loaded {
+  .card_contents {
+    .source {
+      filter: grayscale(50%);
+    }
+  }
+
+  &.active {
+    .card_contents > .arrow {
+      transform: translateX(0) rotate(180deg);
+    }
+
+    .source {
+      filter: grayscale(0);
+    }
+
+    .fold {
+      display: block;
+    }
+  }
 }

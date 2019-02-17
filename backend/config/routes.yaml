@@ -1,3 +1,24 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+playlists:
+    path: /playlists/{query}
+    controller: App\Controller\PlaylistController::index
+playlist_soundcloud_tracks:
+    path: /playlist/{id}/soundcloud
+    controller: App\Controller\PlaylistController::getSoundcloudChunk
+playlist_jamendo_tracks:
+    path: /playlist/{id}/jamendo
+    controller: App\Controller\PlaylistController::getJamendoChunk
+artists:
+    path: /artists/{query}
+    controller: App\Controller\ArtistController::index
+artist_soundcloud_tracks:
+    path: /artist/{id}/soundcloud
+    controller: App\Controller\ArtistController::getSoundcloudChunk
+artist_jamendo_tracks:
+    path: /artist/{id}/jamendo
+    controller: App\Controller\ArtistController::getJamendoChunk
+tracks:
+    path: /tracks/{query}
+    controller: App\Controller\TrackController::index

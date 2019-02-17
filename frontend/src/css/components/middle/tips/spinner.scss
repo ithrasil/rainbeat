@@ -1,11 +1,8 @@
 .sk-fading-circle {
-  display: none;
+  display: block;
   width: 20px;
   height: 20px;
   position: relative;
-  &.active {
-    display: block;
-  }
 }
 
 .sk-fading-circle .sk-circle {

@@ -22,12 +22,9 @@ class Middle extends Component {
   constructor (props) {
     super(props)
 
-    document.title = 2
-
   }
 
   handleTrackChange (type, value) {
-    console.log(1)
     let id = 0
     const tracks = this.props.tracks
 
