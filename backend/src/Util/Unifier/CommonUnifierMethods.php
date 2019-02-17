@@ -12,7 +12,7 @@ trait CommonUnifierMethods
             "source" => "soundcloud",
             "stream" => $track->uri . "/stream" . '?client_id=' . "stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv",
             "name" => $track->title,
-            "id" => $track->id
+            "id" => (string) $track->id
         );
     }
 
@@ -33,7 +33,7 @@ trait CommonUnifierMethods
         return array(
             "name" => $artist->username,
             "source" => "soundcloud",
-            "id" => $artist->id
+            "id" => (string) $artist->id
         );
     }
 
@@ -51,7 +51,7 @@ trait CommonUnifierMethods
         return array(
             "name" => $playlist->title,
             "source" => "soundcloud",
-            "id" => $playlist->id
+            "id" => (string) $playlist->id
         );
     }
     protected function fromJamendoPlaylist($playlist): array

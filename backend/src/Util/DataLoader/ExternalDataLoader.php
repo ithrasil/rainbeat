@@ -4,6 +4,7 @@ namespace App\Util\DataLoader;
 
 use App\Util\Unifier\IUnifier;
 use App\Util\DataAdapter\IDataAdapter;
+use GuzzleHttp\Client;
 
 class ExternalDataLoader
 {
@@ -16,19 +17,11 @@ class ExternalDataLoader
         $this->adapter = $adapter;
     }
 
-    public function fetchExternalData(string $url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        return curl_exec($ch);
-    }
-
     public function getExternalContent(string $url): array
     {
-        $data = json_decode($this->fetchExternalData($url));
+        $client = new Client([]);
+        $response = $client->request('GET', $url, ['verify' => true, 'headers' => ['Accept' => 'application/json',]]);
+        $data = json_decode($response->getBody());
         if ($data == null) {
             return [];
         } else {
