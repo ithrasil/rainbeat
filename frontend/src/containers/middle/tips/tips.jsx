@@ -5,7 +5,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 // Actions
-import {updateFilter} from 'Actions/filter.js'
+import {updateFilter} from 'Actions/filter.js';
+import {fetch} from 'Actions/search.js';
 
 // Containers
 import Result from 'Containers/middle/tips/result.jsx'
@@ -21,11 +22,11 @@ class Tips extends Component {
     }
 
     filterUpdate(name, api) {
-        let newFilters = Object.assign({}, this.props.filters)
-        newFilters[name][api] = !newFilters[name][api]
-        console.log(newFilters)
-        this.props.updateFilter(newFilters)
-        this.props.getData(this.props.query, this.props.filters)
+        console.log(this);
+        let newFilters = Object.assign({}, this.props.filters);
+        newFilters[name][api] = !newFilters[name][api];
+        this.props.updateFilter(newFilters);
+        this.props.fetch(['tracks', 'artists', 'playlists'], this.props.query, this.props.filters)
     }
 
     handleCategoryChange(category) {
@@ -110,14 +111,15 @@ function mapStateToProps(state) {
     return {
         query: state.search.query,
         searchStatus: state.search.status,
-        filters: state.filters
+        filters: state.filters,
     }
 }
 
 function matchDispatchToProps(dispatch) {
     let functions = {
         updateFilter: updateFilter,
-    }
+        fetch: fetch,
+    };
 
     return bindActionCreators(functions, dispatch)
 }

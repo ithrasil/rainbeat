@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Actions
-import { changeState, fetch} from 'Actions/search'
+import { updateQuery, changeState, fetch} from 'Actions/search'
 
 // Icons
 import LoupeIcon from 'Containers/svg/LoupeIcon.jsx'
@@ -22,9 +22,8 @@ class Search extends Component {
 
   handleOnKeyDown (event) {
     if (event.keyCode === 13) {
-      this.props.fetch("tracks", this.state.query, this.props.filters.tracks);
-      this.props.fetch("artists", this.state.query, this.props.filters.artists);
-      this.props.fetch("playlists", this.state.query, this.props.filters.playlists);
+      this.props.fetch(['tracks', 'artists', 'playlists'], this.state.query, this.props.filters);
+      this.props.updateQuery(this.state.query);
     }
   }
 
@@ -71,9 +70,10 @@ function mapStateToProps (state) {
 
 function matchDispatchToProps (dispatch) {
   let functions = {
+    updateQuery: updateQuery,
     changeState: changeState,
-    fetch: fetch
-  }
+    fetch: fetch,
+  };
 
   return bindActionCreators(functions, dispatch)
 }
