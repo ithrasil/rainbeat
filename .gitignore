@@ -203,5 +203,3 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 
-# Local files
-.backend/storage/api/..

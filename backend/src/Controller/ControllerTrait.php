@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 Trait ControllerTrait
 {
-
     protected function mergeData(string $query, Request $request): array
     {
         $result = [];
@@ -22,7 +21,7 @@ Trait ControllerTrait
 
     protected function getApiContent(DataLoader $dataLoader, string $query, string $function, string $url): array
     {
-        $path = "../storage/api/$function/$query.json";
+        $path = "../storage/api/$function" . "_" . "$query.json";
         $file_exists = file_exists($path);
 
         $content = $dataLoader->getContent($file_exists, $path, $url);
