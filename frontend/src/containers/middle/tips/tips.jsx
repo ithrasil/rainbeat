@@ -1,181 +1,125 @@
-import React, { Component } from 'react'
-
-// React modules
-import ScrollArea from 'react-scrollbar'
+import React, {Component} from 'react'
 
 // Redux
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 // Actions
-import { updateQueue } from 'Actions/queue.js'
-import { changeCard } from 'Actions/card.js'
-import { getData, getArtistTracks, getPlaylistTracks } from 'Actions/search.js'
-import { updateFilter } from 'Actions/filter.js'
+import {updateFilter} from 'Actions/filter.js'
 
 // Containers
-import Card from 'Containers/middle/tips/cards/card.jsx'
-import CardExtended from 'Containers/middle/tips/cards/cardExtended.jsx'
-import CardExtendedLoaded from 'Containers/middle/tips/cards/cardExtendedLoaded.jsx'
+import Result from 'Containers/middle/tips/result.jsx'
 
 class Tips extends Component {
 
-  constructor (props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      activeCategory: 'tracks'
+        this.state = {
+            activeCategory: 'tracks'
+        }
     }
-  }
 
-  changeTrack (track) {
-    let newQueue = this.props.queue.slice()
+    filterUpdate(name, api) {
+        let newFilters = Object.assign({}, this.props.filters)
+        newFilters[name][api] = !newFilters[name][api]
+        console.log(newFilters)
+        this.props.updateFilter(newFilters)
+        this.props.getData(this.props.query, this.props.filters)
+    }
 
-    newQueue.unshift(track)
-    this.props.updateQueue({list: newQueue, title: 'Mixed'})
-    this.props.changeCard(0)
-  }
+    handleCategoryChange(category) {
+        this.setState((state, props) => {
+            return {activeCategory: category}
+        })
+    }
 
-  handleArtistClick (artist, index) {
-    this.props.getArtistTracks(artist, index, this.props.artists)
-  }
+    render() {
 
-  handlePlaylistClick (playlist, index) {
-    this.props.getPlaylistTracks(playlist, index, this.props.playlists)
-  }
+        const searchStatus = this.props.searchStatus ? 'active' : ''
 
-  filterUpdate (name, api) {
-    let newFilters = Object.assign({}, this.props.filters)
-    newFilters[name][api] = !newFilters[name][api]
-    console.log(newFilters)
-    this.props.updateFilter(newFilters)
-    this.props.getData(this.props.query, this.props.filters)
-  }
+        const apis = ['soundcloud', 'jamendo']
 
-  handleCategoryChange (category) {
-    this.setState((state, props) => {
-      return {activeCategory: category}
-    })
-  }
-
-  render () {
-
-    const searchStatus = this.props.searchStatus ? 'active' : ''
-
-    const apis = ['soundcloud', 'jamendo']
-
-    const categories = [
-      {name: 'tracks', status: 'tracksActive', version: 'track'},
-      {
-        name: 'artists',
-        action: 'handleArtistClick',
-        version: 'extended'
-      },
-      // {
-      //   label: 'Albums',
-      //   name: 'albums',
-      //   action: 'handleAlbumClick',
-      //   version: 'extended'
-      // },
-      {
-        name: 'playlists',
-        action: 'handlePlaylistClick',
-        version: 'extended'
-      }
-    ]
-
-    // TODO: REFACTOR THIS !!
-
-    return (
-      <div className={'tips ' + searchStatus}>
-        <div className="categories">
-          <h3>Categories</h3>
-          {
-            categories.map((cat, key) => {
-              return (
-                <div key={key} className={'category ' + (this.state.activeCategory === cat.name ? 'active' : '')}>
-
-                  <div className="name" onClick={this.handleCategoryChange.bind(this, cat.name)}>
-                    {cat.name}
-                  </div>
-                  <div className="apis">
-                  {
-                    apis.map((api, key) => (
-                      <div
-                        className={`api ${this.props.filters[cat.name][api] === true ? 'active' : ''}`}
-                        title={api[0]}
-                        style={{backgroundImage: `url(/images/sources/${api}.png)`}}
-                        onClick={this.filterUpdate.bind(this, cat.name, api)}
-                        key={key}>
-                      </div>
-                    ))
-                  }
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
-        <div className="results">
-          <h3>{this.state.activeCategory}</h3>
-          <div className="wrapper">
+        const categories = [
+            {name: 'tracks', status: 'tracksActive', version: 'track'},
             {
-              categories.map((cat, key) => {
-                return (
-                  <ScrollArea key={key} className={'result ' + (this.state.activeCategory === cat.name ? 'active' : '')}>
-                    {
-                      cat.version === 'track' ? (
-                        this.props.tracks.map((track, index) =>
-                          <Card key={index} index={index} track={track} changeTrack={this.changeTrack.bind(this)}/>)
-                      ) : (
-                        this.props[cat.name].map((data, index) => {
-                            if(data.tracks !== undefined) {
-
-                              return <CardExtendedLoaded key={index} index={index} data={data}
-                                                   changeTrack={this.changeTrack.bind(this)}/>
-                            } else {
-                              return <CardExtended key={index} index={index} data={data} loadTracks={this[cat.action].bind(this)}/>
-                            }
-                          }
-                        )
-                      )
-                    }
-                  </ScrollArea>
-                )
-              })
+                name: 'artists',
+                action: 'handleArtistClick',
+                version: 'extended'
+            },
+            // {
+            //   label: 'Albums',
+            //   name: 'albums',
+            //   action: 'handleAlbumClick',
+            //   version: 'extended'
+            // },
+            {
+                name: 'playlists',
+                action: 'handlePlaylistClick',
+                version: 'extended'
             }
-          </div>
-        </div>
-      </div>
-    )
-  }
+        ]
+
+        // TODO: REFACTOR THIS !!
+
+        return (
+            <div className={'tips ' + searchStatus}>
+                <div className="categories">
+                    <h3>Categories</h3> {
+                    categories.map((cat, key) => {
+                        return (
+                            <div key={key} className={'category ' + (this.state.activeCategory ? 'active' : '')}>
+
+                                <div className="name" onClick={this.handleCategoryChange.bind(this, cat.name)}>
+                                    {cat.name}
+                                </div>
+                                <div className="apis"> {
+                                    apis.map((api, key) => (
+                                        <div
+                                            className={`api ${this.props.filters[cat.name][api] ? 'active' : ''}`}
+                                            title={api[0]}
+                                            style={{backgroundImage: `url(/images/sources/${api}.png)`}}
+                                            onClick={this.filterUpdate.bind(this, cat.name, api)}
+                                            key={key}>
+                                        </div>
+                                    ))
+                                }
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+                </div>
+                <div className="results">
+                    <h3>{this.state.activeCategory}</h3>
+                    <div className="wrapper"> {
+                        categories.map((category, key) => {
+                            if (this.props.filters[category.name]) {
+                                return <Result key={key} category={category} activeCategory={this.state.activeCategory}/>;
+                            }
+                        })
+                    }
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
-function mapStateToProps (state) {
-  return {
-    query: state.search.query,
-    tracks: state.search.tracks,
-    albums: state.search.albums,
-    artists: state.search.artists,
-    playlists: state.search.playlists,
-    searchStatus: state.search.status,
-    queue: state.queue.list,
-    index: state.card.id,
-    filters: state.filters
-  }
+function mapStateToProps(state) {
+    return {
+        query: state.search.query,
+        searchStatus: state.search.status,
+        filters: state.filters
+    }
 }
 
-function matchDispatchToProps (dispatch) {
-  let functions = {
-    updateQueue: updateQueue,
-    changeCard: changeCard,
-    getArtistTracks: getArtistTracks,
-    getPlaylistTracks: getPlaylistTracks,
-    updateFilter: updateFilter,
-    getData: getData
-  }
+function matchDispatchToProps(dispatch) {
+    let functions = {
+        updateFilter: updateFilter,
+    }
 
-  return bindActionCreators(functions, dispatch)
+    return bindActionCreators(functions, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Tips)

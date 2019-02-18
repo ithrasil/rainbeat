@@ -30,7 +30,7 @@ export default class Dashboard extends React.Component {
 
     this.state = {
       track: props.track,
-      playing: true,
+      playing: false,
       isDownTrack: false,
       isDownVolume: false,
       volume: volume,
