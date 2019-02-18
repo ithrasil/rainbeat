@@ -7,6 +7,7 @@
   transform: translateY(100%);
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
 
   &.active {
     transform: translateY(0);
@@ -46,16 +47,32 @@
           cursor: pointer;
         }
       }
+    }
+  }
+
+  .results {
+    padding: 10px;
+    width: 1200px;
+
+    h3 {
+      color: white;
+      margin: 10px 20px 10px 20px;
+      font-size: 24px;
+      text-transform: capitalize;
 
       > .apis {
+        display: inline-block;
+        vertical-align: bottom;
+
         > .api {
           display: inline-block;
+          vertical-align: bottom;
           background-size: 24px 24px;
           background-repeat: no-repeat;
           background-position: center;
           width: 24px;
-          max-height: 24px;
-          min-height: 24px;
+          max-height: 30px;
+          min-height: 30px;
           transform: translateX(0);
           border-radius: 6px;
           transition: .3s ease;
@@ -71,21 +88,11 @@
         }
       }
     }
-  }
 
-  .results {
-    padding: 10px;
-
-    h3 {
-      color: white;
-      margin: 10px 20px 10px 20px;
-      font-size: 24px;
-      text-transform: capitalize;
-    }
 
     .wrapper {
       height: 700px;
-      width: 800px;
+      width: 1200px;
       position: relative;
 
       .result {

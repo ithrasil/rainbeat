@@ -19,12 +19,6 @@
     align-items: center;
     flex-wrap: nowrap;
 
-    &:hover {
-      .arrow {
-        opacity: 1;
-      }
-    }
-
     .arrow {
       padding: 0 8px;
       background-size: 20px 20px;
@@ -35,6 +29,7 @@
       min-height: 30px;
       transform: translateX(0);
       transition: .3s ease;
+      opacity: 0;
     }
 
     .source {
@@ -78,7 +73,11 @@
     .source {
       filter: grayscale(50%);
     }
+    .arrow {
+      opacity: 1;
+    }
   }
+
 
   &.active {
     .card_contents > .arrow {

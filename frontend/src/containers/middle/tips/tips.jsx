@@ -74,25 +74,27 @@ class Tips extends Component {
                                 <div className="name" onClick={this.handleCategoryChange.bind(this, cat.name)}>
                                     {cat.name}
                                 </div>
-                                <div className="apis"> {
-                                    apis.map((api, key) => (
-                                        <div
-                                            className={`api ${this.props.filters[cat.name][api] ? 'active' : ''}`}
-                                            title={api[0]}
-                                            style={{backgroundImage: `url(/images/sources/${api}.png)`}}
-                                            onClick={this.filterUpdate.bind(this, cat.name, api)}
-                                            key={key}>
-                                        </div>
-                                    ))
-                                }
-                                </div>
                             </div>
                         )
                     })
                 }
                 </div>
                 <div className="results">
-                    <h3>{this.state.activeCategory}</h3>
+                    <h3>{this.state.activeCategory}
+                        <div className="apis"> {
+                            apis.map((api, key) => (
+                                <div
+                                    className={`api ${this.props.filters[this.state.activeCategory][api] ? 'active' : ''}`}
+                                    title={api[0]}
+                                    style={{backgroundImage: `url(/images/sources/${api}.png)`}}
+                                    onClick={this.filterUpdate.bind(this, this.state.activeCategory, api)}
+                                    key={key}>
+                                </div>
+                            ))
+                        }
+                        </div>
+                    </h3>
+
                     <div className="wrapper"> {
                         categories.map((category, key) => {
                             if (this.props.filters[category.name]) {
