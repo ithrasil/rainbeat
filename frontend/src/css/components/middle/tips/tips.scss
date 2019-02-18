@@ -59,6 +59,7 @@
       margin: 10px 20px 10px 20px;
       font-size: 24px;
       text-transform: capitalize;
+      margin-left: 44px;
 
       > .apis {
         display: inline-block;
@@ -89,15 +90,13 @@
       }
     }
 
-
     .wrapper {
-      height: 700px;
       width: 1200px;
       position: relative;
 
       .result {
         display: none;
-        height: 700px;
+        height: calc(100vh - 82px);
 
         &:hover {
           .scrollbar-container.vertical {

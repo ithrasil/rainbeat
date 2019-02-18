@@ -1,5 +1,5 @@
 .list {
-  height: 720px;
+  max-height: calc(100vh - 70px);
   overflow: hidden;
   @import "./card.scss";
 }

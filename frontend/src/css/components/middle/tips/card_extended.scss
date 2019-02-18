@@ -1,5 +1,6 @@
 .card_extended, .card_extended_loaded {
   transition: .3s ease;
+  margin-left: 24px;
 
   &:hover {
     .card_contents {
@@ -20,6 +21,9 @@
     flex-wrap: nowrap;
 
     .arrow {
+      position: absolute;
+      left: -24px;
+      z-index: 100;
       padding: 0 8px;
       background-size: 20px 20px;
       background-repeat: no-repeat;
@@ -28,7 +32,6 @@
       max-height: 30px;
       min-height: 30px;
       transform: translateX(0);
-      transition: .3s ease;
       opacity: 0;
     }
 
@@ -90,6 +93,10 @@
 
     .fold {
       display: block;
+      .card {
+        position: relative;
+        left: -6px;
+      }
     }
   }
 }
