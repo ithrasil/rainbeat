@@ -43,7 +43,7 @@ export default class Dashboard extends React.Component {
 
   componentWillReceiveProps (props) {
 
-    if (props.track.name !== this.state.track.name) {
+    if (props.track.stream !== this.state.track.stream) {
       this.setState((state, props) => {
         return {
           track: props.track,
