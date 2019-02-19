@@ -50,9 +50,10 @@ export function assignCardId (direction, tracks, cardId) {
   return cardId
 }
 
-export function convertSecondsToMs (d) {
-  let m = Math.floor(d / 60)
-  let s = Math.floor(d % 60)
+export function convertSecondsToMinutes (seconds) {
+  if (isNaN(seconds)) return "00:00";
+  let m = Math.floor(seconds / 60);
+  let s = Math.floor(seconds % 60);
   return ((m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s)
 }
 

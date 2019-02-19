@@ -1,10 +1,10 @@
 // Helpers
-import { convertSecondsToMs } from 'Helpers'
+import { convertSecondsToMinutes } from 'Helpers'
 
 export default {
   enterTrack: function () {
-    this.currentTime.classList.remove('active')
-    this.intendedTime.classList.add('active')
+    this.currentTime.classList.remove('active');
+    this.intendedTime.classList.add('active');
   },
 
   moveTrack: function (event) {
@@ -12,11 +12,11 @@ export default {
       this.moveDot(event)
     }
 
-    const mouseX = event.clientX
-    const trackLeftX = this.track.getBoundingClientRect().left
-    const difference = Math.ceil(mouseX - trackLeftX)
+    const mouseX = event.clientX;
+    const trackLeftX = this.track.getBoundingClientRect().left;
+    const difference = Math.ceil(mouseX - trackLeftX);
 
-    this.intendedTime.textContent = convertSecondsToMs(Math.floor(difference / this.state.timeIteration))
+    this.intendedTime.textContent = convertSecondsToMinutes(Math.floor(difference / this.state.timeIteration))
   },
 
   moveVolume: function (event) {
@@ -29,10 +29,10 @@ export default {
       this.currentTime.classList.add('active')
     }
 
-    if (this.state.isMouseDown == false) return
+    if (!this.state.isMouseDown) return;
 
     if (this.state.paused) {
-      this.state.stream.play()
+      this.state.stream.play();
       this.setState((state, props) => {
         return {
           paused: false

@@ -1,14 +1,10 @@
-export default (state = {id: 0}, action) => {
-  var newState
+const defaultState = {id: 0};
 
-  switch (action.type) {
-    case 'CHANGE_CARD':
-      newState = {...state, id: action.payload}
-      break
-    default:
-      newState = {...state}
-      break
-  }
-
-  return newState
+export default (state = defaultState, action) => {
+    switch (action.type) {
+        case 'CHANGE_CARD':
+            return {...state, id: action.payload};
+        default:
+            return {...state};
+    }
 }

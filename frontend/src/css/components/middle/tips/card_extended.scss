@@ -46,6 +46,7 @@
       transition: .3s ease;
       margin-left: 10px;
       filter: grayscale(100%);
+      border-radius: 12px;
     }
 
     .label {
@@ -96,6 +97,7 @@
       .card {
         position: relative;
         left: -6px;
+        padding: 10px 0;
       }
     }
   }

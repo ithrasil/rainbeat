@@ -6,7 +6,7 @@ import ReactHowler from 'react-howler'
 import InputRange from 'react-input-range'
 
 // Helpers
-import { convertSecondsToMs, prepareStorage } from 'Helpers'
+import { convertSecondsToMinutes, prepareStorage } from 'Helpers'
 
 // Events
 import mouse from './events/mouseEvents.jsx'
@@ -143,7 +143,7 @@ export default class Dashboard extends React.Component {
 
   render () {
 
-    const currentTime = convertSecondsToMs(this.state.time) === 'NaN:NaN' ? '00:00' : convertSecondsToMs(this.state.time)
+    const currentTime = convertSecondsToMinutes(this.state.time);
 
     return (
 
