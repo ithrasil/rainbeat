@@ -11,10 +11,16 @@ import {fetch} from 'Actions/search.js';
 // Containers
 import Result from 'Containers/middle/tips/result.jsx'
 
+const CATEGORIES = [
+    {name: 'tracks', status: 'tracksActive', version: 'track'},
+    {name: 'artists', action: 'handleArtistClick', version: 'extended'},
+    {name: 'playlists', action: 'handlePlaylistClick', version: 'extended'}
+];
+
 class Tips extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             activeCategory: 'tracks'
@@ -36,38 +42,14 @@ class Tips extends Component {
     }
 
     render() {
-
-        const searchStatus = this.props.searchStatus ? 'active' : ''
-
-        const apis = ['soundcloud', 'jamendo']
-
-        const categories = [
-            {name: 'tracks', status: 'tracksActive', version: 'track'},
-            {
-                name: 'artists',
-                action: 'handleArtistClick',
-                version: 'extended'
-            },
-            // {
-            //   label: 'Albums',
-            //   name: 'albums',
-            //   action: 'handleAlbumClick',
-            //   version: 'extended'
-            // },
-            {
-                name: 'playlists',
-                action: 'handlePlaylistClick',
-                version: 'extended'
-            }
-        ]
-
-        // TODO: REFACTOR THIS !!
+        const searchStatus = this.props.searchStatus ? 'active' : '';
+        const apis = ['soundcloud', 'jamendo'];
 
         return (
             <div className={'tips ' + searchStatus}>
                 <div className="categories">
                     <h3>Categories</h3> {
-                    categories.map((cat, key) => {
+                    CATEGORIES.map((cat, key) => {
                         return (
                             <div key={key} className={'category ' + (this.state.activeCategory ? 'active' : '')}>
 
@@ -96,7 +78,7 @@ class Tips extends Component {
                     </h3>
 
                     <div className="wrapper"> {
-                        categories.map((category, key) => {
+                        CATEGORIES.map((category, key) => {
                             if (this.props.filters[category.name]) {
                                 return <Result key={key} category={category} activeCategory={this.state.activeCategory}/>;
                             }
