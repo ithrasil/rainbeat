@@ -23,11 +23,10 @@ class Result extends Component {
     }
 
     changeTrack(track) {
-        console.log(this.props.queue)
-        let newQueue = this.props.queue.slice()
+        let newQueue = this.props.queue.slice();
 
-        newQueue.unshift(track)
-        this.props.updateQueue({list: newQueue, title: 'Mixed'})
+        newQueue.unshift(track);
+        this.props.updateQueue({list: newQueue, title: 'Mixed'});
         this.props.changeCard(0)
     }
 
