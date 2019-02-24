@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 Trait ControllerTrait
 {
-    protected function mergeData(string $query, Request $request): array
+    final protected function mergeData(string $query, Request $request): array
     {
         $result = [];
         if ($request->get('soundcloud') == "true") {
@@ -19,17 +19,16 @@ Trait ControllerTrait
         return $result;
     }
 
-    protected function getApiContent(DataLoader $dataLoader, string $query, string $function, string $url): array
+    final protected function getApiContent(DataLoader $dataLoader, string $query,
+                                           string $url, string $source, string $type): array
     {
-        $path = "../storage/api/$function" . "_" . "$query.json";
+        $path = "../storage/api/$source.$type." . "_" . "$query.json";
         $file_exists = file_exists($path);
-
-        $content = $dataLoader->getContent($file_exists, $path, $url);
+        $content = $dataLoader->getContent($file_exists, $path, $url, $source);
 
         if (!$file_exists) {
             file_put_contents($path, json_encode($content));
         }
-
         return $content;
     }
 }

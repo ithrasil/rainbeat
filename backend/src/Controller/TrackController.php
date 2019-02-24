@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Util\DataAdapter\JamendoEntityAdapter;
 use App\Util\DataLoader\DataLoader;
-use App\Util\Unifier\JamendoTracksUnifier;
-use App\Util\Unifier\SoundcloudTracksUnifier;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
+use App\ValueObjects\Tracks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,14 +22,14 @@ class TrackController extends AbstractController
     private function getSoundcloudContent(string $query): array
     {
         $url = "https://api.soundcloud.com/tracks?q=$query&client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv";
-        $loader = new DataLoader(new SoundcloudTracksUnifier(), new SoundcloudEntityAdapter());
-        return $this->getApiContent($loader, $query, "SoundcloudTrack", $url);
+        $loader = new DataLoader(new SoundcloudEntityAdapter(), Tracks::class);
+        return $this->getApiContent($loader, $query, $url, 'soundcloud', 'tracks');
     }
 
     private function getJamendoContent(string $query): array
     {
         $url = "https://api.jamendo.com/v3.0/tracks?name=$query&client_id=97cc45f7";
-        $loader = new DataLoader(new JamendoTracksUnifier(), new JamendoEntityAdapter());
-        return $this->getApiContent($loader, $query, "JamendoTrack", $url);
+        $loader = new DataLoader(new JamendoEntityAdapter(), Tracks::class);
+        return $this->getApiContent($loader, $query, $url, 'jamendo', 'tracks');
     }
 }

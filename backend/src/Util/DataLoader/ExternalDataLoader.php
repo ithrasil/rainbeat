@@ -8,24 +8,24 @@ use GuzzleHttp\Client;
 
 class ExternalDataLoader
 {
-    protected $unifier;
     protected $adapter;
+    protected $vo;
 
-    public function __construct(IUnifier $unifier, IDataAdapter $adapter)
+    public function __construct(IDataAdapter $adapter, string $vo)
     {
-        $this->unifier = $unifier;
         $this->adapter = $adapter;
+        $this->vo = $vo;
     }
 
-    public function getExternalContent(string $url): array
+    public final function getExternalContent(string $url, string $source): array
     {
-        $client = new Client([]);
+        $client = new Client();
         $response = $client->request('GET', $url, ['verify' => true, 'headers' => ['Accept' => 'application/json',]]);
         $data = json_decode($response->getBody());
         if ($data == null) {
             return [];
         } else {
-            return $this->unifier->unify($this->adapter->adapt($data));
+            return (new $this->vo($this->adapter->adapt($data), $source))->serialize()['items'];
         }
     }
 }
