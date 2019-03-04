@@ -2,14 +2,14 @@
 
 namespace App\Util\DataLoader;
 
-use App\Util\Unifier\IUnifier;
-use App\Util\DataAdapter\IDataAdapter;
+use App\Util\ApiEndpointGenerator;
+use App\ValueObjects\Requirements;
 
 final class DataLoader extends ExternalDataLoader
 {
-    public function __construct(IDataAdapter $adapter, string $vo)
+    public function __construct(ApiEndpointGenerator $apiEndpointGenerator)
     {
-        parent::__construct($adapter, $vo);
+        parent::__construct($apiEndpointGenerator);
     }
 
     public function getLocalContent(string $path): array
@@ -17,12 +17,26 @@ final class DataLoader extends ExternalDataLoader
         return json_decode(file_get_contents($path));
     }
 
-    public function getContent(bool $file_exists, string $path, string $url, string $source): array
+    public function getContent(Requirements $requirements): array
     {
+        $path = $this->createPathToLocalContent(...$requirements->serializeWithNumericalKeys());
+        $file_exists = file_exists($path);
+
         if ($file_exists) {
             return $this->getLocalContent($path);
-        } else {
-            return $this->getExternalContent($url, $source);
         }
+
+        $url = $this->apiEndpointGenerator->generate(...$requirements->serializeWithNumericalKeys());
+        $content = $this->getExternalContent($url, $requirements->getSource());
+        file_put_contents($path, json_encode($content));
+        return $content;
+    }
+
+    public function createPathToLocalContent(string $source, string $type, string $query, string $id=''): string
+    {
+        if ($id != '') {
+            $id = '__' . $id . '.';
+        }
+        return '../storage/api/' . $source . '__' . $type . '__' . $query . $id . '.json';
     }
 }

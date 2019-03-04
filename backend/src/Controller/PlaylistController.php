@@ -7,6 +7,7 @@ use App\Util\DataAdapter\JamendoEntityTracksAdapter;
 use App\Util\DataLoader\DataLoader;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
 use App\ValueObjects\Playlists;
+use App\ValueObjects\Requirements;
 use App\ValueObjects\Tracks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,39 +17,42 @@ class PlaylistController extends AbstractController
 {
     use ControllerTrait;
 
-    public function index(string $query, Request $request): Response
+    public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        return new Response(json_encode($this->mergeData($query, $request), JSON_PRETTY_PRINT), 200, array('Content-Type' => 'application/json'));
+        $dataLoader->setValueObject(Playlists::class);
+        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
+        return new Response($content, 200, array('Content-Type' => 'application/json'));
     }
 
-    private function getSoundcloudContent(string $query): array
+    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
     {
-        $url = "https://api.soundcloud.com/playlists?q=$query&client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv";
-        $loader = new DataLoader(new SoundcloudEntityAdapter(), Playlists::class);
-        return $this->getApiContent($loader, $query, $url, 'soundcloud', 'playlists');
+        $requirements = new Requirements('soundcloud', 'playlists', $query);
+        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
+        return $dataLoader->getContent($requirements);
     }
 
-    private function getJamendoContent(string $query): array
+    private function getJamendoContent(string $query, DataLoader $dataLoader): array
     {
-        $url = "https://api.jamendo.com/v3.0/playlists/?name=$query&client_id=97cc45f7";
-        $loader = new DataLoader(new JamendoEntityAdapter(), Playlists::class);
-        return $this->getApiContent($loader, $query, $url, 'jamendo', 'playlists');
+        $requirements = new Requirements('jamendo', 'playlists', $query);
+        $dataLoader->setAdapter(new JamendoEntityAdapter());
+        return $dataLoader->getContent($requirements);
     }
 
-    public function getSoundcloudChunk(string $id): Response
+    public function getSoundcloudChunk(string $id, DataLoader $dataLoader): Response
     {
-        $url = "https://api.soundcloud.com/playlists/$id/tracks?client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv";
-        $chunk_loader = new DataLoader(new SoundcloudEntityAdapter(), Tracks::class);
-        $data = $chunk_loader->getExternalContent($url, 'soundcloud');
-        return new Response(json_encode($data, JSON_PRETTY_PRINT), 200, array('Content-Type' => 'application/json'));
+        $requirements = new Requirements('soundcloud', 'playlist_tracks', 'NOT_QUERY', $id);
+        $dataLoader->setValueObject(Tracks::class);
+        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
+        $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
+        return new Response($content, 200, array('Content-Type' => 'application/json'));
     }
 
-    public function getJamendoChunk(string $id): Response
+    public function getJamendoChunk(string $id, DataLoader $dataLoader): Response
     {
-        $url = "https://api.jamendo.com/v3.0/playlists/tracks?id=$id&client_id=97cc45f7";
-        $chunk_loader = new DataLoader(new JamendoEntityTracksAdapter(), Tracks::class);
-        $data = $chunk_loader->getExternalContent($url, 'jamendo');
-        return new Response(json_encode($data, JSON_PRETTY_PRINT), 200, array('Content-Type' => 'application/json'));
+        $requirements = new Requirements('jamendo', 'playlist_tracks', 'NOT_QUERY', $id);
+        $dataLoader->setValueObject(Tracks::class);
+        $dataLoader->setAdapter(new JamendoEntityTracksAdapter());
+        $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
+        return new Response($content, 200, array('Content-Type' => 'application/json'));
     }
-
 }

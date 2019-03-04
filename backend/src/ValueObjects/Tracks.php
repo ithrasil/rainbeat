@@ -4,7 +4,7 @@ namespace App\ValueObjects;
 
 class Tracks extends ApiAggregate
 {
-    protected $vo = Track::class;
+    protected $valueObject = Track::class;
     protected $extended = false;
 }
 

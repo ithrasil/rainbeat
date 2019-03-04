@@ -5,7 +5,7 @@ namespace App\ValueObjects;
 abstract class ApiAggregate
 {
     protected $extended;
-    protected $vo;
+    protected $valueObject;
     protected $items = [];
 
     public function __construct(array $data, string $source)
@@ -31,7 +31,7 @@ abstract class ApiAggregate
 
     final public function iterateOver(array $data, string $source): void {
         foreach ($data as $chunk) {
-            array_push($this->items, new $this->vo($chunk, $source));
+            array_push($this->items, new $this->valueObject($chunk, $source));
         }
     }
 

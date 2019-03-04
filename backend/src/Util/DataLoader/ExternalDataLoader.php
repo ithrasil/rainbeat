@@ -2,19 +2,19 @@
 
 namespace App\Util\DataLoader;
 
-use App\Util\Unifier\IUnifier;
+use App\Util\ApiEndpointGenerator;
 use App\Util\DataAdapter\IDataAdapter;
 use GuzzleHttp\Client;
 
 class ExternalDataLoader
 {
     protected $adapter;
-    protected $vo;
+    protected $valueObject;
+    protected $apiEndpointGenerator;
 
-    public function __construct(IDataAdapter $adapter, string $vo)
+    public function __construct(ApiEndpointGenerator $apiEndpointGenerator)
     {
-        $this->adapter = $adapter;
-        $this->vo = $vo;
+        $this->apiEndpointGenerator = $apiEndpointGenerator;
     }
 
     public final function getExternalContent(string $url, string $source): array
@@ -25,7 +25,17 @@ class ExternalDataLoader
         if ($data == null) {
             return [];
         } else {
-            return (new $this->vo($this->adapter->adapt($data), $source))->serialize()['items'];
+            return (new $this->valueObject($this->adapter->adapt($data), $source))->serialize()['items'];
         }
+    }
+
+    final public function setAdapter(IDataAdapter $adapter): void
+    {
+        $this->adapter = $adapter;
+    }
+
+    final public function setValueObject(string $valueObject): void
+    {
+        $this->valueObject = $valueObject;
     }
 }

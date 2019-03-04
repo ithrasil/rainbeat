@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Util\DataAdapter\JamendoEntityAdapter;
 use App\Util\DataLoader\DataLoader;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
+use App\ValueObjects\Requirements;
 use App\ValueObjects\Tracks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,22 +15,24 @@ class TrackController extends AbstractController
 {
     use ControllerTrait;
 
-    public function index(string $query, Request $request): Response
+    public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        return new Response(json_encode($this->mergeData($query, $request), JSON_PRETTY_PRINT), 200, array('Content-Type' => 'application/json'));
+        $dataLoader->setValueObject(Tracks::class);
+        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
+        return new Response($content, 200, array('Content-Type' => 'application/json'));
     }
 
-    private function getSoundcloudContent(string $query): array
+    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
     {
-        $url = "https://api.soundcloud.com/tracks?q=$query&client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv";
-        $loader = new DataLoader(new SoundcloudEntityAdapter(), Tracks::class);
-        return $this->getApiContent($loader, $query, $url, 'soundcloud', 'tracks');
+        $requirements = new Requirements('soundcloud', 'tracks', $query);
+        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
+        return $dataLoader->getContent($requirements);
     }
 
-    private function getJamendoContent(string $query): array
+    private function getJamendoContent(string $query, DataLoader $dataLoader): array
     {
-        $url = "https://api.jamendo.com/v3.0/tracks?name=$query&client_id=97cc45f7";
-        $loader = new DataLoader(new JamendoEntityAdapter(), Tracks::class);
-        return $this->getApiContent($loader, $query, $url, 'jamendo', 'tracks');
+        $requirements = new Requirements('jamendo', 'tracks', $query);
+        $dataLoader->setAdapter(new JamendoEntityAdapter());
+        return $dataLoader->getContent($requirements);
     }
 }
