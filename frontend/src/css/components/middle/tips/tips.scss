@@ -18,6 +18,7 @@
     height: 100%;
     padding: 10px;
 
+
     h3 {
       color: white;
       margin: 10px 20px 10px 20px;
@@ -53,6 +54,7 @@
   .results {
     padding: 10px;
     width: 1200px;
+    background: linear-gradient(darken($accent, 35.5%), darken($accent, 38%));
 
     h3 {
       color: white;
@@ -93,10 +95,11 @@
     .wrapper {
       width: 1200px;
       position: relative;
+      height: calc(100vh - 132px);
 
       .result {
         display: none;
-        height: calc(100vh - 82px);
+        height: calc(100vh - 132px);
 
         &:hover {
           .scrollbar-container.vertical {
