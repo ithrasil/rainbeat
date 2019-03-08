@@ -1,5 +1,5 @@
 // React
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 // Icons
 import ArrowIcon from 'Containers/svg/ArrowIcon.jsx'
@@ -9,32 +9,39 @@ import LoadIcon from './components/LoadIcon.jsx'
 
 export default class CardExtended extends Component {
 
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      loading: false
+    constructor(props) {
+        super(props);
+        console.log(props);
+        this.state = {
+            loading: false,
+            name: props.data.name,
+        }
     }
-  }
 
-  handleClick () {
-    this.setState((props, state) => {
-      return {"loading": true}
-    });
-    this.props.loadTracks(this.props.data, this.props.index)
-  }
+    componentWillReceiveProps(props) {
+        if (props.data.name === this.state.name) return;
+        this.setState((state, props) => ({loading: false}))
+    }
 
-  render () {
-    return (
-      <div className='card_extended'>
-        <div className="card_contents" onClick={this.handleClick.bind(this)}>
-          <ArrowIcon className={'arrow'} fill={'white'}/>
-          <div className="source" style={{backgroundImage: `url(/images/sources/${this.props.data.source}.png)`}}></div>
-          <div className="label"><span title={this.props.data.name}>{this.props.data.name}</span></div>
-          {this.state.loading === true ? <LoadIcon/> : ""}
-        </div>
+    handleClick() {
+        this.setState((props, state) => {
+            return {"loading": true}
+        });
+        this.props.loadTracks(this.props.data, this.props.index)
+    }
 
-      </div>
-    )
-  }
+    render() {
+        const name = this.state.name;
+        return (
+            <div className='card_extended'>
+                <div className="card_contents" onClick={this.handleClick.bind(this)}>
+                    <ArrowIcon className={'arrow'} fill={'white'}/>
+                    <div className="source"
+                         style={{backgroundImage: `url(/images/sources/${this.props.data.source}.png)`}}></div>
+                    <div className="label"><span title={name}>{name}</span></div>
+                    {this.state.loading === true ? <LoadIcon/> : ""}
+                </div>
+            </div>
+        )
+    }
 }

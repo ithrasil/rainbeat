@@ -21,7 +21,6 @@ class Middle extends Component {
 
   constructor (props) {
     super(props)
-
   }
 
   handleTrackChange (type, value) {
@@ -39,7 +38,7 @@ class Middle extends Component {
   }
 
   render () {
-
+    console.log(this.props.tracks.length);
     if (this.props.tracks.length === 0) {
       return (
         <section className="middle">
@@ -79,7 +78,7 @@ function mapStateToProps (state) {
 function matchDispatchToProps (dispatch) {
   let functions = {
     changeCard: changeCard
-  }
+  };
 
   return bindActionCreators(functions, dispatch)
 }
