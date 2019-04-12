@@ -2,6 +2,8 @@
 
 namespace App\ValueObjects;
 
+use App\Util\DataLoader\ApiProviders;
+
 abstract class ApiAggregate
 {
     protected $extended;
@@ -11,11 +13,11 @@ abstract class ApiAggregate
     public function __construct(array $data, string $source)
     {
         switch($source) {
-            case 'soundcloud':
-                $this->iterateOver($data, 'soundcloud');
+            case ApiProviders::SOUNDCLOUD:
+                $this->iterateOver($data, ApiProviders::SOUNDCLOUD);
                 break;
-            case 'jamendo':
-                $this->iterateOver($data, 'jamendo');
+            case ApiProviders::JAMENDO:
+                $this->iterateOver($data, ApiProviders::JAMENDO);
                 break;
         }
     }

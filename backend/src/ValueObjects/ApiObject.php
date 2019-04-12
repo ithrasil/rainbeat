@@ -2,15 +2,17 @@
 
 namespace App\ValueObjects;
 
+use App\Util\DataLoader\ApiProviders;
+
 abstract class ApiObject
 {
     public function __construct(Object $data, string $source)
     {
         switch($source) {
-            case 'soundcloud':
+            case ApiProviders::SOUNDCLOUD:
                 $this->fromSoundCloud($data);
                 break;
-            case 'jamendo':
+            case ApiProviders::JAMENDO:
                 $this->fromJamendo($data);
                 break;
         }

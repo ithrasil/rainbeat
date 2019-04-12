@@ -2,6 +2,8 @@
 
 namespace App\ValueObjects;
 
+use App\Util\DataLoader\ApiProviders;
+
 class Track extends ApiObject
 {
     private $artistName;
@@ -20,9 +22,9 @@ class Track extends ApiObject
 
     final function fromSoundCloud(Object $track): void
     {
-        $this->bigArtwork = new Artwork($track, 'soundcloud');
+        $this->bigArtwork = new Artwork($track, ApiProviders::SOUNDCLOUD);
         $this->artistName = $track->user->username;
-        $this->source = 'soundcloud';
+        $this->source = ApiProviders::SOUNDCLOUD;
         $this->stream = $track->uri . '/stream' . '?client_id=' . 'stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv';
         $this->name = $track->title;
         $this->id = (string) $track->id;
@@ -30,9 +32,9 @@ class Track extends ApiObject
 
     final function fromJamendo(Object $track): void
     {
-        $this->bigArtwork = new Artwork($track, 'jamendo');
+        $this->bigArtwork = new Artwork($track, ApiProviders::JAMENDO);
         $this->artistName = $track->artist_name;
-        $this->source = 'jamendo';
+        $this->source = ApiProviders::JAMENDO;
         $this->stream = $track->audio . '?client_id=' . '97cc45f7';
         $this->name = $track->name;
         $this->id = $track->id;

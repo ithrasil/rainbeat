@@ -2,6 +2,8 @@
 
 namespace App\ValueObjects;
 
+use App\Util\DataLoader\ApiProviders;
+
 class Artist extends ApiObject
 {
     private $id;
@@ -14,14 +16,14 @@ class Artist extends ApiObject
     {
         $this->id = (string) $artist->id;
         $this->name = $artist->username;
-        $this->source = 'soundcloud';
+        $this->source = ApiProviders::SOUNDCLOUD;
     }
 
     final function fromJamendo(Object $artist): void
     {
         $this->id = $artist->id;
         $this->name = $artist->name;
-        $this->source = 'jamendo';
+        $this->source = ApiProviders::JAMENDO;
     }
 
     final function serialize(): array

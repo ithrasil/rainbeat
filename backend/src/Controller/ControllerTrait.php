@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Util\DataLoader\DataLoader;
+use App\Util\DataLoader\ApiProviders;
 use Symfony\Component\HttpFoundation\Request;
 
 Trait ControllerTrait
@@ -10,10 +11,10 @@ Trait ControllerTrait
     final protected function mergeData(Request $request, DataLoader $dataLoader, string $query): array
     {
         $result = [];
-        if ($request->get('soundcloud') == "true") {
+        if ($request->get(ApiProviders::SOUNDCLOUD) == "true") {
             $result = array_merge($this->getSoundcloudContent($query, $dataLoader), $result);
         }
-        if ($request->get('jamendo') == "true") {
+        if ($request->get(ApiProviders::JAMENDO) == "true") {
             $result = array_merge($this->getJamendoContent($query, $dataLoader), $result);
         }
         return $result;

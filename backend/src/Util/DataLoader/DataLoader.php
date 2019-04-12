@@ -27,7 +27,8 @@ final class DataLoader extends ExternalDataLoader
         }
 
         $url = $this->apiEndpointGenerator->generate(...$requirements->serializeWithNumericalKeys());
-        $content = $this->getExternalContent($url, $requirements->getSource());
+        $content = $this->getExternalContent($url, $requirements->getSource(),
+            $requirements->getQuery(), $requirements->getId());
         file_put_contents($path, json_encode($content));
         return $content;
     }

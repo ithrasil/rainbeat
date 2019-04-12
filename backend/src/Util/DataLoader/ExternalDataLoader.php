@@ -17,7 +17,7 @@ class ExternalDataLoader
         $this->apiEndpointGenerator = $apiEndpointGenerator;
     }
 
-    public final function getExternalContent(string $url, string $source): array
+    public final function getExternalContent(string $url, string $source, string $query, string $id=''): array
     {
         $client = new Client();
         $response = $client->request('GET', $url, ['verify' => true, 'headers' => ['Accept' => 'application/json',]]);

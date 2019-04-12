@@ -12,6 +12,9 @@ use App\ValueObjects\Tracks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Util\DataLoader\QueryTypes;
+use App\Util\DataLoader\ApiProviders;
+use App\Util\DataLoader\OutputTypes;
 
 class PlaylistController extends AbstractController
 {
@@ -26,21 +29,22 @@ class PlaylistController extends AbstractController
 
     private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
     {
-        $requirements = new Requirements('soundcloud', 'playlists', $query);
+        $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputTypes::PLAYLIST, $query);
         $dataLoader->setAdapter(new SoundcloudEntityAdapter());
         return $dataLoader->getContent($requirements);
     }
 
     private function getJamendoContent(string $query, DataLoader $dataLoader): array
     {
-        $requirements = new Requirements('jamendo', 'playlists', $query);
+        $requirements = new Requirements(ApiProviders::JAMENDO, OutputTypes::PLAYLIST, $query);
         $dataLoader->setAdapter(new JamendoEntityAdapter());
         return $dataLoader->getContent($requirements);
     }
 
     public function getSoundcloudChunk(string $id, DataLoader $dataLoader): Response
     {
-        $requirements = new Requirements('soundcloud', 'playlist_tracks', 'NOT_QUERY', $id);
+        $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputTypes::PLAYLIST_TRACKS,
+            QueryTypes::NOT_QUERY, $id);
         $dataLoader->setValueObject(Tracks::class);
         $dataLoader->setAdapter(new SoundcloudEntityAdapter());
         $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
@@ -49,7 +53,8 @@ class PlaylistController extends AbstractController
 
     public function getJamendoChunk(string $id, DataLoader $dataLoader): Response
     {
-        $requirements = new Requirements('jamendo', 'playlist_tracks', 'NOT_QUERY', $id);
+        $requirements = new Requirements(ApiProviders::JAMENDO, OutputTypes::PLAYLIST_TRACKS,
+            QueryTypes::NOT_QUERY, $id);
         $dataLoader->setValueObject(Tracks::class);
         $dataLoader->setAdapter(new JamendoEntityTracksAdapter());
         $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
