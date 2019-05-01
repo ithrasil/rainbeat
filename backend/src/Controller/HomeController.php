@@ -11,6 +11,6 @@ class HomeController extends AbstractController
 {
     public function index()
     {
-        return $this->render("player.twig");
+        return $this->render('player.twig');
     }
 }

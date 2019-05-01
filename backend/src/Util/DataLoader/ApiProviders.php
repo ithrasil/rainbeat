@@ -2,7 +2,7 @@
 
 namespace App\Util\DataLoader;
 
-class ApiProviders
+final class ApiProviders
 {
     const SOUNDCLOUD = 'soundcloud';
     const JAMENDO = 'jamendo';

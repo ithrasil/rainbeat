@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 Trait ControllerTrait
 {
-    final protected function mergeData(Request $request, DataLoader $dataLoader, string $query): array
+    final public function mergeData(Request $request, DataLoader $dataLoader, string $query): array
     {
         $result = [];
-        if ($request->get(ApiProviders::SOUNDCLOUD) == "true") {
+        if ($request->get(ApiProviders::SOUNDCLOUD) == 'true') {
             $result = array_merge($this->getSoundcloudContent($query, $dataLoader), $result);
         }
-        if ($request->get(ApiProviders::JAMENDO) == "true") {
+        if ($request->get(ApiProviders::JAMENDO) == 'true') {
             $result = array_merge($this->getJamendoContent($query, $dataLoader), $result);
         }
         return $result;

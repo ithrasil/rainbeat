@@ -4,12 +4,12 @@ namespace App\Util\DataLoader;
 
 use App\Util\ApiEndpointGenerator;
 use App\Util\DataAdapter\IDataAdapter;
+use App\Domain\ValueObject\Requirements;
 use GuzzleHttp\Client;
 
-class ExternalDataLoader
+final class HttpManager
 {
     protected $adapter;
-    protected $valueObject;
     protected $apiEndpointGenerator;
 
     public function __construct(ApiEndpointGenerator $apiEndpointGenerator)
@@ -17,25 +17,21 @@ class ExternalDataLoader
         $this->apiEndpointGenerator = $apiEndpointGenerator;
     }
 
-    public final function getExternalContent(string $url, string $source, string $query, string $id=''): array
+    final public function getExternalContent(Requirements $requirements): array
     {
+        $url = $this->apiEndpointGenerator->generate(...$requirements->toArrayWithNumericalKeys());
         $client = new Client();
         $response = $client->request('GET', $url, ['verify' => true, 'headers' => ['Accept' => 'application/json',]]);
         $data = json_decode($response->getBody());
         if ($data == null) {
             return [];
         } else {
-            return (new $this->valueObject($this->adapter->adapt($data), $source))->serialize()['items'];
+            return $this->adapter->adapt($data);
         }
     }
 
     final public function setAdapter(IDataAdapter $adapter): void
     {
         $this->adapter = $adapter;
-    }
-
-    final public function setValueObject(string $valueObject): void
-    {
-        $this->valueObject = $valueObject;
     }
 }

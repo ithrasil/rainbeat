@@ -53,7 +53,7 @@ class Result extends Component {
                         />)
                 ) : (
                     this.props[category.name].map((data, key) => {
-                            if (data.tracks !== undefined) {
+                            if (data.tracks.length !== 0) {
                                 return (
                                     <CardExtendedLoaded
                                         key={key}

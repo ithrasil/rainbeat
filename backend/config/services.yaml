@@ -27,7 +27,7 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Util\ApiEndpointGenerator:
         arguments:
-            $soundcloudRoot: '%env(SOUNDCLOUD_ROOT)%'
-            $jamendoRoot: '%env(JAMENDO_ROOT)%'
+            $soundcloudPrefixURL: '%env(SOUNDCLOUD_PREFIX_URL)%'
+            $jamendoPrefixURL: '%env(JAMENDO_PREFIX_URL)%'
             $soundcloudId: '%env(SOUNDCLOUD_ID)%'
             $jamendoId: '%env(JAMENDO_ID)%'

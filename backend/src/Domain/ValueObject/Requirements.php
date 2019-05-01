@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects;
+namespace App\Domain\ValueObject;
 
-class Requirements
+final class Requirements
 {
     private $source;
     private $type;
     private $query;
     private $id;
 
-    public function __construct(string $source, string $type, string $query, string $id='')
+    function __construct(string $source, string $type, string $query, string $id='')
     {
         $this->source = $source;
         $this->type = $type;
@@ -17,7 +17,7 @@ class Requirements
         $this->id = $id;
     }
 
-    final public function serialize(): array
+    public function toArray(): array
     {
         return [
             'source' => $this->source,
@@ -27,7 +27,7 @@ class Requirements
         ];
     }
 
-    final public function serializeWithNumericalKeys(): array
+    public function toArrayWithNumericalKeys(): array
     {
         return [
             $this->source,
@@ -37,23 +37,28 @@ class Requirements
         ];
     }
 
-    final public function getSource(): string
+    public function getSource(): string
     {
         return $this->source;
     }
 
-    final public function getType(): string
+    public function getType(): string
     {
         return $this->type;
     }
 
-    final public function getQuery(): string
+    public function getQuery(): string
     {
         return $this->query;
     }
 
-    final public function getId(): string
+    public function getId(): string
     {
         return $this->id;
     }
+
+    public function setType(string $type): void {
+        $this->type = $type;
+    }
+
 }

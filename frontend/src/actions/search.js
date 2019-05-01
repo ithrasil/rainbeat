@@ -63,7 +63,7 @@ export const getArtistTracks = (artist, index, artists) => {
         const url = `/artist/${artist.id}/${artist.source}`;
 
         let results = await axios.get(url);
-
+        console.log(results);
         if (results.data.length === 0) {
             artists.splice(index, 1);
         } else {

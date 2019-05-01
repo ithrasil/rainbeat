@@ -2,11 +2,11 @@
 
 namespace App\Util\DataLoader;
 
-class OutputTypes
+final class OutputType
 {
     const ARTIST = 'artist';
     const PLAYLIST = 'playlist';
     const TRACK = 'track';
-    const PLAYLIST_TRACKS = 'playlist_tracks';
-    const ARTIST_TRACKS = 'artist_tracks';
+    const PLAYLIST_TRACK = 'playlist_track';
+    const ARTIST_TRACK = 'artist_track';
 }

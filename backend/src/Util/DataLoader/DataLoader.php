@@ -2,42 +2,98 @@
 
 namespace App\Util\DataLoader;
 
-use App\Util\ApiEndpointGenerator;
-use App\ValueObjects\Requirements;
+use App\Domain\StorableObject\Aggregate\Aggregate;
+use App\Domain\StorableObject\Aggregate\ArtistAggregate;
+use App\Domain\StorableObject\Aggregate\PlaylistAggregate;
+use App\Domain\StorableObject\Aggregate\TrackAggregate;
+use App\Domain\StorableObject\ApiObject\Artist;
+use App\Domain\StorableObject\ApiObject\Playlist;
+use App\Domain\StorableObject\ApiObject\Track;
+use App\Domain\ValueObject\Requirements;
+use App\Repository\FilesystemRepository;
 
-final class DataLoader extends ExternalDataLoader
+final class DataLoader
 {
-    public function __construct(ApiEndpointGenerator $apiEndpointGenerator)
+    /**
+     * @var FilesystemRepository $filesystemRepository
+     */
+    private $filesystemRepository;
+
+    /**
+     * @var HttpManager $httpManager
+     */
+    private $httpManager;
+
+    public function __construct(FilesystemRepository $filesystemRepository, HttpManager $httpManager)
     {
-        parent::__construct($apiEndpointGenerator);
+        $this->filesystemRepository = $filesystemRepository;
+        $this->httpManager = $httpManager;
     }
 
-    public function getLocalContent(string $path): array
+    public function getGenericContent(Requirements $requirements): array
     {
-        return json_decode(file_get_contents($path));
-    }
+        $mapping = [
+            OutputType::TRACK => TrackAggregate::class,
+            OutputType::ARTIST => ArtistAggregate::class,
+            OutputType::PLAYLIST => PlaylistAggregate::class,
+        ];
 
-    public function getContent(Requirements $requirements): array
-    {
-        $path = $this->createPathToLocalContent(...$requirements->serializeWithNumericalKeys());
-        $file_exists = file_exists($path);
+        $AggregateClass = $mapping[$requirements->getType()];
 
-        if ($file_exists) {
-            return $this->getLocalContent($path);
+        $aggregateExists = $this->filesystemRepository->aggregateExists($requirements);
+
+        if (!$aggregateExists) {
+            $blob = $this->httpManager->getExternalContent($requirements);
+            /** @var Aggregate $aggregate */
+            $aggregate = new $AggregateClass($blob, $requirements);
+            $this->filesystemRepository->mapStorableToFile($aggregate);
+            $content = $aggregate->toArray();
+        } else {
+            /** @var Aggregate $aggregate */
+            $aggregate = $this->filesystemRepository->mapFileToStorable($requirements, $AggregateClass, []);
+            $content = $aggregate->toArray();
         }
 
-        $url = $this->apiEndpointGenerator->generate(...$requirements->serializeWithNumericalKeys());
-        $content = $this->getExternalContent($url, $requirements->getSource(),
-            $requirements->getQuery(), $requirements->getId());
-        file_put_contents($path, json_encode($content));
         return $content;
     }
 
-    public function createPathToLocalContent(string $source, string $type, string $query, string $id=''): string
+    public function getTracks(Requirements $requirements): array
     {
-        if ($id != '') {
-            $id = '__' . $id . '.';
+        $classMapping = [
+            OutputType::ARTIST_TRACK => Artist::class,
+            OutputType::PLAYLIST_TRACK => Playlist::class,
+        ];
+
+        $typeMapping = [
+            OutputType::ARTIST_TRACK => OutputType::ARTIST,
+            OutputType::PLAYLIST_TRACK => OutputType::PLAYLIST,
+        ];
+
+        $mappedRequirements = clone $requirements;
+        $mappedRequirements->setType($typeMapping[$requirements->getType()]);
+
+        $class = $classMapping[$requirements->getType()];
+
+        /** @var Artist|Playlist $classObject */
+        $classObject = $this->filesystemRepository->mapFileToStorable($mappedRequirements, $class, [
+            'id' => $requirements->getId()
+        ]);
+
+        if (!$classObject->isFilled()) {
+            $blob = $this->httpManager->getExternalContent($requirements);
+            foreach ($blob as $item) {
+                $newObject = new Track($item, $requirements->getSource());
+                $classObject->setTracks($newObject);
+            }
+            $classObject->setFilled();
+            $this->filesystemRepository->mapStorableToFile($classObject);
         }
-        return '../storage/api/' . $source . '__' . $type . '__' . $query . $id . '.json';
+
+        return $classObject->toArray()['tracks'];
+    }
+
+    public function getHttpManager(): HttpManager
+    {
+        return $this->httpManager;
     }
 }

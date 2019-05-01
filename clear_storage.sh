@@ -1,1 +1,3 @@
-cd backend/storage/api && rm *.json
+#!/usr/bin/env bash
+ cd backend/storage/api/ && find . -name "*.json" -type f -delete
+
