@@ -11,16 +11,23 @@ use App\Domain\StorableObject\ApiObject\Playlist;
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\StorableObject\IStorable;
 use App\Domain\ValueObject\Requirements;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 final class FilesystemRepository
 {
-    CONST ROOT = '../storage/';
     CONST API_PREFIX = 'api/';
     CONST EXTENSION = 'json';
 
+    private $root;
+
+    public function __construct(KernelInterface $appKernel)
+    {
+        $this->root = $appKernel->getProjectDir() . '/storage/';
+    }
+
     public function mapStorableToFile(IStorable $object): void
     {
-        $path = self::ROOT . self::API_PREFIX . $object->createPath() . self::EXTENSION;
+        $path = $this->root . self::API_PREFIX . $object->createPath() . self::EXTENSION;
         file_put_contents($path, json_encode($object->serialize()));
         $this->mapStorableChildrenToFile($object);
     }
@@ -88,6 +95,6 @@ final class FilesystemRepository
 
     private function createPath(string $path): string
     {
-        return self::ROOT . self::API_PREFIX . $path . self::EXTENSION;
+        return $this->root . self::API_PREFIX . $path . self::EXTENSION;
     }
 }

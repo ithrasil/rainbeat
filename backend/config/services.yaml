@@ -31,3 +31,7 @@ services:
             $jamendoPrefixURL: '%env(JAMENDO_PREFIX_URL)%'
             $soundcloudId: '%env(SOUNDCLOUD_ID)%'
             $jamendoId: '%env(JAMENDO_ID)%'
+
+    App\Util\DataLoader\DataLoader:
+        public: true
+
