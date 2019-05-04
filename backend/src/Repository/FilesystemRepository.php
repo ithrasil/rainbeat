@@ -13,7 +13,7 @@ use App\Domain\StorableObject\IStorable;
 use App\Domain\ValueObject\Requirements;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-final class FilesystemRepository
+final class FilesystemRepository implements Repository
 {
     CONST API_PREFIX = 'api/';
     CONST EXTENSION = 'json';
@@ -25,32 +25,32 @@ final class FilesystemRepository
         $this->root = $appKernel->getProjectDir() . '/storage/';
     }
 
-    public function mapStorableToFile(IStorable $object): void
+    public function mapStorableToEntity(IStorable $object): void
     {
         $path = $this->root . self::API_PREFIX . $object->createPath() . self::EXTENSION;
         file_put_contents($path, json_encode($object->serialize()));
-        $this->mapStorableChildrenToFile($object);
+        $this->mapStorableChildrenToEntity($object);
     }
 
-    public function mapStorableChildrenToFile(IStorable $storable): void
+    public function mapStorableChildrenToEntity(IStorable $storable): void
     {
         foreach ($storable->getStorableChildren() as $storableChild) {
             if (is_null($storableChild) || !($storableChild instanceof IStorable)) {
                 continue;
             }
-            $this->mapStorableToFile($storableChild);
+            $this->mapStorableToEntity($storableChild);
         }
     }
 
     public function aggregateExists(Requirements $requirements): bool
     {
-        $pathToFile = $this->createPath(Aggregate::getFileLocation($requirements, []));
+        $pathToFile = $this->createQuery(Aggregate::getFileLocation($requirements, []));
         return file_exists($pathToFile);
     }
 
-    public function mapFileToStorable(Requirements $requirements, string $className, array $passed): ?IStorable
+    public function mapEntityToStorable(Requirements $requirements, string $className, array $passed): ?IStorable
     {
-        $pathToFile = $this->createPath($className::getFileLocation($requirements, $passed));
+        $pathToFile = $this->createQuery($className::getFileLocation($requirements, $passed));
 
         if (file_exists($pathToFile)) {
             $contents = json_decode(file_get_contents($pathToFile), true);
@@ -69,7 +69,7 @@ final class FilesystemRepository
 
             if ($storable instanceof Aggregate) {
                 foreach ($contents['apiObjects'] as $primaryKey) {
-                    $el = $this->mapFileToStorable($requirements, $child, ['id' => $primaryKey]);
+                    $el = $this->mapEntityToStorable($requirements, $child, ['id' => $primaryKey]);
                     if (is_null($el) || (($storable instanceof ArtistAggregate || $storable instanceof PlaylistAggregate) && $el->isFilled() && count($el->getTracks()) === 0)) {
                         continue;
                     }
@@ -78,14 +78,14 @@ final class FilesystemRepository
                 }
             } else if ($storable instanceof ApiObject) {
                 foreach ($contents['tracks'] as $id) {
-                    $el = $this->mapFileToStorable($requirements, $child, ['id' => $id]);
+                    $el = $this->mapEntityToStorable($requirements, $child, ['id' => $id]);
                     if (!is_null($contents['tracks']) && !is_null($el)) {
                         /** @var Artist|Playlist $storable */
                         $storable->setTracks($el);
                     }
                 }
             } else {
-                $storable->$child = $this->mapFileToStorable($requirements, $child, $contents);
+                $storable->$child = $this->mapEntityToStorable($requirements, $child, $contents);
             }
             return $storable;
         } else {
@@ -93,7 +93,7 @@ final class FilesystemRepository
         }
     }
 
-    private function createPath(string $path): string
+    private function createQuery(string $path): string
     {
         return $this->root . self::API_PREFIX . $path . self::EXTENSION;
     }

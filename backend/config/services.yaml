@@ -32,6 +32,9 @@ services:
             $soundcloudId: '%env(SOUNDCLOUD_ID)%'
             $jamendoId: '%env(JAMENDO_ID)%'
 
-    App\Util\DataLoader\DataLoader:
+    App\Repository\Repository:
         public: true
+        alias: App\Repository\FilesystemRepository
 
+    App\Util\HttpManager\HttpManager:
+        alias: App\Util\HttpManager\HttpClient

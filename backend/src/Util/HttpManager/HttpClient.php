@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Util\DataLoader;
+namespace App\Util\HttpManager;
 
 use App\Util\ApiEndpointGenerator;
 use App\Util\DataAdapter\IDataAdapter;
 use App\Domain\ValueObject\Requirements;
 use GuzzleHttp\Client;
 
-final class HttpManager
+final class HttpClient implements HttpManager
 {
     protected $adapter;
     protected $apiEndpointGenerator;

@@ -10,23 +10,24 @@ use App\Domain\StorableObject\ApiObject\Artist;
 use App\Domain\StorableObject\ApiObject\Playlist;
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\ValueObject\Requirements;
-use App\Repository\FilesystemRepository;
+use App\Repository\Repository;
+use App\Util\HttpManager\HttpManager;
 
 final class DataLoader
 {
     /**
-     * @var FilesystemRepository $filesystemRepository
+     * @var Repository $repository
      */
-    private $filesystemRepository;
+    private $repository;
 
     /**
      * @var HttpManager $httpManager
      */
     private $httpManager;
 
-    public function __construct(FilesystemRepository $filesystemRepository, HttpManager $httpManager)
+    public function __construct(Repository $repository, HttpManager $httpManager)
     {
-        $this->filesystemRepository = $filesystemRepository;
+        $this->repository = $repository;
         $this->httpManager = $httpManager;
     }
 
@@ -40,17 +41,17 @@ final class DataLoader
 
         $AggregateClass = $mapping[$requirements->getType()];
 
-        $aggregateExists = $this->filesystemRepository->aggregateExists($requirements);
+        $aggregateExists = $this->repository->aggregateExists($requirements);
 
         if (!$aggregateExists) {
             $blob = $this->httpManager->getExternalContent($requirements);
             /** @var Aggregate $aggregate */
             $aggregate = new $AggregateClass($blob, $requirements);
-            $this->filesystemRepository->mapStorableToFile($aggregate);
+            $this->repository->mapStorableToEntity($aggregate);
             $content = $aggregate->toArray();
         } else {
             /** @var Aggregate $aggregate */
-            $aggregate = $this->filesystemRepository->mapFileToStorable($requirements, $AggregateClass, []);
+            $aggregate = $this->repository->mapEntityToStorable($requirements, $AggregateClass, []);
             $content = $aggregate->toArray();
         }
 
@@ -75,7 +76,7 @@ final class DataLoader
         $class = $classMapping[$requirements->getType()];
 
         /** @var Artist|Playlist $classObject */
-        $classObject = $this->filesystemRepository->mapFileToStorable($mappedRequirements, $class, [
+        $classObject = $this->repository->mapEntityToStorable($mappedRequirements, $class, [
             'id' => $requirements->getId()
         ]);
 
@@ -86,7 +87,7 @@ final class DataLoader
                 $classObject->setTracks($newObject);
             }
             $classObject->setFilled();
-            $this->filesystemRepository->mapStorableToFile($classObject);
+            $this->repository->mapStorableToEntity($classObject);
         }
 
         return $classObject->toArray()['tracks'];
