@@ -2,8 +2,8 @@
 
 namespace App\Util\DataAdapter;
 
-class SoundcloudEntityAdapter implements IDataAdapter {
-    public function adapt($data) {
+final class SoundcloudEntityAdapter implements IDataAdapter {
+    public function adapt($data): array {
         return $data;
     }
 }

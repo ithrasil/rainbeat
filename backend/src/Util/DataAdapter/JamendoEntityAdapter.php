@@ -2,8 +2,8 @@
 
 namespace App\Util\DataAdapter;
 
-class JamendoEntityAdapter implements IDataAdapter {
-    public function adapt($data) {
+final class JamendoEntityAdapter implements IDataAdapter {
+    public function adapt($data): array {
         return $data->results;
     }
 }
