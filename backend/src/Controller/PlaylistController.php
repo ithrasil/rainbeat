@@ -13,46 +13,65 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Util\DataLoader\RequestType;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\OutputType;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class PlaylistController extends AbstractController
 {
-    use ControllerTrait;
-
+    /**
+     * @Route("/playlists/{query}", name="playlists")
+     *
+     * @param Request $request
+     * @param DataLoader $dataLoader
+     * @param string $query
+     * @return Response
+     */
     public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
-        return new Response($content, 200, ['Content-Type' => 'application/json']);
+        $result = [];
+
+        if ($request->get(ApiProviders::SOUNDCLOUD) == 'true') {
+            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST, $query);
+            $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
+            $content = $dataLoader->getGenericContent($requirements);
+            $result = array_merge($content, $result);
+        }
+        if ($request->get(ApiProviders::JAMENDO) == 'true') {
+            $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::PLAYLIST, $query);
+            $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
+            $content = $dataLoader->getGenericContent($requirements);
+            $result = array_merge($content, $result);
+        }
+
+        return new Response(json_encode($result, JSON_PRETTY_PRINT), 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 
-    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
+    /**
+     * @Route("/playlist/{id}/{source}", name="playlist_tracks")
+     *
+     * @param string $id
+     * @param string $source
+     * @param DataLoader $dataLoader
+     * @return Response
+     */
+    public function getTracks(string $id, string $source, DataLoader $dataLoader): Response
     {
-        $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST, $query);
-        $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
-        return $dataLoader->getGenericContent($requirements);
-    }
-
-    private function getJamendoContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::PLAYLIST, $query);
-        $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
-        return $dataLoader->getGenericContent($requirements);
-    }
-
-    public function getSoundcloudChunk(string $id, DataLoader $dataLoader): Response
-    {
-        $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST_TRACK,
+        $mapping = [
+            ApiProviders::SOUNDCLOUD => SoundcloudEntityAdapter::class,
+            ApiProviders::JAMENDO => JamendoEntityTracksAdapter::class,
+        ];
+        if(!key_exists($source, $mapping)) {
+            return new Response('', 404);
+        }
+        $adapter = $mapping[$source];
+        $requirements = new Requirements($source, OutputType::PLAYLIST_TRACK,
             RequestType::TRACK, $id);
-        $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
+        $dataLoader->getHttpManager()->setAdapter(new $adapter());
         $content = json_encode($dataLoader->getTracks($requirements), JSON_PRETTY_PRINT);
-        return new Response($content, 200, ['Content-Type' => 'application/json']);
-    }
 
-    public function getJamendoChunk(string $id, DataLoader $dataLoader): Response
-    {
-        $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::PLAYLIST_TRACK,
-            RequestType::TRACK, $id);
-        $dataLoader->getHttpManager()->setAdapter(new JamendoEntityTracksAdapter());
-        $content = json_encode($dataLoader->getTracks($requirements), JSON_PRETTY_PRINT);
-        return new Response($content, 200, ['Content-Type' => 'application/json']);
+        return new Response($content, 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 }

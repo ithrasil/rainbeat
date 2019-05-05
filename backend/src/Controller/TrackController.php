@@ -11,28 +11,37 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\OutputType;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class TrackController extends AbstractController
 {
-    use ControllerTrait;
-
+    /**
+     * @Route("/tracks/{query}", name="tracks")
+     *
+     * @param Request $request
+     * @param DataLoader $dataLoader
+     * @param string $query
+     * @return Response
+     */
     public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
-        return new Response($content, 200, ['Content-Type' => 'application/json']);
-    }
+        $result = [];
 
-    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::TRACK, $query);
-        $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
-        return $dataLoader->getGenericContent($requirements);
-    }
+        if ($request->get(ApiProviders::SOUNDCLOUD) == 'true') {
+            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::TRACK, $query);
+            $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
+            $content = $dataLoader->getGenericContent($requirements);
+            $result = array_merge($content, $result);
+        }
+        if ($request->get(ApiProviders::JAMENDO) == 'true') {
+            $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::TRACK, $query);
+            $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
+            $content = $dataLoader->getGenericContent($requirements);
+            $result = array_merge($content, $result);
+        }
 
-    private function getJamendoContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::TRACK, $query);
-        $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
-        return $dataLoader->getGenericContent($requirements);
+        return new Response(json_encode($result, JSON_PRETTY_PRINT), 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 }
