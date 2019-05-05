@@ -2,13 +2,14 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-use App\Domain\StorableObject\Aggregate\TrackAggregate;
 use App\Domain\StorableObject\IStorable;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\OutputType;
 
 final class Playlist extends ApiObject implements IStorable
 {
+    use AggregatesTracks;
+
     protected $type = OutputType::PLAYLIST;
 
     protected $id;
@@ -16,10 +17,6 @@ final class Playlist extends ApiObject implements IStorable
     private $name;
 
     protected $source;
-
-    private $tracks = [];
-
-    private $trackFilled = false;
 
     function fromSoundCloud(Object $playlist): void
     {
@@ -70,34 +67,6 @@ final class Playlist extends ApiObject implements IStorable
         ];
     }
 
-    public function mapTracksToArray(array $tracks): array {
-        $arr = [];
-        /** @var Track $track */
-        foreach ($tracks as $track) {
-            $arr[] = $track->toArray();
-        }
-        return $arr;
-    }
-
-    public function mapTracksToKeys(array $tracks): array
-    {
-        $keys = [];
-        foreach ($tracks as $track) {
-            $keys[] = $track->primaryKey();
-        }
-        return $keys;
-    }
-
-    public function getStorableChildren(): array
-    {
-        return $this->tracks;
-    }
-
-    public function getChildType(): ?string
-    {
-        return Track::class;
-    }
-
     public function hashMapToObject(array $array): Playlist
     {
         $this->id = $array['id'];
@@ -106,26 +75,6 @@ final class Playlist extends ApiObject implements IStorable
         $this->trackFilled = $array['trackFilled'];
 
         return $this;
-    }
-
-    public function isFilled(): bool
-    {
-        return $this->trackFilled;
-    }
-
-    public function setFilled(): void
-    {
-        $this->trackFilled = true;
-    }
-
-    public function setTracks(Track $track): void
-    {
-        $this->tracks[] = $track;
-    }
-
-    public function getTracks(): array
-    {
-        return $this->tracks;
     }
 }
 
