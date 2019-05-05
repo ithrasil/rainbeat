@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class TrackController extends AbstractController
@@ -28,13 +28,13 @@ final class TrackController extends AbstractController
         $result = [];
 
         if ($request->get(ApiProviders::SOUNDCLOUD) == 'true') {
-            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::TRACK, $query);
+            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::TRACK, $query);
             $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
             $content = $dataLoader->getGenericContent($requirements);
             $result = array_merge($content, $result);
         }
         if ($request->get(ApiProviders::JAMENDO) == 'true') {
-            $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::TRACK, $query);
+            $requirements = new Requirements(ApiProviders::JAMENDO, RequestedOutputType::TRACK, $query);
             $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
             $content = $dataLoader->getGenericContent($requirements);
             $result = array_merge($content, $result);

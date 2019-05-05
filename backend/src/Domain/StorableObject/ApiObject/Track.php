@@ -2,15 +2,15 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-use App\Domain\StorableObject\IStorable;
+use App\Domain\StorableObject\Storable;
 use App\Domain\ValueObject\Requirements;
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 use App\Domain\ValueObject\Artwork;
 
-final class Track extends ApiObject implements IStorable
+final class Track extends ApiObject implements Storable
 {
-    protected $type = OutputType::TRACK;
+    protected $type = RequestedOutputType::TRACK;
     private $artistName;
 
     private $bigArtwork;

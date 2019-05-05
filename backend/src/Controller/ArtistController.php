@@ -10,9 +10,8 @@ use App\Domain\ValueObject\Requirements;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Util\DataLoader\RequestType;
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class ArtistController extends AbstractController
@@ -30,13 +29,13 @@ final class ArtistController extends AbstractController
         $result = [];
 
         if ($request->get(ApiProviders::SOUNDCLOUD) == 'true') {
-            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, OutputType::ARTIST, $query);
+            $requirements = new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::ARTIST, $query);
             $dataLoader->getHttpManager()->setAdapter(new SoundcloudEntityAdapter());
             $content = $dataLoader->getGenericContent($requirements);
             $result = array_merge($content, $result);
         }
         if ($request->get(ApiProviders::JAMENDO) == 'true') {
-            $requirements = new Requirements(ApiProviders::JAMENDO, OutputType::ARTIST, $query);
+            $requirements = new Requirements(ApiProviders::JAMENDO, RequestedOutputType::ARTIST, $query);
             $dataLoader->getHttpManager()->setAdapter(new JamendoEntityAdapter());
             $content = $dataLoader->getGenericContent($requirements);
             $result = array_merge($content, $result);
@@ -65,8 +64,8 @@ final class ArtistController extends AbstractController
             return new Response('', 404);
         }
         $adapter = $mapping[$source];
-        $requirements = new Requirements($source, OutputType::ARTIST_TRACK,
-            RequestType::TRACK, $id);
+        $requirements = new Requirements($source, RequestedOutputType::ARTIST_TRACK,
+            RequestedOutputType::TRACK, $id);
         $dataLoader->getHttpManager()->setAdapter(new $adapter());
         $content = json_encode($dataLoader->getTracks($requirements), JSON_PRETTY_PRINT);
 

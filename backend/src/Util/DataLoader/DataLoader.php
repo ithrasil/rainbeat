@@ -34,9 +34,9 @@ final class DataLoader
     public function getGenericContent(Requirements $requirements): array
     {
         $mapping = [
-            OutputType::TRACK => TrackAggregate::class,
-            OutputType::ARTIST => ArtistAggregate::class,
-            OutputType::PLAYLIST => PlaylistAggregate::class,
+            RequestedOutputType::TRACK => TrackAggregate::class,
+            RequestedOutputType::ARTIST => ArtistAggregate::class,
+            RequestedOutputType::PLAYLIST => PlaylistAggregate::class,
         ];
 
         $AggregateClass = $mapping[$requirements->getType()];
@@ -61,13 +61,13 @@ final class DataLoader
     public function getTracks(Requirements $requirements): array
     {
         $classMapping = [
-            OutputType::ARTIST_TRACK => Artist::class,
-            OutputType::PLAYLIST_TRACK => Playlist::class,
+            RequestedOutputType::ARTIST_TRACK => Artist::class,
+            RequestedOutputType::PLAYLIST_TRACK => Playlist::class,
         ];
 
         $typeMapping = [
-            OutputType::ARTIST_TRACK => OutputType::ARTIST,
-            OutputType::PLAYLIST_TRACK => OutputType::PLAYLIST,
+            RequestedOutputType::ARTIST_TRACK => RequestedOutputType::ARTIST,
+            RequestedOutputType::PLAYLIST_TRACK => RequestedOutputType::PLAYLIST,
         ];
 
         $mappedRequirements = clone $requirements;

@@ -2,14 +2,14 @@
 
 namespace App\Domain\StorableObject\Aggregate;
 
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\StorableObject\ApiObject\Artist;
 use App\Domain\StorableObject\ApiObject\Playlist;
 
 final class ArtistAggregate extends Aggregate
 {
-    public $type = OutputType::ARTIST;
+    public $type = RequestedOutputType::ARTIST;
     protected $valueObjectClassName = Artist::class;
     protected $canAggregateOtherAggregates = true;
 

@@ -3,7 +3,7 @@
 namespace App\Util;
 
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 
 final class ApiEndpointGenerator
 {
@@ -26,19 +26,19 @@ final class ApiEndpointGenerator
         if ($source === ApiProviders::SOUNDCLOUD) {
             $url .= $this->soundcloudPrefixURL;
             switch ($type) {
-                case OutputType::TRACK:
+                case RequestedOutputType::TRACK:
                     $url .= 'tracks?q=' . $query . '&';
                     break;
-                case OutputType::PLAYLIST:
+                case RequestedOutputType::PLAYLIST:
                     $url .= 'playlists?q=' . $query . '&';
                     break;
-                case OutputType::PLAYLIST_TRACK:
+                case RequestedOutputType::PLAYLIST_TRACK:
                     $url .= 'playlists/' . $id . '/tracks?';
                     break;
-                case OutputType::ARTIST:
+                case RequestedOutputType::ARTIST:
                     $url .= 'users?q=' . $query . '&';
                     break;
-                case OutputType::ARTIST_TRACK:
+                case RequestedOutputType::ARTIST_TRACK:
                     $url .= 'users/' . $id . '/tracks?';
                     break;
             }
@@ -46,19 +46,19 @@ final class ApiEndpointGenerator
         } else if ($source === ApiProviders::JAMENDO) {
             $url .= $this->jamendoPrefixURL;
             switch ($type) {
-                case OutputType::TRACK:
+                case RequestedOutputType::TRACK:
                     $url .= 'tracks?name=' . $query;
                     break;
-                case OutputType::PLAYLIST:
+                case RequestedOutputType::PLAYLIST:
                     $url .= 'playlists?name=' . $query;
                     break;
-                case OutputType::PLAYLIST_TRACK:
+                case RequestedOutputType::PLAYLIST_TRACK:
                     $url .= 'playlists/tracks?id=' . $id;
                     break;
-                case OutputType::ARTIST:
+                case RequestedOutputType::ARTIST:
                     $url .= 'artists?name=' . $query;
                     break;
-                case OutputType::ARTIST_TRACK:
+                case RequestedOutputType::ARTIST_TRACK:
                     $url .= 'artists/tracks?id=' . $id;
                     break;
             }

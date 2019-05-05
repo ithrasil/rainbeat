@@ -2,13 +2,13 @@
 
 namespace App\Domain\StorableObject\Aggregate;
 
-use App\Domain\StorableObject\IStorable;
+use App\Domain\StorableObject\Storable;
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\StorableObject\ApiObject\Artist;
 use App\Domain\StorableObject\ApiObject\Playlist;
 use App\Domain\ValueObject\Requirements;
 
-abstract class Aggregate implements IStorable
+abstract class Aggregate implements Storable
 {
     public $type;
     protected $canAggregateOtherAggregates;
@@ -66,7 +66,7 @@ abstract class Aggregate implements IStorable
         return 'aggregate/' . $this->type . '/' . $this->source . '/' . $this->query . '.';
     }
 
-    final public function addToApiObject(IStorable $storable): void {
+    final public function addToApiObject(Storable $storable): void {
         $this->apiObjects[] = $storable;
     }
 

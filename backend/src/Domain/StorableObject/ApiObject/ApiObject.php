@@ -2,11 +2,11 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-use App\Domain\StorableObject\IStorable;
+use App\Domain\StorableObject\Storable;
 use App\Domain\ValueObject\Requirements;
 use App\Util\DataLoader\ApiProviders;
 
-abstract class ApiObject implements IStorable
+abstract class ApiObject implements Storable
 {
     protected $type;
     protected $id;

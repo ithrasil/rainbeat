@@ -3,11 +3,11 @@
 namespace test\Util;
 
 use App\Domain\ValueObject\Requirements;
-use App\Util\DataAdapter\IDataAdapter;
+use App\Util\DataAdapter\DataAdapter;
 use App\Util\DataAdapter\JamendoEntityAdapter;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 use App\Util\DataLoader\RequestType;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Repository\Repository;
@@ -66,12 +66,12 @@ final class DataLoaderTest extends KernelTestCase
     {
         return [
             [
-                OutputType::TRACK . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::TRACK, 'tiesto'),
+                RequestedOutputType::TRACK . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::TRACK, 'tiesto'),
             ],
             [
-                OutputType::TRACK . '__' . ApiProviders::JAMENDO . '__tiesto__.json',
-                new Requirements(ApiProviders::JAMENDO, OutputType::TRACK, 'tiesto'),
+                RequestedOutputType::TRACK . '__' . ApiProviders::JAMENDO . '__tiesto__.json',
+                new Requirements(ApiProviders::JAMENDO, RequestedOutputType::TRACK, 'tiesto'),
             ],
         ];
     }
@@ -80,8 +80,8 @@ final class DataLoaderTest extends KernelTestCase
     {
         return [
             [
-                OutputType::ARTIST . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::ARTIST, 'tiesto'),
+                RequestedOutputType::ARTIST . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::ARTIST, 'tiesto'),
             ],
         ];
     }
@@ -90,16 +90,16 @@ final class DataLoaderTest extends KernelTestCase
     {
         return [
             [
-                OutputType::PLAYLIST . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST, 'tiesto'),
+                RequestedOutputType::PLAYLIST . '__' . ApiProviders::SOUNDCLOUD . '__tiesto__.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::PLAYLIST, 'tiesto'),
             ],
             [
-                OutputType::PLAYLIST . '__' . ApiProviders::JAMENDO . '__tiesto__.json',
-                new Requirements(ApiProviders::JAMENDO, OutputType::PLAYLIST, 'tiesto'),
+                RequestedOutputType::PLAYLIST . '__' . ApiProviders::JAMENDO . '__tiesto__.json',
+                new Requirements(ApiProviders::JAMENDO, RequestedOutputType::PLAYLIST, 'tiesto'),
             ],
             [
-                OutputType::PLAYLIST . '__' . ApiProviders::SOUNDCLOUD . '__ncs__.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST, 'ncs'),
+                RequestedOutputType::PLAYLIST . '__' . ApiProviders::SOUNDCLOUD . '__ncs__.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::PLAYLIST, 'ncs'),
             ],
         ];
     }
@@ -122,8 +122,8 @@ final class DataLoaderTest extends KernelTestCase
     {
         return [
             [
-                OutputType::ARTIST_TRACK . '__' . ApiProviders::SOUNDCLOUD . '__' . RequestType::TRACK . '__1165244.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::ARTIST_TRACK, RequestType::TRACK, '1165244'),
+                RequestedOutputType::ARTIST_TRACK . '__' . ApiProviders::SOUNDCLOUD . '__' . RequestedOutputType::TRACK . '__1165244.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::ARTIST_TRACK, RequestedOutputType::TRACK, '1165244'),
             ],
         ];
     }
@@ -132,8 +132,8 @@ final class DataLoaderTest extends KernelTestCase
     {
         return [
             [
-                OutputType::PLAYLIST_TRACK . '__' . ApiProviders::SOUNDCLOUD . '__' . RequestType::TRACK . '__362913791.json',
-                new Requirements(ApiProviders::SOUNDCLOUD, OutputType::PLAYLIST_TRACK, RequestType::TRACK, '362913791'),
+                RequestedOutputType::PLAYLIST_TRACK . '__' . ApiProviders::SOUNDCLOUD . '__' . RequestedOutputType::TRACK . '__362913791.json',
+                new Requirements(ApiProviders::SOUNDCLOUD, RequestedOutputType::PLAYLIST_TRACK, RequestedOutputType::TRACK, '362913791'),
             ],
         ];
     }

@@ -9,7 +9,7 @@ use App\Domain\StorableObject\ApiObject\ApiObject;
 use App\Domain\StorableObject\ApiObject\Artist;
 use App\Domain\StorableObject\ApiObject\Playlist;
 use App\Domain\StorableObject\ApiObject\Track;
-use App\Domain\StorableObject\IStorable;
+use App\Domain\StorableObject\Storable;
 use App\Domain\ValueObject\Requirements;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -25,17 +25,17 @@ final class FilesystemRepository implements Repository
         $this->root = $appKernel->getProjectDir() . '/storage/';
     }
 
-    public function mapStorableToEntity(IStorable $object): void
+    public function mapStorableToEntity(Storable $object): void
     {
         $path = $this->root . self::API_PREFIX . $object->createPath() . self::EXTENSION;
         file_put_contents($path, json_encode($object->serialize()));
         $this->mapStorableChildrenToEntity($object);
     }
 
-    public function mapStorableChildrenToEntity(IStorable $storable): void
+    public function mapStorableChildrenToEntity(Storable $storable): void
     {
         foreach ($storable->getStorableChildren() as $storableChild) {
-            if (is_null($storableChild) || !($storableChild instanceof IStorable)) {
+            if (is_null($storableChild) || !($storableChild instanceof Storable)) {
                 continue;
             }
             $this->mapStorableToEntity($storableChild);
@@ -48,14 +48,14 @@ final class FilesystemRepository implements Repository
         return file_exists($pathToFile);
     }
 
-    public function mapEntityToStorable(Requirements $requirements, string $className, array $passed): ?IStorable
+    public function mapEntityToStorable(Requirements $requirements, string $className, array $passed): ?Storable
     {
         $pathToFile = $this->createQuery($className::getFileLocation($requirements, $passed));
 
         if (file_exists($pathToFile)) {
             $contents = json_decode(file_get_contents($pathToFile), true);
             /**
-             * @var IStorable $storable
+             * @var Storable $storable
              */
             $storable = $className::fromArray($contents);
             if ($storable instanceof Track) {

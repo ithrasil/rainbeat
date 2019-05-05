@@ -2,7 +2,7 @@
 
 namespace App\Util\DataLoader;
 
-final class OutputType
+final class RequestedOutputType
 {
     const ARTIST = 'artist';
     const PLAYLIST = 'playlist';

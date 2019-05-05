@@ -3,7 +3,7 @@
 namespace App\Util\HttpManager;
 
 use App\Util\ApiEndpointGenerator;
-use App\Util\DataAdapter\IDataAdapter;
+use App\Util\DataAdapter\DataAdapter;
 use App\Domain\ValueObject\Requirements;
 use GuzzleHttp\Client;
 
@@ -30,7 +30,7 @@ final class HttpClient implements HttpManager
         }
     }
 
-    final public function setAdapter(IDataAdapter $adapter): void
+    final public function setAdapter(DataAdapter $adapter): void
     {
         $this->adapter = $adapter;
     }

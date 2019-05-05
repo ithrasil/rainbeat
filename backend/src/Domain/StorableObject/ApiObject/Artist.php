@@ -2,15 +2,15 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-use App\Domain\StorableObject\IStorable;
+use App\Domain\StorableObject\Storable;
 use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\OutputType;
+use App\Util\DataLoader\RequestedOutputType;
 
-final class Artist extends ApiObject implements IStorable
+final class Artist extends ApiObject implements Storable
 {
     use AggregatesTracks;
 
-    protected $type = OutputType::ARTIST;
+    protected $type = RequestedOutputType::ARTIST;
 
     protected $id;
 
