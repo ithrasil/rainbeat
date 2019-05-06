@@ -12,11 +12,7 @@ final class Artist extends ApiObject implements Storable
 
     protected $requestedOutputType = RequestedOutputType::ARTIST;
 
-    protected $id;
-
     private $name;
-
-    protected $source;
 
     function fromSoundCloud(Object $artist): void
     {

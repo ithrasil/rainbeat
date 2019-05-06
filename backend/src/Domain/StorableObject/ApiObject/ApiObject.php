@@ -3,7 +3,6 @@
 namespace App\Domain\StorableObject\ApiObject;
 
 use App\Domain\StorableObject\Storable;
-use App\Domain\ValueObject\Requirements;
 use App\Util\DataLoader\ApiProviders;
 
 abstract class ApiObject implements Storable
@@ -11,7 +10,7 @@ abstract class ApiObject implements Storable
     protected $id;
 
     protected $requestedOutputType;
-    
+
     protected $source;
 
     public function __construct(Object $data = null, string $source = null)
@@ -35,14 +34,14 @@ abstract class ApiObject implements Storable
         return $this->id;
     }
 
-    final public function createPath(): string
+    final public function getRequestedOutputType(): string
     {
-        return $this->requestedOutputType . '/' . $this->source . '/' . $this->primaryKey() . '.';
+        return $this->requestedOutputType;
     }
 
-    static function getFileLocation(Requirements $requirements, array $data): string
+    final public function getSource(): string
     {
-        return $requirements->getType() . '/' . $requirements->getSource() . '/' . $data['id'] . '.';
+        return $this->source;
     }
 }
 

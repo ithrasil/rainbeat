@@ -39,19 +39,19 @@ final class DataLoader
             RequestedOutputType::PLAYLIST => PlaylistAggregate::class,
         ];
 
-        $AggregateClass = $mapping[$requirements->getType()];
+        $aggregateClass = $mapping[$requirements->getType()];
 
         $aggregateExists = $this->repository->aggregateExists($requirements);
 
         if (!$aggregateExists) {
             $blob = $this->httpManager->getExternalContent($requirements);
             /** @var Aggregate $aggregate */
-            $aggregate = new $AggregateClass($blob, $requirements);
+            $aggregate = new $aggregateClass($blob, $requirements);
             $this->repository->mapStorableToEntity($aggregate);
             $content = $aggregate->toArray();
         } else {
             /** @var Aggregate $aggregate */
-            $aggregate = $this->repository->mapEntityToStorable($requirements, $AggregateClass, []);
+            $aggregate = $this->repository->mapEntityToStorable($requirements, $aggregateClass, []);
             $content = $aggregate->toArray();
         }
 
@@ -84,7 +84,7 @@ final class DataLoader
             $blob = $this->httpManager->getExternalContent($requirements);
             foreach ($blob as $item) {
                 $newObject = new Track($item, $requirements->getSource());
-                $classObject->setTracks($newObject);
+                $classObject->addTrack($newObject);
             }
             $classObject->setFilled();
             $this->repository->mapStorableToEntity($classObject);

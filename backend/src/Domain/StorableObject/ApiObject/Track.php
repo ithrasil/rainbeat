@@ -3,7 +3,6 @@
 namespace App\Domain\StorableObject\ApiObject;
 
 use App\Domain\StorableObject\Storable;
-use App\Domain\ValueObject\Requirements;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\RequestedOutputType;
 use App\Domain\ValueObject\Artwork;
@@ -16,11 +15,7 @@ final class Track extends ApiObject implements Storable
 
     private $bigArtwork;
 
-    protected $id;
-
     private $name;
-
-    protected $source;
 
     private $stream;
 
@@ -87,10 +82,5 @@ final class Track extends ApiObject implements Storable
         $this->id = $array['id'];
 
         return $this;
-    }
-
-    static function getFileLocation(Requirements $requirements, array $data): string
-    {
-        return 'track/' . $requirements->getSource() . '/' . $data['id'] . '.';
     }
 }

@@ -10,7 +10,7 @@ use App\Domain\ValueObject\Requirements;
 
 abstract class Aggregate implements Storable
 {
-    public $requestedOutputType;
+    protected $requestedOutputType;
 
     protected $query;
 
@@ -62,11 +62,6 @@ abstract class Aggregate implements Storable
         return $keys;
     }
 
-    final public function createPath(): string
-    {
-        return 'aggregate/' . $this->requestedOutputType . '/' . $this->source . '/' . $this->query . '.';
-    }
-
     final public function addToApiObject(Storable $storable): void
     {
         $this->apiObjects[] = $storable;
@@ -91,15 +86,25 @@ abstract class Aggregate implements Storable
         return $this;
     }
 
-    static function getFileLocation(Requirements $requirements, array $data): string
-    {
-        return 'aggregate/' . $requirements->getType() . '/' .
-            $requirements->getSource() . '/' . $requirements->getQuery() . '.';
-    }
 
     final public function getStorableChildren(): array
     {
         return $this->apiObjects;
+    }
+
+    final public function getRequestedOutputType(): string
+    {
+        return $this->requestedOutputType;
+    }
+
+    final public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    final public function getSource(): string
+    {
+        return $this->source;
     }
 }
 

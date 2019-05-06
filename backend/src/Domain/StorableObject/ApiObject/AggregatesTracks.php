@@ -8,7 +8,7 @@ trait AggregatesTracks
 
     private $trackFilled = false;
 
-    final public function setTracks(Track $track): void
+    final public function addTrack(Track $track): void
     {
         $this->tracks[] = $track;
     }

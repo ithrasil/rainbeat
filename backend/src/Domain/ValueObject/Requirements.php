@@ -12,7 +12,7 @@ final class Requirements
 
     private $id;
 
-    function __construct(string $source, string $type, string $query, string $id='')
+    public function __construct(string $source, string $type, string $query, string $id='')
     {
         $this->source = $source;
         $this->type = $type;
