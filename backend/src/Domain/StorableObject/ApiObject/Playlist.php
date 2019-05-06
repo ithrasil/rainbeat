@@ -10,7 +10,7 @@ final class Playlist extends ApiObject implements Storable
 {
     use AggregatesTracks;
 
-    protected $type = RequestedOutputType::PLAYLIST;
+    protected $requestedOutputType = RequestedOutputType::PLAYLIST;
 
     protected $id;
 
@@ -34,20 +34,12 @@ final class Playlist extends ApiObject implements Storable
 
     function toArray(): array
     {
-        if (is_null($this->tracks)) {
-            return [
-                'id' => $this->id,
-                'name' => $this->name,
-                'source' => $this->source,
-            ];
-        } else {
-            return [
-                'id' => $this->id,
-                'name' => $this->name,
-                'source' => $this->source,
-                'tracks' => $this->mapTracksToArray($this->tracks),
-            ];
-        }
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'source' => $this->source,
+            'tracks' => $this->mapTracksToArray($this->tracks),
+        ];
     }
 
     static function fromArray(array $array): ApiObject

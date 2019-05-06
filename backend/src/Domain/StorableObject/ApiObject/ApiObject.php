@@ -8,8 +8,8 @@ use App\Util\DataLoader\ApiProviders;
 
 abstract class ApiObject implements Storable
 {
-    protected $type;
     protected $id;
+    protected $requestedOutputType;
     protected $source;
 
     public function __construct(Object $data = null, string $source = null)
@@ -35,7 +35,7 @@ abstract class ApiObject implements Storable
 
     final public function createPath(): string
     {
-        return $this->type . '/' . $this->source . '/' . $this->primaryKey() . '.';
+        return $this->requestedOutputType . '/' . $this->source . '/' . $this->primaryKey() . '.';
     }
 
     static function getFileLocation(Requirements $requirements, array $data): string

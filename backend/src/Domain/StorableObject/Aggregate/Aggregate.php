@@ -10,9 +10,7 @@ use App\Domain\ValueObject\Requirements;
 
 abstract class Aggregate implements Storable
 {
-    public $type;
-    protected $canAggregateOtherAggregates;
-    protected $valueObjectClassName;
+    public $requestedOutputType;
     protected $query;
     protected $source;
     /**
@@ -44,7 +42,7 @@ abstract class Aggregate implements Storable
     final public function aggregate(array $blob, string $source): void
     {
         foreach ($blob as $item) {
-            $className = $this->valueObjectClassName;
+            $className = $this->getChildType();
             /** @var Track|Artist|Playlist $newObject */
             $newObject = new $className($item, $source);
             array_push($this->apiObjects, $newObject);
@@ -63,7 +61,7 @@ abstract class Aggregate implements Storable
 
     final public function createPath(): string
     {
-        return 'aggregate/' . $this->type . '/' . $this->source . '/' . $this->query . '.';
+        return 'aggregate/' . $this->requestedOutputType . '/' . $this->source . '/' . $this->query . '.';
     }
 
     final public function addToApiObject(Storable $storable): void {
@@ -73,9 +71,7 @@ abstract class Aggregate implements Storable
     final public function serialize(): array
     {
         return [
-            'type' => $this->type,
-            'canAggregateOtherAggregates' => $this->canAggregateOtherAggregates,
-            'valueObjectClassName' => $this->valueObjectClassName,
+            'type' => $this->requestedOutputType,
             'query' => $this->query,
             'source' => $this->source,
             'apiObjects' => $this->primaryKeys(),
@@ -84,9 +80,7 @@ abstract class Aggregate implements Storable
 
     final public function hashMapToObject(array $array): Aggregate
     {
-        $this->type = $array['type'];
-        $this->canAggregateOtherAggregates = $array['canAggregateOtherAggregates'];
-        $this->valueObjectClassName = $array['valueObjectClassName'];
+        $this->requestedOutputType = $array['type'];
         $this->query = $array['query'];
         $this->source = $array['source'];
 

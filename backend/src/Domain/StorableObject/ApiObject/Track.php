@@ -10,7 +10,8 @@ use App\Domain\ValueObject\Artwork;
 
 final class Track extends ApiObject implements Storable
 {
-    protected $type = RequestedOutputType::TRACK;
+    protected $requestedOutputType = RequestedOutputType::TRACK;
+    
     private $artistName;
 
     private $bigArtwork;

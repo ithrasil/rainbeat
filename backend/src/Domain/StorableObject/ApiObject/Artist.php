@@ -10,7 +10,7 @@ final class Artist extends ApiObject implements Storable
 {
     use AggregatesTracks;
 
-    protected $type = RequestedOutputType::ARTIST;
+    protected $requestedOutputType = RequestedOutputType::ARTIST;
 
     protected $id;
 

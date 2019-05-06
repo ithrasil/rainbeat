@@ -9,9 +9,7 @@ use App\Domain\StorableObject\ApiObject\Artist;
 
 final class PlaylistAggregate extends Aggregate
 {
-    public $type = RequestedOutputType::PLAYLIST;
-    protected $valueObjectClassName = Playlist::class;
-    protected $canAggregateOtherAggregates = true;
+    public $requestedOutputType = RequestedOutputType::PLAYLIST;
 
     public function getChildType(): ?string
     {
@@ -23,6 +21,5 @@ final class PlaylistAggregate extends Aggregate
         $object = new self();
         return $object->hashMapToObject($array);
     }
-
 }
 

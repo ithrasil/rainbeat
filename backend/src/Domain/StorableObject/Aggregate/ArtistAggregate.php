@@ -9,9 +9,7 @@ use App\Domain\StorableObject\ApiObject\Playlist;
 
 final class ArtistAggregate extends Aggregate
 {
-    public $type = RequestedOutputType::ARTIST;
-    protected $valueObjectClassName = Artist::class;
-    protected $canAggregateOtherAggregates = true;
+    public $requestedOutputType = RequestedOutputType::ARTIST;
 
     public function getChildType(): ?string
     {

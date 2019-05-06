@@ -2,9 +2,6 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-
-use App\Domain\StorableObject\ApiObject\Track;
-
 trait AggregatesTracks {
     private $tracks = [];
 
