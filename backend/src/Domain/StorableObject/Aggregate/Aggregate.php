@@ -11,8 +11,11 @@ use App\Domain\ValueObject\Requirements;
 abstract class Aggregate implements Storable
 {
     public $requestedOutputType;
+
     protected $query;
+
     protected $source;
+
     /**
      * @var Track[]|Artist[]|Playlist[]
      */
@@ -64,7 +67,8 @@ abstract class Aggregate implements Storable
         return 'aggregate/' . $this->requestedOutputType . '/' . $this->source . '/' . $this->query . '.';
     }
 
-    final public function addToApiObject(Storable $storable): void {
+    final public function addToApiObject(Storable $storable): void
+    {
         $this->apiObjects[] = $storable;
     }
 

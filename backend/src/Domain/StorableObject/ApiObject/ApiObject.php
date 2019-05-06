@@ -9,7 +9,9 @@ use App\Util\DataLoader\ApiProviders;
 abstract class ApiObject implements Storable
 {
     protected $id;
+
     protected $requestedOutputType;
+    
     protected $source;
 
     public function __construct(Object $data = null, string $source = null)

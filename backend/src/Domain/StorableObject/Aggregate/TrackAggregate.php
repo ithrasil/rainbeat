@@ -4,8 +4,6 @@ namespace App\Domain\StorableObject\Aggregate;
 
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Util\DataLoader\RequestedOutputType;
-use App\Domain\StorableObject\ApiObject\Artist;
-use App\Domain\StorableObject\ApiObject\Playlist;
 
 final class TrackAggregate extends Aggregate
 {

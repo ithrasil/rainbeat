@@ -3,9 +3,6 @@
 namespace test\Util;
 
 use App\Domain\ValueObject\Requirements;
-use App\Util\DataAdapter\DataAdapter;
-use App\Util\DataAdapter\JamendoEntityAdapter;
-use App\Util\DataAdapter\SoundcloudEntityAdapter;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\RequestedOutputType;
 use App\Util\DataLoader\RequestType;

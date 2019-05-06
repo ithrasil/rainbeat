@@ -3,9 +3,7 @@
 namespace App\Domain\StorableObject\Aggregate;
 
 use App\Util\DataLoader\RequestedOutputType;
-use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\StorableObject\ApiObject\Artist;
-use App\Domain\StorableObject\ApiObject\Playlist;
 
 final class ArtistAggregate extends Aggregate
 {

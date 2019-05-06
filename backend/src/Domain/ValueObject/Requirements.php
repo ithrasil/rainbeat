@@ -5,8 +5,11 @@ namespace App\Domain\ValueObject;
 final class Requirements
 {
     private $source;
+
     private $type;
+
     private $query;
+
     private $id;
 
     function __construct(string $source, string $type, string $query, string $id='')

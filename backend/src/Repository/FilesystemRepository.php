@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 final class FilesystemRepository implements Repository
 {
     CONST API_PREFIX = 'api/';
+
     CONST EXTENSION = 'json';
 
     private $root;

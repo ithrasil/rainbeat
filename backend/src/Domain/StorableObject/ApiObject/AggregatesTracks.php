@@ -2,7 +2,8 @@
 
 namespace App\Domain\StorableObject\ApiObject;
 
-trait AggregatesTracks {
+trait AggregatesTracks
+{
     private $tracks = [];
 
     private $trackFilled = false;
@@ -17,7 +18,8 @@ trait AggregatesTracks {
         return $this->tracks;
     }
 
-    final public function mapTracksToArray(array $tracks): array {
+    final public function mapTracksToArray(array $tracks): array
+    {
         $arr = [];
         /** @var Track $track */
         foreach ($tracks as $track) {

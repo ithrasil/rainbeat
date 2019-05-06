@@ -4,8 +4,6 @@ namespace test\Util\Fake;
 
 use App\Util\DataAdapter\DataAdapter;
 use App\Domain\ValueObject\Requirements;
-use App\Util\DataLoader\ApiProviders;
-use App\Util\DataLoader\RequestedOutputType;
 use App\Util\HttpManager\HttpManager;
 
 final class HttpClientFake implements HttpManager
@@ -24,9 +22,12 @@ final class HttpClientFake implements HttpManager
         return json_decode(file_get_contents($this->path . '/tests/Util/Fake/Blob/' . $filename));
     }
 
-    final public function setAdapter(DataAdapter $adapter): void {}
+    final public function setAdapter(DataAdapter $adapter): void
+    {
+    }
 
-    final public function setPath(string $path): void {
+    final public function setPath(string $path): void
+    {
         $this->path = $path;
     }
 }

@@ -11,7 +11,7 @@ use App\Domain\ValueObject\Artwork;
 final class Track extends ApiObject implements Storable
 {
     protected $requestedOutputType = RequestedOutputType::TRACK;
-    
+
     private $artistName;
 
     private $bigArtwork;
@@ -31,7 +31,7 @@ final class Track extends ApiObject implements Storable
         $this->source = ApiProviders::SOUNDCLOUD;
         $this->stream = $track->uri . '/stream' . '?client_id=' . 'stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv';
         $this->name = $track->title;
-        $this->id = (string) $track->id;
+        $this->id = (string)$track->id;
     }
 
     function fromJamendo(Object $track): void

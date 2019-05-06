@@ -60,7 +60,7 @@ final class ArtistController extends AbstractController
             ApiProviders::SOUNDCLOUD => SoundcloudEntityAdapter::class,
             ApiProviders::JAMENDO => JamendoEntityTracksAdapter::class,
         ];
-        if(!key_exists($source, $mapping)) {
+        if (!key_exists($source, $mapping)) {
             return new Response('', 404);
         }
         $adapter = $mapping[$source];
