@@ -56,45 +56,46 @@ final class FilesystemRepository implements Repository
 
         if (!file_exists($pathToFile)) {
             return null;
-        } else {
-            $contents = json_decode(file_get_contents($pathToFile), true);
-            /** @var Storable $storable */
-            $storable = $className::fromArray($contents);
-            if ($storable instanceof Track) {
-                return $storable;
-            }
+        }
 
-            $child = $storable->getChildType();
-
-            if ($storable instanceof Aggregate) {
-                foreach ($contents['apiObjects'] as $primaryKey) {
-                    $apiObject = $this->mapEntityToStorable($requirements, $child, ['id' => $primaryKey]);
-
-                    if (!$apiObject) {
-                        continue;
-                    }
-                    if (($storable instanceof ArtistAggregate || $storable instanceof PlaylistAggregate)) {
-                        /**@var Artist|Playlist $apiObject */
-                        if ($apiObject->isFilled() && count($apiObject->getTracks()) === 0) {
-                            continue;
-                        }
-                    }
-
-                    /** @var Aggregate $storable */
-                    $storable->addToApiObject($apiObject);
-                }
-            } else if ($storable instanceof ApiObject) {
-                foreach ($contents['tracks'] as $id) {
-                    /** @var Track $el */
-                    $el = $this->mapEntityToStorable($requirements, $child, ['id' => $id]);
-                    if ($contents['tracks'] && $el) {
-                        /** @var Artist|Playlist $storable */
-                        $storable->addTrack($el);
-                    }
-                }
-            }
+        $contents = json_decode(file_get_contents($pathToFile), true);
+        /** @var Storable $storable */
+        $storable = $className::fromArray($contents);
+        if ($storable instanceof Track) {
             return $storable;
         }
+
+        $child = $storable->getChildType();
+
+        if ($storable instanceof Aggregate) {
+            foreach ($contents['apiObjects'] as $primaryKey) {
+                $apiObject = $this->mapEntityToStorable($requirements, $child, ['id' => $primaryKey]);
+
+                if (!$apiObject) {
+                    continue;
+                }
+                if (($storable instanceof ArtistAggregate || $storable instanceof PlaylistAggregate)) {
+                    /**@var Artist|Playlist $apiObject */
+                    if ($apiObject->isFilled() && count($apiObject->getTracks()) === 0) {
+                        continue;
+                    }
+                }
+
+                /** @var Aggregate $storable */
+                $storable->addToApiObject($apiObject);
+            }
+        } else if ($storable instanceof ApiObject) {
+            foreach ($contents['tracks'] as $id) {
+                /** @var Track $el */
+                $el = $this->mapEntityToStorable($requirements, $child, ['id' => $id]);
+                if ($contents['tracks'] && $el) {
+                    /** @var Artist|Playlist $storable */
+                    $storable->addTrack($el);
+                }
+            }
+        }
+        return $storable;
+
     }
 
     private function createQuery(string $path): string

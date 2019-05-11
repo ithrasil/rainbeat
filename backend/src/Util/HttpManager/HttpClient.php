@@ -9,7 +9,14 @@ use GuzzleHttp\Client;
 
 final class HttpClient implements HttpManager
 {
+    /**
+     * @var DataAdapter $adapter
+     */
     protected $adapter;
+
+    /**
+     * @var ApiEndpointGenerator
+     */
     protected $apiEndpointGenerator;
 
     public function __construct(ApiEndpointGenerator $apiEndpointGenerator)
@@ -23,11 +30,8 @@ final class HttpClient implements HttpManager
         $client = new Client();
         $response = $client->request('GET', $url, ['verify' => true, 'headers' => ['Accept' => 'application/json',]]);
         $data = json_decode($response->getBody());
-        if ($data == null) {
-            return [];
-        } else {
-            return $this->adapter->adapt($data);
-        }
+
+        return !$data ? [] : $this->adapter->adapt($data);
     }
 
     final public function setAdapter(DataAdapter $adapter): void

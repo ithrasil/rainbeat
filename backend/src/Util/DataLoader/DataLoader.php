@@ -48,14 +48,12 @@ final class DataLoader
             /** @var Aggregate $aggregate */
             $aggregate = new $aggregateClass($blob, $requirements);
             $this->repository->mapStorableToEntity($aggregate);
-            $content = $aggregate->toArray();
         } else {
             /** @var Aggregate $aggregate */
             $aggregate = $this->repository->mapEntityToStorable($requirements, $aggregateClass, []);
-            $content = $aggregate->toArray();
         }
 
-        return $content;
+        return $aggregate->toArray();
     }
 
     public function getTracks(Requirements $requirements): array
