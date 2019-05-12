@@ -2,17 +2,20 @@
 
 namespace App\Util;
 
-class ApiEndpointGenerator
+use App\Util\DataLoader\ApiProviders;
+use App\Util\DataLoader\RequestedOutputType;
+
+final class ApiEndpointGenerator
 {
-    private $soundcloudRoot;
-    private $jamendoRoot;
+    private $soundcloudPrefixURL;
+    private $jamendoPrefixURL;
     private $soundcloudId;
     private $jamendoId;
 
-    public function __construct(string $soundcloudRoot, string $jamendoRoot, string $soundcloudId, string $jamendoId)
+    public function __construct(string $soundcloudPrefixURL, string $jamendoPrefixURL, string $soundcloudId, string $jamendoId)
     {
-        $this->soundcloudRoot = $soundcloudRoot;
-        $this->jamendoRoot = $jamendoRoot;
+        $this->soundcloudPrefixURL = $soundcloudPrefixURL;
+        $this->jamendoPrefixURL = $jamendoPrefixURL;
         $this->soundcloudId = $soundcloudId;
         $this->jamendoId = $jamendoId;
     }
@@ -20,42 +23,42 @@ class ApiEndpointGenerator
     final public function generate(string $source, string $type, string $query, string $id=''): string
     {
         $url = '';
-        if ($source === 'soundcloud') {
-            $url .= $this->soundcloudRoot;
+        if ($source === ApiProviders::SOUNDCLOUD) {
+            $url .= $this->soundcloudPrefixURL;
             switch ($type) {
-                case 'tracks':
+                case RequestedOutputType::TRACK:
                     $url .= 'tracks?q=' . $query . '&';
                     break;
-                case 'playlists':
+                case RequestedOutputType::PLAYLIST:
                     $url .= 'playlists?q=' . $query . '&';
                     break;
-                case 'playlist_tracks':
+                case RequestedOutputType::PLAYLIST_TRACK:
                     $url .= 'playlists/' . $id . '/tracks?';
                     break;
-                case 'artists':
+                case RequestedOutputType::ARTIST:
                     $url .= 'users?q=' . $query . '&';
                     break;
-                case 'artist_tracks':
+                case RequestedOutputType::ARTIST_TRACK:
                     $url .= 'users/' . $id . '/tracks?';
                     break;
             }
             $url .= 'client_id=' . $this->soundcloudId;
-        } else if ($source === 'jamendo') {
-            $url .= $this->jamendoRoot;
+        } else if ($source === ApiProviders::JAMENDO) {
+            $url .= $this->jamendoPrefixURL;
             switch ($type) {
-                case 'tracks':
+                case RequestedOutputType::TRACK:
                     $url .= 'tracks?name=' . $query;
                     break;
-                case 'playlists':
+                case RequestedOutputType::PLAYLIST:
                     $url .= 'playlists?name=' . $query;
                     break;
-                case 'playlist_tracks':
+                case RequestedOutputType::PLAYLIST_TRACK:
                     $url .= 'playlists/tracks?id=' . $id;
                     break;
-                case 'artists':
+                case RequestedOutputType::ARTIST:
                     $url .= 'artists?name=' . $query;
                     break;
-                case 'artist_tracks':
+                case RequestedOutputType::ARTIST_TRACK:
                     $url .= 'artists/tracks?id=' . $id;
                     break;
             }

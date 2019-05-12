@@ -1,0 +1,26 @@
+[
+  {
+    "big_artwork": "https:\/\/i1.sndcdn.com\/artworks-000110214611-yz333i-t500x500.jpg",
+    "artist_name": "Musical Freedom",
+    "source": "soundcloud",
+    "stream": "https:\/\/api.soundcloud.com\/tracks\/196156839\/stream?client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv",
+    "name": "Tiesto & KSHMR -  Secrets feat. Vassy (Original Mix)[OUT NOW]",
+    "id": "196156839"
+  },
+  {
+    "big_artwork": "https:\/\/i1.sndcdn.com\/artworks-000113418206-u74dpc-t500x500.jpg",
+    "artist_name": "Musical Freedom",
+    "source": "soundcloud",
+    "stream": "https:\/\/api.soundcloud.com\/tracks\/200843678\/stream?client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv",
+    "name": "Martin Garrix & Ti\u00ebsto - The Only Way Is Up [OUT NOW]",
+    "id": "200843678"
+  },
+  {
+    "big_artwork": "https:\/\/i1.sndcdn.com\/artworks-000125963811-ldu0z9-t500x500.jpg",
+    "artist_name": "Musical Freedom",
+    "source": "soundcloud",
+    "stream": "https:\/\/api.soundcloud.com\/tracks\/218663070\/stream?client_id=stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv",
+    "name": "Ti\u00ebsto & The Chainsmokers - Split (Only U) [OUT NOW]",
+    "id": "218663070"
+  }
+]

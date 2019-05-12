@@ -11,7 +11,6 @@ export default class CardExtended extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             loading: false,
             name: props.data.name,
@@ -20,7 +19,11 @@ export default class CardExtended extends Component {
 
     componentWillReceiveProps(props) {
         if (props.data.name === this.state.name) return;
-        this.setState((state, props) => ({loading: false}))
+        this.setState((state, props) => ({
+            loading: false,
+            index: props.index,
+            name: props.data.name,
+        }))
     }
 
     handleClick() {

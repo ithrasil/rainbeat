@@ -6,53 +6,77 @@ use App\Util\DataAdapter\JamendoEntityAdapter;
 use App\Util\DataAdapter\JamendoEntityTracksAdapter;
 use App\Util\DataLoader\DataLoader;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
-use App\ValueObjects\Playlists;
-use App\ValueObjects\Requirements;
-use App\ValueObjects\Tracks;
+use App\Domain\ValueObject\Requirements;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Util\DataLoader\ApiProviders;
+use App\Util\DataLoader\RequestedOutputType;
+use Symfony\Component\Routing\Annotation\Route;
 
-class PlaylistController extends AbstractController
+final class PlaylistController extends AbstractController
 {
-    use ControllerTrait;
-
+    /**
+     * @Route("/playlists/{query}", name="playlists")
+     *
+     * @param Request $request
+     * @param DataLoader $dataLoader
+     * @param string $query
+     * @return Response
+     */
     public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        $dataLoader->setValueObject(Playlists::class);
-        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
-        return new Response($content, 200, array('Content-Type' => 'application/json'));
+        $apiAdapters = [
+            ApiProviders::SOUNDCLOUD => SoundcloudEntityAdapter::class,
+            ApiProviders::JAMENDO => JamendoEntityAdapter::class,
+        ];
+
+        $result = [];
+        $params = $request->query->all();
+
+        foreach ($params as $param => $value) {
+            if (key_exists($param, $apiAdapters) && $value === 'true') {
+                $requirements = new Requirements($param, RequestedOutputType::PLAYLIST, $query);
+
+                $adapterClass = $apiAdapters[$param];
+                $dataLoader->getHttpManager()->setAdapter(new $adapterClass());
+                $content = $dataLoader->getGenericContent($requirements);
+                $result = array_merge($content, $result);
+            }
+        }
+
+        return new Response(json_encode($result, JSON_PRETTY_PRINT), 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 
-    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
+    /**
+     * @Route("/playlist/{id}/{source}", name="playlist_tracks")
+     *
+     * @param string $id
+     * @param string $source
+     * @param DataLoader $dataLoader
+     * @return Response
+     */
+    public function getTracks(string $id, string $source, DataLoader $dataLoader): Response
     {
-        $requirements = new Requirements('soundcloud', 'playlists', $query);
-        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
-        return $dataLoader->getContent($requirements);
-    }
+        $mapping = [
+            ApiProviders::SOUNDCLOUD => SoundcloudEntityAdapter::class,
+            ApiProviders::JAMENDO => JamendoEntityTracksAdapter::class,
+        ];
 
-    private function getJamendoContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements('jamendo', 'playlists', $query);
-        $dataLoader->setAdapter(new JamendoEntityAdapter());
-        return $dataLoader->getContent($requirements);
-    }
+        if (!key_exists($source, $mapping)) {
+            return new Response('', 404);
+        }
 
-    public function getSoundcloudChunk(string $id, DataLoader $dataLoader): Response
-    {
-        $requirements = new Requirements('soundcloud', 'playlist_tracks', 'NOT_QUERY', $id);
-        $dataLoader->setValueObject(Tracks::class);
-        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
-        $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
-        return new Response($content, 200, array('Content-Type' => 'application/json'));
-    }
+        $adapter = $mapping[$source];
+        $requirements = new Requirements($source, RequestedOutputType::PLAYLIST_TRACK,
+            RequestedOutputType::TRACK, $id);
+        $dataLoader->getHttpManager()->setAdapter(new $adapter());
+        $content = json_encode($dataLoader->getTracks($requirements), JSON_PRETTY_PRINT);
 
-    public function getJamendoChunk(string $id, DataLoader $dataLoader): Response
-    {
-        $requirements = new Requirements('jamendo', 'playlist_tracks', 'NOT_QUERY', $id);
-        $dataLoader->setValueObject(Tracks::class);
-        $dataLoader->setAdapter(new JamendoEntityTracksAdapter());
-        $content = json_encode($dataLoader->getContent($requirements), JSON_PRETTY_PRINT);
-        return new Response($content, 200, array('Content-Type' => 'application/json'));
+        return new Response($content, 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 }

@@ -6,7 +6,7 @@ export default class Error extends Component {
     return (
       <div className="error">
         <div className="description">
-          <span>The queue is totally empty</span>
+          <span>The queue is empty</span>
         </div>
       </div>
     )

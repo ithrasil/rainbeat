@@ -28,7 +28,6 @@ class Tips extends Component {
     }
 
     filterUpdate(name, api) {
-        console.log(this);
         let newFilters = Object.assign({}, this.props.filters);
         newFilters[name][api] = !newFilters[name][api];
         this.props.updateFilter(newFilters);

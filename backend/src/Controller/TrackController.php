@@ -5,34 +5,47 @@ namespace App\Controller;
 use App\Util\DataAdapter\JamendoEntityAdapter;
 use App\Util\DataLoader\DataLoader;
 use App\Util\DataAdapter\SoundcloudEntityAdapter;
-use App\ValueObjects\Requirements;
-use App\ValueObjects\Tracks;
+use App\Domain\ValueObject\Requirements;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Util\DataLoader\ApiProviders;
+use App\Util\DataLoader\RequestedOutputType;
+use Symfony\Component\Routing\Annotation\Route;
 
-class TrackController extends AbstractController
+final class TrackController extends AbstractController
 {
-    use ControllerTrait;
-
+    /**
+     * @Route("/tracks/{query}", name="tracks")
+     *
+     * @param Request $request
+     * @param DataLoader $dataLoader
+     * @param string $query
+     * @return Response
+     */
     public function index(Request $request, DataLoader $dataLoader, string $query): Response
     {
-        $dataLoader->setValueObject(Tracks::class);
-        $content = json_encode($this->mergeData($request, $dataLoader, $query), JSON_PRETTY_PRINT);
-        return new Response($content, 200, array('Content-Type' => 'application/json'));
-    }
+        $apiAdapters = [
+            ApiProviders::SOUNDCLOUD => SoundcloudEntityAdapter::class,
+            ApiProviders::JAMENDO => JamendoEntityAdapter::class,
+        ];
 
-    private function getSoundcloudContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements('soundcloud', 'tracks', $query);
-        $dataLoader->setAdapter(new SoundcloudEntityAdapter());
-        return $dataLoader->getContent($requirements);
-    }
+        $result = [];
+        $params = $request->query->all();
 
-    private function getJamendoContent(string $query, DataLoader $dataLoader): array
-    {
-        $requirements = new Requirements('jamendo', 'tracks', $query);
-        $dataLoader->setAdapter(new JamendoEntityAdapter());
-        return $dataLoader->getContent($requirements);
+        foreach ($params as $param => $value) {
+            if (key_exists($param, $apiAdapters) && $value === 'true') {
+                $requirements = new Requirements($param, RequestedOutputType::TRACK, $query);
+
+                $adapterClass = $apiAdapters[$param];
+                $dataLoader->getHttpManager()->setAdapter(new $adapterClass());
+                $content = $dataLoader->getGenericContent($requirements);
+                $result = array_merge($content, $result);
+            }
+        }
+
+        return new Response(json_encode($result, JSON_PRETTY_PRINT), 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 }
