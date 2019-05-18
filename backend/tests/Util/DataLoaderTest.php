@@ -5,10 +5,9 @@ namespace test\Util;
 use App\Domain\ValueObject\Requirements;
 use App\Util\DataLoader\ApiProviders;
 use App\Util\DataLoader\RequestedOutputType;
-use App\Util\DataLoader\RequestType;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Repository\Repository;
 use App\Util\DataLoader\DataLoader;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use test\Util\Fake\HttpClientFake;
 
 final class DataLoaderTest extends KernelTestCase

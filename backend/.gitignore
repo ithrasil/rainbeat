@@ -10,5 +10,4 @@
 ###< symfony/web-server-bundle ###
 ###> symfony/phpunit-bridge ###
 .phpunit
-/phpunit.xml
 ###< symfony/phpunit-bridge ###
