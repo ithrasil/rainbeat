@@ -38,11 +38,9 @@ export default class CardExtended extends Component {
         return (
             <div className='card_extended'>
                 <div className="card_contents" onClick={this.handleClick.bind(this)}>
-                    <ArrowIcon className={'arrow'} fill={'white'}/>
-                    <div className="source"
-                         style={{backgroundImage: `url(/images/sources/${this.props.data.source}.png)`}}></div>
+                    {this.state.loading === true ? <LoadIcon/>
+                    : <div className="source" style={{backgroundImage: `url(/images/sources/${this.props.data.source}.png)`}}></div>}
                     <div className="label"><span title={name}>{name}</span></div>
-                    {this.state.loading === true ? <LoadIcon/> : ""}
                 </div>
             </div>
         )

@@ -39,8 +39,6 @@ export default class CardExtendedLoaded extends Component {
             <div className={'card_extended_loaded ' + foldClass}>
                 <div className="card_contents" onClick={this.setActive.bind(this)}>
                     <ArrowIcon className={'arrow'} fill={'white'}/>
-                    <div className="source"
-                         style={{backgroundImage: `url(/images/sources/${this.props.data.source}.png)`}}></div>
                     <div className="label"><span title={this.props.data.name}>{this.props.data.name}</span></div>
                 </div>
                 <div className="fold">

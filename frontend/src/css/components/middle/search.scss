@@ -3,72 +3,87 @@
   letter-spacing: 3px;
   box-sizing: border-box;
   display: flex;
-  width: 600px;
-  margin: 10px auto;
-  transition: .3s ease;
-  background-color: darken($accent, 33.5%);
+  justify-content: flex-end;
 
   &.active {
     background-color: darken($accent, 36.5%);
+    .container {
+      width: 920px;
+      padding-left: 40px;
+      background-color: darken($accent, 36.5%);
+      > input::placeholder {
+        color: transparent;
+      }
 
-    > input::placeholder {
-      color: transparent;
-    }
-    .exit {
-      opacity: 1;
-      pointer-events: all;
+      .exit {
+        opacity: 1;
+        pointer-events: all;
+      }
     }
   }
 
-  > label {
-    padding: 13px;
-    height: 24px;
-    width: 24px;
-    display: inline-block;
+  .container {
+    background-color: darken($accent, 33.5%);
+    width: 920px;
+    display: flex;
+    align-items: center;
+    height: 70px;
 
-    .loupe {
+    > label {
+      padding: 13px;
+      height: 24px;
+      width: 24px;
+      display: inline-block;
+
+      .loupe {
+        position: relative;
+        width: 24px;
+        height: 24px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    > input {
+      display: inline-block;
+      vertical-align: top;
+      width: 300px;
+      padding: 10px 0;
+      height: 24px;
+      background-color: transparent;
+      letter-spacing: 1px;
+      font-size: 18px;
+      margin: 3px 0 2px 15px;
+      color: rgba(white, 0.6);
+      border: none;
+      transition: 0.5s;
       position: relative;
+      font-family: 'Inconsolata';
+
+      &:active, &:focus {
+        outline: none;
+        color: white;
+      }
+    }
+
+    .exit {
+      position: relative;
+      padding: 13px;
       width: 24px;
       height: 24px;
+      opacity: 0;
+      pointer-events: none;
 
       &:hover {
         cursor: pointer;
       }
     }
-  }
-
-  > input {
-    display: inline-block;
-    vertical-align: top;
-    width: calc(100%);
-    padding: 10px 0;
-    height: 24px;
-    background-color: transparent;
-    letter-spacing: 1px;
-    font-size: 18px;
-    margin: 3px 0 2px 15px;
-    color: rgba(white, 0.6);
-    border: none;
-    transition: 0.5s;
-    position: relative;
-    font-family: 'Inconsolata';
-
-    &:active, &:focus {
-      outline: none;
-      color: white;
-    }
-  }
-
-  .exit {
-    position: relative;
-    padding: 13px;
-    width: 24px;
-    height: 24px;
-    opacity: 0;
-    pointer-events: none;
-
-    &:hover {
-      cursor: pointer;
+    .filler {
+      background-color: darken($accent, 35%);
+      height: 70px;
+      width: 100%;
     }
   }
 }
