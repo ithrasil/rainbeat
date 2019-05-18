@@ -12,6 +12,7 @@ use App\Domain\StorableObject\ApiObject\Playlist;
 use App\Domain\StorableObject\ApiObject\Track;
 use App\Domain\StorableObject\Storable;
 use App\Domain\ValueObject\Requirements;
+use App\Util\DataLoader\RequestedOutputType;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 final class FilesystemRepository implements Repository
@@ -87,7 +88,9 @@ final class FilesystemRepository implements Repository
         } else if ($storable instanceof ApiObject) {
             foreach ($contents['tracks'] as $id) {
                 /** @var Track $el */
-                $el = $this->mapEntityToStorable($requirements, $child, ['id' => $id]);
+                $trackRequirements = clone $requirements;
+                $trackRequirements->setType(RequestedOutputType::TRACK);
+                $el = $this->mapEntityToStorable($trackRequirements, $child, ['id' => $id]);
                 if ($contents['tracks'] && $el) {
                     /** @var Artist|Playlist $storable */
                     $storable->addTrack($el);
