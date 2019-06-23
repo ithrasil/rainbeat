@@ -24,7 +24,7 @@ final class Track extends ApiObject implements Storable
         $this->bigArtwork = (new Artwork($track, ApiProviders::SOUNDCLOUD))->url();
         $this->artistName = $track->user->username;
         $this->source = ApiProviders::SOUNDCLOUD;
-        $this->stream = $track->uri . '/stream' . '?client_id=' . 'stJqxq59eT4rgFHFLYiyAL2BDbuL3BAv';
+        $this->stream = $track->uri . '/stream' . '?client_id=' . $_ENV['SOUNDCLOUD_ID'];
         $this->name = $track->title;
         $this->id = (string)$track->id;
     }
@@ -34,7 +34,7 @@ final class Track extends ApiObject implements Storable
         $this->bigArtwork = (new Artwork($track, ApiProviders::JAMENDO))->url();
         $this->artistName = $track->artist_name;
         $this->source = ApiProviders::JAMENDO;
-        $this->stream = $track->audio . '?client_id=' . '97cc45f7';
+        $this->stream = $track->audio . '?client_id=' . $_ENV['JAMENDO_ID'];
         $this->name = $track->name;
         $this->id = $track->id;
     }
