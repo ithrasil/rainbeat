@@ -20,7 +20,7 @@
     align-items: center;
     flex-wrap: nowrap;
 
-    .arrow {
+    .card_icon {
       position: absolute;
       left: -24px;
       z-index: 100;
@@ -80,14 +80,14 @@
     .source {
       filter: grayscale(50%);
     }
-    .arrow {
+    .card_icon {
       opacity: 1;
     }
   }
 
 
   &.active {
-    .card_contents > .arrow {
+    .card_contents > .card_icon {
       transform: translateX(0) rotate(180deg);
     }
 

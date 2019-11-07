@@ -8,6 +8,7 @@ export const updateQuery = (query) => {
     }
 };
 
+
 export const changeState = (boolean) => {
     return {
         type: 'SEARCH_STATUS',
@@ -63,9 +64,8 @@ export const getArtistTracks = (artist, index, artists) => {
         const url = `/artist/${artist.id}/${artist.source}`;
 
         let results = await axios.get(url);
-        console.log(results);
         if (results.data.length === 0) {
-            artists.splice(index, 1);
+            artists[index] = {...artists[index], empty: true};
         } else {
             artists[index].tracks = results.data;
         }
@@ -81,7 +81,7 @@ export const getPlaylistTracks = (playlist, index, playlists) => {
         let results = await axios.get(url);
 
         if (results.data.length === 0) {
-            playlists.splice(index, 1);
+            playlists[index] = {...playlists[index], empty: true};
         } else {
             playlists[index].tracks = results.data;
         }

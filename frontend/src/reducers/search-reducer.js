@@ -18,6 +18,7 @@ export default (state = defaultState, action) => {
             state.status = action.payload;
             break;
         case 'TRACKS_UPDATE':
+            console.log(action.payload.slice());
             state.tracks = action.payload.slice();
             break;
         case 'ARTISTS_UPDATE':

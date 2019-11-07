@@ -38,7 +38,6 @@ class Middle extends Component {
   }
 
   render () {
-    console.log(this.props.tracks.length);
     if (this.props.tracks.length === 0) {
       return (
         <section className="middle">
@@ -50,8 +49,8 @@ class Middle extends Component {
       )
     }
 
-    const artwork_url = this.props.tracks[this.props.cardId].big_artwork
-    const track = this.props.tracks[this.props.cardId]
+    const artwork_url = this.props.tracks[this.props.cardId].big_artwork;
+    const track = this.props.tracks[this.props.cardId];
 
     return (
       <section className="middle">
