@@ -18,7 +18,7 @@
   "license": "MIT",
   "homepage": "https://github.com/ithrasil/rainbeat#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-transform-imports": "^1.5.1",
     "prop-types": "^15.7.2",
     "react": "16.3.2",
